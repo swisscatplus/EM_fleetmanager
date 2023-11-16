@@ -1,0 +1,20 @@
+running egg_info
+writing ../../build/swisscat_robot/swisscat_robot.egg-info/PKG-INFO
+writing dependency_links to ../../build/swisscat_robot/swisscat_robot.egg-info/dependency_links.txt
+writing entry points to ../../build/swisscat_robot/swisscat_robot.egg-info/entry_points.txt
+writing requirements to ../../build/swisscat_robot/swisscat_robot.egg-info/requires.txt
+writing top-level names to ../../build/swisscat_robot/swisscat_robot.egg-info/top_level.txt
+reading manifest file '../../build/swisscat_robot/swisscat_robot.egg-info/SOURCES.txt'
+writing manifest file '../../build/swisscat_robot/swisscat_robot.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+running install_egg_info
+removing '/home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot-0.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/swisscat_robot/swisscat_robot.egg-info to /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot-0.0.0-py3.8.egg-info
+running install_scripts
+Installing controller script to /home/coderey/ros2_ws/install/swisscat_robot/lib/swisscat_robot
+Installing fleet_manager script to /home/coderey/ros2_ws/install/swisscat_robot/lib/swisscat_robot
+writing list of installed files to '/home/coderey/ros2_ws/build/swisscat_robot/install.log'

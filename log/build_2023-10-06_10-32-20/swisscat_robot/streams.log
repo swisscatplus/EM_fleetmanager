@@ -1,0 +1,83 @@
+[6.041s] Invoking command in '/home/coderey/ros2_ws/src/swisscat_robot': PYTHONPATH=/home/coderey/ros2_ws/build/swisscat_robot/prefix_override:/home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/swisscat_robot build --build-base /home/coderey/ros2_ws/build/swisscat_robot/build install --record /home/coderey/ros2_ws/build/swisscat_robot/install.log --install-scripts $base/lib/swisscat_robot --single-version-externally-managed
+[6.745s] running egg_info
+[6.746s] creating ../../build/swisscat_robot/swisscat_robot.egg-info
+[6.747s] writing ../../build/swisscat_robot/swisscat_robot.egg-info/PKG-INFO
+[6.748s] writing dependency_links to ../../build/swisscat_robot/swisscat_robot.egg-info/dependency_links.txt
+[6.749s] writing entry points to ../../build/swisscat_robot/swisscat_robot.egg-info/entry_points.txt
+[6.750s] writing requirements to ../../build/swisscat_robot/swisscat_robot.egg-info/requires.txt
+[6.750s] writing top-level names to ../../build/swisscat_robot/swisscat_robot.egg-info/top_level.txt
+[6.753s] writing manifest file '../../build/swisscat_robot/swisscat_robot.egg-info/SOURCES.txt'
+[6.837s] reading manifest file '../../build/swisscat_robot/swisscat_robot.egg-info/SOURCES.txt'
+[6.839s] writing manifest file '../../build/swisscat_robot/swisscat_robot.egg-info/SOURCES.txt'
+[6.839s] running build
+[6.840s] running build_py
+[6.840s] creating /home/coderey/ros2_ws/build/swisscat_robot/build
+[6.840s] creating /home/coderey/ros2_ws/build/swisscat_robot/build/lib
+[6.841s] creating /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot
+[6.841s] copying swisscat_robot/__init__.py -> /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot
+[6.842s] copying swisscat_robot/fleet_manager.py -> /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot
+[6.843s] copying swisscat_robot/controller.py -> /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot
+[6.844s] creating /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules
+[6.844s] copying swisscat_robot/submodules/point.py -> /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules
+[6.845s] copying swisscat_robot/submodules/__init__.py -> /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules
+[6.846s] copying swisscat_robot/submodules/single_agent_planner.py -> /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules
+[6.847s] copying swisscat_robot/submodules/tick_to_odom.py -> /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules
+[6.847s] copying swisscat_robot/submodules/station.py -> /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules
+[6.848s] copying swisscat_robot/submodules/cbs.py -> /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules
+[6.849s] copying swisscat_robot/submodules/robot.py -> /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules
+[6.850s] running install
+[6.852s] running install_lib
+[6.854s] creating /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot
+[6.854s] copying /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/__init__.py -> /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot
+[6.854s] copying /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/fleet_manager.py -> /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot
+[6.855s] copying /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/controller.py -> /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot
+[6.855s] creating /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules
+[6.855s] copying /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules/point.py -> /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules
+[6.855s] copying /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules/__init__.py -> /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules
+[6.856s] copying /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules/single_agent_planner.py -> /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules
+[6.856s] copying /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules/tick_to_odom.py -> /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules
+[6.856s] copying /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules/station.py -> /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules
+[6.856s] copying /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules/cbs.py -> /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules
+[6.857s] copying /home/coderey/ros2_ws/build/swisscat_robot/build/lib/swisscat_robot/submodules/robot.py -> /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules
+[6.858s] byte-compiling /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/__init__.py to __init__.cpython-38.pyc
+[6.860s] byte-compiling /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/fleet_manager.py to fleet_manager.cpython-38.pyc
+[6.864s] byte-compiling /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/controller.py to controller.cpython-38.pyc
+[6.867s] byte-compiling /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules/point.py to point.cpython-38.pyc
+[6.869s] byte-compiling /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules/__init__.py to __init__.cpython-38.pyc
+[6.869s] byte-compiling /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules/single_agent_planner.py to single_agent_planner.cpython-38.pyc
+[6.870s] byte-compiling /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules/tick_to_odom.py to tick_to_odom.cpython-38.pyc
+[6.872s] byte-compiling /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules/station.py to station.cpython-38.pyc
+[6.872s] byte-compiling /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules/cbs.py to cbs.cpython-38.pyc
+[6.875s] byte-compiling /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot/submodules/robot.py to robot.cpython-38.pyc
+[6.876s] running install_data
+[6.877s] creating /home/coderey/ros2_ws/install/swisscat_robot/share/ament_index
+[6.877s] creating /home/coderey/ros2_ws/install/swisscat_robot/share/ament_index/resource_index
+[6.877s] creating /home/coderey/ros2_ws/install/swisscat_robot/share/ament_index/resource_index/packages
+[6.877s] copying resource/swisscat_robot -> /home/coderey/ros2_ws/install/swisscat_robot/share/ament_index/resource_index/packages
+[6.877s] copying package.xml -> /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot
+[6.877s] creating /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/launch
+[6.878s] copying launch/edymobile_main.launch.py -> /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/launch
+[6.878s] copying launch/test.launch.py -> /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/launch
+[6.878s] copying launch/one_robot_with_name.launch.py -> /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/launch
+[6.878s] copying launch/controller.launch.py -> /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/launch
+[6.878s] copying launch/spawn_edymobiles.launch.py -> /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/launch
+[6.878s] creating /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/config
+[6.878s] copying config/configrobots.ini -> /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/config
+[6.879s] copying config/joints.yaml -> /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/config
+[6.879s] copying config/circuit_MAPF.txt -> /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/config
+[6.884s] creating /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/map
+[6.885s] creating /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/rviz
+[6.885s] creating /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/urdf
+[6.885s] copying urdf/edymobile_theo.urdf.xacro -> /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/urdf
+[6.886s] creating /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/urdf/utils
+[6.886s] copying urdf/utils/materials.xacro -> /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/urdf/utils
+[6.886s] copying urdf/utils/inertia.xacro -> /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/urdf/utils
+[6.887s] creating /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/worlds
+[6.887s] copying worlds/circuit_MAPF_VF.world -> /home/coderey/ros2_ws/install/swisscat_robot/share/swisscat_robot/worlds
+[6.888s] running install_egg_info
+[6.892s] Copying ../../build/swisscat_robot/swisscat_robot.egg-info to /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot-0.0.0-py3.8.egg-info
+[6.893s] running install_scripts
+[6.949s] Installing controller script to /home/coderey/ros2_ws/install/swisscat_robot/lib/swisscat_robot
+[6.950s] Installing fleet_manager script to /home/coderey/ros2_ws/install/swisscat_robot/lib/swisscat_robot
+[6.952s] writing list of installed files to '/home/coderey/ros2_ws/build/swisscat_robot/install.log'
+[6.997s] Invoked command in '/home/coderey/ros2_ws/src/swisscat_robot' returned '0': PYTHONPATH=/home/coderey/ros2_ws/build/swisscat_robot/prefix_override:/home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/swisscat_robot build --build-base /home/coderey/ros2_ws/build/swisscat_robot/build install --record /home/coderey/ros2_ws/build/swisscat_robot/install.log --install-scripts $base/lib/swisscat_robot --single-version-externally-managed

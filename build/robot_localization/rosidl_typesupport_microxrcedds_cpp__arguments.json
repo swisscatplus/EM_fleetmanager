@@ -1,0 +1,29 @@
+{
+  "package_name": "robot_localization",
+  "output_dir": "/home/coderey/ros2_ws/build/robot_localization/rosidl_typesupport_microxrcedds_cpp/robot_localization",
+  "template_dir": "/home/coderey/microros_ws/install/rosidl_typesupport_microxrcedds_cpp/share/rosidl_typesupport_microxrcedds_cpp/resource",
+  "idl_tuples": [
+    "/home/coderey/ros2_ws/build/robot_localization/rosidl_adapter/robot_localization:srv/FromLL.idl",
+    "/home/coderey/ros2_ws/build/robot_localization/rosidl_adapter/robot_localization:srv/GetState.idl",
+    "/home/coderey/ros2_ws/build/robot_localization/rosidl_adapter/robot_localization:srv/SetDatum.idl",
+    "/home/coderey/ros2_ws/build/robot_localization/rosidl_adapter/robot_localization:srv/SetPose.idl",
+    "/home/coderey/ros2_ws/build/robot_localization/rosidl_adapter/robot_localization:srv/ToggleFilterProcessing.idl",
+    "/home/coderey/ros2_ws/build/robot_localization/rosidl_adapter/robot_localization:srv/ToLL.idl"
+  ],
+  "target_dependencies": [
+    "/home/coderey/microros_ws/install/rosidl_typesupport_microxrcedds_cpp/lib/rosidl_typesupport_microxrcedds_cpp/rosidl_typesupport_microxrcedds_cpp",
+    "/home/coderey/microros_ws/install/rosidl_typesupport_microxrcedds_cpp/lib/python3.8/site-packages/rosidl_typesupport_microxrcedds_cpp/__init__.py",
+    "/home/coderey/microros_ws/install/rosidl_typesupport_microxrcedds_cpp/share/rosidl_typesupport_microxrcedds_cpp/resource/idl__rosidl_typesupport_microxrcedds_cpp.hpp.em",
+    "/home/coderey/microros_ws/install/rosidl_typesupport_microxrcedds_cpp/share/rosidl_typesupport_microxrcedds_cpp/resource/idl__type_support_cpp.cpp.em",
+    "/home/coderey/microros_ws/install/rosidl_typesupport_microxrcedds_cpp/share/rosidl_typesupport_microxrcedds_cpp/resource/msg__rosidl_typesupport_microxrcedds_cpp.hpp.em",
+    "/home/coderey/microros_ws/install/rosidl_typesupport_microxrcedds_cpp/share/rosidl_typesupport_microxrcedds_cpp/resource/msg__type_support_cpp.cpp.em",
+    "/home/coderey/microros_ws/install/rosidl_typesupport_microxrcedds_cpp/share/rosidl_typesupport_microxrcedds_cpp/resource/srv__rosidl_typesupport_microxrcedds_cpp.hpp.em",
+    "/home/coderey/microros_ws/install/rosidl_typesupport_microxrcedds_cpp/share/rosidl_typesupport_microxrcedds_cpp/resource/srv__type_support_cpp.cpp.em",
+    "/home/coderey/ros2_ws/build/robot_localization/rosidl_adapter/robot_localization/srv/FromLL.idl",
+    "/home/coderey/ros2_ws/build/robot_localization/rosidl_adapter/robot_localization/srv/GetState.idl",
+    "/home/coderey/ros2_ws/build/robot_localization/rosidl_adapter/robot_localization/srv/SetDatum.idl",
+    "/home/coderey/ros2_ws/build/robot_localization/rosidl_adapter/robot_localization/srv/SetPose.idl",
+    "/home/coderey/ros2_ws/build/robot_localization/rosidl_adapter/robot_localization/srv/ToggleFilterProcessing.idl",
+    "/home/coderey/ros2_ws/build/robot_localization/rosidl_adapter/robot_localization/srv/ToLL.idl"
+  ]
+}

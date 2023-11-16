@@ -1,0 +1,37 @@
+[1.047s] Invoking command in '/home/coderey/ros2_ws/build/nav2_gradient_costmap_plugin': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/nav2_gradient_costmap_plugin -- -j8 -l8
+[1.077s] -- Found ament_cmake: 1.1.6 (/opt/ros/galactic/share/ament_cmake/cmake)
+[1.110s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.201s] -- Found rclcpp: 9.2.2 (/opt/ros/galactic/share/rclcpp/cmake)
+[1.250s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_microxrcedds_c;rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.256s] -- Found rosidl_adapter: 2.2.3 (/opt/ros/galactic/share/rosidl_adapter/cmake)
+[1.431s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_microxrcedds_cpp;rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.503s] -- Found rmw_implementation_cmake: 3.3.1 (/opt/ros/galactic/share/rmw_implementation_cmake/cmake)
+[1.509s] -- Found rmw_cyclonedds_cpp: 0.22.6 (/opt/ros/galactic/share/rmw_cyclonedds_cpp/cmake)
+[1.535s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[1.717s] -- Found nav2_costmap_2d: 1.0.12 (/opt/ros/galactic/share/nav2_costmap_2d/cmake)
+[3.172s] -- Configuring done
+[3.214s] -- Generating done
+[3.216s] -- Build files have been written to: /home/coderey/ros2_ws/build/nav2_gradient_costmap_plugin
+[3.267s] [100%] Built target nav2_gradient_costmap_plugin_core
+[3.674s] Invoked command in '/home/coderey/ros2_ws/build/nav2_gradient_costmap_plugin' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/nav2_gradient_costmap_plugin -- -j8 -l8
+[4.347s] Invoking command in '/home/coderey/ros2_ws/build/nav2_gradient_costmap_plugin': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/nav2_gradient_costmap_plugin
+[4.356s] -- Install configuration: ""
+[4.356s] -- Up-to-date: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/lib/libnav2_gradient_costmap_plugin_core.so
+[4.356s] -- Up-to-date: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/nav2_gradient_costmap_plugin/gradient_layer.xml
+[4.357s] -- Up-to-date: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/ament_index/resource_index/package_run_dependencies/nav2_gradient_costmap_plugin
+[4.357s] -- Installing: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/ament_index/resource_index/parent_prefix_path/nav2_gradient_costmap_plugin
+[4.357s] -- Up-to-date: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/nav2_gradient_costmap_plugin/environment/ament_prefix_path.sh
+[4.357s] -- Installing: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/nav2_gradient_costmap_plugin/environment/ament_prefix_path.dsv
+[4.357s] -- Up-to-date: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/nav2_gradient_costmap_plugin/environment/path.sh
+[4.357s] -- Installing: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/nav2_gradient_costmap_plugin/environment/path.dsv
+[4.357s] -- Up-to-date: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/nav2_gradient_costmap_plugin/local_setup.bash
+[4.357s] -- Up-to-date: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/nav2_gradient_costmap_plugin/local_setup.sh
+[4.358s] -- Up-to-date: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/nav2_gradient_costmap_plugin/local_setup.zsh
+[4.358s] -- Installing: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/nav2_gradient_costmap_plugin/local_setup.dsv
+[4.358s] -- Installing: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/nav2_gradient_costmap_plugin/package.dsv
+[4.358s] -- Up-to-date: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/ament_index/resource_index/packages/nav2_gradient_costmap_plugin
+[4.358s] -- Up-to-date: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/ament_index/resource_index/nav2_costmap_2d__pluginlib__plugin/nav2_gradient_costmap_plugin
+[4.358s] -- Up-to-date: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/nav2_gradient_costmap_plugin/cmake/nav2_gradient_costmap_pluginConfig.cmake
+[4.359s] -- Up-to-date: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/nav2_gradient_costmap_plugin/cmake/nav2_gradient_costmap_pluginConfig-version.cmake
+[4.360s] -- Up-to-date: /home/coderey/ros2_ws/install/nav2_gradient_costmap_plugin/share/nav2_gradient_costmap_plugin/package.xml
+[4.362s] Invoked command in '/home/coderey/ros2_ws/build/nav2_gradient_costmap_plugin' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/nav2_gradient_costmap_plugin

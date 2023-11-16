@@ -1,0 +1,21 @@
+[2.136s] Invoking command in '/home/coderey/ros2_ws/build/mob_rob_loca': PYTHONPATH=/home/coderey/ros2_ws/build/mob_rob_loca/prefix_override:/home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/coderey/ros2_ws/build/mob_rob_loca/build --no-deps install_data
+[2.469s] running develop
+[2.494s] running egg_info
+[2.494s] writing mob_rob_loca.egg-info/PKG-INFO
+[2.494s] writing dependency_links to mob_rob_loca.egg-info/dependency_links.txt
+[2.494s] writing entry points to mob_rob_loca.egg-info/entry_points.txt
+[2.494s] writing requirements to mob_rob_loca.egg-info/requires.txt
+[2.494s] writing top-level names to mob_rob_loca.egg-info/top_level.txt
+[2.519s] reading manifest file 'mob_rob_loca.egg-info/SOURCES.txt'
+[2.520s] writing manifest file 'mob_rob_loca.egg-info/SOURCES.txt'
+[2.545s] running build_ext
+[2.545s] Creating /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob-rob-loca.egg-link (link to .)
+[2.545s] Installing imu_serv script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[2.545s] Installing marv2ekf script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[2.546s] Installing rpi_com_motors script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[2.546s] Installing ticks2odom script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[2.546s] Installing transforms script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[2.546s] 
+[2.546s] Installed /home/coderey/ros2_ws/build/mob_rob_loca
+[2.546s] running install_data
+[2.953s] Invoked command in '/home/coderey/ros2_ws/build/mob_rob_loca' returned '0': PYTHONPATH=/home/coderey/ros2_ws/build/mob_rob_loca/prefix_override:/home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/coderey/ros2_ws/build/mob_rob_loca/build --no-deps install_data

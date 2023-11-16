@@ -1,0 +1,38 @@
+[ 14%] [34m[1mAutomatic MOC for target nav2_rviz_plugins[0m
+[ 14%] Built target nav2_rviz_plugins_autogen
+[100%] Built target nav2_rviz_plugins
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins//plugins_description.xml
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/include//nav2_rviz_plugins/goal_common.hpp
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/include//nav2_rviz_plugins/goal_pose_updater.hpp
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/include//nav2_rviz_plugins/goal_tool.hpp
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/include//nav2_rviz_plugins/nav2_panel.hpp
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/include//nav2_rviz_plugins/particle_cloud_display/flat_weighted_arrows_array.hpp
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/include//nav2_rviz_plugins/particle_cloud_display/particle_cloud_display.hpp
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/include//nav2_rviz_plugins/ros_action_qevent.hpp
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/environment/library_path.sh
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/environment/library_path.dsv
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/ament_index/resource_index/package_run_dependencies/nav2_rviz_plugins
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/ament_index/resource_index/parent_prefix_path/nav2_rviz_plugins
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/environment/ament_prefix_path.sh
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/environment/ament_prefix_path.dsv
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/environment/path.sh
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/environment/path.dsv
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/local_setup.bash
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/local_setup.sh
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/local_setup.zsh
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/local_setup.dsv
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/package.dsv
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/ament_index/resource_index/packages/nav2_rviz_plugins
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/ament_index/resource_index/rviz_common__pluginlib__plugin/nav2_rviz_plugins
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/cmake/ament_cmake_export_targets-extras.cmake
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/cmake/nav2_rviz_pluginsConfig.cmake
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/cmake/nav2_rviz_pluginsConfig-version.cmake
+-- Symlinking: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/package.xml
+-- Installing: /home/coderey/ros2_ws/install/nav2_rviz_plugins/lib/libnav2_rviz_plugins.so
+-- Set runtime path of "/home/coderey/ros2_ws/install/nav2_rviz_plugins/lib/libnav2_rviz_plugins.so" to ""
+-- Installing: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/cmake/nav2_rviz_pluginsExport.cmake
+-- Installing: /home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/cmake/nav2_rviz_pluginsExport-noconfig.cmake

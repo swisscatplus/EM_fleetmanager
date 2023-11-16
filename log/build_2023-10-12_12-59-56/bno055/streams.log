@@ -1,0 +1,17 @@
+[2.592s] Invoking command in '/home/coderey/ros2_ws/build/bno055': PYTHONPATH=/home/coderey/ros2_ws/build/bno055/prefix_override:/home/coderey/ros2_ws/install/bno055/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/coderey/ros2_ws/build/bno055/build --no-deps install_data
+[2.950s] running develop
+[2.950s] running egg_info
+[2.950s] writing bno055.egg-info/PKG-INFO
+[2.950s] writing dependency_links to bno055.egg-info/dependency_links.txt
+[2.950s] writing entry points to bno055.egg-info/entry_points.txt
+[2.950s] writing requirements to bno055.egg-info/requires.txt
+[2.950s] writing top-level names to bno055.egg-info/top_level.txt
+[2.956s] reading manifest file 'bno055.egg-info/SOURCES.txt'
+[2.956s] writing manifest file 'bno055.egg-info/SOURCES.txt'
+[2.995s] running build_ext
+[2.996s] Creating /home/coderey/ros2_ws/install/bno055/lib/python3.8/site-packages/bno055.egg-link (link to .)
+[2.996s] Installing bno055 script to /home/coderey/ros2_ws/install/bno055/lib/bno055
+[2.997s] 
+[2.997s] Installed /home/coderey/ros2_ws/build/bno055
+[2.998s] running install_data
+[3.595s] Invoked command in '/home/coderey/ros2_ws/build/bno055' returned '0': PYTHONPATH=/home/coderey/ros2_ws/build/bno055/prefix_override:/home/coderey/ros2_ws/install/bno055/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/coderey/ros2_ws/build/bno055/build --no-deps install_data

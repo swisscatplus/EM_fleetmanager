@@ -1,0 +1,1 @@
+/home/coderey/ros2_ws/build/nav2_msgs/rosidl_typesupport_microxrcedds_cpp/nav2_msgs/srv/detail/microxrcedds/clear_costmap_except_region__type_support_cpp.cpp

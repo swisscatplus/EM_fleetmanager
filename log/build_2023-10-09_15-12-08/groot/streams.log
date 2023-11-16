@@ -1,0 +1,42 @@
+[0.861s] Invoking command in '/home/coderey/ros2_ws/build/groot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/groot -- -j8 -l8
+[0.928s] [  1%] [34m[1mAutomatic MOC and UIC for target QtNodeEditor[0m
+[0.968s] [  1%] Built target QtNodeEditor_autogen
+[1.044s] [ 57%] Built target QtNodeEditor
+[1.075s] [ 58%] [34m[1mAutomatic MOC and UIC for target behavior_tree_editor[0m
+[1.110s] [ 58%] Built target behavior_tree_editor_autogen
+[1.198s] [ 74%] Built target behavior_tree_editor
+[1.231s] [ 75%] [34m[1mAutomatic MOC and UIC for target Groot[0m
+[1.236s] [ 76%] [34m[1mAutomatic MOC and UIC for target replay_test[0m
+[1.243s] [ 76%] [34m[1mAutomatic MOC and UIC for target editor_test[0m
+[1.272s] [ 76%] Built target replay_test_autogen
+[1.274s] [ 76%] Built target Groot_autogen
+[1.291s] [ 76%] Built target editor_test_autogen
+[1.315s] [ 82%] Built target Groot
+[1.326s] [ 91%] Built target replay_test
+[1.347s] [100%] Built target editor_test
+[1.506s] Invoked command in '/home/coderey/ros2_ws/build/groot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/groot -- -j8 -l8
+[2.489s] Invoking command in '/home/coderey/ros2_ws/build/groot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/groot
+[2.819s] -- Install configuration: ""
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/lib/libbehavior_tree_editor.so
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/lib/groot/Groot
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/environment/library_path.sh
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/environment/library_path.dsv
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/ament_index/resource_index/package_run_dependencies/groot
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/ament_index/resource_index/parent_prefix_path/groot
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/environment/ament_prefix_path.sh
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/environment/ament_prefix_path.dsv
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/environment/path.sh
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/environment/path.dsv
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/local_setup.bash
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/local_setup.sh
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/local_setup.zsh
+[2.820s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/local_setup.dsv
+[2.820s] -- Installing: /home/coderey/ros2_ws/install/groot/share/groot/package.dsv
+[2.821s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/ament_index/resource_index/packages/groot
+[2.821s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_include_directories-extras.cmake
+[2.821s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_dependencies-extras.cmake
+[2.821s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/cmake/ament_cmake_export_libraries-extras.cmake
+[2.821s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/cmake/grootConfig.cmake
+[2.821s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/cmake/grootConfig-version.cmake
+[2.822s] -- Up-to-date: /home/coderey/ros2_ws/install/groot/share/groot/package.xml
+[2.853s] Invoked command in '/home/coderey/ros2_ws/build/groot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/groot

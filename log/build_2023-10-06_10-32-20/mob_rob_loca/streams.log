@@ -1,0 +1,88 @@
+[2.826s] Invoking command in '/home/coderey/ros2_ws/src/mob_rob_loca': PYTHONPATH=/home/coderey/ros2_ws/build/mob_rob_loca/prefix_override:/home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/mob_rob_loca build --build-base /home/coderey/ros2_ws/build/mob_rob_loca/build install --record /home/coderey/ros2_ws/build/mob_rob_loca/install.log --single-version-externally-managed
+[3.493s] running egg_info
+[3.493s] creating ../../build/mob_rob_loca/mob_rob_loca.egg-info
+[3.493s] writing ../../build/mob_rob_loca/mob_rob_loca.egg-info/PKG-INFO
+[3.493s] writing dependency_links to ../../build/mob_rob_loca/mob_rob_loca.egg-info/dependency_links.txt
+[3.493s] writing entry points to ../../build/mob_rob_loca/mob_rob_loca.egg-info/entry_points.txt
+[3.493s] writing requirements to ../../build/mob_rob_loca/mob_rob_loca.egg-info/requires.txt
+[3.493s] writing top-level names to ../../build/mob_rob_loca/mob_rob_loca.egg-info/top_level.txt
+[3.493s] writing manifest file '../../build/mob_rob_loca/mob_rob_loca.egg-info/SOURCES.txt'
+[3.494s] reading manifest file '../../build/mob_rob_loca/mob_rob_loca.egg-info/SOURCES.txt'
+[3.494s] writing manifest file '../../build/mob_rob_loca/mob_rob_loca.egg-info/SOURCES.txt'
+[3.494s] running build
+[3.494s] running build_py
+[3.494s] creating /home/coderey/ros2_ws/build/mob_rob_loca/build
+[3.494s] creating /home/coderey/ros2_ws/build/mob_rob_loca/build/lib
+[3.494s] creating /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca
+[3.494s] copying mob_rob_loca/__init__.py -> /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca
+[3.494s] copying mob_rob_loca/rpi_communication.py -> /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca
+[3.494s] copying mob_rob_loca/vel_pub.py -> /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca
+[3.494s] copying mob_rob_loca/test.py -> /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca
+[3.495s] copying mob_rob_loca/tick_to_odom.py -> /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca
+[3.495s] copying mob_rob_loca/marv_to_ekf.py -> /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca
+[3.495s] copying mob_rob_loca/transforms.py -> /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca
+[3.495s] running install
+[3.495s] running install_lib
+[3.495s] creating /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca
+[3.495s] copying /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca/__init__.py -> /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca
+[3.495s] copying /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca/rpi_communication.py -> /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca
+[3.495s] copying /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca/vel_pub.py -> /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca
+[3.495s] copying /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca/test.py -> /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca
+[3.495s] copying /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca/tick_to_odom.py -> /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca
+[3.496s] copying /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca/marv_to_ekf.py -> /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca
+[3.496s] copying /home/coderey/ros2_ws/build/mob_rob_loca/build/lib/mob_rob_loca/transforms.py -> /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca
+[3.496s] byte-compiling /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca/__init__.py to __init__.cpython-38.pyc
+[3.496s] byte-compiling /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca/rpi_communication.py to rpi_communication.cpython-38.pyc
+[3.496s] byte-compiling /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca/vel_pub.py to vel_pub.cpython-38.pyc
+[3.496s] byte-compiling /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca/test.py to test.cpython-38.pyc
+[3.496s] byte-compiling /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca/tick_to_odom.py to tick_to_odom.cpython-38.pyc
+[3.496s] byte-compiling /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca/marv_to_ekf.py to marv_to_ekf.cpython-38.pyc
+[3.496s] byte-compiling /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca/transforms.py to transforms.cpython-38.pyc
+[3.496s] running install_data
+[3.497s] creating /home/coderey/ros2_ws/install/mob_rob_loca/share/ament_index
+[3.497s] creating /home/coderey/ros2_ws/install/mob_rob_loca/share/ament_index/resource_index
+[3.497s] creating /home/coderey/ros2_ws/install/mob_rob_loca/share/ament_index/resource_index/packages
+[3.497s] copying resource/mob_rob_loca -> /home/coderey/ros2_ws/install/mob_rob_loca/share/ament_index/resource_index/packages
+[3.498s] copying package.xml -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca
+[3.498s] creating /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/launch
+[3.499s] copying launch/localization.launch.py -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/launch
+[3.499s] copying launch/rviz.launch.py -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/launch
+[3.499s] copying launch/filter.launch.py -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/launch
+[3.499s] copying launch/sensor.launch.py -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/launch
+[3.499s] copying launch/rpi.launch.py -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/launch
+[3.500s] copying launch/map.launch.py -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/launch
+[3.500s] copying launch/trial.launch.py -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/launch
+[3.500s] copying launch/addison.launch.py -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/launch
+[3.500s] copying launch/nav.launch.py -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/launch
+[3.500s] copying launch/ekf.launch.py -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/launch
+[3.500s] creating /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/urdf
+[3.500s] copying urdf/edison.urdf -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/urdf
+[3.500s] creating /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/rviz
+[3.501s] copying rviz/loca.rviz -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/rviz
+[3.501s] creating /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/maps
+[3.501s] copying maps/keepout_mask.png -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/maps
+[3.501s] copying maps/circuit.png -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/maps
+[3.502s] copying maps/keepout_mask.yaml -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/maps
+[3.513s] copying maps/circuit.yaml -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/maps
+[3.514s] creating /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/params
+[3.514s] copying params/nav2pose.xml -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/params
+[3.514s] copying params/no_map_params.yaml -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/params
+[3.514s] copying params/keepout_params.yaml -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/params
+[3.514s] copying params/nav2_params.yaml -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/params
+[3.514s] copying params/nav2_essentials.yaml -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/params
+[3.514s] copying params/bt.xml -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/params
+[3.514s] creating /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/config
+[3.514s] copying config/ekf.yaml -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/config
+[3.514s] copying config/navthroughposes.xml -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/config
+[3.514s] copying config/nav2pose.xml -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/config
+[3.515s] running install_egg_info
+[3.515s] Copying ../../build/mob_rob_loca/mob_rob_loca.egg-info to /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca-0.0.0-py3.8.egg-info
+[3.515s] running install_scripts
+[3.515s] Installing imu_serv script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[3.515s] Installing marv2ekf script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[3.515s] Installing rpi_com_motors script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[3.515s] Installing ticks2odom script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[3.515s] Installing transforms script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[3.515s] Installing vel_pub script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[3.515s] writing list of installed files to '/home/coderey/ros2_ws/build/mob_rob_loca/install.log'
+[4.455s] Invoked command in '/home/coderey/ros2_ws/src/mob_rob_loca' returned '0': PYTHONPATH=/home/coderey/ros2_ws/build/mob_rob_loca/prefix_override:/home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/mob_rob_loca build --build-base /home/coderey/ros2_ws/build/mob_rob_loca/build install --record /home/coderey/ros2_ws/build/mob_rob_loca/install.log --single-version-externally-managed

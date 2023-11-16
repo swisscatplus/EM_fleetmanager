@@ -1,0 +1,49 @@
+[0.000000] (-) TimerEvent: {}
+[0.000664] (-) JobUnselected: {'identifier': 'bno055'}
+[0.000699] (-) JobUnselected: {'identifier': 'costmap_queue'}
+[0.000715] (-) JobUnselected: {'identifier': 'dwb_core'}
+[0.000727] (-) JobUnselected: {'identifier': 'dwb_critics'}
+[0.000737] (-) JobUnselected: {'identifier': 'dwb_msgs'}
+[0.000748] (-) JobUnselected: {'identifier': 'dwb_plugins'}
+[0.000758] (-) JobUnselected: {'identifier': 'marvelmind_ros2'}
+[0.000768] (-) JobUnselected: {'identifier': 'marvelmind_ros2_msgs'}
+[0.000779] (-) JobUnselected: {'identifier': 'mob_rob_loca'}
+[0.000789] (-) JobUnselected: {'identifier': 'nav2_amcl'}
+[0.000799] (-) JobUnselected: {'identifier': 'nav2_behavior_tree'}
+[0.000809] (-) JobUnselected: {'identifier': 'nav2_behaviors'}
+[0.000819] (-) JobUnselected: {'identifier': 'nav2_bringup'}
+[0.000831] (-) JobUnselected: {'identifier': 'nav2_bt_navigator'}
+[0.000844] (-) JobUnselected: {'identifier': 'nav2_collision_monitor'}
+[0.000855] (-) JobUnselected: {'identifier': 'nav2_common'}
+[0.000863] (-) JobUnselected: {'identifier': 'nav2_constrained_smoother'}
+[0.000871] (-) JobUnselected: {'identifier': 'nav2_controller'}
+[0.000879] (-) JobUnselected: {'identifier': 'nav2_core'}
+[0.000888] (-) JobUnselected: {'identifier': 'nav2_costmap_2d'}
+[0.000896] (-) JobUnselected: {'identifier': 'nav2_dwb_controller'}
+[0.000904] (-) JobUnselected: {'identifier': 'nav2_lifecycle_manager'}
+[0.000912] (-) JobUnselected: {'identifier': 'nav2_map_server'}
+[0.000920] (-) JobUnselected: {'identifier': 'nav2_mppi_controller'}
+[0.000928] (-) JobUnselected: {'identifier': 'nav2_msgs'}
+[0.000936] (-) JobUnselected: {'identifier': 'nav2_navfn_planner'}
+[0.000944] (-) JobUnselected: {'identifier': 'nav2_planner'}
+[0.000952] (-) JobUnselected: {'identifier': 'nav2_regulated_pure_pursuit_controller'}
+[0.000960] (-) JobUnselected: {'identifier': 'nav2_rotation_shim_controller'}
+[0.000968] (-) JobUnselected: {'identifier': 'nav2_rviz_plugins'}
+[0.000976] (-) JobUnselected: {'identifier': 'nav2_simple_commander'}
+[0.000985] (-) JobUnselected: {'identifier': 'nav2_smac_planner'}
+[0.000993] (-) JobUnselected: {'identifier': 'nav2_smoother'}
+[0.001002] (-) JobUnselected: {'identifier': 'nav2_system_tests'}
+[0.001010] (-) JobUnselected: {'identifier': 'nav2_theta_star_planner'}
+[0.001019] (-) JobUnselected: {'identifier': 'nav2_util'}
+[0.001027] (-) JobUnselected: {'identifier': 'nav2_velocity_smoother'}
+[0.001036] (-) JobUnselected: {'identifier': 'nav2_voxel_grid'}
+[0.001044] (-) JobUnselected: {'identifier': 'nav2_waypoint_follower'}
+[0.001053] (-) JobUnselected: {'identifier': 'nav_2d_msgs'}
+[0.001061] (-) JobUnselected: {'identifier': 'nav_2d_utils'}
+[0.001070] (-) JobUnselected: {'identifier': 'robot_localization'}
+[0.001080] (navigation2) JobQueued: {'identifier': 'navigation2', 'dependencies': OrderedDict([('nav2_common', '/home/coderey/ros2_ws/install/nav2_common'), ('nav_2d_msgs', '/home/coderey/ros2_ws/install/nav_2d_msgs'), ('robot_localization', '/home/coderey/ros2_ws/install/robot_localization'), ('dwb_msgs', '/home/coderey/ros2_ws/install/dwb_msgs'), ('nav2_msgs', '/home/coderey/ros2_ws/install/nav2_msgs'), ('nav2_voxel_grid', '/home/coderey/ros2_ws/install/nav2_voxel_grid'), ('nav2_simple_commander', '/home/coderey/ros2_ws/install/nav2_simple_commander'), ('nav2_util', '/home/coderey/ros2_ws/install/nav2_util'), ('nav2_amcl', '/home/coderey/ros2_ws/install/nav2_amcl'), ('nav2_behavior_tree', '/home/coderey/ros2_ws/install/nav2_behavior_tree'), ('nav2_lifecycle_manager', '/home/coderey/ros2_ws/install/nav2_lifecycle_manager'), ('nav2_map_server', '/home/coderey/ros2_ws/install/nav2_map_server'), ('nav2_velocity_smoother', '/home/coderey/ros2_ws/install/nav2_velocity_smoother'), ('nav_2d_utils', '/home/coderey/ros2_ws/install/nav_2d_utils'), ('nav2_costmap_2d', '/home/coderey/ros2_ws/install/nav2_costmap_2d'), ('nav2_rviz_plugins', '/home/coderey/ros2_ws/install/nav2_rviz_plugins'), ('costmap_queue', '/home/coderey/ros2_ws/install/costmap_queue'), ('nav2_collision_monitor', '/home/coderey/ros2_ws/install/nav2_collision_monitor'), ('nav2_core', '/home/coderey/ros2_ws/install/nav2_core'), ('dwb_core', '/home/coderey/ros2_ws/install/dwb_core'), ('nav2_behaviors', '/home/coderey/ros2_ws/install/nav2_behaviors'), ('nav2_bt_navigator', '/home/coderey/ros2_ws/install/nav2_bt_navigator'), ('nav2_constrained_smoother', '/home/coderey/ros2_ws/install/nav2_constrained_smoother'), ('nav2_controller', '/home/coderey/ros2_ws/install/nav2_controller'), ('nav2_mppi_controller', '/home/coderey/ros2_ws/install/nav2_mppi_controller'), ('nav2_navfn_planner', '/home/coderey/ros2_ws/install/nav2_navfn_planner'), ('nav2_planner', '/home/coderey/ros2_ws/install/nav2_planner'), ('nav2_regulated_pure_pursuit_controller', '/home/coderey/ros2_ws/install/nav2_regulated_pure_pursuit_controller'), ('nav2_smac_planner', '/home/coderey/ros2_ws/install/nav2_smac_planner'), ('nav2_smoother', '/home/coderey/ros2_ws/install/nav2_smoother'), ('nav2_theta_star_planner', '/home/coderey/ros2_ws/install/nav2_theta_star_planner'), ('nav2_waypoint_follower', '/home/coderey/ros2_ws/install/nav2_waypoint_follower'), ('dwb_critics', '/home/coderey/ros2_ws/install/dwb_critics'), ('dwb_plugins', '/home/coderey/ros2_ws/install/dwb_plugins'), ('nav2_rotation_shim_controller', '/home/coderey/ros2_ws/install/nav2_rotation_shim_controller'), ('nav2_dwb_controller', '/home/coderey/ros2_ws/install/nav2_dwb_controller')])}
+[0.001123] (navigation2) JobStarted: {'identifier': 'navigation2'}
+[0.100517] (-) TimerEvent: {}
+[0.190658] (navigation2) JobEnded: {'identifier': 'navigation2', 'rc': 1}
+[0.200625] (-) TimerEvent: {}
+[0.200974] (-) EventReactorShutdown: {}

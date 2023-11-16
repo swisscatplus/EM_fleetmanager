@@ -1,0 +1,74 @@
+-- Found ament_cmake: 1.1.6 (/opt/ros/galactic/share/ament_cmake/cmake)
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found rclcpp: 9.2.2 (/opt/ros/galactic/share/rclcpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_microxrcedds_c;rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Found rosidl_adapter: 2.2.3 (/opt/ros/galactic/share/rosidl_adapter/cmake)
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_microxrcedds_cpp;rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 3.3.1 (/opt/ros/galactic/share/rmw_implementation_cmake/cmake)
+-- Found rmw_cyclonedds_cpp: 0.22.6 (/opt/ros/galactic/share/rmw_cyclonedds_cpp/cmake)
+-- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+-- Found geometry_msgs: 2.2.4 (/home/coderey/microros_ws/install/geometry_msgs/share/geometry_msgs/cmake)
+-- Found marvelmind_ros2_msgs: 1.0.2 (/home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake)
+-- Found rosidl_default_generators: 1.1.1 (/opt/ros/galactic/share/rosidl_default_generators/cmake)
+-- Found ament_lint_auto: 0.10.7 (/opt/ros/galactic/share/ament_lint_auto/cmake)
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: /home/coderey/ros2_ws/src/marvelmind_ros2_upstream/include
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'cpplint' to check C / C++ code against the Google style
+-- Configured cpplint exclude dirs and/or files: 
+-- Added test 'flake8' to check Python code syntax and style conventions
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'pep257' to check Python code against some of the style conventions in PEP 257
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/coderey/ros2_ws/build/marvelmind_ros2
+[ 12%] [32mBuilding C object CMakeFiles/marvelmind_api_lib.dir/src/marvelmind_api.c.o[0m
+[01m[K/home/coderey/ros2_ws/src/marvelmind_ros2_upstream/src/marvelmind_api.c:[m[K In function ‘[01m[KmarvelmindAPICall[m[K’:
+[01m[K/home/coderey/ros2_ws/src/marvelmind_ros2_upstream/src/marvelmind_api.c:1881:23:[m[K [01;35m[Kwarning: [m[K‘[01m[KerrRes[m[K’ may be used uninitialized in this function [[01;35m[K-Wmaybe-uninitialized[m[K]
+ 1881 |         *error_code = [01;35m[K(int32_t) errRes[m[K;
+      |                       [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[ 25%] [32m[1mLinking C static library libmarvelmind_api_lib.a[0m
+[ 25%] Built target marvelmind_api_lib
+[ 37%] [32mBuilding C object CMakeFiles/marvelmind_hedge_lib.dir/src/marvelmind_hedge.c.o[0m
+[01m[K/home/coderey/ros2_ws/src/marvelmind_ros2_upstream/src/marvelmind_hedge.c:[m[K In function ‘[01m[Ksend_waypoint_confirm[m[K’:
+[01m[K/home/coderey/ros2_ws/src/marvelmind_ros2_upstream/src/marvelmind_hedge.c:671:5:[m[K [01;35m[Kwarning: [m[Kignoring return value of ‘[01m[Kwrite[m[K’, declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
+  671 |     [01;35m[Kwrite(ttyHandle, &buf[0], 5+2)[m[K;
+      |     [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/coderey/ros2_ws/src/marvelmind_ros2_upstream/src/marvelmind_hedge.c:[m[K In function ‘[01m[KMarvelmind_Thread_[m[K’:
+[01m[K/home/coderey/ros2_ws/src/marvelmind_ros2_upstream/src/marvelmind_hedge.c:957:32:[m[K [01;35m[Kwarning: [m[K‘[01m[KdataId[m[K’ may be used uninitialized in this function [[01;35m[K-Wmaybe-uninitialized[m[K]
+  957 |                             if [01;35m[K([m[KdataId == POSITION_DATAGRAM_ID)
+      |                                [01;35m[K^[m[K
+[ 50%] [32m[1mLinking C static library libmarvelmind_hedge_lib.a[0m
+[ 50%] Built target marvelmind_hedge_lib
+[ 62%] [32mBuilding CXX object CMakeFiles/marvelmind_api_ros2.dir/src/marvelmind_api_ros2.cpp.o[0m
+[ 75%] [32m[1mLinking CXX executable marvelmind_api_ros2[0m
+[ 75%] Built target marvelmind_api_ros2
+[ 87%] [32mBuilding CXX object CMakeFiles/marvelmind_ros2.dir/src/marvelmind_ros2.cpp.o[0m
+[100%] [32m[1mLinking CXX executable marvelmind_ros2[0m
+[100%] Built target marvelmind_ros2
+-- Install configuration: "RelWithDebInfo"
+-- Execute custom install script
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/lib/marvelmind_ros2/marvelmind_ros2
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/lib/marvelmind_ros2/marvelmind_api_ros2
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/config/marvelmind_ros2_config.yaml
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/launch/marvelmind_api_ros2.launch.py
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/launch/marvelmind_ros2.launch.py
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/ament_index/resource_index/package_run_dependencies/marvelmind_ros2
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/ament_index/resource_index/parent_prefix_path/marvelmind_ros2
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/environment/ament_prefix_path.sh
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/environment/ament_prefix_path.dsv
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/environment/path.sh
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/environment/path.dsv
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/local_setup.bash
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/local_setup.sh
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/local_setup.zsh
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/local_setup.dsv
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/package.dsv
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/ament_index/resource_index/packages/marvelmind_ros2
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/cmake/marvelmind_ros2Config.cmake
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/cmake/marvelmind_ros2Config-version.cmake
+-- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2/share/marvelmind_ros2/package.xml

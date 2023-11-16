@@ -1,0 +1,44 @@
+[1.040s] Invoking command in '/home/coderey/ros2_ws/build/nav2_common': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/nav2_gazebo_spawner:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/nav2_common -- -j8 -l8
+[2.117s] Built target ament_cmake_python_symlink_nav2_common
+[2.117s] running egg_info
+[2.117s] writing nav2_common.egg-info/PKG-INFO
+[2.117s] writing dependency_links to nav2_common.egg-info/dependency_links.txt
+[2.117s] writing top-level names to nav2_common.egg-info/top_level.txt
+[2.117s] reading manifest file 'nav2_common.egg-info/SOURCES.txt'
+[2.117s] writing manifest file 'nav2_common.egg-info/SOURCES.txt'
+[2.117s] Built target ament_cmake_python_build_nav2_common_egg
+[2.120s] Invoked command in '/home/coderey/ros2_ws/build/nav2_common' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/nav2_gazebo_spawner:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/nav2_common -- -j8 -l8
+[2.177s] Invoking command in '/home/coderey/ros2_ws/build/nav2_common': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/nav2_gazebo_spawner:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/nav2_common
+[2.196s] -- Install configuration: ""
+[2.196s] -- Execute custom install script
+[2.196s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/environment/pythonpath.sh
+[2.197s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/environment/pythonpath.dsv
+[2.198s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/lib/python3.8/site-packages//nav2_common.egg-info/PKG-INFO
+[2.198s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/lib/python3.8/site-packages//nav2_common.egg-info/SOURCES.txt
+[2.198s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/lib/python3.8/site-packages//nav2_common.egg-info/dependency_links.txt
+[2.198s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/lib/python3.8/site-packages//nav2_common.egg-info/top_level.txt
+[2.199s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/lib/python3.8/site-packages/nav2_common/__init__.py
+[2.200s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/lib/python3.8/site-packages/nav2_common/launch/__init__.py
+[2.200s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/lib/python3.8/site-packages/nav2_common/launch/has_node_params.py
+[2.200s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/lib/python3.8/site-packages/nav2_common/launch/replace_string.py
+[2.201s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/lib/python3.8/site-packages/nav2_common/launch/rewritten_yaml.py
+[2.201s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/ament_index/resource_index/package_run_dependencies/nav2_common
+[2.203s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/ament_index/resource_index/parent_prefix_path/nav2_common
+[2.203s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/environment/ament_prefix_path.sh
+[2.204s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/environment/ament_prefix_path.dsv
+[2.204s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/environment/path.sh
+[2.205s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/environment/path.dsv
+[2.205s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/local_setup.bash
+[2.206s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/local_setup.sh
+[2.206s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/local_setup.zsh
+[2.207s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/local_setup.dsv
+[2.207s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/package.dsv
+[2.228s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/ament_index/resource_index/packages/nav2_common
+[2.229s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/cmake/nav2_common-extras.cmake
+[2.230s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/cmake/nav2_commonConfig.cmake
+[2.230s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/cmake/nav2_commonConfig-version.cmake
+[2.230s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/package.xml
+[2.231s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_common/share/nav2_common/cmake/nav2_package.cmake
+[2.368s] Listing '/home/coderey/ros2_ws/install/nav2_common/lib/python3.8/site-packages/nav2_common'...
+[2.368s] Listing '/home/coderey/ros2_ws/install/nav2_common/lib/python3.8/site-packages/nav2_common/launch'...
+[2.380s] Invoked command in '/home/coderey/ros2_ws/build/nav2_common' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/nav2_gazebo_spawner:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/nav2_common

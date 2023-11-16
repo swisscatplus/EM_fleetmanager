@@ -1,0 +1,12 @@
+[console_scripts]
+calib_odom = mob_rob_loca.calib_odom:main
+imu_serv = mob_rob_loca.imu_serv:main
+marv2ekf = mob_rob_loca.marv_to_ekf:main
+nav2pose = mob_rob_loca.nav_to_pose:main
+navthruposes = mob_rob_loca.nav_through_poses:main
+navwaypoints = mob_rob_loca.nav_waypoints:main
+rpi_com_motors = mob_rob_loca.rpi_communication:main
+ticks2odom = mob_rob_loca.tick_to_odom:main
+transforms = mob_rob_loca.transforms:main
+trial = mob_rob_loca.extract_and_plot:main
+

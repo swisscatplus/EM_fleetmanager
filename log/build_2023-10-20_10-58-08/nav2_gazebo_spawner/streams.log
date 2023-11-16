@@ -1,0 +1,17 @@
+[1.824s] Invoking command in '/home/coderey/ros2_ws/build/nav2_gazebo_spawner': PYTHONPATH=/home/coderey/ros2_ws/build/nav2_gazebo_spawner/prefix_override:/home/coderey/ros2_ws/install/nav2_gazebo_spawner/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/coderey/ros2_ws/build/nav2_gazebo_spawner/build --no-deps install_data
+[2.119s] running develop
+[2.326s] running egg_info
+[2.327s] writing nav2_gazebo_spawner.egg-info/PKG-INFO
+[2.329s] writing dependency_links to nav2_gazebo_spawner.egg-info/dependency_links.txt
+[2.329s] writing entry points to nav2_gazebo_spawner.egg-info/entry_points.txt
+[2.329s] writing requirements to nav2_gazebo_spawner.egg-info/requires.txt
+[2.330s] writing top-level names to nav2_gazebo_spawner.egg-info/top_level.txt
+[2.374s] reading manifest file 'nav2_gazebo_spawner.egg-info/SOURCES.txt'
+[2.375s] writing manifest file 'nav2_gazebo_spawner.egg-info/SOURCES.txt'
+[2.431s] running build_ext
+[2.432s] Creating /home/coderey/ros2_ws/install/nav2_gazebo_spawner/lib/python3.8/site-packages/nav2-gazebo-spawner.egg-link (link to .)
+[2.432s] Installing nav2_gazebo_spawner script to /home/coderey/ros2_ws/install/nav2_gazebo_spawner/lib/nav2_gazebo_spawner
+[2.432s] 
+[2.432s] Installed /home/coderey/ros2_ws/build/nav2_gazebo_spawner
+[2.432s] running install_data
+[3.071s] Invoked command in '/home/coderey/ros2_ws/build/nav2_gazebo_spawner' returned '0': PYTHONPATH=/home/coderey/ros2_ws/build/nav2_gazebo_spawner/prefix_override:/home/coderey/ros2_ws/install/nav2_gazebo_spawner/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/coderey/ros2_ws/build/nav2_gazebo_spawner/build --no-deps install_data

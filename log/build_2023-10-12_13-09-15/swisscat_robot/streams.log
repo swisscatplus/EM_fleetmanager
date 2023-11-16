@@ -1,0 +1,18 @@
+[4.977s] Invoking command in '/home/coderey/ros2_ws/build/swisscat_robot': PYTHONPATH=/home/coderey/ros2_ws/build/swisscat_robot/prefix_override:/home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/coderey/ros2_ws/build/swisscat_robot/build --no-deps install_data
+[6.081s] running develop
+[6.082s] running egg_info
+[6.082s] writing swisscat_robot.egg-info/PKG-INFO
+[6.082s] writing dependency_links to swisscat_robot.egg-info/dependency_links.txt
+[6.082s] writing entry points to swisscat_robot.egg-info/entry_points.txt
+[6.082s] writing requirements to swisscat_robot.egg-info/requires.txt
+[6.082s] writing top-level names to swisscat_robot.egg-info/top_level.txt
+[6.082s] reading manifest file 'swisscat_robot.egg-info/SOURCES.txt'
+[6.082s] writing manifest file 'swisscat_robot.egg-info/SOURCES.txt'
+[6.082s] running build_ext
+[6.083s] Creating /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat-robot.egg-link (link to .)
+[6.083s] Installing controller script to /home/coderey/ros2_ws/install/swisscat_robot/lib/swisscat_robot
+[6.083s] Installing fleet_manager script to /home/coderey/ros2_ws/install/swisscat_robot/lib/swisscat_robot
+[6.083s] 
+[6.083s] Installed /home/coderey/ros2_ws/build/swisscat_robot
+[6.083s] running install_data
+[6.091s] Invoked command in '/home/coderey/ros2_ws/build/swisscat_robot' returned '0': PYTHONPATH=/home/coderey/ros2_ws/build/swisscat_robot/prefix_override:/home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/coderey/ros2_ws/build/swisscat_robot/build --no-deps install_data

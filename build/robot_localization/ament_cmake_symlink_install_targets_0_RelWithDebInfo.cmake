@@ -1,0 +1,1 @@
+ament_cmake_symlink_install_targets("TARGET_FILES" "/home/coderey/ros2_ws/build/robot_localization/librobot_localization__rosidl_typesupport_microxrcedds_c.so" "TARGETS" "robot_localization__rosidl_typesupport_microxrcedds_c" "ARCHIVE_DESTINATION" "lib" "LIBRARY_DESTINATION" "lib" "RUNTIME_DESTINATION" "bin")

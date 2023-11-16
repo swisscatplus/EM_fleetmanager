@@ -1,0 +1,27 @@
+[0.802s] Invoking command in '/home/coderey/ros2_ws/src/mob_rob_loca': PYTHONPATH=/home/coderey/ros2_ws/build/mob_rob_loca/prefix_override:/home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/mob_rob_loca build --build-base /home/coderey/ros2_ws/build/mob_rob_loca/build install --record /home/coderey/ros2_ws/build/mob_rob_loca/install.log --single-version-externally-managed
+[0.967s] running egg_info
+[0.967s] writing ../../build/mob_rob_loca/mob_rob_loca.egg-info/PKG-INFO
+[0.967s] writing dependency_links to ../../build/mob_rob_loca/mob_rob_loca.egg-info/dependency_links.txt
+[0.968s] writing entry points to ../../build/mob_rob_loca/mob_rob_loca.egg-info/entry_points.txt
+[0.968s] writing requirements to ../../build/mob_rob_loca/mob_rob_loca.egg-info/requires.txt
+[0.968s] writing top-level names to ../../build/mob_rob_loca/mob_rob_loca.egg-info/top_level.txt
+[0.992s] reading manifest file '../../build/mob_rob_loca/mob_rob_loca.egg-info/SOURCES.txt'
+[0.992s] writing manifest file '../../build/mob_rob_loca/mob_rob_loca.egg-info/SOURCES.txt'
+[0.992s] running build
+[0.992s] running build_py
+[0.993s] running install
+[0.993s] running install_lib
+[0.994s] running install_data
+[0.995s] copying launch/ekf.launch.py -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/launch
+[0.995s] running install_egg_info
+[0.996s] removing '/home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca-0.0.0-py3.8.egg-info' (and everything under it)
+[0.996s] Copying ../../build/mob_rob_loca/mob_rob_loca.egg-info to /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca-0.0.0-py3.8.egg-info
+[0.997s] running install_scripts
+[1.008s] Installing imu_serv script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[1.008s] Installing marv2ekf script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[1.008s] Installing rpi_com_motors script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[1.008s] Installing ticks2odom script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[1.008s] Installing transforms script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[1.008s] Installing vel_pub script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[1.009s] writing list of installed files to '/home/coderey/ros2_ws/build/mob_rob_loca/install.log'
+[1.022s] Invoked command in '/home/coderey/ros2_ws/src/mob_rob_loca' returned '0': PYTHONPATH=/home/coderey/ros2_ws/build/mob_rob_loca/prefix_override:/home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/mob_rob_loca build --build-base /home/coderey/ros2_ws/build/mob_rob_loca/build install --record /home/coderey/ros2_ws/build/mob_rob_loca/install.log --single-version-externally-managed

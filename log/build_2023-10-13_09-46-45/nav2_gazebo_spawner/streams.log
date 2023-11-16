@@ -1,0 +1,25 @@
+[1.477s] Invoking command in '/home/coderey/ros2_ws/build/nav2_gazebo_spawner': PYTHONPATH=/home/coderey/ros2_ws/build/nav2_gazebo_spawner/prefix_override:/home/coderey/ros2_ws/install/nav2_gazebo_spawner/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/coderey/ros2_ws/build/nav2_gazebo_spawner/build --no-deps install_data
+[1.760s] running develop
+[1.913s] running egg_info
+[1.913s] creating nav2_gazebo_spawner.egg-info
+[1.913s] writing nav2_gazebo_spawner.egg-info/PKG-INFO
+[1.913s] writing dependency_links to nav2_gazebo_spawner.egg-info/dependency_links.txt
+[1.914s] writing entry points to nav2_gazebo_spawner.egg-info/entry_points.txt
+[1.914s] writing requirements to nav2_gazebo_spawner.egg-info/requires.txt
+[1.914s] writing top-level names to nav2_gazebo_spawner.egg-info/top_level.txt
+[1.914s] writing manifest file 'nav2_gazebo_spawner.egg-info/SOURCES.txt'
+[1.937s] reading manifest file 'nav2_gazebo_spawner.egg-info/SOURCES.txt'
+[1.937s] writing manifest file 'nav2_gazebo_spawner.egg-info/SOURCES.txt'
+[1.971s] running build_ext
+[1.972s] Creating /home/coderey/ros2_ws/install/nav2_gazebo_spawner/lib/python3.8/site-packages/site.py
+[1.974s] Creating /home/coderey/ros2_ws/install/nav2_gazebo_spawner/lib/python3.8/site-packages/nav2-gazebo-spawner.egg-link (link to .)
+[1.975s] Installing nav2_gazebo_spawner script to /home/coderey/ros2_ws/install/nav2_gazebo_spawner/lib/nav2_gazebo_spawner
+[1.975s] 
+[1.975s] Installed /home/coderey/ros2_ws/build/nav2_gazebo_spawner
+[1.976s] running install_data
+[1.976s] creating /home/coderey/ros2_ws/install/nav2_gazebo_spawner/share/ament_index
+[1.976s] creating /home/coderey/ros2_ws/install/nav2_gazebo_spawner/share/ament_index/resource_index
+[1.976s] creating /home/coderey/ros2_ws/install/nav2_gazebo_spawner/share/ament_index/resource_index/packages
+[1.977s] copying resource/nav2_gazebo_spawner -> /home/coderey/ros2_ws/install/nav2_gazebo_spawner/share/ament_index/resource_index/packages
+[1.977s] copying package.xml -> /home/coderey/ros2_ws/install/nav2_gazebo_spawner/share/nav2_gazebo_spawner
+[2.612s] Invoked command in '/home/coderey/ros2_ws/build/nav2_gazebo_spawner' returned '0': PYTHONPATH=/home/coderey/ros2_ws/build/nav2_gazebo_spawner/prefix_override:/home/coderey/ros2_ws/install/nav2_gazebo_spawner/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/coderey/ros2_ws/build/nav2_gazebo_spawner/build --no-deps install_data

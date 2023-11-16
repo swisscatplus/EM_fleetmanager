@@ -1,0 +1,302 @@
+[0.876s] Invoking command in '/home/coderey/ros2_ws/build/marvelmind_ros2_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/nav2_gazebo_spawner:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/marvelmind_ros2_msgs -- -j8 -l8
+[2.080s] [  0%] Built target marvelmind_ros2_msgs__cpp
+[2.080s] [  9%] Built target marvelmind_ros2_msgs__rosidl_generator_c
+[2.081s] [ 18%] Built target marvelmind_ros2_msgs__rosidl_typesupport_cpp
+[2.081s] [ 27%] Built target marvelmind_ros2_msgs__rosidl_typesupport_introspection_cpp
+[2.083s] [ 40%] Built target marvelmind_ros2_msgs__rosidl_typesupport_c
+[2.083s] [ 54%] Built target marvelmind_ros2_msgs__rosidl_typesupport_fastrtps_cpp
+[2.083s] [ 55%] Built target marvelmind_ros2_msgs__rosidl_typesupport_microxrcedds_cpp
+[2.084s] [ 65%] Built target marvelmind_ros2_msgs__rosidl_typesupport_microxrcedds_c
+[2.084s] [ 75%] Built target marvelmind_ros2_msgs__rosidl_typesupport_introspection_c
+[2.084s] [ 84%] Built target marvelmind_ros2_msgs__rosidl_typesupport_fastrtps_c
+[2.084s] [ 84%] Built target marvelmind_ros2_msgs
+[2.084s] [ 85%] Built target marvelmind_ros2_msgs__py
+[2.084s] [ 94%] Built target marvelmind_ros2_msgs__python
+[2.084s] [ 96%] Built target marvelmind_ros2_msgs__rosidl_typesupport_c__pyext
+[2.084s] [ 98%] Built target marvelmind_ros2_msgs__rosidl_typesupport_fastrtps_c__pyext
+[2.085s] [ 99%] Built target marvelmind_ros2_msgs__rosidl_typesupport_microxrcedds_c__pyext
+[2.085s] [100%] Built target marvelmind_ros2_msgs__rosidl_typesupport_introspection_c__pyext
+[2.087s] Invoked command in '/home/coderey/ros2_ws/build/marvelmind_ros2_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/nav2_gazebo_spawner:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/marvelmind_ros2_msgs -- -j8 -l8
+[4.966s] Invoking command in '/home/coderey/ros2_ws/build/marvelmind_ros2_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/nav2_gazebo_spawner:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/marvelmind_ros2_msgs
+[4.983s] -- Install configuration: "RelWithDebInfo"
+[4.984s] -- Execute custom install script
+[4.984s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/ament_index/resource_index/rosidl_interfaces/marvelmind_ros2_msgs
+[4.984s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/beacon_distance.h
+[4.984s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/beacon_position_addressed.h
+[4.990s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_distance__functions.h
+[4.990s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_distance__struct.h
+[4.990s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_distance__type_support.h
+[4.991s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_position_addressed__functions.h
+[4.991s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_position_addressed__struct.h
+[4.991s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_position_addressed__type_support.h
+[4.992s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_fusion__functions.h
+[4.992s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_fusion__struct.h
+[4.992s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_fusion__type_support.h
+[4.992s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_raw__functions.h
+[4.992s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_raw__struct.h
+[4.992s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_raw__type_support.h
+[4.992s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position__functions.h
+[4.993s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position__struct.h
+[4.993s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position__type_support.h
+[4.993s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_addressed__functions.h
+[4.993s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_addressed__struct.h
+[4.993s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_addressed__type_support.h
+[4.993s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_angle__functions.h
+[4.993s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_angle__struct.h
+[4.993s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_angle__type_support.h
+[4.994s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_quality__functions.h
+[4.994s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_quality__struct.h
+[4.994s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_quality__type_support.h
+[4.994s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_telemetry__functions.h
+[4.994s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_telemetry__struct.h
+[4.994s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_telemetry__type_support.h
+[4.994s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_user_data__functions.h
+[4.994s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_user_data__struct.h
+[4.994s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_user_data__type_support.h
+[4.995s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_waypoint__functions.h
+[4.995s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_waypoint__struct.h
+[4.995s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_waypoint__type_support.h
+[4.995s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_imu_fusion.h
+[4.997s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_imu_raw.h
+[4.997s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_position.h
+[4.997s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_position_addressed.h
+[4.997s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_position_angle.h
+[4.998s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_quality.h
+[4.998s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_telemetry.h
+[4.998s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/marvelmind_user_data.h
+[4.999s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/marvelmind_waypoint.h
+[4.999s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/rosidl_generator_c__visibility_control.h
+[4.999s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/detail/marvelmind_api__functions.h
+[4.999s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/detail/marvelmind_api__struct.h
+[4.999s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/detail/marvelmind_api__type_support.h
+[5.000s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/marvelmind_api.h
+[5.000s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/environment/library_path.sh
+[5.000s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/environment/library_path.dsv
+[5.000s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_distance__rosidl_typesupport_microxrcedds_c.h
+[5.001s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_position_addressed__rosidl_typesupport_microxrcedds_c.h
+[5.001s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_fusion__rosidl_typesupport_microxrcedds_c.h
+[5.001s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_raw__rosidl_typesupport_microxrcedds_c.h
+[5.001s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position__rosidl_typesupport_microxrcedds_c.h
+[5.001s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_addressed__rosidl_typesupport_microxrcedds_c.h
+[5.001s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_angle__rosidl_typesupport_microxrcedds_c.h
+[5.001s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_quality__rosidl_typesupport_microxrcedds_c.h
+[5.001s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_telemetry__rosidl_typesupport_microxrcedds_c.h
+[5.002s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_user_data__rosidl_typesupport_microxrcedds_c.h
+[5.002s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_waypoint__rosidl_typesupport_microxrcedds_c.h
+[5.002s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/rosidl_typesupport_microxrcedds_c__visibility_control.h
+[5.002s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/detail/marvelmind_api__rosidl_typesupport_microxrcedds_c.h
+[5.002s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/libmarvelmind_ros2_msgs__rosidl_typesupport_microxrcedds_c.so
+[5.002s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_distance__rosidl_typesupport_fastrtps_c.h
+[5.002s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_position_addressed__rosidl_typesupport_fastrtps_c.h
+[5.003s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_fusion__rosidl_typesupport_fastrtps_c.h
+[5.003s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_raw__rosidl_typesupport_fastrtps_c.h
+[5.003s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position__rosidl_typesupport_fastrtps_c.h
+[5.003s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_addressed__rosidl_typesupport_fastrtps_c.h
+[5.003s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_angle__rosidl_typesupport_fastrtps_c.h
+[5.003s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_quality__rosidl_typesupport_fastrtps_c.h
+[5.003s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_telemetry__rosidl_typesupport_fastrtps_c.h
+[5.004s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_user_data__rosidl_typesupport_fastrtps_c.h
+[5.004s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_waypoint__rosidl_typesupport_fastrtps_c.h
+[5.004s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[5.004s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/detail/marvelmind_api__rosidl_typesupport_fastrtps_c.h
+[5.004s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/libmarvelmind_ros2_msgs__rosidl_typesupport_fastrtps_c.so
+[5.005s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_distance__rosidl_typesupport_fastrtps_cpp.hpp
+[5.005s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_position_addressed__rosidl_typesupport_fastrtps_cpp.hpp
+[5.005s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_fusion__rosidl_typesupport_fastrtps_cpp.hpp
+[5.005s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_raw__rosidl_typesupport_fastrtps_cpp.hpp
+[5.005s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position__rosidl_typesupport_fastrtps_cpp.hpp
+[5.005s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_addressed__rosidl_typesupport_fastrtps_cpp.hpp
+[5.005s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_angle__rosidl_typesupport_fastrtps_cpp.hpp
+[5.005s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_quality__rosidl_typesupport_fastrtps_cpp.hpp
+[5.006s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_telemetry__rosidl_typesupport_fastrtps_cpp.hpp
+[5.006s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_user_data__rosidl_typesupport_fastrtps_cpp.hpp
+[5.006s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_waypoint__rosidl_typesupport_fastrtps_cpp.hpp
+[5.006s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[5.006s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/detail/marvelmind_api__rosidl_typesupport_fastrtps_cpp.hpp
+[5.006s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/libmarvelmind_ros2_msgs__rosidl_typesupport_fastrtps_cpp.so
+[5.006s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_distance__rosidl_typesupport_introspection_c.h
+[5.007s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_position_addressed__rosidl_typesupport_introspection_c.h
+[5.007s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_fusion__rosidl_typesupport_introspection_c.h
+[5.007s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_raw__rosidl_typesupport_introspection_c.h
+[5.007s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position__rosidl_typesupport_introspection_c.h
+[5.007s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_addressed__rosidl_typesupport_introspection_c.h
+[5.007s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_angle__rosidl_typesupport_introspection_c.h
+[5.007s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_quality__rosidl_typesupport_introspection_c.h
+[5.008s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_telemetry__rosidl_typesupport_introspection_c.h
+[5.008s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_user_data__rosidl_typesupport_introspection_c.h
+[5.008s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_waypoint__rosidl_typesupport_introspection_c.h
+[5.010s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[5.010s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/detail/marvelmind_api__rosidl_typesupport_introspection_c.h
+[5.010s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/beacon_distance.hpp
+[5.011s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/beacon_position_addressed.hpp
+[5.011s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_distance__builder.hpp
+[5.011s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_distance__struct.hpp
+[5.011s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_distance__traits.hpp
+[5.011s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_position_addressed__builder.hpp
+[5.011s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_position_addressed__struct.hpp
+[5.011s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_position_addressed__traits.hpp
+[5.012s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_fusion__builder.hpp
+[5.012s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_fusion__struct.hpp
+[5.012s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_fusion__traits.hpp
+[5.012s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_raw__builder.hpp
+[5.012s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_raw__struct.hpp
+[5.012s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_raw__traits.hpp
+[5.012s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position__builder.hpp
+[5.013s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position__struct.hpp
+[5.013s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position__traits.hpp
+[5.013s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_addressed__builder.hpp
+[5.013s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_addressed__struct.hpp
+[5.013s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_addressed__traits.hpp
+[5.013s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_angle__builder.hpp
+[5.014s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_angle__struct.hpp
+[5.014s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_angle__traits.hpp
+[5.014s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_quality__builder.hpp
+[5.014s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_quality__struct.hpp
+[5.014s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_quality__traits.hpp
+[5.015s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_telemetry__builder.hpp
+[5.015s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_telemetry__struct.hpp
+[5.015s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_telemetry__traits.hpp
+[5.015s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_user_data__builder.hpp
+[5.016s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_user_data__struct.hpp
+[5.016s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_user_data__traits.hpp
+[5.017s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_waypoint__builder.hpp
+[5.017s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_waypoint__struct.hpp
+[5.017s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_waypoint__traits.hpp
+[5.018s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_imu_fusion.hpp
+[5.018s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_imu_raw.hpp
+[5.018s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_position.hpp
+[5.019s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_position_addressed.hpp
+[5.019s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_position_angle.hpp
+[5.019s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_quality.hpp
+[5.020s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/hedge_telemetry.hpp
+[5.020s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/marvelmind_user_data.hpp
+[5.020s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/marvelmind_waypoint.hpp
+[5.021s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/detail/marvelmind_api__builder.hpp
+[5.021s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/detail/marvelmind_api__struct.hpp
+[5.021s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/detail/marvelmind_api__traits.hpp
+[5.022s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/marvelmind_api.hpp
+[5.024s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_distance__rosidl_typesupport_microxrcedds_cpp.hpp
+[5.024s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_position_addressed__rosidl_typesupport_microxrcedds_cpp.hpp
+[5.024s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_fusion__rosidl_typesupport_microxrcedds_cpp.hpp
+[5.025s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_raw__rosidl_typesupport_microxrcedds_cpp.hpp
+[5.025s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position__rosidl_typesupport_microxrcedds_cpp.hpp
+[5.025s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_addressed__rosidl_typesupport_microxrcedds_cpp.hpp
+[5.026s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_angle__rosidl_typesupport_microxrcedds_cpp.hpp
+[5.026s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_quality__rosidl_typesupport_microxrcedds_cpp.hpp
+[5.026s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_telemetry__rosidl_typesupport_microxrcedds_cpp.hpp
+[5.026s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_user_data__rosidl_typesupport_microxrcedds_cpp.hpp
+[5.027s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_waypoint__rosidl_typesupport_microxrcedds_cpp.hpp
+[5.027s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/microxrcedds/beacon_distance__type_support_cpp.cpp
+[5.027s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/microxrcedds/beacon_position_addressed__type_support_cpp.cpp
+[5.028s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/microxrcedds/hedge_imu_fusion__type_support_cpp.cpp
+[5.029s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/microxrcedds/hedge_imu_raw__type_support_cpp.cpp
+[5.029s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/microxrcedds/hedge_position__type_support_cpp.cpp
+[5.029s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/microxrcedds/hedge_position_addressed__type_support_cpp.cpp
+[5.029s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/microxrcedds/hedge_position_angle__type_support_cpp.cpp
+[5.030s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/microxrcedds/hedge_quality__type_support_cpp.cpp
+[5.030s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/microxrcedds/hedge_telemetry__type_support_cpp.cpp
+[5.030s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/microxrcedds/marvelmind_user_data__type_support_cpp.cpp
+[5.031s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/microxrcedds/marvelmind_waypoint__type_support_cpp.cpp
+[5.031s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/rosidl_typesupport_microxrcedds_cpp__visibility_control.h
+[5.031s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/detail/marvelmind_api__rosidl_typesupport_microxrcedds_cpp.hpp
+[5.031s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/detail/microxrcedds/marvelmind_api__type_support_cpp.cpp
+[5.032s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/libmarvelmind_ros2_msgs__rosidl_typesupport_microxrcedds_cpp.so
+[5.034s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_distance__rosidl_typesupport_introspection_cpp.hpp
+[5.034s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/beacon_position_addressed__rosidl_typesupport_introspection_cpp.hpp
+[5.034s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_fusion__rosidl_typesupport_introspection_cpp.hpp
+[5.035s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_imu_raw__rosidl_typesupport_introspection_cpp.hpp
+[5.035s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position__rosidl_typesupport_introspection_cpp.hpp
+[5.036s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_addressed__rosidl_typesupport_introspection_cpp.hpp
+[5.037s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_position_angle__rosidl_typesupport_introspection_cpp.hpp
+[5.037s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_quality__rosidl_typesupport_introspection_cpp.hpp
+[5.037s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/hedge_telemetry__rosidl_typesupport_introspection_cpp.hpp
+[5.037s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_user_data__rosidl_typesupport_introspection_cpp.hpp
+[5.037s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/msg/detail/marvelmind_waypoint__rosidl_typesupport_introspection_cpp.hpp
+[5.037s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/include/marvelmind_ros2_msgs/srv/detail/marvelmind_api__rosidl_typesupport_introspection_cpp.hpp
+[5.038s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/environment/pythonpath.sh
+[5.038s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/environment/pythonpath.dsv
+[5.038s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/__init__.py
+[5.039s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/msg/__init__.py
+[5.040s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/msg/_beacon_distance.py
+[5.041s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/msg/_beacon_position_addressed.py
+[5.041s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/msg/_hedge_imu_fusion.py
+[5.042s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/msg/_hedge_imu_raw.py
+[5.042s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/msg/_hedge_position.py
+[5.042s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/msg/_hedge_position_addressed.py
+[5.043s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/msg/_hedge_position_angle.py
+[5.043s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/msg/_hedge_quality.py
+[5.043s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/msg/_hedge_telemetry.py
+[5.043s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/msg/_marvelmind_user_data.py
+[5.044s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/msg/_marvelmind_waypoint.py
+[5.045s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/srv/__init__.py
+[5.045s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/srv/_marvelmind_api.py
+[5.046s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/marvelmind_ros2_msgs_s__rosidl_typesupport_microxrcedds_c.cpython-38-x86_64-linux-gnu.so
+[5.047s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/marvelmind_ros2_msgs_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so
+[5.049s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/marvelmind_ros2_msgs_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so
+[5.049s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/python3.8/site-packages/marvelmind_ros2_msgs/marvelmind_ros2_msgs_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so
+[5.050s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/libmarvelmind_ros2_msgs__python.so
+[5.050s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/BeaconDistance.idl
+[5.051s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/BeaconPositionAddressed.idl
+[5.051s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgeImuFusion.idl
+[5.052s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgeImuRaw.idl
+[5.052s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgePositionAddressed.idl
+[5.053s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgePositionAngle.idl
+[5.053s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgePosition.idl
+[5.053s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgeQuality.idl
+[5.054s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgeTelemetry.idl
+[5.054s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/MarvelmindWaypoint.idl
+[5.055s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/MarvelmindUserData.idl
+[5.055s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/srv/MarvelmindAPI.idl
+[5.056s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/BeaconDistance.msg
+[5.056s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/BeaconPositionAddressed.msg
+[5.057s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgeImuFusion.msg
+[5.057s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgeImuRaw.msg
+[5.057s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgePositionAddressed.msg
+[5.058s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgePositionAngle.msg
+[5.058s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgePosition.msg
+[5.059s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgeQuality.msg
+[5.060s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/HedgeTelemetry.msg
+[5.060s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/MarvelmindWaypoint.msg
+[5.060s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/msg/MarvelmindUserData.msg
+[5.061s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/srv/MarvelmindAPI.srv
+[5.061s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/srv/MarvelmindAPI_Request.msg
+[5.062s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/srv/MarvelmindAPI_Response.msg
+[5.062s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/ament_index/resource_index/package_run_dependencies/marvelmind_ros2_msgs
+[5.063s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/ament_index/resource_index/parent_prefix_path/marvelmind_ros2_msgs
+[5.063s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/environment/ament_prefix_path.sh
+[5.064s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/environment/ament_prefix_path.dsv
+[5.064s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/environment/path.sh
+[5.065s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/environment/path.dsv
+[5.065s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/local_setup.bash
+[5.066s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/local_setup.sh
+[5.066s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/local_setup.zsh
+[5.066s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/local_setup.dsv
+[5.067s] -- Symlinking: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/package.dsv
+[5.093s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/ament_index/resource_index/packages/marvelmind_ros2_msgs
+[5.093s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/rosidl_cmake-extras.cmake
+[5.094s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[5.094s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[5.094s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[5.095s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[5.095s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[5.096s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[5.097s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/marvelmind_ros2_msgsConfig.cmake
+[5.097s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/marvelmind_ros2_msgsConfig-version.cmake
+[5.097s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/package.xml
+[5.097s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/libmarvelmind_ros2_msgs__rosidl_generator_c.so
+[5.099s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/libmarvelmind_ros2_msgs__rosidl_typesupport_introspection_c.so
+[5.099s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/libmarvelmind_ros2_msgs__rosidl_typesupport_c.so
+[5.101s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/libmarvelmind_ros2_msgs__rosidl_typesupport_introspection_cpp.so
+[5.102s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/lib/libmarvelmind_ros2_msgs__rosidl_typesupport_cpp.so
+[5.266s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/marvelmind_ros2_msgs__rosidl_generator_cExport.cmake
+[5.266s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/marvelmind_ros2_msgs__rosidl_generator_cExport-relwithdebinfo.cmake
+[5.266s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/marvelmind_ros2_msgs__rosidl_typesupport_introspection_cExport.cmake
+[5.266s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/marvelmind_ros2_msgs__rosidl_typesupport_introspection_cExport-relwithdebinfo.cmake
+[5.267s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/marvelmind_ros2_msgs__rosidl_typesupport_cExport.cmake
+[5.267s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/marvelmind_ros2_msgs__rosidl_typesupport_cExport-relwithdebinfo.cmake
+[5.268s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/marvelmind_ros2_msgs__rosidl_generator_cppExport.cmake
+[5.272s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/marvelmind_ros2_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[5.272s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/marvelmind_ros2_msgs__rosidl_typesupport_introspection_cppExport-relwithdebinfo.cmake
+[5.273s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/marvelmind_ros2_msgs__rosidl_typesupport_cppExport.cmake
+[5.273s] -- Up-to-date: /home/coderey/ros2_ws/install/marvelmind_ros2_msgs/share/marvelmind_ros2_msgs/cmake/marvelmind_ros2_msgs__rosidl_typesupport_cppExport-relwithdebinfo.cmake
+[5.610s] Invoked command in '/home/coderey/ros2_ws/build/marvelmind_ros2_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/nav2_gazebo_spawner:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/marvelmind_ros2_msgs

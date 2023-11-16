@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmarvelmind_hedge_lib.a  CMakeFiles/marvelmind_hedge_lib.dir/src/marvelmind_hedge.c.o
+/usr/bin/ranlib libmarvelmind_hedge_lib.a

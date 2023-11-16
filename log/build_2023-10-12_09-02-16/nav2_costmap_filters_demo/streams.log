@@ -1,0 +1,36 @@
+[1.253s] Invoking command in '/home/coderey/ros2_ws/build/nav2_costmap_filters_demo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake /home/coderey/ros2_ws/src/navigation2_tutorials/nav2_costmap_filters_demo -DCMAKE_BUILD_TYPE=RelWithDebInfo -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/coderey/ros2_ws/install/nav2_costmap_filters_demo
+[1.272s] -- Found ament_cmake: 1.1.6 (/opt/ros/galactic/share/ament_cmake/cmake)
+[1.308s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.418s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[1.551s] -- Configuring done
+[1.556s] -- Generating done
+[1.556s] -- Build files have been written to: /home/coderey/ros2_ws/build/nav2_costmap_filters_demo
+[1.561s] Invoked command in '/home/coderey/ros2_ws/build/nav2_costmap_filters_demo' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake /home/coderey/ros2_ws/src/navigation2_tutorials/nav2_costmap_filters_demo -DCMAKE_BUILD_TYPE=RelWithDebInfo -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/coderey/ros2_ws/install/nav2_costmap_filters_demo
+[1.562s] Invoking command in '/home/coderey/ros2_ws/build/nav2_costmap_filters_demo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/nav2_costmap_filters_demo -- -j8 -l8
+[1.679s] Invoked command in '/home/coderey/ros2_ws/build/nav2_costmap_filters_demo' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/nav2_costmap_filters_demo -- -j8 -l8
+[1.872s] Invoking command in '/home/coderey/ros2_ws/build/nav2_costmap_filters_demo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/nav2_costmap_filters_demo
+[1.899s] -- Install configuration: "RelWithDebInfo"
+[1.903s] -- Execute custom install script
+[1.903s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/launch/costmap_filter_info.launch.py
+[1.942s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/maps/keepout_mask.png
+[1.963s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/maps/keepout_mask.yaml
+[1.997s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/maps/speed_mask.pgm
+[2.029s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/maps/speed_mask.yaml
+[2.074s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/params/keepout_params.yaml
+[2.094s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/params/speed_params.yaml
+[2.113s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/ament_index/resource_index/package_run_dependencies/nav2_costmap_filters_demo
+[2.135s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/ament_index/resource_index/parent_prefix_path/nav2_costmap_filters_demo
+[2.155s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/environment/ament_prefix_path.sh
+[2.174s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/environment/ament_prefix_path.dsv
+[2.191s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/environment/path.sh
+[2.214s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/environment/path.dsv
+[2.229s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/local_setup.bash
+[2.246s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/local_setup.sh
+[2.285s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/local_setup.zsh
+[2.322s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/local_setup.dsv
+[2.344s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/package.dsv
+[2.380s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/ament_index/resource_index/packages/nav2_costmap_filters_demo
+[2.399s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/cmake/nav2_costmap_filters_demoConfig.cmake
+[2.429s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/cmake/nav2_costmap_filters_demoConfig-version.cmake
+[2.474s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_costmap_filters_demo/share/nav2_costmap_filters_demo/package.xml
+[2.547s] Invoked command in '/home/coderey/ros2_ws/build/nav2_costmap_filters_demo' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/nav2_costmap_filters_demo

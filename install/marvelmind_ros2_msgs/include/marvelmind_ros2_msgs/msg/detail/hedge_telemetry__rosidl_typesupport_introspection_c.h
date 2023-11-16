@@ -1,0 +1,1 @@
+/home/coderey/ros2_ws/build/marvelmind_ros2_msgs/rosidl_typesupport_introspection_c/marvelmind_ros2_msgs/msg/detail/hedge_telemetry__rosidl_typesupport_introspection_c.h

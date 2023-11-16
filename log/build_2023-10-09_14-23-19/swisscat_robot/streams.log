@@ -1,0 +1,22 @@
+[2.561s] Invoking command in '/home/coderey/ros2_ws/src/swisscat_robot': PYTHONPATH=/home/coderey/ros2_ws/build/swisscat_robot/prefix_override:/home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/swisscat_robot build --build-base /home/coderey/ros2_ws/build/swisscat_robot/build install --record /home/coderey/ros2_ws/build/swisscat_robot/install.log --install-scripts $base/lib/swisscat_robot --single-version-externally-managed
+[2.774s] running egg_info
+[2.774s] writing ../../build/swisscat_robot/swisscat_robot.egg-info/PKG-INFO
+[2.774s] writing dependency_links to ../../build/swisscat_robot/swisscat_robot.egg-info/dependency_links.txt
+[2.774s] writing entry points to ../../build/swisscat_robot/swisscat_robot.egg-info/entry_points.txt
+[2.774s] writing requirements to ../../build/swisscat_robot/swisscat_robot.egg-info/requires.txt
+[2.774s] writing top-level names to ../../build/swisscat_robot/swisscat_robot.egg-info/top_level.txt
+[2.801s] reading manifest file '../../build/swisscat_robot/swisscat_robot.egg-info/SOURCES.txt'
+[2.801s] writing manifest file '../../build/swisscat_robot/swisscat_robot.egg-info/SOURCES.txt'
+[2.801s] running build
+[2.801s] running build_py
+[2.801s] running install
+[2.801s] running install_lib
+[2.803s] running install_data
+[2.803s] running install_egg_info
+[2.804s] removing '/home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot-0.0.0-py3.8.egg-info' (and everything under it)
+[2.805s] Copying ../../build/swisscat_robot/swisscat_robot.egg-info to /home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages/swisscat_robot-0.0.0-py3.8.egg-info
+[2.805s] running install_scripts
+[2.819s] Installing controller script to /home/coderey/ros2_ws/install/swisscat_robot/lib/swisscat_robot
+[2.819s] Installing fleet_manager script to /home/coderey/ros2_ws/install/swisscat_robot/lib/swisscat_robot
+[2.819s] writing list of installed files to '/home/coderey/ros2_ws/build/swisscat_robot/install.log'
+[2.956s] Invoked command in '/home/coderey/ros2_ws/src/swisscat_robot' returned '0': PYTHONPATH=/home/coderey/ros2_ws/build/swisscat_robot/prefix_override:/home/coderey/ros2_ws/install/swisscat_robot/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/swisscat_robot build --build-base /home/coderey/ros2_ws/build/swisscat_robot/build install --record /home/coderey/ros2_ws/build/swisscat_robot/install.log --install-scripts $base/lib/swisscat_robot --single-version-externally-managed

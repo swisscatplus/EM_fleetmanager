@@ -1,0 +1,1 @@
+/home/coderey/ros2_ws/src/swisscat_robot/launch/one_robot_with_name.launch.py

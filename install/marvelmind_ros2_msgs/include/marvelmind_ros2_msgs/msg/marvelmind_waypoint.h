@@ -1,0 +1,1 @@
+/home/coderey/ros2_ws/build/marvelmind_ros2_msgs/rosidl_generator_c/marvelmind_ros2_msgs/msg/marvelmind_waypoint.h

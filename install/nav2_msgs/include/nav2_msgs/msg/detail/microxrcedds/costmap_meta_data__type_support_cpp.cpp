@@ -1,0 +1,1 @@
+/home/coderey/ros2_ws/build/nav2_msgs/rosidl_typesupport_microxrcedds_cpp/nav2_msgs/msg/detail/microxrcedds/costmap_meta_data__type_support_cpp.cpp

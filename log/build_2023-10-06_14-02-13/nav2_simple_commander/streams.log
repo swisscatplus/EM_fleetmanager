@@ -1,0 +1,91 @@
+[1.429s] Invoking command in '/home/coderey/ros2_ws/src/navigation2/nav2_simple_commander': AMENT_PREFIX_PATH=/home/coderey/ros2_ws/install/nav2_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/coderey/ros2_ws/install/nav2_msgs:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/coderey/ros2_ws/install/nav2_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/coderey/ros2_ws/build/nav2_simple_commander/prefix_override:/home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages:/home/coderey/ros2_ws/install/nav2_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/nav2_simple_commander build --build-base /home/coderey/ros2_ws/build/nav2_simple_commander/build install --record /home/coderey/ros2_ws/build/nav2_simple_commander/install.log --single-version-externally-managed
+[1.699s] running egg_info
+[1.699s] creating ../../../build/nav2_simple_commander/nav2_simple_commander.egg-info
+[1.699s] writing ../../../build/nav2_simple_commander/nav2_simple_commander.egg-info/PKG-INFO
+[1.700s] writing dependency_links to ../../../build/nav2_simple_commander/nav2_simple_commander.egg-info/dependency_links.txt
+[1.700s] writing entry points to ../../../build/nav2_simple_commander/nav2_simple_commander.egg-info/entry_points.txt
+[1.700s] writing requirements to ../../../build/nav2_simple_commander/nav2_simple_commander.egg-info/requires.txt
+[1.700s] writing top-level names to ../../../build/nav2_simple_commander/nav2_simple_commander.egg-info/top_level.txt
+[1.702s] writing manifest file '../../../build/nav2_simple_commander/nav2_simple_commander.egg-info/SOURCES.txt'
+[1.738s] reading manifest file '../../../build/nav2_simple_commander/nav2_simple_commander.egg-info/SOURCES.txt'
+[1.739s] writing manifest file '../../../build/nav2_simple_commander/nav2_simple_commander.egg-info/SOURCES.txt'
+[1.739s] running build
+[1.739s] running build_py
+[1.739s] creating /home/coderey/ros2_ws/build/nav2_simple_commander/build
+[1.739s] creating /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib
+[1.740s] creating /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.740s] copying nav2_simple_commander/demo_security.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.740s] copying nav2_simple_commander/costmap_2d.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.740s] copying nav2_simple_commander/line_iterator.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.740s] copying nav2_simple_commander/__init__.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.740s] copying nav2_simple_commander/example_nav_through_poses.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.740s] copying nav2_simple_commander/example_assisted_teleop.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.740s] copying nav2_simple_commander/footprint_collision_checker.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.741s] copying nav2_simple_commander/demo_inspection.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.741s] copying nav2_simple_commander/robot_navigator.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.741s] copying nav2_simple_commander/example_follow_path.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.741s] copying nav2_simple_commander/example_waypoint_follower.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.741s] copying nav2_simple_commander/example_nav_to_pose.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.741s] copying nav2_simple_commander/demo_recoveries.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.741s] copying nav2_simple_commander/demo_picking.py -> /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander
+[1.741s] running install
+[1.741s] running install_lib
+[1.742s] creating /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.742s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/demo_security.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.743s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/costmap_2d.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.743s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/line_iterator.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.743s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/__init__.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.743s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/example_nav_through_poses.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.743s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/example_assisted_teleop.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.743s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/footprint_collision_checker.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.743s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/demo_inspection.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.743s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/robot_navigator.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.744s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/example_follow_path.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.744s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/example_waypoint_follower.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.744s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/example_nav_to_pose.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.744s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/demo_recoveries.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.744s] copying /home/coderey/ros2_ws/build/nav2_simple_commander/build/lib/nav2_simple_commander/demo_picking.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander
+[1.744s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/demo_security.py to demo_security.cpython-38.pyc
+[1.745s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/costmap_2d.py to costmap_2d.cpython-38.pyc
+[1.746s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/line_iterator.py to line_iterator.cpython-38.pyc
+[1.747s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/__init__.py to __init__.cpython-38.pyc
+[1.747s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/example_nav_through_poses.py to example_nav_through_poses.cpython-38.pyc
+[1.747s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/example_assisted_teleop.py to example_assisted_teleop.cpython-38.pyc
+[1.748s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/footprint_collision_checker.py to footprint_collision_checker.cpython-38.pyc
+[1.748s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/demo_inspection.py to demo_inspection.cpython-38.pyc
+[1.749s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/robot_navigator.py to robot_navigator.cpython-38.pyc
+[1.753s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/example_follow_path.py to example_follow_path.cpython-38.pyc
+[1.754s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/example_waypoint_follower.py to example_waypoint_follower.cpython-38.pyc
+[1.754s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/example_nav_to_pose.py to example_nav_to_pose.cpython-38.pyc
+[1.755s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/demo_recoveries.py to demo_recoveries.cpython-38.pyc
+[1.755s] byte-compiling /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander/demo_picking.py to demo_picking.cpython-38.pyc
+[1.756s] running install_data
+[1.757s] creating /home/coderey/ros2_ws/install/nav2_simple_commander/share/ament_index
+[1.757s] creating /home/coderey/ros2_ws/install/nav2_simple_commander/share/ament_index/resource_index
+[1.757s] creating /home/coderey/ros2_ws/install/nav2_simple_commander/share/ament_index/resource_index/packages
+[1.757s] copying resource/nav2_simple_commander -> /home/coderey/ros2_ws/install/nav2_simple_commander/share/ament_index/resource_index/packages
+[1.757s] copying package.xml -> /home/coderey/ros2_ws/install/nav2_simple_commander/share/nav2_simple_commander
+[1.757s] copying launch/security_demo_launch.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/share/nav2_simple_commander
+[1.757s] copying launch/assisted_teleop_example_launch.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/share/nav2_simple_commander
+[1.758s] copying launch/warehouse.world -> /home/coderey/ros2_ws/install/nav2_simple_commander/share/nav2_simple_commander
+[1.758s] copying launch/picking_demo_launch.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/share/nav2_simple_commander
+[1.758s] copying launch/follow_path_example_launch.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/share/nav2_simple_commander
+[1.758s] copying launch/nav_to_pose_example_launch.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/share/nav2_simple_commander
+[1.758s] copying launch/recoveries_example_launch.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/share/nav2_simple_commander
+[1.758s] copying launch/nav_through_poses_example_launch.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/share/nav2_simple_commander
+[1.758s] copying launch/inspection_demo_launch.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/share/nav2_simple_commander
+[1.758s] copying launch/waypoint_follower_example_launch.py -> /home/coderey/ros2_ws/install/nav2_simple_commander/share/nav2_simple_commander
+[1.758s] running install_egg_info
+[1.760s] Copying ../../../build/nav2_simple_commander/nav2_simple_commander.egg-info to /home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages/nav2_simple_commander-1.0.0-py3.8.egg-info
+[1.761s] running install_scripts
+[1.780s] Installing demo_inspection script to /home/coderey/ros2_ws/install/nav2_simple_commander/lib/nav2_simple_commander
+[1.780s] Installing demo_picking script to /home/coderey/ros2_ws/install/nav2_simple_commander/lib/nav2_simple_commander
+[1.780s] Installing demo_recoveries script to /home/coderey/ros2_ws/install/nav2_simple_commander/lib/nav2_simple_commander
+[1.780s] Installing demo_security script to /home/coderey/ros2_ws/install/nav2_simple_commander/lib/nav2_simple_commander
+[1.780s] Installing example_assisted_teleop script to /home/coderey/ros2_ws/install/nav2_simple_commander/lib/nav2_simple_commander
+[1.780s] Installing example_follow_path script to /home/coderey/ros2_ws/install/nav2_simple_commander/lib/nav2_simple_commander
+[1.780s] Installing example_nav_through_poses script to /home/coderey/ros2_ws/install/nav2_simple_commander/lib/nav2_simple_commander
+[1.780s] Installing example_nav_to_pose script to /home/coderey/ros2_ws/install/nav2_simple_commander/lib/nav2_simple_commander
+[1.780s] Installing example_waypoint_follower script to /home/coderey/ros2_ws/install/nav2_simple_commander/lib/nav2_simple_commander
+[1.781s] writing list of installed files to '/home/coderey/ros2_ws/build/nav2_simple_commander/install.log'
+[1.801s] Invoked command in '/home/coderey/ros2_ws/src/navigation2/nav2_simple_commander' returned '0': AMENT_PREFIX_PATH=/home/coderey/ros2_ws/install/nav2_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/coderey/ros2_ws/install/nav2_msgs:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/coderey/ros2_ws/install/nav2_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/coderey/ros2_ws/build/nav2_simple_commander/prefix_override:/home/coderey/ros2_ws/install/nav2_simple_commander/lib/python3.8/site-packages:/home/coderey/ros2_ws/install/nav2_msgs/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/nav2_simple_commander build --build-base /home/coderey/ros2_ws/build/nav2_simple_commander/build install --record /home/coderey/ros2_ws/build/nav2_simple_commander/install.log --single-version-externally-managed

@@ -1,0 +1,17 @@
+make[2]: *** [test/plugins/decorator/CMakeFiles/test_single_trigger_node.dir/build.make:63: test/plugins/decorator/CMakeFiles/test_single_trigger_node.dir/test_single_trigger_node.cpp.o] Interrupt
+make[2]: *** [test/plugins/action/CMakeFiles/test_action_clear_costmap_service.dir/build.make:63: test/plugins/action/CMakeFiles/test_action_clear_costmap_service.dir/test_clear_costmap_service.cpp.o] Interrupt
+make[2]: *** [test/plugins/action/CMakeFiles/test_action_back_up_action.dir/build.make:63: test/plugins/action/CMakeFiles/test_action_back_up_action.dir/test_back_up_action.cpp.o] Interrupt
+make[2]: *** [test/plugins/action/CMakeFiles/test_action_reinitialize_global_localization_service.dir/build.make:63: test/plugins/action/CMakeFiles/test_action_reinitialize_global_localization_service.dir/test_reinitialize_global_localization_service.cpp.o] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:1586: test/plugins/decorator/CMakeFiles/test_single_trigger_node.dir/all] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:2049: test/plugins/action/CMakeFiles/test_action_clear_costmap_service.dir/all] Interrupt
+make[2]: *** wait: No child processes.  Stop.
+make[2]: *** Waiting for unfinished jobs....
+make[2]: *** wait: No child processes.  Stop.
+make[1]: *** [CMakeFiles/Makefile2:2078: test/plugins/action/CMakeFiles/test_action_reinitialize_global_localization_service.dir/all] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:2020: test/plugins/action/CMakeFiles/test_action_wait_action.dir/all] Error 2
+make[1]: *** [CMakeFiles/Makefile2:1991: test/plugins/action/CMakeFiles/test_action_back_up_action.dir/all] Interrupt
+make[2]: *** [test/plugins/action/CMakeFiles/test_bt_action_node.dir/build.make:62: test/plugins/action/CMakeFiles/test_bt_action_node.dir/test_bt_action_node.cpp.o] Interrupt
+make[2]: *** [test/plugins/action/CMakeFiles/test_action_compute_path_to_pose_action.dir/build.make:63: test/plugins/action/CMakeFiles/test_action_compute_path_to_pose_action.dir/test_compute_path_to_pose_action.cpp.o] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:2107: test/plugins/action/CMakeFiles/test_action_compute_path_to_pose_action.dir/all] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:1962: test/plugins/action/CMakeFiles/test_bt_action_node.dir/all] Interrupt
+make: *** [Makefile:141: all] Interrupt

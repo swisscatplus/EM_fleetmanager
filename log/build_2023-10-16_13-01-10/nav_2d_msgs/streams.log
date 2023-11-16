@@ -1,0 +1,191 @@
+[1.316s] Invoking command in '/home/coderey/ros2_ws/build/nav_2d_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/nav2_gazebo_spawner:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/nav_2d_msgs -- -j8 -l8
+[2.666s] [  1%] Built target nav_2d_msgs__cpp
+[2.666s] [ 10%] Built target nav_2d_msgs__rosidl_generator_c
+[2.666s] [ 19%] Built target nav_2d_msgs__rosidl_typesupport_cpp
+[2.666s] [ 28%] Built target nav_2d_msgs__rosidl_typesupport_microxrcedds_cpp
+[2.666s] [ 37%] Built target nav_2d_msgs__rosidl_typesupport_introspection_c
+[2.667s] [ 46%] Built target nav_2d_msgs__rosidl_typesupport_c
+[2.667s] [ 55%] Built target nav_2d_msgs__rosidl_typesupport_fastrtps_cpp
+[2.667s] [ 64%] Built target nav_2d_msgs__rosidl_typesupport_introspection_cpp
+[2.667s] [ 73%] Built target nav_2d_msgs__rosidl_typesupport_microxrcedds_c
+[2.667s] [ 82%] Built target nav_2d_msgs__rosidl_typesupport_fastrtps_c
+[2.667s] [ 82%] Built target nav_2d_msgs
+[2.667s] [ 83%] Built target nav_2d_msgs__py
+[2.667s] [ 91%] Built target nav_2d_msgs__python
+[2.667s] [ 93%] Built target nav_2d_msgs__rosidl_typesupport_fastrtps_c__pyext
+[2.667s] [ 95%] Built target nav_2d_msgs__rosidl_typesupport_c__pyext
+[2.668s] [ 97%] Built target nav_2d_msgs__rosidl_typesupport_microxrcedds_c__pyext
+[2.668s] [100%] Built target nav_2d_msgs__rosidl_typesupport_introspection_c__pyext
+[2.671s] Invoked command in '/home/coderey/ros2_ws/build/nav_2d_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/nav2_gazebo_spawner:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/nav_2d_msgs -- -j8 -l8
+[4.422s] Invoking command in '/home/coderey/ros2_ws/build/nav_2d_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/nav2_gazebo_spawner:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/nav_2d_msgs
+[4.445s] -- Install configuration: ""
+[4.451s] -- Execute custom install script
+[4.451s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/ament_index/resource_index/rosidl_interfaces/nav_2d_msgs
+[4.452s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/path2_d__functions.h
+[4.452s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/path2_d__struct.h
+[4.452s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/path2_d__type_support.h
+[4.452s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d32__functions.h
+[4.452s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d32__struct.h
+[4.453s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d32__type_support.h
+[4.453s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d_stamped__functions.h
+[4.453s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d_stamped__struct.h
+[4.453s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d_stamped__type_support.h
+[4.453s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d32__functions.h
+[4.454s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d32__struct.h
+[4.454s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d32__type_support.h
+[4.454s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d__functions.h
+[4.454s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d__struct.h
+[4.455s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d__type_support.h
+[4.455s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d_stamped__functions.h
+[4.455s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d_stamped__struct.h
+[4.455s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d_stamped__type_support.h
+[4.455s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/path2_d.h
+[4.456s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/pose2_d32.h
+[4.456s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/pose2_d_stamped.h
+[4.456s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/rosidl_generator_c__visibility_control.h
+[4.456s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/twist2_d.h
+[4.456s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/twist2_d32.h
+[4.457s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/twist2_d_stamped.h
+[4.457s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/environment/library_path.sh
+[4.457s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/environment/library_path.dsv
+[4.458s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/path2_d__rosidl_typesupport_microxrcedds_c.h
+[4.459s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d32__rosidl_typesupport_microxrcedds_c.h
+[4.459s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d_stamped__rosidl_typesupport_microxrcedds_c.h
+[4.459s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d32__rosidl_typesupport_microxrcedds_c.h
+[4.459s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d__rosidl_typesupport_microxrcedds_c.h
+[4.460s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d_stamped__rosidl_typesupport_microxrcedds_c.h
+[4.460s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/rosidl_typesupport_microxrcedds_c__visibility_control.h
+[4.460s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/libnav_2d_msgs__rosidl_typesupport_microxrcedds_c.so
+[4.462s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/path2_d__rosidl_typesupport_fastrtps_c.h
+[4.462s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d32__rosidl_typesupport_fastrtps_c.h
+[4.462s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d_stamped__rosidl_typesupport_fastrtps_c.h
+[4.462s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d32__rosidl_typesupport_fastrtps_c.h
+[4.462s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d__rosidl_typesupport_fastrtps_c.h
+[4.463s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d_stamped__rosidl_typesupport_fastrtps_c.h
+[4.463s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[4.464s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/libnav_2d_msgs__rosidl_typesupport_fastrtps_c.so
+[4.465s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/path2_d__rosidl_typesupport_fastrtps_cpp.hpp
+[4.465s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d32__rosidl_typesupport_fastrtps_cpp.hpp
+[4.465s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d_stamped__rosidl_typesupport_fastrtps_cpp.hpp
+[4.465s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d32__rosidl_typesupport_fastrtps_cpp.hpp
+[4.466s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d__rosidl_typesupport_fastrtps_cpp.hpp
+[4.466s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d_stamped__rosidl_typesupport_fastrtps_cpp.hpp
+[4.466s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[4.467s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/libnav_2d_msgs__rosidl_typesupport_fastrtps_cpp.so
+[4.468s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/path2_d__rosidl_typesupport_introspection_c.h
+[4.468s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d32__rosidl_typesupport_introspection_c.h
+[4.468s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d_stamped__rosidl_typesupport_introspection_c.h
+[4.468s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d32__rosidl_typesupport_introspection_c.h
+[4.469s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d__rosidl_typesupport_introspection_c.h
+[4.469s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d_stamped__rosidl_typesupport_introspection_c.h
+[4.469s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[4.470s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/path2_d__builder.hpp
+[4.470s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/path2_d__struct.hpp
+[4.470s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/path2_d__traits.hpp
+[4.470s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d32__builder.hpp
+[4.470s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d32__struct.hpp
+[4.471s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d32__traits.hpp
+[4.471s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d_stamped__builder.hpp
+[4.471s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d_stamped__struct.hpp
+[4.471s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d_stamped__traits.hpp
+[4.471s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d32__builder.hpp
+[4.471s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d32__struct.hpp
+[4.472s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d32__traits.hpp
+[4.472s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d__builder.hpp
+[4.472s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d__struct.hpp
+[4.472s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d__traits.hpp
+[4.472s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d_stamped__builder.hpp
+[4.473s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d_stamped__struct.hpp
+[4.473s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d_stamped__traits.hpp
+[4.473s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/path2_d.hpp
+[4.473s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/pose2_d32.hpp
+[4.474s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/pose2_d_stamped.hpp
+[4.474s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/twist2_d.hpp
+[4.474s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/twist2_d32.hpp
+[4.474s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/twist2_d_stamped.hpp
+[4.475s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/microxrcedds/path2_d__type_support_cpp.cpp
+[4.476s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/microxrcedds/pose2_d32__type_support_cpp.cpp
+[4.476s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/microxrcedds/pose2_d_stamped__type_support_cpp.cpp
+[4.476s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/microxrcedds/twist2_d32__type_support_cpp.cpp
+[4.476s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/microxrcedds/twist2_d__type_support_cpp.cpp
+[4.476s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/microxrcedds/twist2_d_stamped__type_support_cpp.cpp
+[4.477s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/path2_d__rosidl_typesupport_microxrcedds_cpp.hpp
+[4.477s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d32__rosidl_typesupport_microxrcedds_cpp.hpp
+[4.477s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d_stamped__rosidl_typesupport_microxrcedds_cpp.hpp
+[4.477s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d32__rosidl_typesupport_microxrcedds_cpp.hpp
+[4.478s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d__rosidl_typesupport_microxrcedds_cpp.hpp
+[4.478s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d_stamped__rosidl_typesupport_microxrcedds_cpp.hpp
+[4.478s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/rosidl_typesupport_microxrcedds_cpp__visibility_control.h
+[4.479s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/libnav_2d_msgs__rosidl_typesupport_microxrcedds_cpp.so
+[4.480s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/path2_d__rosidl_typesupport_introspection_cpp.hpp
+[4.480s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d32__rosidl_typesupport_introspection_cpp.hpp
+[4.480s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/pose2_d_stamped__rosidl_typesupport_introspection_cpp.hpp
+[4.480s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d32__rosidl_typesupport_introspection_cpp.hpp
+[4.490s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d__rosidl_typesupport_introspection_cpp.hpp
+[4.490s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/include/nav_2d_msgs/msg/detail/twist2_d_stamped__rosidl_typesupport_introspection_cpp.hpp
+[4.491s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/environment/pythonpath.sh
+[4.491s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/environment/pythonpath.dsv
+[4.491s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/python3.8/site-packages/nav_2d_msgs/__init__.py
+[4.491s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/python3.8/site-packages/nav_2d_msgs/msg/__init__.py
+[4.491s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/python3.8/site-packages/nav_2d_msgs/msg/_path2_d.py
+[4.491s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/python3.8/site-packages/nav_2d_msgs/msg/_pose2_d32.py
+[4.491s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/python3.8/site-packages/nav_2d_msgs/msg/_pose2_d_stamped.py
+[4.492s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/python3.8/site-packages/nav_2d_msgs/msg/_twist2_d.py
+[4.492s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/python3.8/site-packages/nav_2d_msgs/msg/_twist2_d32.py
+[4.492s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/python3.8/site-packages/nav_2d_msgs/msg/_twist2_d_stamped.py
+[4.492s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/python3.8/site-packages/nav_2d_msgs/nav_2d_msgs_s__rosidl_typesupport_microxrcedds_c.cpython-38-x86_64-linux-gnu.so
+[4.492s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/python3.8/site-packages/nav_2d_msgs/nav_2d_msgs_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so
+[4.492s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/python3.8/site-packages/nav_2d_msgs/nav_2d_msgs_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so
+[4.492s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/python3.8/site-packages/nav_2d_msgs/nav_2d_msgs_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so
+[4.492s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/libnav_2d_msgs__python.so
+[4.492s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/msg/Path2D.idl
+[4.492s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/msg/Pose2D32.idl
+[4.493s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/msg/Pose2DStamped.idl
+[4.493s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/msg/Twist2D.idl
+[4.493s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/msg/Twist2D32.idl
+[4.493s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/msg/Twist2DStamped.idl
+[4.493s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/msg/Path2D.msg
+[4.493s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/msg/Pose2D32.msg
+[4.493s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/msg/Pose2DStamped.msg
+[4.493s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/msg/Twist2D.msg
+[4.493s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/msg/Twist2D32.msg
+[4.493s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/msg/Twist2DStamped.msg
+[4.493s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/ament_index/resource_index/package_run_dependencies/nav_2d_msgs
+[4.494s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/ament_index/resource_index/parent_prefix_path/nav_2d_msgs
+[4.494s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/environment/ament_prefix_path.sh
+[4.494s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/environment/ament_prefix_path.dsv
+[4.494s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/environment/path.sh
+[4.494s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/environment/path.dsv
+[4.494s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/local_setup.bash
+[4.494s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/local_setup.sh
+[4.494s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/local_setup.zsh
+[4.495s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/local_setup.dsv
+[4.495s] -- Symlinking: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/package.dsv
+[4.533s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/ament_index/resource_index/packages/nav_2d_msgs
+[4.533s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/rosidl_cmake-extras.cmake
+[4.533s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[4.533s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[4.533s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[4.533s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[4.533s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[4.533s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[4.534s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/nav_2d_msgsConfig.cmake
+[4.534s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/nav_2d_msgsConfig-version.cmake
+[4.538s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/package.xml
+[4.538s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/libnav_2d_msgs__rosidl_generator_c.so
+[4.538s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/libnav_2d_msgs__rosidl_typesupport_introspection_c.so
+[4.538s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/libnav_2d_msgs__rosidl_typesupport_c.so
+[4.538s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/libnav_2d_msgs__rosidl_typesupport_introspection_cpp.so
+[4.538s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/lib/libnav_2d_msgs__rosidl_typesupport_cpp.so
+[4.698s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/nav_2d_msgs__rosidl_generator_cExport.cmake
+[4.698s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/nav_2d_msgs__rosidl_generator_cExport-noconfig.cmake
+[4.699s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/nav_2d_msgs__rosidl_typesupport_introspection_cExport.cmake
+[4.699s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/nav_2d_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[4.700s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/nav_2d_msgs__rosidl_typesupport_cExport.cmake
+[4.701s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/nav_2d_msgs__rosidl_typesupport_cExport-noconfig.cmake
+[4.709s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/nav_2d_msgs__rosidl_generator_cppExport.cmake
+[4.709s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/nav_2d_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[4.709s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/nav_2d_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[4.710s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/nav_2d_msgs__rosidl_typesupport_cppExport.cmake
+[4.710s] -- Up-to-date: /home/coderey/ros2_ws/install/nav_2d_msgs/share/nav_2d_msgs/cmake/nav_2d_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+[4.710s] Invoked command in '/home/coderey/ros2_ws/build/nav_2d_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/nav2_gazebo_spawner:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/nav_2d_msgs

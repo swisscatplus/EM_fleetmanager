@@ -1,0 +1,23 @@
+[2.745s] Invoking command in '/home/coderey/ros2_ws/build/mob_rob_loca': PYTHONPATH=/home/coderey/ros2_ws/build/mob_rob_loca/prefix_override:/home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/coderey/ros2_ws/build/mob_rob_loca/build --no-deps install_data
+[3.118s] running develop
+[3.146s] running egg_info
+[3.147s] writing mob_rob_loca.egg-info/PKG-INFO
+[3.147s] writing dependency_links to mob_rob_loca.egg-info/dependency_links.txt
+[3.147s] writing entry points to mob_rob_loca.egg-info/entry_points.txt
+[3.147s] writing requirements to mob_rob_loca.egg-info/requires.txt
+[3.147s] writing top-level names to mob_rob_loca.egg-info/top_level.txt
+[3.162s] reading manifest file 'mob_rob_loca.egg-info/SOURCES.txt'
+[3.163s] writing manifest file 'mob_rob_loca.egg-info/SOURCES.txt'
+[3.190s] running build_ext
+[3.191s] Creating /home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob-rob-loca.egg-link (link to .)
+[3.191s] Installing imu_serv script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[3.191s] Installing marv2ekf script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[3.192s] Installing rpi_com_motors script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[3.192s] Installing ticks2odom script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[3.192s] Installing transforms script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[3.192s] Installing vel_pub script to /home/coderey/ros2_ws/install/mob_rob_loca/lib/mob_rob_loca
+[3.192s] 
+[3.192s] Installed /home/coderey/ros2_ws/build/mob_rob_loca
+[3.192s] running install_data
+[3.192s] copying launch/localization.launch.py -> /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/launch
+[3.793s] Invoked command in '/home/coderey/ros2_ws/build/mob_rob_loca' returned '0': PYTHONPATH=/home/coderey/ros2_ws/build/mob_rob_loca/prefix_override:/home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/coderey/ros2_ws/build/mob_rob_loca/build --no-deps install_data

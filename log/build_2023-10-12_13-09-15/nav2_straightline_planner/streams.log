@@ -1,0 +1,32 @@
+[1.851s] Invoking command in '/home/coderey/ros2_ws/build/nav2_straightline_planner': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/nav2_straightline_planner -- -j8 -l8
+[2.080s] [100%] Built target nav2_straightline_planner_plugin
+[2.336s] Invoked command in '/home/coderey/ros2_ws/build/nav2_straightline_planner' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --build /home/coderey/ros2_ws/build/nav2_straightline_planner -- -j8 -l8
+[2.932s] Invoking command in '/home/coderey/ros2_ws/build/nav2_straightline_planner': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/nav2_straightline_planner
+[3.323s] -- Install configuration: "RelWithDebInfo"
+[3.323s] -- Execute custom install script
+[3.323s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner//global_planner_plugin.xml
+[3.323s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/lib/libnav2_straightline_planner_plugin.so
+[3.323s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/include//nav2_straightline_planner/straight_line_planner.hpp
+[3.324s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/global_planner_plugin.xml
+[3.324s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/environment/library_path.sh
+[3.324s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/environment/library_path.dsv
+[3.324s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/ament_index/resource_index/package_run_dependencies/nav2_straightline_planner
+[3.324s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/ament_index/resource_index/parent_prefix_path/nav2_straightline_planner
+[3.325s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/environment/ament_prefix_path.sh
+[3.325s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/environment/ament_prefix_path.dsv
+[3.325s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/environment/path.sh
+[3.325s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/environment/path.dsv
+[3.325s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/local_setup.bash
+[3.325s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/local_setup.sh
+[3.325s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/local_setup.zsh
+[3.325s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/local_setup.dsv
+[3.325s] -- Symlinking: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/package.dsv
+[3.326s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/ament_index/resource_index/packages/nav2_straightline_planner
+[3.326s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/ament_index/resource_index/nav2_core__pluginlib__plugin/nav2_straightline_planner
+[3.326s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/cmake/ament_cmake_export_include_directories-extras.cmake
+[3.326s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/cmake/ament_cmake_export_libraries-extras.cmake
+[3.326s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/cmake/ament_cmake_export_dependencies-extras.cmake
+[3.326s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/cmake/nav2_straightline_plannerConfig.cmake
+[3.326s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/cmake/nav2_straightline_plannerConfig-version.cmake
+[3.326s] -- Up-to-date symlink: /home/coderey/ros2_ws/install/nav2_straightline_planner/share/nav2_straightline_planner/package.xml
+[3.871s] Invoked command in '/home/coderey/ros2_ws/build/nav2_straightline_planner' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/coderey/ros2_ws/install/swisscat_robot:/home/coderey/ros2_ws/install/nav2_gps_waypoint_follower_demo:/home/coderey/ros2_ws/install/nav2_simple_commander:/home/coderey/ros2_ws/install/mob_rob_loca:/home/coderey/ros2_ws/install/bno055:/home/coderey/microros_ws/install/sensor_msgs_py:/opt/ros/galactic /usr/bin/cmake --install /home/coderey/ros2_ws/build/nav2_straightline_planner

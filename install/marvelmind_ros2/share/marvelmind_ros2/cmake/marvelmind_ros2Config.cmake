@@ -1,0 +1,1 @@
+/home/coderey/ros2_ws/build/marvelmind_ros2/ament_cmake_core/marvelmind_ros2Config.cmake
