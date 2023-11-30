@@ -68,8 +68,8 @@ class MarvToOdometry(Node):
         hedge_pos_msg.pose.pose.position.y = data.y_m
         hedge_pos_msg.pose.pose.position.z = 0.0
         hedge_pos_msg.pose.pose.orientation.w = 1.0
-        hedge_pos_msg.pose.covariance = [0.01, 0.0, 0.0, 0.0, 0.0, 0.0, 
-                                        0.0, 0.01, 0.0, 0.0, 0.0, 0.0, 
+        hedge_pos_msg.pose.covariance = [0.013, 0.0, 0.0, 0.0, 0.0, 0.0, 
+                                        0.0, 0.013, 0.0, 0.0, 0.0, 0.0, 
                                         0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 
                                         0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 
                                         0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 

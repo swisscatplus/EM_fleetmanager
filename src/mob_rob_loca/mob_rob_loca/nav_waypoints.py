@@ -37,27 +37,20 @@ def main():
     station_UBR = Station(posX = 4.2, posY = -0.28, orientationZ = 0.0, orientationW = 1.0)
     # station_UBR2 = Station(posX = 4.32, posY = -0.36, orientationZ = -0.702225, orientationW = 0.711955)
     station_UTR = Station(posX = 4.2, posY = 2.5, orientationZ = 0.0, orientationW = 1.0)
-    
     # station_HOME = Station(posX = 4.2, posY = 2.0, orientationZ = 1.0, orientationW = 0.0) #random values here
 
-    # create robot(s)
+    # create robot
     robot1 = Robot(robot_type=Robot.Type.TRANSPORTER, state=Robot.State.STANDBY, goals=[], empty=True, current_pose=PoseStamped())
 
     goal_poses = []
-    goal_pose3 = station_UBR.define_goal_pose()
-    goal_poses.append(goal_pose3)
-    goal_pose4 = station_UTR.define_goal_pose()
-    goal_poses.append(goal_pose4)
     goal_pose1 = station_UTL.define_goal_pose()
     goal_poses.append(goal_pose1)
     goal_pose2 = station_UBL.define_goal_pose()
     goal_poses.append(goal_pose2)
-    # goal_pose5 = station_UBR2.define_goal_pose()
-    # goal_poses.append(goal_pose5)
-    # goal_pose6 = station_UBL.define_goal_pose()
-    # goal_poses.append(goal_pose6)
-    # goal_pose7 = station_UTL.define_goal_pose()
-    # goal_poses.append(goal_pose7)
+    goal_pose3 = station_UBR.define_goal_pose()
+    goal_poses.append(goal_pose3)
+    goal_pose4 = station_UTR.define_goal_pose()
+    goal_poses.append(goal_pose4)
 
     # if robot1.state == Robot.State.STANDBY:
     #     print(goal_poses)
@@ -75,11 +68,11 @@ def main():
         i = 0
         while not navigator.isTaskComplete():
 
-            # Do something with the feedback
+            # Do something with the feedback 
             i = i + 1
             feedback = navigator.getFeedback()
             if feedback and i % 5 == 0:
-                # print(feedback)
+                # print(feedback) # nav2_msgs.action.FollowWaypoints_Feedback(current_waypoint=0)
                 print('Executing current waypoint: ' +
                       str(feedback.current_waypoint + 1) + '/' + str(len(goal_poses)))
                 now = navigator.get_clock().now()

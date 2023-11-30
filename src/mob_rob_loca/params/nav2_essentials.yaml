@@ -102,11 +102,11 @@ controller_server:
       stateful: True
       critics: ["RotateToGoal", "Oscillation", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
       PathAlign.scale: 32.0
-      PathAlign.forward_point_distance: 0.1 # to check if works when doing sharp turns
-      GoalAlign.scale: 24.0
+      PathAlign.forward_point_distance: 0.06 # to check if works when doing sharp turns
+      GoalAlign.scale: 12.0
       GoalAlign.forward_point_distance: 0.03
       PathDist.scale: 32.0
-      GoalDist.scale: 24.0
+      GoalDist.scale: 12.0
       RotateToGoal.scale: 32.0
       RotateToGoal.xy_goal_tolerance: 0.035
       RotateToGoal.slowing_factor: 5.0
@@ -167,7 +167,7 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 2.0
-        inflation_radius: 0.2 # 5cm + 12.5cm
+        inflation_radius: 0.23 # 5cm + 12.5cm
       keepout_filter:
         plugin: "nav2_costmap_2d::KeepoutFilter"
         topic_name: "/keepout_filter_mask"

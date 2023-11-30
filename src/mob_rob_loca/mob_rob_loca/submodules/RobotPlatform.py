@@ -25,6 +25,12 @@ class Station:
         }
         self.is_occupied = False # True if a robot is currently on the station
         
+        self.station_name = {
+            'REST': [-0.205, 7.403],
+            'NMR': [-0.073, -8.497],
+            'OMNI': [6.217, 2.153],
+        }
+        
     def define_goal_pose(self):
         """
         Creates a PoseStamped object representing the goal pose of the station.

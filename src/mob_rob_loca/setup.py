@@ -8,7 +8,7 @@ package_name = 'mob_rob_loca'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='0.0.1',
     packages=[package_name],
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -20,6 +20,8 @@ setup(
         (os.path.join('share', package_name, 'maps'), glob('maps/*')),
         (os.path.join('share', package_name, 'params'), glob('params/*')),
         (os.path.join('share', package_name, 'config'), glob('config/*')),
+        (os.path.join('share', package_name, 'action'), glob('action/*')),
+        (os.path.join('share', package_name, 'srv'), glob('srv/*')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -31,15 +33,14 @@ setup(
     entry_points={
         'console_scripts': [
         'transforms = mob_rob_loca.transforms:main',
-        'rpi_com_motors = mob_rob_loca.rpi_communication:main',
         'ticks2odom = mob_rob_loca.tick_to_odom:main',
         'marv2ekf = mob_rob_loca.marv_to_ekf:main',
-        'imu_serv = mob_rob_loca.imu_serv:main',
-        'nav2pose = mob_rob_loca.nav_to_pose:main',
-        'navthruposes = mob_rob_loca.nav_through_poses:main',
         'navwaypoints = mob_rob_loca.nav_waypoints:main',
         'calib_odom = mob_rob_loca.calib_odom:main',
-        'trial = mob_rob_loca.extract_and_plot:main'
+        'ur_em_handler = mob_rob_loca.ur_action_handler:main',
+        'ur_em_request = mob_rob_loca.ur_action_request:main',
+        'ur_client = mob_rob_loca.srv_client:main',
+        'ur_serv = mob_rob_loca.srv_server:main',
         ],
     },
 )
