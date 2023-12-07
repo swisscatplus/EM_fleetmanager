@@ -1,1 +1,0 @@
-/home/coderey/ros2_ws/build/marvelmind_ros2_msgs/rosidl_generator_cpp/marvelmind_ros2_msgs/msg/detail/marvelmind_user_data__builder.hpp

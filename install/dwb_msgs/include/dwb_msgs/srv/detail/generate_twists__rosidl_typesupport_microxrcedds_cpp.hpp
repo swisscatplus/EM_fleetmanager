@@ -1,1 +1,0 @@
-/home/coderey/ros2_ws/build/dwb_msgs/rosidl_typesupport_microxrcedds_cpp/dwb_msgs/srv/detail/generate_twists__rosidl_typesupport_microxrcedds_cpp.hpp

@@ -1,1 +1,0 @@
-/home/coderey/ros2_ws/build/nav_2d_msgs/rosidl_typesupport_microxrcedds_cpp/nav_2d_msgs/msg/detail/microxrcedds/path2_d__type_support_cpp.cpp
