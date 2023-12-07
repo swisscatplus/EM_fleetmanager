@@ -1,1 +1,0 @@
-/home/coderey/ros2_ws/build/nav2_msgs/rosidl_typesupport_microxrcedds_cpp/nav2_msgs/msg/rosidl_typesupport_microxrcedds_cpp__visibility_control.h

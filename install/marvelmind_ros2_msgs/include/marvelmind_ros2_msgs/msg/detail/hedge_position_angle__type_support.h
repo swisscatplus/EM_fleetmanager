@@ -1,1 +1,0 @@
-/home/coderey/ros2_ws/build/marvelmind_ros2_msgs/rosidl_generator_c/marvelmind_ros2_msgs/msg/detail/hedge_position_angle__type_support.h

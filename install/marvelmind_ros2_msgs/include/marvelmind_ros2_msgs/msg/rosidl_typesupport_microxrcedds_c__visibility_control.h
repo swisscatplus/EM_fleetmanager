@@ -1,1 +1,0 @@
-/home/coderey/ros2_ws/build/marvelmind_ros2_msgs/rosidl_typesupport_microxrcedds_c/marvelmind_ros2_msgs/msg/rosidl_typesupport_microxrcedds_c__visibility_control.h

@@ -1,6 +1,0 @@
-source;share/mob_rob_loca/hook/pythonpath.ps1
-source;share/mob_rob_loca/hook/pythonpath.dsv
-source;share/mob_rob_loca/hook/pythonpath.sh
-source;share/mob_rob_loca/hook/ament_prefix_path.ps1
-source;share/mob_rob_loca/hook/ament_prefix_path.dsv
-source;share/mob_rob_loca/hook/ament_prefix_path.sh

@@ -1,1 +1,0 @@
-/home/coderey/ros2_ws/src/mob_rob_loca/launch/localization.launch.py

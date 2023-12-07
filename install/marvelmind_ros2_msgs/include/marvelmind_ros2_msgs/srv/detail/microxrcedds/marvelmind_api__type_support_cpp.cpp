@@ -1,1 +1,0 @@
-/home/coderey/ros2_ws/build/marvelmind_ros2_msgs/rosidl_typesupport_microxrcedds_cpp/marvelmind_ros2_msgs/srv/detail/microxrcedds/marvelmind_api__type_support_cpp.cpp

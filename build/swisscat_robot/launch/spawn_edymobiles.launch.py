@@ -1,1 +1,0 @@
-/home/coderey/ros2_ws/src/swisscat_robot/launch/spawn_edymobiles.launch.py
