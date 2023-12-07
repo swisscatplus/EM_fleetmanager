@@ -1,4 +1,0 @@
-source;share/marvelmind_ros2_msgs/local_setup.bash
-source;share/marvelmind_ros2_msgs/local_setup.dsv
-source;share/marvelmind_ros2_msgs/local_setup.sh
-source;share/marvelmind_ros2_msgs/local_setup.zsh

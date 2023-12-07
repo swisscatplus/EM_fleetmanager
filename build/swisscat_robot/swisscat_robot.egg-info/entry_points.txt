@@ -1,4 +1,0 @@
-[console_scripts]
-controller = swisscat_robot.controller:main
-fleet_manager = swisscat_robot.fleet_manager:main
-

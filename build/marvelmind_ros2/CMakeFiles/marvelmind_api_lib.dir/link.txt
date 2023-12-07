@@ -1,2 +1,0 @@
-/usr/bin/ar qc libmarvelmind_api_lib.a  CMakeFiles/marvelmind_api_lib.dir/src/marvelmind_api.c.o
-/usr/bin/ranlib libmarvelmind_api_lib.a

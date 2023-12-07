@@ -1,3 +1,0 @@
-/home/coderey/ros2_ws/install/nav2_rviz_plugins/lib/libnav2_rviz_plugins.so
-/home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/cmake/nav2_rviz_pluginsExport.cmake
-/home/coderey/ros2_ws/install/nav2_rviz_plugins/share/nav2_rviz_plugins/cmake/nav2_rviz_pluginsExport-relwithdebinfo.cmake
