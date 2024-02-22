@@ -56,7 +56,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        #map_node,
+        # map_node,
         map_filter_node,
         start_costmap_filter_info_server_cmd,
         start_lifecycle_manager_node,

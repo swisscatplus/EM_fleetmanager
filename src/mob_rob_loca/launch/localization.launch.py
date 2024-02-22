@@ -9,7 +9,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 def generate_launch_description():
    rob_loca_dir = get_package_share_directory('mob_rob_loca')
    map_path = os.path.join(rob_loca_dir, 'maps', 'circuit.yaml')
-   nav2_params_path = os.path.join(rob_loca_dir, 'params/nav2_essentials.yaml')
+   nav2_params_path = os.path.join(rob_loca_dir, 'params/edi_params_rotate_acc.yaml')
 
    sensor_conv_launch = IncludeLaunchDescription(
       PythonLaunchDescriptionSource([os.path.join(
@@ -44,10 +44,17 @@ def generate_launch_description():
                         }.items()
       )
    
+   plot_launch = IncludeLaunchDescription(
+      PythonLaunchDescriptionSource([os.path.join(
+         get_package_share_directory('mob_rob_loca'), 'launch'),
+         '/plot.launch.py'])
+      )
+
    return LaunchDescription([
       sensor_conv_launch,
       ekf_launch,
       rviz_launch,
       filter_launch,
       nav2_launch,
+      # plot_launch
    ])

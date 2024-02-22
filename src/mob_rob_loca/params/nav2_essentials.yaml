@@ -103,7 +103,7 @@ controller_server:
       critics: ["RotateToGoal", "Oscillation", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
       PathAlign.scale: 32.0
       PathAlign.forward_point_distance: 0.06 # to check if works when doing sharp turns
-      GoalAlign.scale: 12.0
+      GoalAlign.scale: 6.0
       GoalAlign.forward_point_distance: 0.03
       PathDist.scale: 32.0
       GoalDist.scale: 12.0
@@ -166,6 +166,7 @@ global_costmap:
       filters: ["keepout_filter", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
+        enabled: true
         cost_scaling_factor: 2.0
         inflation_radius: 0.23 # 5cm + 12.5cm
       keepout_filter:
@@ -173,6 +174,12 @@ global_costmap:
         topic_name: "/keepout_filter_mask"
         enabled: True
         filter_info_topic: "/costmap_filter_info"
+      static_layer:
+        plugin: "nav2_costmap_2d::StaticLayer"
+        map_subscribe_transient_local: True
+        enabled: true
+        subscribe_to_updates: true
+        transform_tolerance: 0.1
       always_send_full_costmap: True
 
 global_costmap_client:
@@ -203,7 +210,7 @@ planner_server:
     planner_plugins: ["GridBased"]
     GridBased:
       plugin: 'nav2_navfn_planner/NavfnPlanner' # "nav2_straightline_planner/StraightLine"
-      tolerance: 0.05
+      tolerance: 0.2 # minimal value without problems
       use_astar: true
       allow_unknown: false
       interpolation_resolution: 0.005 # short resolution required since we have low tolerance on the goal pose

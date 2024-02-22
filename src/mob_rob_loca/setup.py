@@ -9,7 +9,7 @@ package_name = 'mob_rob_loca'
 setup(
     name=package_name,
     version='0.0.1',
-    packages=[package_name],
+    packages=[package_name, f'{package_name}.submodules'],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -37,10 +37,8 @@ setup(
         'marv2ekf = mob_rob_loca.marv_to_ekf:main',
         'navwaypoints = mob_rob_loca.nav_waypoints:main',
         'calib_odom = mob_rob_loca.calib_odom:main',
-        'ur_em_handler = mob_rob_loca.ur_action_handler:main',
-        'ur_em_request = mob_rob_loca.ur_action_request:main',
-        'ur_client = mob_rob_loca.srv_client:main',
-        'ur_serv = mob_rob_loca.srv_server:main',
+        'sub_plot = mob_rob_loca.sub_plot:main',
+        'nav_manager = mob_rob_loca.nav_manager:main',
         ],
     },
 )
