@@ -1,3 +1,0 @@
-make[2]: *** [CMakeFiles/amcl_core.dir/build.make:63: CMakeFiles/amcl_core.dir/src/amcl_node.cpp.o] Interrupt
-make[1]: *** [CMakeFiles/Makefile2:166: CMakeFiles/amcl_core.dir/all] Interrupt
-make: *** [Makefile:141: all] Interrupt

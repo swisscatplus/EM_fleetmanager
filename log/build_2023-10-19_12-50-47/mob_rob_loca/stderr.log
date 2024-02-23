@@ -1,5 +1,0 @@
-  File "/home/coderey/ros2_ws/install/mob_rob_loca/lib/python3.8/site-packages/mob_rob_loca/nav_to_pose.py", line 113
-    navigator.
-             ^
-SyntaxError: invalid syntax
-

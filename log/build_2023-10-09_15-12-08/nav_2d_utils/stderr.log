@@ -1,8 +1,0 @@
-[01m[K/home/coderey/ros2_ws/src/navigation2/nav2_dwb_controller/nav_2d_utils/src/conversions.cpp:44:10:[m[K [01;31m[Kfatal error: [m[Ktf2_geometry_msgs/tf2_geometry_msgs.hpp: No such file or directory
-   44 | #include [01;31m[K"tf2_geometry_msgs/tf2_geometry_msgs.hpp"[m[K
-      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
-compilation terminated.
-make[2]: *** [CMakeFiles/conversions.dir/build.make:63: CMakeFiles/conversions.dir/src/conversions.cpp.o] Error 1
-make[1]: *** [CMakeFiles/Makefile2:181: CMakeFiles/conversions.dir/all] Error 2
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:141: all] Error 2

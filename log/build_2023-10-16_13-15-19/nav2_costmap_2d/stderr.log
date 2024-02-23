@@ -1,3 +1,0 @@
-make[2]: *** [CMakeFiles/nav2_costmap_2d_client.dir/build.make:89: CMakeFiles/nav2_costmap_2d_client.dir/src/costmap_topic_collision_checker.cpp.o] Interrupt
-make[1]: *** [CMakeFiles/Makefile2:292: CMakeFiles/nav2_costmap_2d_client.dir/all] Interrupt
-make: *** [Makefile:141: all] Interrupt
