@@ -16,6 +16,7 @@ ekf_filter_node_odom:
 
         odom0: wheel/odom # Robot odometry, computed with encoder ticks
         imu0: bno055/imu # Marvelmind IMU
+        pose0: /robot_2/cam_robot_pose
 
         # [x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az]
         odom0_config: [true, true, false,
@@ -28,18 +29,27 @@ ekf_filter_node_odom:
                        false, false, false,
                        false, false, true,
                        true, true, true]
+        pose0_config: [true, true, false,
+                       false, false, false,
+                       false, false, false,
+                       false, false, false,
+                       false, false, false]   
 
         odom0_queue_size: 3
         imu0_queue_size: 10
+        pose0_queue_size: 3
 
 
         odom0_nodelay: false
         imu0_nodelay: false
+        pose0_nodelay: false
 
         odom0_differential: true
+        pose0_differential: false
 
         odom0_relative: false
         imu0_relative: false
+        pose0_relative: false
 
         imu0_remove_gravitational_acceleration: true
         use_control: false
@@ -95,7 +105,8 @@ ekf_filter_node_map:
         base_link_frame: base_link  # Defaults to "base_link" if unspecified
         world_frame: map            # Defaults to the value of odom_frame if unspecified
 
-        pose0: marv/pos # Marvelmind, ultrasonic sensor
+        # pose0: marv/pos # Marvelmind, ultrasonic sensor
+        pose0: /robot_2/cam_robot_pose # to adapt for different namespaces I guess
         odom0: wheel/odom # Robot odometry, computed with encoder ticks
         imu0: edi/imu # Bosch bno055 IMU
 
@@ -104,7 +115,7 @@ ekf_filter_node_map:
         # [x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az]
 
         pose0_config: [true,  true,  false,
-                       false, false, false,
+                       false, false, true,
                        false, false, false,
                        false, false, false,
                        false, false, false]
@@ -129,6 +140,7 @@ ekf_filter_node_map:
 
         odom0_differential: true
         imu0_differential: false # 	WAS TRUE ############################
+        pose0_differential: false
 
         pose0_relative: false
         odom0_relative: false
@@ -189,3 +201,4 @@ navsat_transform_node:
         use_odometry_yaw: false
         wait_for_datum: false
         datum: [55.944904, -3.186693, 0.0]
+
