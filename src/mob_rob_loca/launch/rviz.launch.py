@@ -12,20 +12,20 @@ def generate_launch_description():
     rob_loca_dir = get_package_share_directory('mob_rob_loca')
     urdf_path = os.path.join(rob_loca_dir, 'urdf/edison.urdf')
     rvizconfig = LaunchConfiguration('rvizconfig', default=os.path.join(rob_loca_dir, 'rviz', 'loca.rviz'))
+    package_name = 'mob_rob_loca'
 
     transforms_node = Node(
-        package='mob_rob_loca',
+        package=package_name,
         executable='transforms',
         name='transforms',
     )
 
     rviz_node = Node(
-        package='rviz2',
-        executable='rviz2',
+           executable='rviz2',
         arguments=['-d', rvizconfig],
         output='screen',
         remappings=[('/odom', '/odometry/filtered')],
-    )
+    )                 
 
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
@@ -40,10 +40,17 @@ def generate_launch_description():
         executable='joint_state_publisher',
         arguments=[urdf_path],
     )
+
+    markers_node = Node(
+        package=package_name,
+        executable='markers',
+        name='markers',
+    )
     
     return LaunchDescription([
         transforms_node,
         rviz_node,
         robot_state_publisher_node,
         joint_state_publisher_node,
+        markers_node
     ])

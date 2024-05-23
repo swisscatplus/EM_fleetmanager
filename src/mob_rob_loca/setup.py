@@ -1,8 +1,6 @@
 import os
 from glob import glob
 from setuptools import setup
-from distutils import sysconfig
-from distutils.extension import Extension
 
 package_name = 'mob_rob_loca'
 
@@ -35,10 +33,9 @@ setup(
         'transforms = mob_rob_loca.transforms:main',
         'ticks2odom = mob_rob_loca.tick_to_odom:main',
         'marv2ekf = mob_rob_loca.marv_to_ekf:main',
-        'navwaypoints = mob_rob_loca.nav_waypoints:main',
-        'calib_odom = mob_rob_loca.calib_odom:main',
-        'sub_plot = mob_rob_loca.sub_plot:main',
         'nav_manager = mob_rob_loca.nav_manager:main',
+        'vision_loca_pc = mob_rob_loca.vision_loca_pc:main',
+        'markers = mob_rob_loca.markers:main',
         ],
     },
 )
