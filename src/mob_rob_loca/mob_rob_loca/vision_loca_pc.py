@@ -1,6 +1,7 @@
 import rclpy # Python Client Library for ROS 2
 from rclpy.node import Node # Handles the creation of nodes
 from geometry_msgs.msg import Pose, PoseWithCovarianceStamped # Message type for publishing robot pose
+from nav_msgs.msg import Odometry
 import cv2 as cv # OpenCV library
 from tf_transformations import quaternion_from_euler
 from mob_rob_loca.submodules.detect_aruco_pc import CameraRobot, detector
@@ -8,12 +9,13 @@ from launch_ros.substitutions import FindPackageShare
 import yaml
 import os
 import numpy as np
+import tf2_ros
 
 # ################# CONFIG #################
 # station_id = 'station_1'
 package_name = 'mob_rob_loca'
 params_path = 'config/rpi_cam_on_robot.yaml'
-cam_port = 4 # worked for me, use 0 if you want to use the embedded wembcam of the computer, or try other numbers
+cam_port = 0 # worked for me, use 0 if you want to use the embedded wembcam of the computer, or try other numbers
 timer_period = 0.1  # seconds
 # ##########################################
 
@@ -39,7 +41,7 @@ class RobotCamPublisher(Node):
     self.cam_publisher = self.create_publisher(PoseWithCovarianceStamped, '/cam_robot_pose', 10)
     
     self.timer = self.create_timer(timer_period, self.publish_frame)
-
+    print(cam_port)
     self.cap = cv.VideoCapture(cam_port)
     self.cap.set(cv.CAP_PROP_AUTOFOCUS, 0) #remove autofocus
   
@@ -47,9 +49,7 @@ class RobotCamPublisher(Node):
     ret, frame = self.cap.read()
       
     if ret:
-      # print(frame.shape)
       gray_frame = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)  # Convert frame to grayscale
-        
       markerCorners, markerIds, _ = detector.detectMarkers(gray_frame)  # Detect markers in grayscale frame
 
       if markerIds is not None:
@@ -61,6 +61,7 @@ class RobotCamPublisher(Node):
               pose.pose.pose.position.x = robot_pose[0][0]
               pose.pose.pose.position.y = robot_pose[0][1]
               pose.pose.pose.orientation.x, pose.pose.pose.orientation.y, pose.pose.pose.orientation.z, pose.pose.pose.orientation.w,  = quaternion_from_euler(0, 0, robot_pose[1])
+
               self.get_logger().debug('ID:' +  str(pose.pose.pose.orientation)) #
               self.get_logger().debug('robot_pose:' +  str(pose))
             

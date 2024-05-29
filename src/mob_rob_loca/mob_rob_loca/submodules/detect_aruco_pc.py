@@ -7,7 +7,7 @@ import os
 
 ################# CONFIG #################
 # local config to run the code independently
-camera_port = 4 # worked for me, use 0 if you want to use the embedded wembcam of the computer, or try other numbers
+camera_port = 0 # worked for me, use 0 if you want to use the embedded wembcam of the computer, or try other numbers
 window_name = 'Robot poses'
 verbose = False
 # station_id = 'station_1'
@@ -62,9 +62,13 @@ class CameraRobot:
         coord_cam_frame = np.array([0.0, 0.0, 0.0, 1.0], dtype=object)
         translation_vector = np.array([t_vec[0], t_vec[1], 0.0, 1.0], dtype=object) # assuming no translation in z
 
-        theta=0.0
-        rotation_matrix = np.array([[np.cos(theta), -np.sin(theta), 0], 
-                                    [np.sin(theta), np.cos(theta), 0], 
+        # theta=0.0
+        # rotation_matrix = np.array([[np.cos(theta), -np.sin(theta), 0], 
+        #                             [np.sin(theta), np.cos(theta), 0], 
+        #                             [0, 0, 1],
+        #                             [0, 0, 0]])
+        rotation_matrix = np.array([[1, 0, 0], 
+                                    [0, 1, 0], 
                                     [0, 0, 1],
                                     [0, 0, 0]])
         
@@ -112,8 +116,6 @@ class CameraRobot:
                 delta_center_x = (center_code[0] - pxl_center_cam[0]) * pixels_to_m
                 delta_center_y = (center_code[1] - pxl_center_cam[1]) * pixels_to_m
                 delta_center = (delta_center_x, -delta_center_y)
-                # print('ID', markerIds[i, 0])
-                # print('delta_center [m]: {0}'.format(delta_center))
 
                 # convert counter-clockwise angle to clowise, to match the robot frame
                 angle = angle + 90
@@ -129,7 +131,7 @@ class CameraRobot:
                 coord_circuit_frame = self.transfo_cam2circuit(t_cam)
 
                 # Calculate the robot center position in the circuit frame, should be done by urdf once everything working
-                robot_center = coord_circuit_frame[:2] + np.array(
+                robot_center = coord_circuit_frame[:2] - np.array(
                     [np.cos(rad_angle), np.sin(rad_angle)], dtype=object
                 ) * self.cam_config['dist_cam_robot_center']
                 aruco_infos.append((robot_center, rad_angle))
@@ -142,8 +144,8 @@ class CameraRobot:
                     # Draw marker ID and center
                     cv.circle(frame, center_code, 3, (255, 0, 0), -1)
                     # Display orientation and position at the bottom of the screen
-                    text = f"ID {markerIds[i][0]}: pxl pos: {bottom_center}, robot_pose: {robot_center}, ang: {angle:.1f} deg"
-                    cv.putText(frame, text, (10, frame.shape[0] - 20 - i * 25), cv.FONT_HERSHEY_COMPLEX, 0.43, (255, 255, 255), 1)
+                    text = f"ID {markerIds[i][0]}: center cam: {coord_circuit_frame[:2]}, ang: {angle:.1f} deg, robot_pose: {robot_center}"
+                    cv.putText(frame, text, (10, frame.shape[0] - 20 - i * 25), cv.FONT_HERSHEY_COMPLEX, 0.3, (255, 255, 255), 1)
                     cv.circle(frame, (int(robot_center[0]), int(robot_center[1])), 3, (255, 0, 0), -1)
 
             else:
