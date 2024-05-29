@@ -38,7 +38,7 @@ class RobotCamPublisher(Node):
 
     self.cam = CameraRobot(config=self.config)
 
-    self.cam_publisher = self.create_publisher(PoseWithCovarianceStamped, '/cam_robot_pose', 10)
+    self.cam_publisher = self.create_publisher(PoseWithCovarianceStamped, '/edi/cam', 10)
     
     self.timer = self.create_timer(timer_period, self.publish_frame)
     print(cam_port)

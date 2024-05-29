@@ -1,10 +1,10 @@
 robot_id: 'robot_1'
 
 cam_params:
-  focal_length: 30.0 #cm
-  dist_cam_robot_center: 0.073 #meters
+  focal_length: 1.3 # f = 1/d, d being the distance of focus in [meters]. So a focal length of 2.0 corresponds a net image at 0.5m of distance 
+  dist_cam_robot_center: 0.102 #meters
   aruco_square_size: 0.038 #meters
-  allowed_ids: [173, 131, 3]
+  # allowed_ids: [173, 131, 416]
 
 aruco_params:
   173:
@@ -13,3 +13,6 @@ aruco_params:
   131:
     t_x: 1.234
     t_y: 2.345
+  416:
+    t_x: 1.0
+    t_y: 1.0

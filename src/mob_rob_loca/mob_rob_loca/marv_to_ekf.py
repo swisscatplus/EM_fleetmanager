@@ -23,7 +23,7 @@ class MarvToOdometry(Node):
 
         qos_profile = QoSProfile(depth=QOS_DEPTH )
 
-        self.hedgehog_pos_pub = self.create_publisher(PoseWithCovarianceStamped, 'marv/pos', qos_profile)
+        # self.hedgehog_pos_pub = self.create_publisher(PoseWithCovarianceStamped, 'marv/pos', qos_profile)
         self.imu_pub = self.create_publisher(Imu, 'edi/imu', qos_profile)
 
         self.ang_vel_x = 0.0
