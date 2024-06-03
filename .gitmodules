@@ -1,3 +1,0 @@
-[submodule "src/src/task_scheduler"]
-	path = src/src/task_scheduler
-	url = git@github.com:swisscatplus/task-scheduler.git
