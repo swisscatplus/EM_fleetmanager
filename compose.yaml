@@ -1,0 +1,10 @@
+services:
+  db:
+    build: .
+    ports:
+      - 3306:3306
+  phpmyadmin:
+    image: phpmyadmin
+    restart: on-failure
+    ports:
+      - 8080:80

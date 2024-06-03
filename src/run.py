@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 
 from orchestrator.core import MyOrchestrator
 from scheduler.core import MyScheduler
-from task_scheduler.logger import setup_logger
+from task_scheduler.logger import LoggingManager
 from task_scheduler.parser import parse_args
 
 
@@ -11,7 +11,7 @@ def main():
 
     load_dotenv()
 
-    setup_logger(args.logs)
+    LoggingManager(args.logs, args.debug)
 
     orchestrator = MyOrchestrator(
         args.path_to_nodes, args.path_to_workflows, args.verbose, args.emulate

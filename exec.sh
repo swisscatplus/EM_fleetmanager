@@ -2,4 +2,4 @@
 
 port=$1
 
-PYTHONPATH=./src python3 -m run -p "$port" -vl
+PYTHONPATH=./src python3.12 -m run -p "$port" -v -l -d
