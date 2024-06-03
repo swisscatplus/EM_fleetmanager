@@ -1,16 +1,12 @@
 import rclpy # Python Client Library for ROS 2
 from rclpy.node import Node # Handles the creation of nodes
 from geometry_msgs.msg import Pose, PoseWithCovarianceStamped # Message type for publishing robot pose
-from nav_msgs.msg import Odometry
 import cv2 as cv # OpenCV library
 from tf_transformations import quaternion_from_euler
-from mob_rob_loca.submodules.detect_aruco_pc import CameraRobot, detector
 from launch_ros.substitutions import FindPackageShare
-import yaml
+from mob_rob_loca.submodules.utils import get_config_yaml
+from mob_rob_loca.submodules.detect_aruco_pc import CameraVisionStation, detector
 import os
-import numpy as np
-import tf2_ros
-
 # ################# CONFIG #################
 # station_id = 'station_1'
 package_name = 'mob_rob_loca'
@@ -30,18 +26,19 @@ class RobotCamPublisher(Node):
     """
     Class constructor to set up the node
     """
-    super().__init__('robot_cam_publisher')
     
+    super().__init__('robot_cam_publisher')
+    self.get_logger().info(f'Starting node', once=True)
     self.declare_parameter('config_file_path', config_file_path) #default value to config_file_path if not found
     config_path = self.get_parameter('config_file_path').get_parameter_value().string_value
-    self.config = get_cam_config(config_path)
+    self.config = get_config_yaml(config_path)
 
-    self.cam = CameraRobot(config=self.config)
+    self.cam = CameraVisionStation(config=self.config)
 
     self.cam_publisher = self.create_publisher(PoseWithCovarianceStamped, '/edi/cam', 10)
     
     self.timer = self.create_timer(timer_period, self.publish_frame)
-    print(cam_port)
+    
     self.cap = cv.VideoCapture(cam_port)
     self.cap.set(cv.CAP_PROP_AUTOFOCUS, 0) #remove autofocus
   
@@ -51,26 +48,22 @@ class RobotCamPublisher(Node):
     if ret:
       gray_frame = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)  # Convert frame to grayscale
       markerCorners, markerIds, _ = detector.detectMarkers(gray_frame)  # Detect markers in grayscale frame
-
+      # print('markerIds:', markerIds)
       if markerIds is not None:
-            robot_pose = self.cam.get_robot_pose(frame, markerCorners, markerIds)
+            robot_pose, robot_angle = self.cam.get_robot_pose(frame, markerCorners, markerIds)
             if robot_pose is not None:
+              print(robot_pose)
               pose = PoseWithCovarianceStamped()
               pose.header.frame_id = 'odom'
               pose.header.stamp = self.get_clock().now().to_msg()
-              pose.pose.pose.position.x = robot_pose[0][0]
-              pose.pose.pose.position.y = robot_pose[0][1]
-              pose.pose.pose.orientation.x, pose.pose.pose.orientation.y, pose.pose.pose.orientation.z, pose.pose.pose.orientation.w,  = quaternion_from_euler(0, 0, robot_pose[1])
+              pose.pose.pose.position.x = robot_pose[0]
+              pose.pose.pose.position.y = robot_pose[1]
+              pose.pose.pose.orientation.x, pose.pose.pose.orientation.y, pose.pose.pose.orientation.z, pose.pose.pose.orientation.w,  = quaternion_from_euler(0, 0, robot_angle)
 
-              self.get_logger().debug('ID:' +  str(pose.pose.pose.orientation)) #
-              self.get_logger().debug('robot_pose:' +  str(pose))
+              self.get_logger().debug('ID: {0}, robot_pose: {1}, robot_angle: {2}'.format(markerIds, robot_pose, robot_angle))
             
               self.cam_publisher.publish(pose)
                 
-def get_cam_config(config_file_path=None):
-  with open(config_file_path, 'r') as file:
-      data = yaml.safe_load(file)
-  return data
 
 def main(args=None):
   rclpy.init()

@@ -109,7 +109,7 @@ ekf_filter_node_map:
         # pose0: marv/pos # Marvelmind, ultrasonic sensor
         pose0: /edi/cam # to adapt for different namespaces I guess
         odom0: wheel/odom # Robot odometry, computed with encoder ticks
-        # imu0: edi/imu # Bosch bno055 IMU
+        imu0: edi/imu # Bosch bno055 IMU
 
         # if we want to set an initial pose and orientation, uncomment next line and define the initial pose
         # initial_state: [1.0, -0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
