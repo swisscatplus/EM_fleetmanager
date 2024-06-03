@@ -10,7 +10,7 @@ class GoToStation(BaseNode):
 
     def _execute(self, src: BaseNode, dst: BaseNode, task_id: str, args: dict[str, any] = None) -> tuple[
         int, str | None, str | None]:
-        payload = {"source_station": None, "destination_station": dst.id}
+        payload = {"source_station": src.id, "destination_station": None}
         self.logger.info("Moving available EM to station {dst.id}")
         return 0, None, None
     
