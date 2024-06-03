@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 
-from orchestrator.core import MyOrchestrator
-from scheduler.core import MyScheduler
+from orchestrator.core import EMOrchestrator
+from scheduler.core import EMScheduler
 from task_scheduler.logger import LoggingManager
 from task_scheduler.parser import parse_args
 
@@ -13,10 +13,10 @@ def main():
 
     LoggingManager(args.logs, args.debug)
 
-    orchestrator = MyOrchestrator(
+    orchestrator = EMOrchestrator(
         args.path_to_nodes, args.path_to_workflows, args.verbose, args.emulate
     )
-    app = MyScheduler(orchestrator, args.port)
+    app = EMScheduler(orchestrator, args.port)
 
     app.run()
 

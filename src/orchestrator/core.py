@@ -26,6 +26,7 @@ class EMOrchestrator(BaseOrchestrator):
         for fake_id, workflow in enumerate(workflows):
             wf_name = workflow["name"]
             wf_steps_tpl = [(node_name, self._find_node_by_id(node_name)) for node_name in workflow["steps"]]
+            self.logger.debug('wf_steps_tpl: {0}'.format(wf_steps_tpl))
             nodes_not_found = [node_name for (node_name, step) in wf_steps_tpl if step is None]
 
             # Skip workflow when some nodes do not exist
@@ -34,11 +35,11 @@ class EMOrchestrator(BaseOrchestrator):
                 self.logger.error(f"Nodes [{not_found_nodes_str}] not found. Skipping workflow '{wf_name}'")
                 continue
                 
-        wf_steps = [node for (_, node) in wf_steps_tpl]
+            wf_steps = [node for (_, node) in wf_steps_tpl]
 
-        self.logger.debug(f"Loaded workflow: {0} with following name: {1} and steps: {2}".format(fake_id, wf_name, wf_steps))
+            self.logger.debug(f"Loaded workflow: {wf_name} with steps: {wf_steps} and id {fake_id}")
 
-        self.workflows.append(Workflow(fake_id, wf_name, wf_steps))
+            self.workflows.append(Workflow(fake_id, wf_name, wf_steps))
 
         return OrchestratorErrorCodes.OK
     
@@ -56,23 +57,25 @@ class EMOrchestrator(BaseOrchestrator):
             _id = node["id"]
             name = node["name"]
             _type = node["type"]
+            # self.logger.debug(f"Loading node with id {_id} and name {name} and type {_type}")
 
-        match _type:
-            case "GetAvailableEM":
-                self.nodes.append(GetAvailableEM(_id, name, node["ip"], node["args"]))
-            case "GetStationEM":
-                self.nodes.append(GetStationEM(_id, name, node["ip"], node["args"]))
-            case "GoToStation":
-                self.nodes.append(GoToStation(_id, name, node["ip"], node["args"]))
-            case "StationToStation":
-                self.nodes.append(StationToStation(_id, name, node["ip"], node["args"]))
-            case _:
-                self.logger.error(f"Node type {_type} not recognized. Skipping node {_id}")
+            match _type:
+                case "GET-AVAILABLE":
+                    self.nodes.append(GetAvailableEM(_id, name))
+                case "GET-EM-STATION":
+                    self.nodes.append(GetStationEM(_id, name))
+                case "AV-TO-STATION":
+                    self.nodes.append(GoToStation(_id, name))
+                case "STATION-TO-STATION":
+                    self.nodes.append(StationToStation(_id, name))
+                case _:
+                    self.logger.error(f"Node type {_type} not recognized. Skipping node {_id}")
 
         return OrchestratorErrorCodes.OK
     
     def _find_node_by_id(self, _id: str) -> Optional[BaseNode]:
         for node in self.nodes:
+            # self.logger.debug(f"Comparing node id: {node.id} with {_id}")
             if node.id == _id:
                 return node
         return None

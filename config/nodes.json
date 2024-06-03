@@ -4,7 +4,8 @@
             "id": "get-available",
             "name": "Get Available EM",
             "type": "GET-AVAILABLE"
-        },{
+        },
+        {
             "id": "get-em-station",
             "name": "Get EM Station",
             "type": "GET-EM-STATION"

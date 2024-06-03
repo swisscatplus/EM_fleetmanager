@@ -1,15 +1,15 @@
 from fastapi import APIRouter
 
-from orchestrator.core import MyOrchestrator
+from orchestrator.core import EMOrchestrator
 from task_scheduler.base import BaseScheduler
 
 
-class MyScheduler(BaseScheduler):
-    def __init__(self, orchestrator: MyOrchestrator, port: int) -> None:
+class EMScheduler(BaseScheduler):
+    def __init__(self, orchestrator: EMOrchestrator, port: int) -> None:
         super().__init__(orchestrator, port)
 
-        self.orchestrator: MyOrchestrator = orchestrator
-        self.bind_logger_name("My Scheduler")
+        self.orchestrator: EMOrchestrator = orchestrator
+        self.bind_logger_name("EM Scheduler")
 
     def init_extra_routes(self) -> None:
         """
