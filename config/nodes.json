@@ -1,0 +1,23 @@
+{
+    "nodes": [
+        {
+            "id": "get-available",
+            "name": "Get Available EM",
+            "type": "GET-AVAILABLE"
+        },{
+            "id": "get-em-station",
+            "name": "Get EM Station",
+            "type": "GET-EM-STATION"
+        },
+        {
+            "id": "av-to-station",
+            "name": "Available To Station",
+            "type": "AV-TO-STATION"
+        },
+        {
+            "id": "station-to-station",
+            "name": "Station To Station",
+            "type": "STATION-TO-STATION"
+        }
+    ]
+}
