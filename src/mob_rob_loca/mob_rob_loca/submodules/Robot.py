@@ -32,3 +32,4 @@ class EM(Robot):
         super().__init__(name_id, is_operational)
         # self.info(f"Initialized EM {name_id}")
         self.robot_type = RobotType.TRANSPORTER
+        self.task_id = None # defines if the robot has a task assigned or not, hence if it's available or not

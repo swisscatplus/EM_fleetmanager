@@ -1,0 +1,4 @@
+string station
+string task_id
+---
+int8 result_id
