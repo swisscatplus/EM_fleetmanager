@@ -1,17 +1,17 @@
 {
     "workflows": [
         {
-            "name": "Transfer-Sample",
+            "name": "Station-To-Station",
             "steps": [
-                "get-em-station",
-                "station-to-station"
+                "get-at-station",
+                "move-to-station"
             ]
         },
         {
             "name": "Fill-Station",
             "steps": [
                 "get-available",
-                "av-to-station"
+                "move-to-station"
             ]
         }
     ]

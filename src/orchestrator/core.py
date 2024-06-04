@@ -1,8 +1,8 @@
 import json
 from typing import Optional
 
-from nodes.EMRetrieve import GetAvailableEM, GetStationEM
-from nodes.StationMovement import GoToStation, StationToStation
+from src.nodes.RetrieveRobot import GetAvailable, GetAtStation
+from src.nodes.MoveToStation import MoveToStation
 
 from task_scheduler.nodes.base import BaseNode
 from task_scheduler.orchestrator.base import BaseOrchestrator
@@ -16,6 +16,7 @@ class EMOrchestrator(BaseOrchestrator):
     
     def _load_workflows(self, path: str) -> OrchestratorErrorCodes:
         """Populate the list of workflows: `self.workflows` by parsing the workflow config file"""
+        
         try:
             with open(path, "r") as file:
                 workflows_json = json.load(file).get("workflows", [])
@@ -76,13 +77,11 @@ class EMOrchestrator(BaseOrchestrator):
 
             match _type:
                 case "GET-AVAILABLE":
-                    self.nodes.append(GetAvailableEM(_id, name))
-                case "GET-EM-STATION":
-                    self.nodes.append(GetStationEM(_id, name))
-                case "AV-TO-STATION":
-                    self.nodes.append(GoToStation(_id, name))
-                case "STATION-TO-STATION":
-                    self.nodes.append(StationToStation(_id, name))
+                    self.nodes.append(GetAvailable(_id, name))
+                case "GET-AT-STATION":
+                    self.nodes.append(GetAtStation(_id, name))
+                case "MOVE-TO-STATION":
+                    self.nodes.append(MoveToStation(_id, name))
                 case _:
                     self.logger.error(f"Node type {_type} not recognized. Skipping node {_id}")
 
@@ -90,7 +89,6 @@ class EMOrchestrator(BaseOrchestrator):
     
     def _find_node_by_id(self, _id: str) -> Optional[BaseNode]:
         for node in self.nodes:
-            # self.logger.debug(f"Comparing node id: {node.id} with {_id}")
             if node.id == _id:
                 return node
         return None

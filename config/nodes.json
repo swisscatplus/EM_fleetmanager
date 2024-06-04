@@ -6,19 +6,14 @@
             "type": "GET-AVAILABLE"
         },
         {
-            "id": "get-em-station",
-            "name": "Get EM Station",
-            "type": "GET-EM-STATION"
+            "id": "get-at-station",
+            "name": "Get At Station",
+            "type": "GET-AT-STATION"
         },
         {
-            "id": "av-to-station",
-            "name": "Available To Station",
-            "type": "AV-TO-STATION"
-        },
-        {
-            "id": "station-to-station",
-            "name": "Station To Station",
-            "type": "STATION-TO-STATION"
+            "id": "move-to-station",
+            "name": "Move To Station",
+            "type": "MOVE-TO-STATION"
         }
     ]
 }

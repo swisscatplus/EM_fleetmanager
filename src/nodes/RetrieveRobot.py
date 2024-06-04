@@ -1,7 +1,8 @@
 from task_scheduler.nodes.base import BaseNode
 
+import time
 
-class GetAvailableEM(BaseNode):
+class GetAvailable(BaseNode):
     """
     This class is a node that represents the action of getting an available EM.
     """
@@ -10,11 +11,13 @@ class GetAvailableEM(BaseNode):
 
     def _execute(self, src: BaseNode, dst: BaseNode, task_id: str, args: dict[str, any] = None) -> tuple[
         int, str | None, str | None]:
-        payload = {"desired_station": None}
+        payload = {"station": None}
+        self.logger.debug("Station received")
+        self.logger.debug(args) #args["station1"], args["station2"] to access
         self.logger.info("Looking for available EM")
         return 0, None, None
     
-class GetStationEM(BaseNode):
+class GetAtStation(BaseNode):
     """
     This class is a node that represents the action of getting an EM located at a specific station.
     """
@@ -23,7 +26,18 @@ class GetStationEM(BaseNode):
 
     def _execute(self, src: BaseNode, dst: BaseNode, task_id: str, args: dict[str, any] = None) -> tuple[
         int, str | None, str | None]:
-        payload = {"desired_station": src.id}
-        self.logger.info("Looking for EM at station {src.id}")
+        # payload = {"station": args["station_start"]}
+        self.logger.info("Looking for EM at station")
+        robot_id = self.get_id_at(station=args["station_start"])
+        # payload = {"robot_id": robot_id, statioargs["station_start"]}
+        # self.logger.info(args["station_start"])
+        self.logger.debug(dst.id)
         return 0, None, None
+    
+    def get_id_at(self, station: str) -> str:
+        """
+        This method returns the id of the EM at the station.
+        """
+        time.sleep(2)
+        return "robot_1"
     
