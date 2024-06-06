@@ -52,8 +52,8 @@ def main():
     goal_pose = PoseStamped()
     goal_pose.header.frame_id = 'map'
 
-    goal_pose.pose.position.x = 4.452
-    goal_pose.pose.position.y = 7.5
+    goal_pose.pose.position.x = 4.252
+    goal_pose.pose.position.y = 6.0
         
     print('goal_pose: x=%f, y=%f', goal_pose.pose.position.x, goal_pose.pose.position.y)
     navigator.goToPose(goal_pose)
@@ -80,6 +80,7 @@ def main():
     else:
         print('Goal has an invalid return status!')
 
+    # navigator.lifecycleShutdown()
 
     exit(0)
 

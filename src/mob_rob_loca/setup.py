@@ -36,6 +36,7 @@ setup(
         'nav_manager = mob_rob_loca.nav_manager:main',
         'vision_loca_pc = mob_rob_loca.vision_loca_pc:main',
         'markers = mob_rob_loca.markers:main',
+        'nav_manager2 = mob_rob_loca.nav_manager2:main',
         ],
     },
 )
