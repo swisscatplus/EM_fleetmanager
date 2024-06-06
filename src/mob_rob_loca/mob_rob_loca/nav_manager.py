@@ -16,37 +16,50 @@
 from geometry_msgs.msg import PoseStamped, PoseWithCovarianceStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 import rclpy
+from launch_ros.substitutions import FindPackageShare
 from .submodules.Goal_Manager import Goal_Manager
+from mob_rob_loca.submodules.utils import get_config_yaml
 import logging
-import time
+import os
+import yaml
 
 """
 Basic navigation demo to go to waypoints.
 """
+package_name = 'mob_rob_loca'
+params_path = 'config/rpi_cam_on_robot.yaml' 
 
 logger = logging.getLogger('ROBOT_MANAGER')
 
+pkg_share = FindPackageShare(package=package_name).find(package_name)
+config_file_path = os.path.join(pkg_share, params_path)
+
+# cam_config = yaml.load(open('config/rpi_cam_on_robot.yaml'), Loader=yaml.FullLoader)
+config = get_config_yaml(config_file_path)
 def main():
-    time.sleep(10)
     rclpy.init()
 
     go_to_omni = True
     nmr_man = Goal_Manager('NMR')
     omni_man = Goal_Manager('OMNI')
+
+    navigator = BasicNavigator()
+
+    navigator._waitForNodeToActivate('bt_navigator')
     
     while(1):
-
-        navigator = BasicNavigator()
-
-        navigator._waitForNodeToActivate('bt_navigator')
+        
+        goal_pose = PoseStamped()
 
         if go_to_omni == True:
-            goal_pose = omni_man.goal_pose 
-            nmr_man.calibrate_pose_pipeline()
+            goal_pose.pose.position.x = config['11']['t_x']['x'] + 0.1
+            goal_pose.pose.position.y = config['11']['t_x']['y'] - 0.3
+            # nmr_man.calibrate_pose_pipeline()
         else:
-            goal_pose = nmr_man.goal_pose
-            omni_man.calibrate_pose_pipeline()
-        time.sleep(2)
+            goal_pose.pose.position.x = config['618']['t_x']['x'] - 0.1
+            goal_pose.pose.position.y = config['618']['t_x']['y'] + 0.3
+            # omni_man.calibrate_pose_pipeline()
+            
         print('goal_pose: x=%f, y=%f', goal_pose.pose.position.x, goal_pose.pose.position.y)
         navigator.goToPose(goal_pose)
 
