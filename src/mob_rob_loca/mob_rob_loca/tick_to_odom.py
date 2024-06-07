@@ -35,7 +35,7 @@ class OdomPublisher(Node):
         self.get_logger().info("Node odom_pub initialized")
         self.odomNew = Odometry()
         self.odomOld = Odometry()
-        self.odomNew.header.frame_id = "odom"
+        self.odomNew.header.frame_id = "base_link"
         self.odomNew.pose.pose.position.z = 0.0
         self.odomNew.pose.pose.orientation.x = 0.0
         self.odomNew.pose.pose.orientation.y = 0.0

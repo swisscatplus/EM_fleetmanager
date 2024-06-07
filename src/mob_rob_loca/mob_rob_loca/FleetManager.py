@@ -38,7 +38,7 @@ class FleetManager(Node):
     # Creation of services to be used by workflows
     # Where to create client is still to be decided, I thought of creating it in the same folder, just import it to workflow
     # self.add_robot_srv = self.create_service(AddRobot, 'add_robot', self.add_robot_callback)
-    self.go_to_srv = self.create_service(GoTo, 'go_to', self.go_to_callback)
+    self.go_to_srv = self.create_client(GoTo, 'go_to', self.go_to_callback)
     # self.get_at_srv = self.create_service(GetAt, 'get_at', self.get_at_callback)
     # self.get_available_srv = self.create_service(GetAvailable, 'get_available', self.get_available_callback)
 

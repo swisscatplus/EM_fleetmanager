@@ -14,17 +14,11 @@ def generate_launch_description():
     rvizconfig = LaunchConfiguration('rvizconfig', default=os.path.join(rob_loca_dir, 'rviz', 'loca.rviz'))
     package_name = 'mob_rob_loca'
 
-    transforms_node = Node(
-        package=package_name,
-        executable='transforms',
-        name='transforms',
-    )
-
     rviz_node = Node(
            executable='rviz2',
         arguments=['-d', rvizconfig],
         output='screen',
-        remappings=[('/odom', '/odometry/filtered')],
+        remappings=[('/odom', '/odometry/global')],
     )                 
 
     robot_state_publisher_node = Node(
@@ -32,13 +26,15 @@ def generate_launch_description():
         executable='robot_state_publisher',
         name='robot_state_publisher',
         output='both',
-        parameters=[{'robot_description': open(urdf_path, 'r').read()}]
+        parameters=[{'robot_description': open(urdf_path, 'r').read()}],
+        remappings = [('/tf', 'tf'), ('tf_static', 'tf_static')],
     )
 
     joint_state_publisher_node = Node(
         package='joint_state_publisher',
         executable='joint_state_publisher',
         arguments=[urdf_path],
+        remappings = [('/tf', 'tf'), ('tf_static', 'tf_static')],
     )
 
     markers_node = Node(
@@ -48,7 +44,6 @@ def generate_launch_description():
     )
     
     return LaunchDescription([
-        transforms_node,
         rviz_node,
         robot_state_publisher_node,
         joint_state_publisher_node,

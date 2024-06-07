@@ -68,25 +68,26 @@ class CameraVisionStation:
         self.logger.addHandler(ch)
 
     def compute_camera_center(self, aruco_pxl_c, id, theta, pxl_max_x, pxl_max_y):
-        t_x, t_y = self.aruco_ids[id]['t_x'], self.aruco_ids[id]['t_y']
-        # Convert camera coordinates to Cartesian coordinates
-        # y_cart = pxl_max_y - aruco_pxl_c[1]
-
+        t_x, t_y = self.aruco_ids[id]['t_x'], self.aruco_ids[id]['t_y'] #, self.aruco_ids[id]['theta'] -> needs to be in rad
+        # theta = theta - ang_code
         # Compute the offset in the camera frame
         delta_x = aruco_pxl_c[0] - pxl_max_x / 2
         delta_y = pxl_max_y / 2 - aruco_pxl_c[1]
         delta_x = delta_x * self.pixels_to_m  # Convert pixels to meters
         delta_y = delta_y * self.pixels_to_m  # Convert pixels to meters
 
+        # Defined rotation matrix, to see if it's not too computationally heavy
         R = np.array([
-            [np.cos(theta), -np.sin(theta), 0.0],
-            [-np.sin(theta), -np.cos(theta), 0.0],
+            [np.cos(theta), np.sin(theta), 0.0],
+            [np.sin(theta), -np.cos(theta), 0.0],
             [0.0, 0.0, 1.0]
         ])
         
+        # Compute the offset according to the circuit reference frame
         delta_XY = R @ np.array([-delta_y, delta_x, 0.0])
         self.logger.debug(f'delta_x, delta_y: {delta_x, delta_y}')
         self.logger.debug(f'delta_XY: {delta_XY}')
+
         X_camera = t_x - delta_XY[0]
         Y_camera = t_y - delta_XY[1]
 
@@ -95,7 +96,6 @@ class CameraVisionStation:
     # Function to process the frame and detect ArUco markers
     def get_robot_pose(self, frame, markerCorners, markerIds, set_visual_interface=False):
         pxl_max_y, pxl_max_x, _ = frame.shape
-        
         self.pixels_to_m = self.pixels_to_meters(markerCorners)  # Constant conversion factor
 
         aruco_poses = []
@@ -114,24 +114,26 @@ class CameraVisionStation:
 
                 dx = top_center[0] - bottom_center[0]
                 dy = top_center[1] - bottom_center[1]
-                angle = np.arctan2(dy, dx) * 180 / np.pi
-                rad_angle = np.deg2rad(angle + 90)
+                rad_angle = -np.arctan2(dy, dx)
+                
                 coord_cam_circuit = self.compute_camera_center(aruco_pxl_c=center_code, id=markerIds[i, 0], theta=rad_angle, pxl_max_x=pxl_max_x, pxl_max_y=pxl_max_y)
 
-                robot_center = coord_cam_circuit[:2]
-                # - np.array([
-                #     np.cos(-rad_angle), np.sin(-rad_angle)
-                # ]) * self.cam_config['dist_cam_robot_center']
+                robot_center = coord_cam_circuit[:2]- np.array([
+                    np.cos(rad_angle), np.sin(rad_angle)
+                ]) * self.cam_config['dist_cam_robot_center']
+
+                # appends to average the value in case multiple known codes are detected
                 aruco_poses.append(robot_center)
                 robot_angles.append(-rad_angle)
 
-                self.logger.debug(f'robot_center: {robot_center}, robot_angle: {-rad_angle}')
+                self.logger.debug(f'robot_center: {robot_center}, robot_angle: {rad_angle}')
 
                 if set_visual_interface:
+                    # visual interface for debugging purposes
                     cv.arrowedLine(frame, bottom_center, top_center, (0, 0, 255), 4)
                     cv.circle(frame, center_code, 3, (255, 0, 0), -1)
                     text = (
-                        f"ID {marker_id}: ang: {angle:.1f} deg, "
+                        f"ID {marker_id}: robot_ang: {rad_angle:.1f} deg, "
                         f"robot_pose: {robot_center}, cam_pose: {coord_cam_circuit[:2]}"
                     )
                     cv.putText(frame, text, (10, frame.shape[0] - 20 - i * 25), 
@@ -147,6 +149,7 @@ class CameraVisionStation:
             robot_center, robot_angle = None, None
 
         return robot_center, robot_angle
+
 
 
 def main():

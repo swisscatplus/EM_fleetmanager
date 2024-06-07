@@ -63,7 +63,7 @@ class Goal_Manager:
 
         logger.debug('Get pose from camera')
         ros_pose = self.get_accur_pose()
-        logger
+
         logger.debug('SetPose Service Request')
         self.set_updated_pose(ros_pose)
 
