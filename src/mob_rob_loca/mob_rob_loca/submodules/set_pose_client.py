@@ -29,19 +29,3 @@ class PositionCalibrationNode(Node):
         rclpy.spin_until_future_complete(self, self.future)
         response = self.future.result()
         return response
-
-# def main(args=None):
-#     rclpy.init(args=args)
-
-#     minimal_client = PositionCalibrationNode()
-#     rclpy.spin(minimal_client)
-#     # minimal_client.send_request()
-#     minimal_client.get_logger().info('New pose set')
-
-
-#     minimal_client.destroy_node()
-#     rclpy.shutdown()
-
-
-# if __name__ == '__main__':
-#     main()

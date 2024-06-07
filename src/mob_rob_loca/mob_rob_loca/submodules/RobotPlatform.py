@@ -54,12 +54,7 @@ class Robot:
         TRANSPORTER = 0
         RESCUER = 1 
         CLEANER = 2
-    # State = {
-    #     'standby': 0,
-    #     'moving': 1,
-    #     'on_station': 2
-
-    # }
+        
     class State(Enum):
         STANDBY = 0
         MOVING = 1
@@ -73,30 +68,3 @@ class Robot:
         self.goal_poses = goals
         self.is_empty = empty #  False if the robot carries a load. No meaning for the cleaner type
         self.sample_ID = 0 # corresponds to the ID number of the actual sample being carried, specific to the transporter type, set to 0 for other types
-        # self.current_pose = current_pose not sure if needed 
-        # self.current_goal = None # not sure if needed
-        # self.battery_level = 90.0 # not sure if needed                                                                                                                                                                                                    
-        # self.lights = False # if we put lights, can be specified here whether we want to enable them or not, again not sure if needed
-
-    # def is_charged(self):
-    #     """
-    #     Checks if the robot is charged.
-
-    #     Returns:
-    #     - is_charged: bool, True if the robot is charged, False otherwise
-    #     """
-    #     return self.battery_level >= 95.0
-
-    # def check_load(self):
-    #     """
-    #     Checks if there was a problem with the load.
-
-    #     Returns:
-    #     - is_empty: bool, True if the robot is empty, False otherwise
-    #     """
-    #     if Robot.type.TRANSPORTER:
-    #         if (not self.is_empty) and 
-    #     elif Robot.type.RESCUER:
-    #         return True
-    #     elif Robot.type.CLEANER:
-    #         return True
