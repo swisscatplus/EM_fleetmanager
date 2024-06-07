@@ -30,14 +30,14 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        'transforms = mob_rob_loca.transforms:main',
         'ticks2odom = mob_rob_loca.tick_to_odom:main',
         'marv2ekf = mob_rob_loca.marv_to_ekf:main',
         'nav_manager = mob_rob_loca.nav_manager2:main',
         'vision_loca_pc = mob_rob_loca.vision_loca_pc:main',
         'markers = mob_rob_loca.markers:main',
         'fleet_manager = mob_rob_loca.FleetManager:main',
-        'service_manager = mob_rob_loca.server:main',
+        'nav_manager2 = mob_rob_loca.nav_manager2:main',
+        'imu_pub = mob_rob_loca.imu:main',
         ],
     },
 )
