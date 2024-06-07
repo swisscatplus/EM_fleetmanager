@@ -34,5 +34,5 @@ def generate_launch_description():
     return LaunchDescription([
         ticks2odom_node,
         imu_node,
-        vision_node
+        # vision_node
     ])
