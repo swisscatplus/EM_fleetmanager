@@ -33,10 +33,11 @@ setup(
         'transforms = mob_rob_loca.transforms:main',
         'ticks2odom = mob_rob_loca.tick_to_odom:main',
         'marv2ekf = mob_rob_loca.marv_to_ekf:main',
-        'nav_manager = mob_rob_loca.nav_manager:main',
+        'nav_manager = mob_rob_loca.nav_manager2:main',
         'vision_loca_pc = mob_rob_loca.vision_loca_pc:main',
         'markers = mob_rob_loca.markers:main',
         'fleet_manager = mob_rob_loca.FleetManager:main',
+        'service_manager = mob_rob_loca.server:main',
         ],
     },
 )
