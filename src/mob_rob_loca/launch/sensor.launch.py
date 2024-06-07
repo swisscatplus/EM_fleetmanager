@@ -25,14 +25,7 @@ def generate_launch_description():
         output='screen',
     )
 
-    vision_node = Node(
-        package='mob_rob_loca',
-        executable='vision_loca_pc',
-        output='screen',
-    )
-
     return LaunchDescription([
         ticks2odom_node,
-        imu_node,
-        # vision_node
+        imu_node
     ])
