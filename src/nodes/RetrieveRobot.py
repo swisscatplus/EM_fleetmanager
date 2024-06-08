@@ -8,6 +8,7 @@ class GetAvailable(BaseNode):
     """
     def __init__(self, _id: str, name: str) -> None:
         super().__init__(_id, name)
+        self.robot_id = None
 
     def _execute(self, src: BaseNode, dst: BaseNode, task_id: str, args: dict[str, any] = None) -> tuple[
         int, str | None, str | None]:

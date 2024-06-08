@@ -36,8 +36,9 @@ setup(
         'vision_loca_pc = mob_rob_loca.vision_loca_pc:main',
         'markers = mob_rob_loca.markers:main',
         'fleet_manager = mob_rob_loca.FleetManager:main',
-        'nav_manager2 = mob_rob_loca.nav_manager2:main',
+        'client = mob_rob_loca.client:main',
         'imu_pub = mob_rob_loca.imu:main',
+        'server = mob_rob_loca.server:main',
         ],
     },
 )
