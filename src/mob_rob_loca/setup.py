@@ -38,7 +38,8 @@ setup(
         'fleet_manager = mob_rob_loca.FleetManager:main',
         'client = mob_rob_loca.client:main',
         'imu_pub = mob_rob_loca.imu:main',
-        'server = mob_rob_loca.server:main',
+        'transforms = mob_rob_loca.transforms:main',
+        'go_to_server = mob_rob_loca.go_to_server:main',
         ],
     },
 )

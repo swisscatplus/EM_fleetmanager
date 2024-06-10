@@ -27,7 +27,7 @@ import yaml
 Basic navigation demo to go to waypoints.
 """
 package_name = 'mob_rob_loca'
-params_path = 'config/rpi_cam_on_robot.yaml' 
+params_path = '/home/coderey/EM_navigation/src/mob_rob_loca/config/stations.yaml' #'config/rpi_cam_on_robot.yaml' 
 
 logger = logging.getLogger('ROBOT_MANAGER')
 
@@ -46,9 +46,9 @@ def move_robot_to_station():
     goal_pose.pose.position.x = 4.452
     goal_pose.pose.position.y = 7.5
     print('goal_pose: x=%f, y=%f', goal_pose.pose.position.x, goal_pose.pose.position.y)
-    # navigator.goToPose(goal_pose)
-
-    result =  1 #navigator.getResult()
+    navigator.goToPose(goal_pose)
+    
+    result =  0 #navigator.getResult()
     if result == TaskResult.SUCCEEDED:
         print('Arrived at Camera Station!')
         print('Goal succeeded!')

@@ -27,14 +27,14 @@ def generate_launch_description():
     robot_localization_file_path = os.path.join(pkg_share, params_path)
 
     return LaunchDescription([
-        launch_ros.actions.Node(
-            package='robot_localization',
-            executable='ekf_node',
-            name='ekf_filter_node_odom',
-            output='screen',
-            parameters=[robot_localization_file_path],
-            remappings=[('/odometry/filtered', 'odometry/filt')],
-        ),
+        # launch_ros.actions.Node(
+        #     package='robot_localization',
+        #     executable='ekf_node',
+        #     name='ekf_filter_node_odom',
+        #     output='screen',
+        #     parameters=[robot_localization_file_path],
+        #     remappings=[('/odometry/filtered', 'odometry/filt')],
+        # ),
         launch_ros.actions.Node(
             package='robot_localization',
             executable='ekf_node',

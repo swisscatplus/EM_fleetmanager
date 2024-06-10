@@ -35,8 +35,8 @@ def main(args=None):
                     'Service call failed %r' % (e,))
             else:
                 minimal_client.get_logger().info(
-                    'Result of add_three_ints: for %s + %s= %d' %                               # CHANGE
-                    (minimal_client.req.station, minimal_client.req.robot_id, response.result_id)) # CHANGE
+                    '%d' %                               # CHANGE
+                    (response.result_id)) # CHANGE
             break
 
     minimal_client.destroy_node()
