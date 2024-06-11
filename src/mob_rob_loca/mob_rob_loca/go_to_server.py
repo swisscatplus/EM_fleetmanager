@@ -16,7 +16,7 @@ class NavService(Node):
         self.navigator = BasicNavigator()
         self.navigator._waitForNodeToActivate('bt_navigator')
     def callback(self, request, response):
-                                                # CHANGE
+
         self.get_logger().info('Incoming request\na: %s b: %s' % (request.station, request.robot_id)) # CHANGE
         response.result_id = self.move( station=request.station, robot_id=request.robot_id)
         self.get_logger().info(f'Sending back response: {response}')
@@ -24,10 +24,13 @@ class NavService(Node):
 
     def move(self, station: str, robot_id: str):
         
-        
         goal_pose = self.set_pose(station)
-        print(goal_pose.pose.position.x)
-        # self.get_logger().info(f'goal_pose: x=%f, y=%f', goal_pose.pose.position.x, goal_pose.pose.position.y)
+        # goal_pose.pose.position.x = 0.0
+        # goal_pose.pose.position.y = 0.0
+        # goal_pose.pose.orientation.y = 0.0
+        # goal_pose.pose.orientation.z = 0.0
+        # goal_pose.pose.orientation.w = 1.0
+        
         self.navigator.goToPose(goal_pose)
 
         i = 0
