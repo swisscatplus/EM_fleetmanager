@@ -27,7 +27,7 @@ import yaml
 Basic navigation demo to go to waypoints.
 """
 package_name = 'mob_rob_loca'
-params_path = 'config/rpi_cam_on_robot.yaml' 
+params_path = '/home/coderey/EM_navigation/src/mob_rob_loca/config/stations.yaml' #'config/rpi_cam_on_robot.yaml' 
 
 logger = logging.getLogger('ROBOT_MANAGER')
 
@@ -36,42 +36,21 @@ config_file_path = os.path.join(pkg_share, params_path)
 
 # cam_config = yaml.load(open('config/rpi_cam_on_robot.yaml'), Loader=yaml.FullLoader)
 config = get_config_yaml(config_file_path)
-def main():
+
+def move_robot_to_station():
     rclpy.init()
-
-    go_to_omni = True
-    nmr_man = Goal_Manager('NMR')
-    omni_man = Goal_Manager('OMNI')
-
     navigator = BasicNavigator()
-
     navigator._waitForNodeToActivate('bt_navigator')
-    
-    # while(1):
-        
     goal_pose = PoseStamped()
     goal_pose.header.frame_id = 'map'
-
     goal_pose.pose.position.x = 4.452
     goal_pose.pose.position.y = 7.5
-        
     print('goal_pose: x=%f, y=%f', goal_pose.pose.position.x, goal_pose.pose.position.y)
     navigator.goToPose(goal_pose)
-
-    j = 0
-
-    while not navigator.isTaskComplete():
-        # Do something with the feedback
-        j = j + 1
-        feedback = navigator.getFeedback()
-        # if feedback and j % 5 == 0:
-            # print(feedback)
-
-    # Do something depending on the return code
-    result = navigator.getResult()
+    
+    result =  0 #navigator.getResult()
     if result == TaskResult.SUCCEEDED:
         print('Arrived at Camera Station!')
-        # go_to_omni = not go_to_omni
         print('Goal succeeded!')
     elif result == TaskResult.CANCELED:
         print('Goal was canceled! Waiting for new orders!')
@@ -80,8 +59,11 @@ def main():
     else:
         print('Goal has an invalid return status!')
 
+    rclpy.shutdown()
+    return result
 
-    exit(0)
+def main():
+    move_robot_to_station()
 
 
 if __name__ == '__main__':
