@@ -48,8 +48,6 @@ class EMOrchestrator(BaseOrchestrator):
             for pos, step in enumerate(wf_steps):
                 DBStep.insert(database, db_workflow.id, step.id, pos)
                 
-            
-
             self.logger.debug(f"Loaded workflow: {db_workflow.name} with steps: {wf_steps} and id {db_workflow.id}")
 
             self.workflows.append(Workflow(db_workflow.id, db_workflow.name, wf_steps))

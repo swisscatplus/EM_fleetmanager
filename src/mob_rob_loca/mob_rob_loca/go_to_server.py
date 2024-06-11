@@ -2,6 +2,7 @@ from mob_rob_loca_msgs.srv import GoToStation
 from mob_rob_loca.submodules.utils import get_config_yaml
 import rclpy
 from rclpy.node import Node
+from rclpy.duration import Duration
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 
@@ -25,11 +26,6 @@ class NavService(Node):
     def move(self, station: str, robot_id: str):
         
         goal_pose = self.set_pose(station)
-        # goal_pose.pose.position.x = 0.0
-        # goal_pose.pose.position.y = 0.0
-        # goal_pose.pose.orientation.y = 0.0
-        # goal_pose.pose.orientation.z = 0.0
-        # goal_pose.pose.orientation.w = 1.0
         
         self.navigator.goToPose(goal_pose)
 
@@ -45,8 +41,8 @@ class NavService(Node):
                 # print('Executing current waypoint: ' +
                     #   str(feedback.current_waypoint + 1) + '/' + str(len(goal_poses)))
                 # now = self.navigator.get_clock().now()
-            # if Duration.from_msg(feedback.navigation_time) > Duration(seconds=600.0):
-            #     navigator.cancelNav()
+            if Duration.from_msg(feedback.navigation_time) > Duration(seconds=600.0):
+                self.navigator.cancelNav()
 
         # Do something depending on the return code
         result = self.navigator.getResult()
