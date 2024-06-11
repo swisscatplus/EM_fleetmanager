@@ -10,8 +10,8 @@ class CustomNode(BaseNode):
         self.process = subprocess.Popen(['bash'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
         #source ros2 installation
-        self.cmd_run('source /opt/ros/humble/setup.bash')
-        self.cmd_run('source install/setup.bash')
+        self.write_cmd('source /opt/ros/humble/setup.bash')
+        self.write_cmd('source install/setup.bash')
 
     def _execute(self, src: BaseNode, dst: BaseNode, task_id: str, args: dict[str, any] = None) -> tuple[
         int, str | None, str | None]:
@@ -23,7 +23,7 @@ class CustomNode(BaseNode):
         self.logger.info(f"Robot moved to station with result {result}")
         return 0, None, None
     
-    def cmd_run(self, cmd):
+    def write_cmd(self, cmd):
         self.process.stdin.write(f"{cmd}\n")
         self.process.stdin.flush()
     

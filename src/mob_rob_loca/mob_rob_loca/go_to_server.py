@@ -16,13 +16,13 @@ class NavService(Node):
         self.navigator = BasicNavigator()
         self.navigator._waitForNodeToActivate('bt_navigator')
     def callback(self, request, response):
-        # response.result_id = 0                                              # CHANGE
+                                                # CHANGE
         self.get_logger().info('Incoming request\na: %s b: %s' % (request.station, request.robot_id)) # CHANGE
-        response.result_id = self.move(robot_id=request.robot_id, station=request.station)
+        response.result_id = self.move( station=request.station, robot_id=request.robot_id)
         self.get_logger().info(f'Sending back response: {response}')
         return response
 
-    def move(self, robot_id: str, station: str):
+    def move(self, station: str, robot_id: str):
         
         
         goal_pose = self.set_pose(station)
@@ -56,12 +56,7 @@ class NavService(Node):
         else:
             self.get_logger().error('Goal has an invalid return status!')
 
-        # self.navigator.destroy_node()
-
-        return 0 #result
-        # navigator.lifecycleShutdown()
-
-        # exit(0)
+        return 0 
         
     def set_pose(self, station):
         goal_pose = PoseStamped()
