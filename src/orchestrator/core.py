@@ -1,5 +1,5 @@
 import json
-from typing import Optional
+from typing import Optional, IO
 
 from src.nodes.RetrieveRobot import GetAvailable, GetAtStation
 from src.nodes.MoveToStation import MoveToStation
@@ -14,12 +14,11 @@ from task_scheduler.database import DatabaseConnector, DBWorkflow, DBStep, DBNod
 class EMOrchestrator(BaseOrchestrator):
     """An example of implementation can be found in the Omnifire or Robot Scheduler repository"""
     
-    def _load_workflows(self, path: str) -> OrchestratorErrorCodes:
+    def _load_workflows(self, file: IO) -> OrchestratorErrorCodes:
         """Populate the list of workflows: `self.workflows` by parsing the workflow config file"""
         
         try:
-            with open(path, "r") as file:
-                workflows_json = json.load(file).get("workflows", [])
+            workflows_json = json.loads(file.read()).get("workflows", [])
         except FileNotFoundError:
             return OrchestratorErrorCodes.COULD_NOT_FIND_CONFIGURATION
         except json.decoder.JSONDecodeError:
@@ -48,19 +47,16 @@ class EMOrchestrator(BaseOrchestrator):
             for pos, step in enumerate(wf_steps):
                 DBStep.insert(database, db_workflow.id, step.id, pos)
                 
-            
-
             self.logger.debug(f"Loaded workflow: {db_workflow.name} with steps: {wf_steps} and id {db_workflow.id}")
 
             self.workflows.append(Workflow(db_workflow.id, db_workflow.name, wf_steps))
 
         return OrchestratorErrorCodes.OK
     
-    def _load_nodes(self, path: str) -> OrchestratorErrorCodes:
+    def _load_nodes(self, file: IO) -> OrchestratorErrorCodes:
         """Populate the list of nodes: `self.nodes` by parsing the node config file"""
         try:
-            with open(path, "r") as file:
-                nodes_json = json.load(file).get("nodes", [])
+            nodes_json = json.loads(file.read()).get("nodes", [])
         except FileNotFoundError:
             return OrchestratorErrorCodes.COULD_NOT_FIND_CONFIGURATION
         except json.decoder.JSONDecodeError:

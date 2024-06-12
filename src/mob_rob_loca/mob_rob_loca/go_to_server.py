@@ -2,6 +2,7 @@ from mob_rob_loca_msgs.srv import GoToStation
 from mob_rob_loca.submodules.utils import get_config_yaml
 import rclpy
 from rclpy.node import Node
+from rclpy.duration import Duration
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 
@@ -16,7 +17,7 @@ class NavService(Node):
         self.navigator = BasicNavigator()
         self.navigator._waitForNodeToActivate('bt_navigator')
     def callback(self, request, response):
-                                                # CHANGE
+
         self.get_logger().info('Incoming request\na: %s b: %s' % (request.station, request.robot_id)) # CHANGE
         response.result_id = self.move( station=request.station, robot_id=request.robot_id)
         self.get_logger().info(f'Sending back response: {response}')
@@ -24,15 +25,12 @@ class NavService(Node):
 
     def move(self, station: str, robot_id: str):
         
-        
         goal_pose = self.set_pose(station)
-        print(goal_pose.pose.position.x)
-        # self.get_logger().info(f'goal_pose: x=%f, y=%f', goal_pose.pose.position.x, goal_pose.pose.position.y)
+        
         self.navigator.goToPose(goal_pose)
 
         i = 0
         while not self.navigator.isTaskComplete():
-
             # Do something with the feedback 
             i = i + 1
             feedback = self.navigator.getFeedback()
@@ -42,21 +40,23 @@ class NavService(Node):
                 # print('Executing current waypoint: ' +
                     #   str(feedback.current_waypoint + 1) + '/' + str(len(goal_poses)))
                 # now = self.navigator.get_clock().now()
-            # if Duration.from_msg(feedback.navigation_time) > Duration(seconds=600.0):
-            #     navigator.cancelNav()
+            if Duration.from_msg(feedback.navigation_time) > Duration(seconds=600.0):
+                self.navigator.cancelNav()
 
         # Do something depending on the return code
         result = self.navigator.getResult()
-        if result == TaskResult.SUCCEEDED:
+        if result == TaskResult.SUCCEEDED: 
+            result = 0 # sets to 1 when success, to match sched code it's reversed to 0
             self.get_logger().info('Goal succeeded, going to next waypoint!')
         elif result == TaskResult.CANCELED:
             self.get_logger().error('Goal was canceled!')
         elif result == TaskResult.FAILED:
             self.get_logger().error('Goal failed, returning home!')
         else:
+            result = 1
             self.get_logger().error('Goal has an invalid return status!')
 
-        return 0 
+        return result 
         
     def set_pose(self, station):
         goal_pose = PoseStamped()

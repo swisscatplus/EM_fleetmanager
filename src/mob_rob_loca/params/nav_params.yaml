@@ -204,7 +204,7 @@ planner_server:
     planner_plugins: ["GridBased"]
     GridBased:
       plugin: 'nav2_navfn_planner/NavfnPlanner' # A* behaviour
-      tolerance: 0.2
+      tolerance: 0.05
       use_astar: true
       allow_unknown: false
       interpolation_resolution: 0.005 # short resolution required since we have low tolerance on the goal pose
