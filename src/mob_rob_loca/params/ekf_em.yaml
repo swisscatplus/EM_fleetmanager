@@ -19,6 +19,8 @@ ekf_filter_node_odom:
         imu0: edi/imu
         # imu0: bno055/imu # Marvelmind IMU
 
+        
+
         # [x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az]
         odom0_config: [true, true, false,
                        false, false, true,
@@ -101,7 +103,7 @@ ekf_filter_node_map:
         odom0: wheel/odom # odometry/filt # Robot odometry, computed with encoder ticks
 
         # if we want to set an initial pose and orientation, uncomment next line and define the initial pose
-        # initial_state: [1.0, -0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        initial_state: [0.35, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         # [x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az]
 
         pose0_config: [true,  true,  false,

@@ -168,7 +168,7 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 2.0
-        inflation_radius: 0.175 # 5cm + 12.5cm
+        inflation_radius: 0.005 # 5cm + 12.5cm
       keepout_filter:
         plugin: "nav2_costmap_2d::KeepoutFilter"
         topic_name: "/keepout_filter_mask"

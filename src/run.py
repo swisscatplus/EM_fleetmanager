@@ -10,11 +10,9 @@ def main():
 
     load_dotenv()
 
-    LoggingManager(args.logs, args.debug)
+    LoggingManager(args.logs, args.verbose, args.debug)
 
-    orchestrator = EMOrchestrator(
-        args.path_to_nodes, args.path_to_workflows, args.verbose, args.emulate
-    )
+    orchestrator = EMOrchestrator(args.path_to_nodes, args.path_to_workflows, args.emulate)
     app = EMScheduler(orchestrator, args.port)
 
     app.run()

@@ -7,3 +7,8 @@ OMNI:
   pos_x: 4.4
   pos_y: 6.0
   yaw: 1.525
+
+TEST:
+  pos_x: 0.3
+  pos_y: 0.0
+  yaw: 1.525
