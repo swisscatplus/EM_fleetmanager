@@ -31,7 +31,6 @@ class NavService(Node):
 
         i = 0
         while not self.navigator.isTaskComplete():
-
             # Do something with the feedback 
             i = i + 1
             feedback = self.navigator.getFeedback()
@@ -46,16 +45,18 @@ class NavService(Node):
 
         # Do something depending on the return code
         result = self.navigator.getResult()
-        if result == TaskResult.SUCCEEDED:
+        if result == TaskResult.SUCCEEDED: 
+            result = 0 # sets to 1 when success, to match sched code it's reversed to 0
             self.get_logger().info('Goal succeeded, going to next waypoint!')
         elif result == TaskResult.CANCELED:
             self.get_logger().error('Goal was canceled!')
         elif result == TaskResult.FAILED:
             self.get_logger().error('Goal failed, returning home!')
         else:
+            result = 1
             self.get_logger().error('Goal has an invalid return status!')
 
-        return 0 
+        return result 
         
     def set_pose(self, station):
         goal_pose = PoseStamped()
