@@ -22,9 +22,9 @@ class MoveToStation(BaseNode):
         self.logger.info("Executing MoveToStation...")
         robot_id = args["robot_id"]
         station = args['station_end']
-        # result = self.move_to(robot_id, station) #self.move_to(args)
-        result = 0
-        time.sleep(1)
+        result = self.move_to(robot_id, station) #self.move_to(args)
+        # result = 0
+        # time.sleep(1)
         self.logger.info(f"Task id: {task_id}")
         self.logger.info(f"Robot {robot_id} moved to {station} with result {result}")
         return 0, None, None

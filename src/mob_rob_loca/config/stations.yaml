@@ -1,14 +1,14 @@
 NMR:
-  pos_x: 4.4085
-  pos_y: 7.55
-  yaw: 0.0
+  pos_x: 4.43
+  pos_y: 7.52
+  yaw: 1.5708
 
 OMNI:
-  pos_x: 4.4
-  pos_y: 6.0
-  yaw: 1.525
+  pos_x: 4.16
+  pos_y: 4.63
+  yaw: 0.0
 
 TEST:
   pos_x: 0.3
   pos_y: 0.0
-  yaw: 1.525
+  yaw: 0.751

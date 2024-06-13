@@ -5,6 +5,7 @@ from rclpy.node import Node
 from rclpy.duration import Duration
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
+from tf_transformations import quaternion_from_euler, euler_from_quaternion
 
 config_path = '/home/coderey/EM_navigation/src/mob_rob_loca/config/stations.yaml' #'config/stations.yaml'
 stations = get_config_yaml(config_path)
@@ -31,15 +32,11 @@ class NavService(Node):
 
         i = 0
         while not self.navigator.isTaskComplete():
-            # Do something with the feedback 
+            # Do something with the feedback OPTIONAL
             i = i + 1
             feedback = self.navigator.getFeedback()
             if feedback and i % 5 == 0:
                 pass
-                # print(feedback) # nav2_msgs.action.FollowWaypoints_Feedback(current_waypoint=0)
-                # print('Executing current waypoint: ' +
-                    #   str(feedback.current_waypoint + 1) + '/' + str(len(goal_poses)))
-                # now = self.navigator.get_clock().now()
             if Duration.from_msg(feedback.navigation_time) > Duration(seconds=600.0):
                 self.navigator.cancelNav()
 
@@ -47,7 +44,7 @@ class NavService(Node):
         result = self.navigator.getResult()
         if result == TaskResult.SUCCEEDED: 
             result = 0 # sets to 1 when success, to match sched code it's reversed to 0
-            self.get_logger().info('Goal succeeded, going to next waypoint!')
+            self.get_logger().info('Goal succeeded!')
         elif result == TaskResult.CANCELED:
             self.get_logger().error('Goal was canceled!')
         elif result == TaskResult.FAILED:
@@ -59,10 +56,21 @@ class NavService(Node):
         return result 
         
     def set_pose(self, station):
+        """
+        Defines the ROS pose message for the goal.
+        """
         goal_pose = PoseStamped()
         goal_pose.header.frame_id = 'map'
         goal_pose.pose.position.x = stations[station]['pos_x']
         goal_pose.pose.position.y = stations[station]['pos_y']
+
+        yaw = stations[station]['yaw']
+        quaternion = quaternion_from_euler(0.0, 0.0, yaw)
+        self.get_logger().info(f"Station: {station}, quaternion: {quaternion}")
+        goal_pose.pose.orientation.x = 0.0
+        goal_pose.pose.orientation.y = 0.0
+        goal_pose.pose.orientation.z = quaternion[2]
+        goal_pose.pose.orientation.w = quaternion[3]
         return goal_pose
 
 def main(args=None):

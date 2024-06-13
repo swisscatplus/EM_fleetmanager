@@ -13,9 +13,9 @@ def generate_launch_description():
     imu_config = os.path.join(rob_loca_dir,'config','bno055_params.yaml')
     # imu_config = os.path.join(get_package_share_directory('bno055'),'config','bno055_params.yaml')
 
-    ticks2odom_node = Node(
+    convert_sens_type = Node(
         package='mob_rob_loca',
-        executable='ticks2odom',
+        executable='convert_sens_type',
         output='screen',
     )
 
@@ -32,7 +32,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        ticks2odom_node,
+        convert_sens_type,
         transforms_node,
         # imu_node
     ])

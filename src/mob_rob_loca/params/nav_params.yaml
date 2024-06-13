@@ -64,14 +64,14 @@ controller_server:
       movement_time_allowance: 15.0 # resolution of the goal imposes a longer time to right position
     goal_checker:
       plugin: "nav2_controller::SimpleGoalChecker"
-      xy_goal_tolerance: 0.045
-      yaw_goal_tolerance: 0.35
+      xy_goal_tolerance: 0.015
+      yaw_goal_tolerance: 0.25
       stateful: True
     FollowPath:
       plugin: "nav2_rotation_shim_controller::RotationShimController" # controller prioritizing good orientation of the robot before advancing, i.e. robot will turn at the beginning, orienting itself towards the path
       primary_controller: "dwb_core::DWBLocalPlanner"
-      angular_dist_threshold: 0.95
-      forward_sampling_distance: 0.15
+      angular_dist_threshold: 1.5
+      forward_sampling_distance: 0.2
       rotate_to_heading_angular_vel: 1.5
       max_angular_accel: 2.0
       simulate_ahead_time: 1.0
@@ -97,7 +97,7 @@ controller_server:
       linear_granularity: 0.01
       angular_granularity: 0.025
       transform_tolerance: 0.2
-      xy_goal_tolerance: 0.045
+      xy_goal_tolerance: 0.025
       trans_stopped_velocity: 0.25
       short_circuit_trajectory_evaluation: True
       stateful: True
@@ -105,7 +105,7 @@ controller_server:
       PathAlign.scale: 32.0
       PathAlign.forward_point_distance: 0.1 # to check if works when doing sharp turns
       GoalAlign.scale: 6.0
-      GoalAlign.forward_point_distance: 0.05
+      GoalAlign.forward_point_distance: 0.025
       PathDist.scale: 32.0
       GoalDist.scale: 12.0
       RotateToGoal.scale: 32.0
@@ -168,7 +168,7 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 2.0
-        inflation_radius: 0.0 # 5cm + 12.5cm
+        inflation_radius: 0.13 # 5cm + 12.5cm
       keepout_filter:
         plugin: "nav2_costmap_2d::KeepoutFilter"
         topic_name: "/keepout_filter_mask"

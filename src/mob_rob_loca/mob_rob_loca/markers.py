@@ -14,10 +14,11 @@ pkg_share = FindPackageShare(package=package_name).find(package_name)
 config_file_path = os.path.join(pkg_share, params_path)
 
 class MarkerPublisher(Node):
+    """
+    This node publishes markers to visualize the ArUco markers in RViz.
+    """
     def __init__(self):
         super().__init__('marker_publisher')
-
-        # Load parameters from the YAML file
         with open(config_file_path, 'r') as file:
             self.config = yaml.safe_load(file)
 
@@ -55,10 +56,7 @@ class MarkerPublisher(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = MarkerPublisher()
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        pass
+    rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
 

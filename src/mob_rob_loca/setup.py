@@ -30,7 +30,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        'ticks2odom = mob_rob_loca.tick_to_odom:main',
+        'convert_sens_type = mob_rob_loca.convert_sens_type:main',
         'marv2ekf = mob_rob_loca.marv_to_ekf:main',
         'nav_manager = mob_rob_loca.nav_manager2:main',
         'vision_loca_pc = mob_rob_loca.vision_loca_pc:main',
