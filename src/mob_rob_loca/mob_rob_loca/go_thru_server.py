@@ -17,6 +17,8 @@ class NavService(Node):
         self.srv = self.create_service(GoToStation, 'go_to_station', self.callback)        # CHANGE
         self.navigator = BasicNavigator()
         self.navigator._waitForNodeToActivate('bt_navigator')
+        self.thru_poses = True
+
     def callback(self, request, response):
 
         self.get_logger().info('Incoming request\na: %s b: %s' % (request.station, request.robot_id)) # CHANGE
@@ -25,10 +27,12 @@ class NavService(Node):
         return response
 
     def move(self, station: str, robot_id: str):
-        
+
         goal_pose = self.set_pose(station)
-        
-        self.navigator.goToPose(goal_pose)
+        if self.thru_poses:
+            self.navigator.goThroughPoses(goal_pose)
+        else:
+            self.navigator.goToPose(goal_pose)
 
         i = 0
         while not self.navigator.isTaskComplete():
@@ -49,12 +53,13 @@ class NavService(Node):
         elif result == TaskResult.CANCELED:
             self.get_logger().error('Goal was canceled!')
         elif result == TaskResult.FAILED:
+            result = 3
             self.get_logger().error('Goal failed, returning home!')
         else:
             result = 1
             self.get_logger().error('Goal has an invalid return status!')
 
-        return result.value
+        return result 
         
     def set_pose(self, station):
         """
@@ -72,6 +77,17 @@ class NavService(Node):
         goal_pose.pose.orientation.y = 0.0
         goal_pose.pose.orientation.z = quaternion[2]
         goal_pose.pose.orientation.w = quaternion[3]
+
+        if self.thru_poses:
+            goal_poses = []
+            waypoint = PoseStamped()
+            waypoint.header.frame_id = 'map'
+            waypoint.pose.position.x = stations[station]['wp_x']
+            waypoint.pose.position.y = stations[station]['wp_y']
+            goal_poses.append(waypoint)
+            goal_poses.append(goal_pose)
+            return goal_poses
+        
         return goal_pose
 
 def main(args=None):

@@ -100,7 +100,7 @@ class OdomPublisher(Node):
 
         header = Header()
         header.stamp = self.get_clock().now().to_msg()
-        header.frame_id = 'imu'
+        header.frame_id = 'odom'
         imu_msg.header = header
         orientation_list = [data.orientation.x, data.orientation.y, data.orientation.z, data.orientation.w]
         (roll, pitch, yaw) = euler_from_quaternion(orientation_list)

@@ -20,7 +20,7 @@ class EMScheduler(BaseScheduler):
         self.init_my_extra_personalized_routes()
 
     def init_my_extra_personalized_routes(self) -> None:
-        my_personalized_router = APIRouter(prefix="/my-prefix", tags=["My Personalized tags"])
+        my_personalized_router = APIRouter(prefix="/FleetMan", tags=["My Personalized tags"])
 
         my_personalized_router.add_api_route("/navStatus", self._get_nav_status, methods=["GET"])
         self.api.include_router(my_personalized_router)
