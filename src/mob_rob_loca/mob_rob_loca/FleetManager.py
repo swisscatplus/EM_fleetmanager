@@ -2,7 +2,7 @@ import rclpy # Python Client Library for ROS 2
 from rclpy.node import Node # Handles the creation of nodes
 from nav_msgs.msg import Odometry
 from mob_rob_loca.submodules.Robot import Robot, RobotType, EM
-from mob_rob_loca_msgs.srv import GoTo, GetAvail
+from mob_rob_loca_msgs.srv import GoToStation, GetAvail
 
 pub_freq = 0.1
 class FleetManager(Node):
