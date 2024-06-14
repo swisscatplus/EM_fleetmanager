@@ -32,10 +32,10 @@ class FleetManager(Node):
         subscriber = self.create_subscription(
             Odometry,
             odom_topic,
-            lambda msg, ns=namespace: self.odom_callback(msg, ns),
+            lambda msg, ns=namespace: self.odom_sub_callback(msg, ns),
             10)
         self.subscribers.append(subscriber)
-    self.timer = self.create_timer(pub_freq, self.odom_sub_callback)
+    self.timer = self.create_timer(pub_freq, self.pose_callback)
 
     # Creation of services to be used by workflows
     # Where to create client is still to be decided, I thought of creating it in the same folder, just import it to workflow
