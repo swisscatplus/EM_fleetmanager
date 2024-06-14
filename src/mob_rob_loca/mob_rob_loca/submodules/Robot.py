@@ -22,7 +22,7 @@ class Robot:
     def update_pose(self, pose: PoseStamped) -> None:
         self.pose = pose
 
-    def check_availability(self, station_name: str) -> bool:
+    def is_available(self) -> bool:
         if self.battery_level < BATTERY_THRESHOLD:
             return False
         return not self.is_occupied and self.is_operational

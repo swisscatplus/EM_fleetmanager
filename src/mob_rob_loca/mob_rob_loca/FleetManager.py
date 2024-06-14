@@ -2,7 +2,7 @@ import rclpy # Python Client Library for ROS 2
 from rclpy.node import Node # Handles the creation of nodes
 from nav_msgs.msg import Odometry
 from mob_rob_loca.submodules.Robot import Robot, RobotType, EM
-from mob_rob_loca.srv import GoTo
+from mob_rob_loca.srv import GoTo, GetAvail
 
 pub_freq = 0.1
 class FleetManager(Node):
@@ -20,7 +20,7 @@ class FleetManager(Node):
     # Initializes the fleet
     self.robot_namespaces = ['robot_1', 'robot_2', 'robot_3'] # to be configured from yaml
 
-    self.robots = {EM(name_id=namespace, is_operational=True) for namespace in self.robot_namespaces}
+    self.robots = {namespace: EM(name_id=namespace, is_operational=True) for namespace in self.robot_namespaces}
     self.get_logger().info(f"Initialized robots: {self.robots}")
     self.verbose = True
     
@@ -35,15 +35,18 @@ class FleetManager(Node):
             lambda msg, ns=namespace: self.odom_callback(msg, ns),
             10)
         self.subscribers.append(subscriber)
-    self.timer = self.create_timer(pub_freq, self.pose_callback)
+    self.timer = self.create_timer(pub_freq, self.odom_sub_callback)
 
     # Creation of services to be used by workflows
     # Where to create client is still to be decided, I thought of creating it in the same folder, just import it to workflow
     # self.add_robot_srv = self.create_service(AddRobot, 'add_robot', self.add_robot_callback)
     # self.go_to_srv = self.create_client(GoTo, 'go_to', self.go_to_callback)
     # self.get_at_srv = self.create_service(GetAt, 'get_at', self.get_at_callback)
-    # self.get_available_srv = self.create_service(GetAvailable, 'get_available', self.get_available_callback)
+    self.get_available_srv = self.create_service(GetAvail, 'get_available', self.get_available_callback)
 
+  def odom_sub_callback(self, msg: Odometry, namespace: str) -> None:
+     self.robots.get(namespace, None).update_pose(msg.pose.pose.position)
+  
   def pose_callback(self, msg, namespace):
     if self.verbose:
         self.get_logger().info(f"Received odometry from {namespace}: {msg}")
@@ -52,7 +55,21 @@ class FleetManager(Node):
         if robot.name_id == namespace: #safety check
             robot.update_pose(msg.pose.pose)
             break
-                
+        
+  def get_available_callback(self, request, response):
+    self.get_logger().info("Received request for finding available robot")
+    for robot in self.robots:
+      # should check the distances as well
+      self.update_robot_poses()
+      if robot.is_available():
+        avail_robot = robot.name_id
+        break
+    response.available_robots = avail_robot
+    return response
+  
+  def update_robot_poses(self):
+    pass
+
   def go_to_callback(self, request, response):
     self.get_logger().info(f"Received request to go to {request.station}")
     # get correct robot
