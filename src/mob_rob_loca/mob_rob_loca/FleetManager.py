@@ -2,7 +2,7 @@ import rclpy # Python Client Library for ROS 2
 from rclpy.node import Node # Handles the creation of nodes
 from nav_msgs.msg import Odometry
 from mob_rob_loca.submodules.Robot import Robot, RobotType, EM
-from mob_rob_loca.srv import GoTo, GetAvail
+from mob_rob_loca_msgs.srv import GoTo, GetAvail
 
 pub_freq = 0.1
 class FleetManager(Node):
@@ -45,7 +45,7 @@ class FleetManager(Node):
     self.get_available_srv = self.create_service(GetAvail, 'get_available', self.get_available_callback)
 
   def odom_sub_callback(self, msg: Odometry, namespace: str) -> None:
-     self.robots.get(namespace, None).update_pose(msg.pose.pose.position)
+     self.robots.get(namespace, None).update_pose(msg)
   
   def pose_callback(self, msg, namespace):
     if self.verbose:
