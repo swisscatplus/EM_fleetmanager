@@ -4,11 +4,7 @@ from nav_msgs.msg import Odometry
 from mob_rob_loca.submodules.Robot import Robot, RobotType, EM
 from mob_rob_loca_msgs.srv import GoToStation, GetAvail
 
-pub_freq = 0.1
 class FleetManager(Node):
-  """
-  Create an ImagePublisher class, which is a subclass of the Node class.
-  """
   def __init__(self):
     """
     Class constructor to set up the node
@@ -35,7 +31,7 @@ class FleetManager(Node):
             lambda msg, ns=namespace: self.odom_sub_callback(msg, ns),
             10)
         self.subscribers.append(subscriber)
-    self.timer = self.create_timer(pub_freq, self.pose_callback)
+    # self.timer = self.create_timer(pub_freq, self.pose_callback)
 
     # Creation of services to be used by workflows
     # Where to create client is still to be decided, I thought of creating it in the same folder, just import it to workflow
@@ -48,13 +44,14 @@ class FleetManager(Node):
      self.robots.get(namespace, None).update_pose(msg)
   
   def pose_callback(self, msg, namespace):
-    if self.verbose:
-        self.get_logger().info(f"Received odometry from {namespace}: {msg}")
-    # don't know if useful yet, or if we only update prior some action ex service call
-    for robot in self.robots:
-        if robot.name_id == namespace: #safety check
-            robot.update_pose(msg.pose.pose)
-            break
+    pass
+    # if self.verbose:
+    #     self.get_logger().info(f"Received odometry from {namespace}: {msg}")
+    # # don't know if useful yet, or if we only update prior some action ex service call
+    # for robot in self.robots:
+    #     if robot.name_id == namespace: #safety check
+    #         robot.update_pose(msg.pose.pose)
+    #         break
         
   def get_available_callback(self, request, response):
     self.get_logger().info("Received request for finding available robot")
