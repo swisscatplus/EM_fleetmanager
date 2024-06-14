@@ -2,7 +2,9 @@ import rclpy # Python Client Library for ROS 2
 from rclpy.node import Node # Handles the creation of nodes
 from nav_msgs.msg import Odometry
 from mob_rob_loca.submodules.Robot import Robot, RobotType, EM
-from mob_rob_loca_msgs.srv import GoToStation, GetAvail
+from mob_rob_loca_msgs.srv import GoToStation, GetAvail, GetAt
+
+import time
 
 class FleetManager(Node):
   def __init__(self):
@@ -37,10 +39,14 @@ class FleetManager(Node):
     # Where to create client is still to be decided, I thought of creating it in the same folder, just import it to workflow
     # self.add_robot_srv = self.create_service(AddRobot, 'add_robot', self.add_robot_callback)
     # self.go_to_srv = self.create_client(GoTo, 'go_to', self.go_to_callback)
-    # self.get_at_srv = self.create_service(GetAt, 'get_at', self.get_at_callback)
+    self.get_at_srv = self.create_service(GetAt, 'get_at', self.get_at_callback)
     self.get_available_srv = self.create_service(GetAvail, 'get_available', self.get_available_callback)
 
   def odom_sub_callback(self, msg: Odometry, namespace: str) -> None:
+     """
+      Callback function for the odometry subscriber
+      Updates the pose of the robot object
+    """
      self.robots.get(namespace, None).update_pose(msg)
   
   def pose_callback(self, msg, namespace):
@@ -53,15 +59,30 @@ class FleetManager(Node):
     #         robot.update_pose(msg.pose.pose)
     #         break
         
+  def get_at_callback(self, request, response):
+    self.get_logger().info(f"Received request for finding robot at {request.station_id}")
+    for robot in self.robots:
+      if robot.act_station == request.station_idn:
+        if robot.is_occupied:
+          self.get_logger().info(f"Robot {robot.name_id} is at {request.station_id} but is occupied")
+          response.robot_id = None
+          return response
+        elif not robot.is_available():
+          self.get_logger().info(f"Robot {robot.name_id} is at {request.station_id} but is not available")
+          response.robot_id = None
+          return response
+        response.robot_id = robot.name_id
+        return response
+      
   def get_available_callback(self, request, response):
     self.get_logger().info("Received request for finding available robot")
+    # avail_robots = []
     for robot in self.robots:
-      # should check the distances as well
-      self.update_robot_poses()
+      # should check the distance from the station, would need to modify sched Node arguments
+      # atm just returns first robot found free
       if robot.is_available():
-        avail_robot = robot.name_id
-        break
-    response.available_robots = avail_robot
+        response.robot_id = robot.name_id
+        break 
     return response
   
   def update_robot_poses(self):
