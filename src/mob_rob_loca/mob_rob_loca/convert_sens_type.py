@@ -13,7 +13,7 @@ import math
 # Constants & Global Variables
 initialX = 0.0
 initialY = 0.0
-initialTheta = 0.00000000001
+initialTheta = 1e-9
 PI = 3.141592
 TICKS_PER_REVOLUTION = 1795.92 / 2
 TICKS_PER_REV_INVERSE = 0.00111364
@@ -185,8 +185,8 @@ class OdomPublisher(Node):
         global distanceLeft, distanceRight, cmpt
         cycleDistance = (distanceRight + distanceLeft) / 2
         arg_sin = (distanceRight - distanceLeft) * WHEEL_BASE_INVERSE
-        if cycleDistance > 0.04:
-            cycleDistance = 0.04
+        # if cycleDistance > 0.04:
+            # cycleDistance = 0.04
         # if arg_sin > 1:
         #     arg_sin = -0.98
         # elif arg_sin < -1:
