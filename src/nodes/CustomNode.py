@@ -1,4 +1,4 @@
-from task_scheduler.nodes.base import BaseNode
+from glas.nodes.base import BaseNode
 import subprocess
 
 class CustomNode(BaseNode):

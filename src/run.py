@@ -2,8 +2,8 @@ from dotenv import load_dotenv
 
 from orchestrator.core import EMOrchestrator
 from scheduler.core import EMScheduler
-from task_scheduler.logger import LoggingManager
-from task_scheduler.parser import parse_args
+from glas.logger import LoggingManager
+from glas.parser import parse_args
 
 def main():
     args = parse_args()
