@@ -1,9 +1,9 @@
 {
-  "name": "Station-To-Station",
+  "workflow_name": "Station-To-Station",
   "args": {"station_start": "NMR", "station_end": "OMNI"}
 }
 
 {
-  "name": "Fill-Station",
+  "workflow_name": "Fill-Station",
   "args": {"station_end": "NMR"}
 }

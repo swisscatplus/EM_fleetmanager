@@ -1,3 +1,3 @@
-[submodule "src/task_scheduler"]
-	path = src/task_scheduler
-	url = git@github.com:swisscatplus/task-scheduler.git
+[submodule "src/glas"]
+	path = src/glas
+	url = https://github.com/swisscatplus/glas.git

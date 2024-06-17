@@ -6,6 +6,7 @@ from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Quaternion
 from sensor_msgs.msg import Imu
 from tf_transformations import quaternion_from_euler, euler_from_quaternion
+import numpy as np
 
 import tf2_ros
 import math
@@ -83,7 +84,7 @@ class OdomPublisher(Node):
         self.tf_buffer = tf2_ros.Buffer()
 
         current_logger_level = self.get_logger().get_effective_level()
-        self.get_logger().info(f"Logger level is set to: {current_logger_level}")
+        self.get_logger().debug(f"Logger level is set to: {current_logger_level}")
 
         # Publishers and Subscribers
         self.subForRightCounts = self.create_subscription(Int16, 'right_ticks_counts', self.calc_right, 10)
@@ -131,11 +132,14 @@ class OdomPublisher(Node):
 
     def calc_left(self, msg):
         global distanceLeft, lastCountL
-        if msg.data != 0 and lastCountL != 0:
+
+        if np.sign(msg.data) != np.sign(lastCountL):
+            pass
+        elif msg.data != 0 and lastCountL != 0:
             leftTicks = msg.data - lastCountL
             self.get_logger().debug(f"LEFT TICKS: {leftTicks}, LAST_COUNT: {lastCountL}, MSG_DATA: {msg.data}")
             if leftTicks > 10000:
-                self.get_logger().info(f"LEFT TICKS: {leftTicks}, LAST_COUNT: {lastCountL}, MSG_DATA: {msg.data}")
+                self.get_logger().debug(f"LEFT TICKS: {leftTicks}, LAST_COUNT: {lastCountL}, MSG_DATA: {msg.data}")
                 leftTicks = 0 - (65535 - leftTicks)
             elif leftTicks < -10000:
                 leftTicks = 65535 - leftTicks
@@ -144,11 +148,14 @@ class OdomPublisher(Node):
 
     def calc_right(self, msg):
         global distanceRight, lastCountR
-        if msg.data != 0 and lastCountR != 0:
+        if np.sign(msg.data) != np.sign(lastCountR):
+            self.get_logger().warn(f"SIGN CHANGE: {msg.data}, {lastCountR}")
+            pass
+        elif msg.data != 0 and lastCountR != 0:
             rightTicks = msg.data - lastCountR
             self.get_logger().debug(f"RIGHT TICKS: {rightTicks}, LAST_COUNT: {lastCountR}, MSG_DATA: {msg.data}")
             if rightTicks > 10000:
-                self.get_logger().info(f"RIGHT TICKS: {rightTicks}, LAST_COUNT: {lastCountR}, MSG_DATA: {msg.data}")
+                self.get_logger().debug(f"RIGHT TICKS: {rightTicks}, LAST_COUNT: {lastCountR}, MSG_DATA: {msg.data}")
                 rightTicks = 0 - (65535 - rightTicks)
             elif rightTicks < -10000:
                 rightTicks = 65535 - rightTicks
@@ -187,13 +194,7 @@ class OdomPublisher(Node):
         global distanceLeft, distanceRight, cmpt
         cycleDistance = (distanceRight + distanceLeft) / 2
         arg_sin = (distanceRight - distanceLeft) * WHEEL_BASE_INVERSE
-        self.get_looger().debug(f"CYCLE_DISTANCE: {cycleDistance}, ARG_SIN: {arg_sin}")
-        # if cycleDistance > 0.04:
-            # cycleDistance = 0.04
-        # if arg_sin > 1:
-        #     arg_sin = -0.98
-        # elif arg_sin < -1:
-        #     arg_sin = 0.98
+        self.get_logger().debug(f"CYCLE_DISTANCE: {cycleDistance}, ARG_SIN: {arg_sin}")
         try:
             cycleAngle = math.asin(arg_sin)
             cmpt +=1
