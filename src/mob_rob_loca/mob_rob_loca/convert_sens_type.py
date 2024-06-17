@@ -94,41 +94,38 @@ class OdomPublisher(Node):
         timer_frequency = 10.0  
         self.timer = self.create_timer(1.0 / timer_frequency, self.publish_data)
 
-    def imu_callback(self, data):
-        # the yaw angle adjusts the orientation to match the map frame, because the y-axis of the map is not aligned with the magnetic North
-        # bad method, works but should think of a better way to do this
-        imu_msg = Imu()
+    # def imu_callback(self, data):
+    #     # the yaw angle adjusts the orientation to match the map frame, because the y-axis of the map is not aligned with the magnetic North
+    #     # bad method, works but should think of a better way to do this
+    #     imu_msg = Imu()
 
-        header = Header()
-        header.stamp = self.get_clock().now().to_msg()
-        header.frame_id = 'odom'
-        imu_msg.header = header
-        orientation_list = [data.orientation.x, data.orientation.y, data.orientation.z, data.orientation.w]
-        (roll, pitch, yaw) = euler_from_quaternion(orientation_list)
-        q = quaternion_from_euler(roll, pitch, yaw)
+    #     header = Header()
+    #     header.stamp = self.get_clock().now().to_msg()
+    #     header.frame_id = 'odom'
+    #     imu_msg.header = header
         
-        imu_msg.orientation.x = q[0]
-        imu_msg.orientation.y = q[1]
-        imu_msg.orientation.z = q[2]
-        imu_msg.orientation.w = q[3]
-        imu_msg.orientation_covariance = [0.001, 0.0, 0.0,
-                                            0.0, 0.001, 0.0, 
-                                            0.0, 0.0, 0.001]
+    #     imu_msg.orientation.x = data.orientation.x
+    #     imu_msg.orientation.y = data.orientation.y
+    #     imu_msg.orientation.z = data.orientation.z
+    #     imu_msg.orientation.w = data.orientation.w
+    #     imu_msg.orientation_covariance = [0.001, 0.0, 0.0,
+    #                                         0.0, 0.001, 0.0, 
+    #                                         0.0, 0.0, 0.001]
 
-        imu_msg.angular_velocity.x = self.ang_vel_x
-        imu_msg.angular_velocity.y = self.ang_vel_y
-        imu_msg.angular_velocity.z = 0.0
-        imu_msg.angular_velocity_covariance = [1.0, 0.0, 0.0,
-                                                0.0, 1.0, 0.0, 
-                                                0.0, 0.0, 0.01]
+    #     imu_msg.angular_velocity.x = data.angular_velocity.x
+    #     imu_msg.angular_velocity.y = 
+    #     imu_msg.angular_velocity.z = 0.0
+    #     imu_msg.angular_velocity_covariance = [1.0, 0.0, 0.0,
+    #                                             0.0, 1.0, 0.0, 
+    #                                             0.0, 0.0, 0.01]
 
-        imu_msg.linear_acceleration_covariance = [0.1, 0.0, 0.0,
-                                                    0.0, 0.1, 0.0, 
-                                                    0.0, 0.0, 0.1]
+    #     imu_msg.linear_acceleration_covariance = [0.1, 0.0, 0.0,
+    #                                                 0.0, 0.1, 0.0, 
+    #                                                 0.0, 0.0, 0.1]
         
-        self.get_logger().debug('Resulting yaw angle [rad]: {0}'.format(yaw))
+    #     self.get_logger().debug('Resulting yaw angle [rad]: {0}'.format(yaw))
 
-        self.imu_pub.publish(imu_msg)
+    #     self.imu_pub.publish(imu_msg)
 
     def calc_left(self, msg):
         global distanceLeft, lastCountL

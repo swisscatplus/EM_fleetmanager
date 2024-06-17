@@ -16,10 +16,7 @@ ekf_filter_node_odom:
 
         
         odom0: wheel/odom # Robot odometry, computed with encoder ticks
-        imu0: edi/imu
-        # imu0: bno055/imu # Marvelmind IMU
-
-        
+        imu0: bno055/imu
 
         # [x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az]
         odom0_config: [true, true, false,

@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from orchestrator.core import EMOrchestrator
-from task_scheduler.base import BaseScheduler
+from glas.base import BaseScheduler
 from fastapi import Response, status
 
 
