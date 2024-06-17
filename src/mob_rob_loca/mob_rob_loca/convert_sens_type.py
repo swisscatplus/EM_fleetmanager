@@ -133,6 +133,7 @@ class OdomPublisher(Node):
         global distanceLeft, lastCountL
         if msg.data != 0 and lastCountL != 0:
             leftTicks = msg.data - lastCountL
+            self.get_logger().debug(f"LEFT TICKS: {leftTicks}, LAST_COUNT: {lastCountL}, MSG_DATA: {msg.data}")
             if leftTicks > 10000:
                 self.get_logger().info(f"LEFT TICKS: {leftTicks}, LAST_COUNT: {lastCountL}, MSG_DATA: {msg.data}")
                 leftTicks = 0 - (65535 - leftTicks)
@@ -145,6 +146,7 @@ class OdomPublisher(Node):
         global distanceRight, lastCountR
         if msg.data != 0 and lastCountR != 0:
             rightTicks = msg.data - lastCountR
+            self.get_logger().debug(f"RIGHT TICKS: {rightTicks}, LAST_COUNT: {lastCountR}, MSG_DATA: {msg.data}")
             if rightTicks > 10000:
                 self.get_logger().info(f"RIGHT TICKS: {rightTicks}, LAST_COUNT: {lastCountR}, MSG_DATA: {msg.data}")
                 rightTicks = 0 - (65535 - rightTicks)
@@ -185,6 +187,7 @@ class OdomPublisher(Node):
         global distanceLeft, distanceRight, cmpt
         cycleDistance = (distanceRight + distanceLeft) / 2
         arg_sin = (distanceRight - distanceLeft) * WHEEL_BASE_INVERSE
+        self.get_looger().debug(f"CYCLE_DISTANCE: {cycleDistance}, ARG_SIN: {arg_sin}")
         # if cycleDistance > 0.04:
             # cycleDistance = 0.04
         # if arg_sin > 1:
