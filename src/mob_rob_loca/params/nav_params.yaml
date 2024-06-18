@@ -8,8 +8,8 @@ bt_navigator:
     enable_groot_monitoring: False
     groot_zmq_publisher_port: 1666
     groot_zmq_server_port: 1667
-    default_nav_to_pose_bt_xml: "/home/coderey/ros2_ws/src/mob_rob_loca/config/nav2pose.xml"
-    default_nav_through_poses_bt_xml: "/home/coderey/ros2_ws/src/mob_rob_loca/config/navthroughposes.xml"
+    default_nav_to_pose_bt_xml: "/home/coderey/EM_navigation/src/mob_rob_loca/config/nav2pose.xml"
+    default_nav_through_poses_bt_xml: "/home/coderey/EM_navigation/src/mob_rob_loca/config/navthroughposes.xml"
     plugin_lib_names:
         - nav2_compute_path_to_pose_action_bt_node
         - nav2_compute_path_through_poses_action_bt_node
@@ -130,9 +130,6 @@ local_costmap:
       use_sim_time: False
       rolling_window: True
       width: 3
-      # When using GPS navigation you will potentially traverse huge environments which are not practical to
-      # fit on a big static costmap. Thus it is recommended to use a rolling global costmap large enough to 
-      # contain each pair of successive waypoints. See: https://github.com/ros-
       height: 3
       resolution: 0.005
       robot_radius: 0.125
@@ -171,7 +168,7 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 2.0
-        inflation_radius: 0.1 # 5cm + 12.5cm
+        inflation_radius: 0.15 # 5cm + 12.5cm
       keepout_filter:
         plugin: "nav2_costmap_2d::KeepoutFilter"
         topic_name: "/keepout_filter_mask"

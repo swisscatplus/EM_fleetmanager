@@ -1,6 +1,6 @@
 {
   "workflow_name": "Station-To-Station",
-  "args": {"station_start": "NMR", "station_end": "OMNI"}
+  "args": {"station_start": "ur5-sfc", "station_end": "ur5-omni"}
 }
 
 {

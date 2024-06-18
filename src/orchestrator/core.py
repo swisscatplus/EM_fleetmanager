@@ -8,7 +8,10 @@ from glas.nodes.base import BaseNode
 from glas.orchestrator.base import BaseOrchestrator
 from glas.orchestrator.enums import OrchestratorErrorCodes
 from glas.workflow.core import Workflow
-from glas.database import DatabaseConnector, DBWorkflow, DBStep, DBNode
+from glas.database import DatabaseConnector, DBWorkflow, DBStep, DBNode, DBTask, DBWorkflowUsageRecord
+import threading
+
+from src.task.task_no_pause import TaskNoPause
 
 
 class EMOrchestrator(BaseOrchestrator):
@@ -88,3 +91,19 @@ class EMOrchestrator(BaseOrchestrator):
             if node.id == _id:
                 return node
         return None
+    
+    def add_task(self, workflow: Workflow, args: Optional[dict[str, any]] = None) -> TaskNoPause:
+        database = DatabaseConnector()
+
+        task = TaskNoPause(workflow, args)
+
+        DBTask.insert(database, str(task.uuid), task.workflow.id, args)
+        DBWorkflowUsageRecord.insert(database, workflow.id)
+
+        task_thread = threading.Thread(
+            name=f"task:{task.workflow.name}", target=task.run, args=(self._remove_finished_task,)
+        )
+        task_thread.start()
+        self._running_tasks.append((task_thread, task))
+
+        return task

@@ -6,33 +6,34 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
+pkg_name = 'mob_rob_loca'
+
 def generate_launch_description():
-   rob_loca_dir = get_package_share_directory('mob_rob_loca')
+   rob_loca_dir = get_package_share_directory(pkg_name)
    map_path = os.path.join(rob_loca_dir, 'maps', 'circuit.yaml')
    nav2_params_path = os.path.join(rob_loca_dir, 'params/nav_params.yaml')
 
    
    sensor_conv_launch = IncludeLaunchDescription(
       PythonLaunchDescriptionSource([os.path.join(
-         get_package_share_directory('mob_rob_loca'), 'launch'),
+         get_package_share_directory(pkg_name), 'launch'),
          '/sensor.launch.py'])
       )
    rviz_launch = IncludeLaunchDescription(
       PythonLaunchDescriptionSource([os.path.join(
-         get_package_share_directory('mob_rob_loca'), 'launch'),
+         get_package_share_directory(pkg_name), 'launch'),
          '/rviz.launch.py'])
       )
    ekf_launch = IncludeLaunchDescription(
       PythonLaunchDescriptionSource([os.path.join(
-         get_package_share_directory('mob_rob_loca'), 'launch'),
+         get_package_share_directory(pkg_name), 'launch'),
          '/ekf.launch.py'])
       )
    maps_launch = IncludeLaunchDescription(
       PythonLaunchDescriptionSource([os.path.join(
-         get_package_share_directory('mob_rob_loca'), 'launch'),
+         get_package_share_directory(pkg_name), 'launch'),
          '/maps.launch.py'])
       )
-   
    nav_launch = IncludeLaunchDescription(
       PythonLaunchDescriptionSource([os.path.join(
          get_package_share_directory('nav2_bringup'), 'launch'),
@@ -44,11 +45,17 @@ def generate_launch_description():
                         'autostart': 'true',
                         }.items()
       )
+   fleet_launch = IncludeLaunchDescription(
+      PythonLaunchDescriptionSource([os.path.join(
+         get_package_share_directory(pkg_name), 'launch'),
+         '/fleet.launch.py'])
+      )
    
    return LaunchDescription([
       sensor_conv_launch,
       ekf_launch,
       rviz_launch,
       maps_launch,
-      nav_launch
+      nav_launch,
+      fleet_launch
    ])

@@ -1,23 +1,23 @@
-NMR:
+ur5-sfc: #RMN station
   pos_x: 4.41
   pos_y: 7.56
   yaw: 1.5708
   wp_x: 4.41
   wp_y: 4.69
 
-OMNI:
+ur5-omni: 
   pos_x: 4.18
   pos_y: 4.6
   yaw: 0.0
   wp_x: 4.41
   wp_y: 4.69
 
-TEST:
+test:
   pos_x: 0.3
   pos_y: 0.0
   yaw: 0.751
 
-TEST1:
+test1:
   pos_x: 3.52
   pos_y: 5.96
   yaw: 0.751
