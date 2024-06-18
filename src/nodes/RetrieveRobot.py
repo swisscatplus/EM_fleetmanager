@@ -13,7 +13,7 @@ class GetAvailable(CustomNode):
         int, str | None, str | None]:
         
         args["robot_id"] = self.get_avail()
-        self.logger.debug(f"Appending {args["robot_id"]}")
+        self.logger.debug(f"Appending {args['robot_id']}")
         return 0, None, None
     
     def get_avail(self) -> str:
@@ -36,7 +36,7 @@ class GetAtStation(CustomNode):
 
         self.logger.info("executing GetAtStation...")
         args["robot_id"] = self.get_id_at(station=args["station_start"])
-        self.logger.debug(f"Appending {args["robot_id"]}")
+        self.logger.debug(f"Appending {args['robot_id']}")
         return 0, None, None
     
     def get_id_at(self, station: str) -> str:

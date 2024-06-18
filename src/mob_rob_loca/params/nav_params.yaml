@@ -128,12 +128,16 @@ local_costmap:
       global_frame: odom
       robot_base_frame: base_link
       use_sim_time: False
-      rolling_window: True
+      rolling_window:  True # not working if set to False
       width: 3
       height: 3
       resolution: 0.005
       robot_radius: 0.125
-      filters: ["keepout_filter"]
+      filters: ["keepout_filter", "inflation_layer"]
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        cost_scaling_factor: 2.0
+        inflation_radius: 0.15 # 5cm + 12.5cm
       keepout_filter:
         plugin: "nav2_costmap_2d::KeepoutFilter"
         topic_name: "/keepout_filter_mask"
@@ -159,7 +163,7 @@ global_costmap:
       use_sim_time: False
       robot_radius: 0.125 # established radius
       resolution: 0.005
-      rolling_window: True
+      rolling_window: True # not working if set to False
       width: 50
       height: 50
       track_unknown_space: false

@@ -7,7 +7,7 @@ ekf_filter_node_odom:
         permit_corrected_publication: false
 
         publish_acceleration: false
-        publish_tf: false
+        publish_tf: true
 
         map_frame: map              # Defaults to "map" if unspecified
         odom_frame: odom            # Defaults to "odom" if unspecified
@@ -19,6 +19,7 @@ ekf_filter_node_odom:
         imu0: edi/imu
 
         # [x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az]
+        initial_state: [4.366, 4.57, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         odom0_config: [true, true, false,
                        false, false, true,
                        true, true, false,
@@ -90,7 +91,7 @@ ekf_filter_node_map:
         permit_corrected_publication: false
 
         publish_acceleration: false
-        publish_tf: false
+        publish_tf: true
 
         map_frame: map              # Defaults to "map" if unspecified
         odom_frame: odom            # Defaults to "odom" if unspecified
@@ -102,7 +103,7 @@ ekf_filter_node_map:
         odom0: odometry/filt # Robot odometry, computed with encoder ticks
 
         # if we want to set an initial pose and orientation, uncomment next line and define the initial pose
-        initial_state: [4.366, 7.57, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        initial_state: [4.366, 4.57, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         # [x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az]
 
         pose0_config: [true,  true,  false,

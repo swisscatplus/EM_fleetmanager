@@ -144,7 +144,7 @@ class OdomPublisher(Node):
     def calc_right(self, msg):
         global distanceRight, lastCountR
         if np.sign(msg.data) != np.sign(lastCountR):
-            self.get_logger().warn(f"SIGN CHANGE: {msg.data}, {lastCountR}")
+            self.get_logger().debug(f"SIGN CHANGE: {msg.data}, {lastCountR}")
             pass
         elif msg.data != 0 and lastCountR != 0:
             rightTicks = msg.data - lastCountR
