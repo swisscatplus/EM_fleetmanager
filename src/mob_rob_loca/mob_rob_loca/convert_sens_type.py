@@ -57,7 +57,7 @@ class OdomPublisher(Node):
                                         0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
                                         0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
                                         0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
-                                        0.0, 0.0, 0.0, 0.0, 0.0, 0.05]
+                                        0.0, 0.0, 0.0, 0.0, 0.0, 0.01]
         self.odomNew.twist.covariance = [0.08, 0.0, 0.0, 0.0, 0.0, 0.0,
                                         0.0, 0.08, 0.0, 0.0, 0.0, 0.0,
                                         0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
@@ -101,13 +101,14 @@ class OdomPublisher(Node):
         header.stamp = self.get_clock().now().to_msg()
         header.frame_id = 'base_link'
         imu_msg.header = header
-        
-        # imu_msg.orientation.x = data.orientation.x
-        # imu_msg.orientation.y = data.orientation.y
-        # imu_msg.orientation.z = data.orientation.z
-        # imu_msg.orientation.w = data.orientation.w
-        imu_msg.orientation_covariance = [0.1, 0.0, 0.0,
-                                            0.0, 0.1, 0.0, 
+        orientation = euler_from_quaternion([data.orientation.x, data.orientation.y, data.orientation.z, data.orientation.w])
+        self.get_logger().debug(f"IMU ORIENTATION: {orientation[2]}")
+        imu_msg.orientation.x = data.orientation.x
+        imu_msg.orientation.y = data.orientation.y
+        imu_msg.orientation.z = data.orientation.z
+        imu_msg.orientation.w = data.orientation.w
+        imu_msg.orientation_covariance = [0.001, 0.0, 0.0,
+                                            0.0, 0.001, 0.0, 
                                             0.0, 0.0, 0.001]
 
         # imu_msg.angular_velocity.x = data.angular_velocity.x
