@@ -17,8 +17,8 @@ class NavService(Node):
         self.srv = self.create_service(GoToStation, 'go_to_station', self.callback)        # CHANGE
         self.navigator = BasicNavigator()
         self.navigator._waitForNodeToActivate('bt_navigator')
+        
     def callback(self, request, response):
-
         self.get_logger().info('Incoming request\na: %s b: %s' % (request.station, request.robot_id)) # CHANGE
         response.result_id = self.move( station=request.station, robot_id=request.robot_id)
         self.get_logger().info(f'Sending back response: {response}')
@@ -26,8 +26,10 @@ class NavService(Node):
 
     def move(self, station: str, robot_id: str):
         
+        if station not in stations:
+            self.get_logger().error('Goal has an invalid station request!')
+            return 1
         goal_pose = self.set_pose(station)
-        
         self.navigator.goToPose(goal_pose)
 
         i = 0
@@ -48,13 +50,15 @@ class NavService(Node):
             self.get_logger().info('Goal succeeded!')
         elif result == TaskResult.CANCELED:
             self.get_logger().error('Goal was canceled!')
+            return result.value
         elif result == TaskResult.FAILED:
             self.get_logger().error('Goal failed, returning home!')
+            return result.value
         else:
             result = 1
             self.get_logger().error('Goal has an invalid return status!')
 
-        return result.value
+        return result
         
     def set_pose(self, station):
         """

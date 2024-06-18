@@ -1,6 +1,7 @@
 from glas.nodes.base import BaseNode
 import subprocess
 import time
+import re
 
 class MoveToStation(BaseNode):
     """
@@ -23,18 +24,10 @@ class MoveToStation(BaseNode):
         robot_id = args["robot_id"]
         station = args['station_end']
         result = self.move_to(robot_id, station) #self.move_to(args)
-        # result = 0
-        # time.sleep(1)
+        
         self.logger.info(f"Task id: {task_id}")
         self.logger.info(f"Robot {robot_id} moved to {station} with result {result}")
-        return 0, None, None
-    
-    # def write_cmd(self, cmd):
-    #     self.process.stdin.write(f"{cmd}\n")
-    #     self.process.stdin.flush()
-    
-    # def shutdown(self):
-        # self.process.terminate()
+        return result, None, None
     
     def move_to(self, robot_id, station) -> int:
         """
@@ -51,6 +44,19 @@ class MoveToStation(BaseNode):
         full_command = f"bash -c '{source} && {source2} && {cmd}'"
         
         result = subprocess.run(full_command, shell=True, capture_output=True, text=True)
+        self.logger.debug(f"Result: {result}, and code: {result.returncode}")
 
-        return result.returncode
+        out = result.stdout.split("\n")
+
+        resp_idx = out.index("response:")
+        
+
+        pattern = re.compile(r"result_id=(\d)")
+        err_code = pattern.search(out[resp_idx+1])
+
+        print(err_code.group(1))
+        if err_code:
+            return int(err_code.group(1))
+
+        return 0
 

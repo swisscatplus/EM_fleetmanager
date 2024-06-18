@@ -9,7 +9,7 @@ ENV MYSQL_PASSWORD=Super2019
 ENV TZ=Europe/Zurich
 
 # Copy the SQL file containing your specific database model to the container
-COPY src/task_scheduler/database/sql/schema.sql /docker-entrypoint-initdb.d/
+COPY src/glas/database/sql/schema.sql /docker-entrypoint-initdb.d/
 
 # Expose the MariaDB default port
 EXPOSE 3306
