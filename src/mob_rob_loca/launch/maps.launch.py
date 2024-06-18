@@ -8,23 +8,11 @@ from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 from nav2_common.launch import RewrittenYaml
 
-from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch_ros.substitutions import FindPackageShare
-
 
 def generate_launch_description():
     # Get the launch directory
-    package_name = 'mob_rob_loca'
-    pkg_dir = get_package_share_directory(package_name)
+    pkg_dir = get_package_share_directory('mob_rob_loca')
     map_path = os.path.join(pkg_dir, 'maps', 'circuit.yaml')
-    nav2_params_path = os.path.join(pkg_dir, 'params/nav_params.yaml')
-    urdf_path = os.path.join(pkg_dir, 'urdf/edison.urdf')
-    rvizconfig = LaunchConfiguration('rvizconfig', default=os.path.join(pkg_dir, 'rviz', 'loca.rviz'))
-    ekf_params_path = 'params/ekf_em.yaml'
-    pkg_share = FindPackageShare(package=package_name).find(package_name)
-    robot_localization_file_path = os.path.join(pkg_share, ekf_params_path)
     # Create our own temporary YAML files that include substitutions
     lifecycle_nodes = ['map_server','filter_mask_server', 'costmap_filter_info_server']
 
@@ -71,57 +59,6 @@ def generate_launch_description():
         param_rewrites=param_substitutions,
         convert_types=True)
 
-    convert_sens_type = Node(
-        package=package_name,
-        executable='convert_sens_type',
-        output='screen',
-    )
-
-    ekf_odom = Node(
-            package='robot_localization',
-            executable='ekf_node',
-            name='ekf_filter_node_odom',
-            output='screen',
-            parameters=[robot_localization_file_path],
-            remappings=[('/odometry/filtered', 'odometry/filt')],
-        )
-    ekf_map = Node(
-            package='robot_localization',
-            executable='ekf_node',
-            name='ekf_filter_node_map',
-            output='screen',
-            parameters=[robot_localization_file_path],
-            remappings=[('/odometry/filtered', 'odometry/global')],
-    )
-    rviz_node = Node(
-           executable='rviz2',
-        arguments=['-d', rvizconfig],
-        output='screen',
-        remappings=[('/odom', '/odometry/global')],
-    )                 
-
-    robot_state_publisher_node = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        name='robot_state_publisher',
-        output='both',
-        parameters=[{'robot_description': open(urdf_path, 'r').read()}],
-        remappings = [('/tf', 'tf'), ('tf_static', 'tf_static')],
-    )
-
-    joint_state_publisher_node = Node(
-        package='joint_state_publisher',
-        executable='joint_state_publisher',
-        arguments=[urdf_path],
-        remappings = [('/tf', 'tf'), ('tf_static', 'tf_static')],
-    )
-
-    markers_node = Node(
-        package=package_name,
-        executable='markers',
-        name='markers',
-    )
-
     # Nodes launching commands
     start_lifecycle_manager_cmd = Node(
             package='nav2_lifecycle_manager',
@@ -161,28 +98,7 @@ def generate_launch_description():
                      'frame_id': 'map'}],
     )
 
-    nav_launch = IncludeLaunchDescription(
-      PythonLaunchDescriptionSource([os.path.join(
-         get_package_share_directory('nav2_bringup'), 'launch'),
-         '/navigation_launch.py']),
-         launch_arguments= {
-                        'map': map_path,
-                        'use_sim_time': 'false',
-                        'params_file': nav2_params_path,
-                        'autostart': 'true',
-                        }.items()
-      )
     ld = LaunchDescription()
-
-    ld.add_action(convert_sens_type)
-    
-    ld.add_action(ekf_odom)
-    ld.add_action(ekf_map)
-
-    ld.add_action(rviz_node)
-    ld.add_action(robot_state_publisher_node)
-    ld.add_action(joint_state_publisher_node)
-    ld.add_action(markers_node)
 
     ld.add_action(declare_namespace_cmd)
     ld.add_action(declare_use_sim_time_cmd)
@@ -194,6 +110,5 @@ def generate_launch_description():
     ld.add_action(map_node)
     ld.add_action(start_map_server_cmd)
     ld.add_action(start_costmap_filter_info_server_cmd)
-    ld.add_action(nav_launch)
 
     return ld

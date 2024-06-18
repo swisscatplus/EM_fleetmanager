@@ -56,6 +56,6 @@ def generate_launch_description():
       ekf_launch,
       rviz_launch,
       maps_launch,
-      # nav_launch,
+      nav_launch,
       fleet_launch
    ])
