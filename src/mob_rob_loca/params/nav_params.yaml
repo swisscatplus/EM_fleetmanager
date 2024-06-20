@@ -67,7 +67,7 @@ controller_server:
     goal_checker:
       plugin: "nav2_controller::SimpleGoalChecker"
       xy_goal_tolerance: 0.025
-      yaw_goal_tolerance: 0.2
+      yaw_goal_tolerance: 0.15
       stateful: True
     FollowPath:
       plugin: "nav2_rotation_shim_controller::RotationShimController" # controller prioritizing good orientation of the robot before advancing, i.e. robot will turn at the beginning, orienting itself towards the path
@@ -133,11 +133,11 @@ local_costmap:
       height: 3
       resolution: 0.005
       robot_radius: 0.125
-      filters: ["keepout_filter", "inflation_layer"]
+      filters: ["keepout_filter", "inflation_layer"] # need inflation layer with the filters list, otherwise doesn't work
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 2.0
-        inflation_radius: 0.15 # 5cm + 12.5cm
+        inflation_radius: 0.13 # 5cm + 12.5cm
       keepout_filter:
         plugin: "nav2_costmap_2d::KeepoutFilter"
         topic_name: "/keepout_filter_mask"
@@ -168,7 +168,7 @@ global_costmap:
       height: 50
       track_unknown_space: false
       plugins: ["inflation_layer"]
-      filters: ["keepout_filter", "inflation_layer"]
+      filters: ["keepout_filter", "inflation_layer"] # need inflation layer with the filters list, otherwise doesn't work
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 2.0
@@ -188,11 +188,11 @@ global_costmap_rclcpp_node:
   ros__parameters:
     use_sim_time: False
 
-map_server:
-  ros__parameters:
-    use_sim_time: False
-    yaml_filename: "/home/coderey/ros2_ws/src/mob_rob_loca/maps/circuit.yaml" # path hard defined, may be better to generalize this
-    frame_id: "map"
+# map_server:
+#   ros__parameters:
+#     use_sim_time: False
+#     yaml_filename: "/home/coderey/EM_navigation/src/mob_rob_loca/maps/circuit.yaml" # path hard defined, may be better to generalize this
+#     frame_id: "map"
 
 map_saver:
   ros__parameters:
@@ -207,7 +207,7 @@ planner_server:
     use_sim_time: False
     planner_plugins: ["GridBased"]
     GridBased:
-      plugin: 'nav2_navfn_planner/NavfnPlanner' # A* behaviour
+      plugin: 'nav2_navfn_planner/NavfnPlanner'
       tolerance: 0.05
       use_astar: true
       allow_unknown: false

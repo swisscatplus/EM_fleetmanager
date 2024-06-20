@@ -1,6 +1,6 @@
 ekf_filter_node_odom:
     ros__parameters:
-        frequency: 20.0
+        frequency: 10.0
         sensor_timeout: 0.1
         two_d_mode: true
         print_diagnostics: true
@@ -19,7 +19,6 @@ ekf_filter_node_odom:
         imu0: edi/imu
 
         # [x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az]
-        initial_state: [4.366, 4.57, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         odom0_config: [true, true, false,
                        false, false, true,
                        true, true, false,
@@ -40,7 +39,7 @@ ekf_filter_node_odom:
         odom0_differential: true
         imu0_differential: false
 
-        odom0_relative: true
+        odom0_relative: false
         imu0_relative: true
 
         imu0_remove_gravitational_acceleration: true
@@ -84,7 +83,7 @@ ekf_filter_node_odom:
                                       0.0,    0.0,    0.0,    0.0,    00.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,    0.0,  1e-9]
 ekf_filter_node_map:
     ros__parameters:
-        frequency: 20.0
+        frequency: 10.0
         sensor_timeout: 0.1
         two_d_mode: true
         print_diagnostics: true
@@ -103,7 +102,7 @@ ekf_filter_node_map:
         odom0: odometry/filt # Robot odometry, computed with encoder ticks
 
         # if we want to set an initial pose and orientation, uncomment next line and define the initial pose
-        initial_state: [4.366, 4.57, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        # initial_state: [4.366, 4.57, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         # [x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az]
 
         pose0_config: [true,  true,  false,
@@ -154,8 +153,8 @@ ekf_filter_node_map:
                               0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.001,    0.0,
                               0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.3]
 
-        initial_estimate_covariance: [1e-9, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,     0.0,    0.0,    0.0,
-                                      0.0,    1e-9, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,     0.0,    0.0,    0.0,
+        initial_estimate_covariance: [1e-9,   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,     0.0,    0.0,    0.0,
+                                      0.0,    1e-9,   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,     0.0,    0.0,    0.0,
                                       0.0,    0.0,    1e-9, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,     0.0,    0.0,    0.0,
                                       0.0,    0.0,    0.0,    1e-9, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,     0.0,    0.0,    0.0,
                                       0.0,    0.0,    0.0,    0.0,    1e-9, 0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,     0.0,    0.0,    0.0,

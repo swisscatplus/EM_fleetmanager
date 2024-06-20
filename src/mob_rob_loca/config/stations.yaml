@@ -1,12 +1,12 @@
 ur5-sfc: #RMN station
   pos_x: 4.41
-  pos_y: 7.56
+  pos_y: 7.55
   yaw: 1.5708
   wp_x: 4.41
   wp_y: 4.69
 
 ur5-omni: 
-  pos_x: 4.18
+  pos_x: 4.175
   pos_y: 4.6
   yaw: 0.0
   wp_x: 4.41

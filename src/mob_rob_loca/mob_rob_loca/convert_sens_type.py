@@ -11,6 +11,8 @@ import numpy as np
 import tf2_ros
 import math
 
+
+
 # Constants & Global Variables
 initialX = 0.0
 initialY = 0.0
@@ -31,10 +33,13 @@ lastCountL = 0
 lastCountR = 0
 
 class OdomPublisher(Node):
-
+    """
+    This node subscribes to the encoder ticks from the robot, from which it computes and publishes the odometry of the robot. This section
+    ought to be replaced with the arrival of the Dynamixel motors, as they have built-in odometry measurements and a ROS2 driver.
+    A subscription to the bno055 Bosh IMU is also done in order to specify its covariance matrix, useful for the EKF.
+    """
     def __init__(self):
         super().__init__('ticks2odom_node')
-        # Initialization of odomNew & odomOld
         self.get_logger().info("Node odom_pub initialized")
 
         self.imu_pub = self.create_publisher(Imu, 'edi/imu', 10)
@@ -52,8 +57,8 @@ class OdomPublisher(Node):
         self.odomNew.twist.twist.angular.x = 0.0
         self.odomNew.twist.twist.angular.y = 0.0
         self.odomNew.twist.twist.angular.z = 0.0
-        self.odomNew.pose.covariance = [0.01, 0.0, 0.0, 0.0, 0.0, 0.0,
-                                        0.0, 0.01, 0.0, 0.0, 0.0, 0.0,
+        self.odomNew.pose.covariance = [0.005, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                        0.0, 0.005, 0.0, 0.0, 0.0, 0.0,
                                         0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
                                         0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
                                         0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
@@ -110,10 +115,7 @@ class OdomPublisher(Node):
         imu_msg.orientation_covariance = [0.001, 0.0, 0.0,
                                             0.0, 0.001, 0.0, 
                                             0.0, 0.0, 0.001]
-
-        # imu_msg.angular_velocity.x = data.angular_velocity.x
-        # imu_msg.angular_velocity.y = 
-        # imu_msg.angular_velocity.z = 0.0
+        
         imu_msg.angular_velocity_covariance = [1.0, 0.0, 0.0,
                                                 0.0, 1.0, 0.0, 
                                                 0.0, 0.0, 0.01]
@@ -122,7 +124,6 @@ class OdomPublisher(Node):
                                                     0.0, 0.1, 0.0, 
                                                     0.0, 0.0, 0.1]
         
-
         self.imu_pub.publish(imu_msg)
 
     def calc_left(self, msg):
@@ -243,13 +244,10 @@ class OdomPublisher(Node):
         self.update_odom()
         self.publish_odom()
 
-
 def main(args=None):
     rclpy.init(args=args)
     odom_publisher = OdomPublisher()
     rclpy.spin(odom_publisher)
-
-    # Destroy the node explicitly
     odom_publisher.destroy_node()
     rclpy.shutdown()
     tf_bugger = tf2_ros.buffer()

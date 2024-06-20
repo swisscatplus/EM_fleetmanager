@@ -11,7 +11,7 @@ def generate_signature(path: str, body: bytes) -> str:
 headers={}
 body = {  
     "workflow_name": "Station-To-Station",
-    "args": {"station_start": "ur5-sfc", "station_end": "ur5-omni"}
+    "args": {"station_start": "ur5-sfc", "station_end": "ur5-sfc"}
         }
 path="/task/"
 headers["Content-Type"] = "application/json"

@@ -15,7 +15,8 @@ config_file_path = os.path.join(pkg_share, params_path)
 
 class MarkerPublisher(Node):
     """
-    This node publishes markers to visualize the ArUco markers in RViz.
+    This node publishes markers to visualize the ArUco markers in RViz. It's 
+    only purpose is for assuring that the markers were well placed in the map.
     """
     def __init__(self):
         super().__init__('marker_publisher')
