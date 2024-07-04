@@ -6,6 +6,7 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
+
 pkg_name = 'mob_rob_loca'
 
 def generate_launch_description():
@@ -56,6 +57,6 @@ def generate_launch_description():
       ekf_launch,
       rviz_launch,
       maps_launch,
-      nav_launch,
-      fleet_launch
+      # nav_launch,
+      # fleet_launch,
    ])

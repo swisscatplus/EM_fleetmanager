@@ -16,8 +16,3 @@ test:
   pos_x: 0.3
   pos_y: 0.0
   yaw: 0.751
-
-test1:
-  pos_x: 3.52
-  pos_y: 5.96
-  yaw: 0.751

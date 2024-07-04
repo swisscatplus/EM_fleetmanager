@@ -27,14 +27,14 @@ def generate_launch_description():
         name='robot_state_publisher',
         output='both',
         parameters=[{'robot_description': open(urdf_path, 'r').read()}],
-        remappings = [('/tf', 'tf'), ('tf_static', 'tf_static')],
+        remappings = [('/tf', 'tf'), ('/tf_static', 'tf_static')],
     )
 
     joint_state_publisher_node = Node(
         package='joint_state_publisher',
         executable='joint_state_publisher',
         arguments=[urdf_path],
-        remappings = [('/tf', 'tf'), ('tf_static', 'tf_static')],
+        remappings = [('/tf', 'tf'), ('/tf_static', 'tf_static')],
     )
 
     markers_node = Node(

@@ -13,7 +13,6 @@ ekf_filter_node_odom:
         odom_frame: odom            # Defaults to "odom" if unspecified
         base_link_frame: base_link  # Defaults to "base_link" if unspecified
         world_frame: odom            # Defaults to the value of odom_frame if unspecified
-
         
         odom0: wheel/odom # Robot odometry, computed with encoder ticks
         imu0: edi/imu

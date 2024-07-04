@@ -2,14 +2,14 @@ bt_navigator:
   ros__parameters:
     global_frame: map
     robot_base_frame: base_link
-    odom_topic: /odometry/global # topic to subscribe to, this one comes from ekf pkg
+    odom_topic: /odometry/global # topic to subscribe to, this one comes from ekf node
     bt_loop_duration: 10
     default_server_timeout: 20 
     enable_groot_monitoring: False
     groot_zmq_publisher_port: 1666
     groot_zmq_server_port: 1667
-    default_nav_to_pose_bt_xml: "/home/coderey/EM_navigation/src/mob_rob_loca/config/nav2pose.xml"
-    default_nav_through_poses_bt_xml: "/home/coderey/EM_navigation/src/mob_rob_loca/config/navthroughposes.xml"
+    default_nav_to_pose_bt_xml: "/home/coderey/EM_navigation/src/mob_rob_loca/nav_params/nav2pose.xml"
+    default_nav_through_poses_bt_xml: "/home/coderey/EM_navigation/src/mob_rob_loca/nav_params/navthroughposes.xml"
     plugin_lib_names:
         - nav2_compute_path_to_pose_action_bt_node
         - nav2_compute_path_through_poses_action_bt_node

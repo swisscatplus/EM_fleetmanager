@@ -11,21 +11,19 @@ config_path = '/home/coderey/EM_navigation/src/mob_rob_loca/config/stations.yaml
 stations = get_config_yaml(config_path)
 
 class NavService(Node):
-
     def __init__(self):
         super().__init__('minimal_service')
-        self.srv = self.create_service(GoToStation, 'go_to_station', self.callback)        # CHANGE
+        self.srv = self.create_service(GoToStation, 'go_to_station', self.move_request)
         self.navigator = BasicNavigator()
         self.navigator._waitForNodeToActivate('bt_navigator')
         
-    def callback(self, request, response):
-        self.get_logger().info('Incoming request\na: %s b: %s' % (request.station, request.robot_id)) # CHANGE
+    def move_request(self, request, response):
+        self.get_logger().info('Incoming request\na: %s b: %s' % (request.station, request.robot_id))
         response.result_id = self.move( station=request.station, robot_id=request.robot_id)
         self.get_logger().info(f'Sending back response: {response}')
         return response
 
     def move(self, station: str, robot_id: str):
-        
         if station not in stations:
             self.get_logger().error('Goal has an invalid station request!')
             return 1

@@ -21,7 +21,7 @@ import os
 
 def generate_launch_description():
     package_name = 'mob_rob_loca'
-    params_path = 'params/ekf_em.yaml'
+    params_path = 'config/ekf_em.yaml'
 
     pkg_share = FindPackageShare(package=package_name).find(package_name)
     robot_localization_file_path = os.path.join(pkg_share, params_path)
