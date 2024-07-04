@@ -10,27 +10,38 @@ def get_share_file(package_name, file_name):
 
 def generate_launch_description():
     rob_loca_dir = get_package_share_directory('mob_rob_loca')
-    imu_config = os.path.join(rob_loca_dir,'config','bno055_params.yaml')
-    # imu_config = os.path.join(get_package_share_directory('bno055'),'config','bno055_params.yaml')
+    cam_config = os.path.join(rob_loca_dir,'config','loca.yaml')
 
+    # namespace = LaunchConfiguration('namespace')
+ 
+    # namespace_arg = DeclareLaunchArgument(
+    #     'namespace',
+    #     default_value='',
+    #     description='Specifying namespace for individual robot'
+    # )
+
+    config_file = DeclareLaunchArgument(
+            'config_file',
+            default_value=cam_config,
+            description='Path to the config file'
+        )
+    
     convert_sens_type = Node(
         package='mob_rob_loca',
         executable='convert_sens_type',
         output='screen',
+        parameters=[LaunchConfiguration('config_file')]
     )
 
-    imu_node = Node(
+    test_node = Node(
         package='mob_rob_loca',
-        executable='imu_pub',
+        executable='test_node',
         output='screen',
-    )
-
-    transforms_node = Node(
-        package='mob_rob_loca',
-        executable='transforms',
-        output='screen',
+        parameters=[LaunchConfiguration('config_file')]
     )
 
     return LaunchDescription([
-        convert_sens_type
+        config_file,
+        # convert_sens_type,
+        test_node
     ])
