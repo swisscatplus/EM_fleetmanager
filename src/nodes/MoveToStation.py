@@ -50,7 +50,6 @@ class MoveToStation(BaseNode):
 
         resp_idx = out.index("response:")
         
-
         pattern = re.compile(r"result_id=(\d)")
         err_code = pattern.search(out[resp_idx+1])
 

@@ -4,11 +4,13 @@ from geometry_msgs.msg import Pose, PoseWithCovarianceStamped # Message type for
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
 import cv2 as cv # OpenCV library
+from rclpy.executors import ExternalShutdownException
 from tf_transformations import quaternion_from_euler
 from mob_rob_loca.submodules.detect_aruco_pc import CameraVisionStation, detector
 from launch_ros.substitutions import FindPackageShare
 import yaml
 import os
+import sys
 
 # ################# CONFIG #################
 package_name = 'rpi_pkg'
@@ -48,8 +50,6 @@ class RobotCamPublisher(Node):
         # Example: Accessing specific parameters
         cam_params = test_params.get('cam_params', {})
         lens_position = cam_params.get('lens_position', 2.32)
-        # aruco_square_size = cam_params.get('aruco_square_size', 0.038)
-        # dist_cam_robot_center = cam_params.get('dist_cam_robot_center', 0.098)
         aruco_params = test_params.get('aruco_params', {})
 
         self.get_logger().info(f"lens position: {lens_position}")
@@ -61,6 +61,7 @@ class RobotCamPublisher(Node):
     self.cam_publisher = self.create_publisher(PoseWithCovarianceStamped, 'edi/cam', 5)
     
     self.timer = self.create_timer(timer_period, self.publish_frame)
+
   def get_cam_config(self, config_file_path=None):
       with open(config_file_path, 'r') as file:
           data = yaml.safe_load(file)
@@ -97,9 +98,12 @@ class RobotCamPublisher(Node):
 def main(args=None):
   rclpy.init()
   robot_cam_publisher = RobotCamPublisher()
-  rclpy.spin(robot_cam_publisher)
-  robot_cam_publisher.destroy_node()
-  rclpy.shutdown()
+  try:
+    rclpy.spin(robot_cam_publisher)
+  except KeyboardInterrupt:
+    robot_cam_publisher.destroy_node()
+  except ExternalShutdownException:
+        sys.exit(1)
    
 if __name__ == '__main__':
   main()

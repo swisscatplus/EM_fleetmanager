@@ -93,7 +93,6 @@ class EMOrchestrator(BaseOrchestrator):
         return None
     
     def add_task(self, workflow: Workflow, args: Optional[dict[str, any]] = None) -> TaskNoPause:
-        print("add task method")
         database = DatabaseConnector()
 
         task = TaskNoPause(workflow, args)

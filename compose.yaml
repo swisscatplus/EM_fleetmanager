@@ -3,6 +3,7 @@ services:
     build: .
     ports:
       - 3306:3306
+    env_file: ./src/glas/database/setup/.env
   phpmyadmin:
     image: phpmyadmin
     restart: on-failure

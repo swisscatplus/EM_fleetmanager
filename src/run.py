@@ -4,11 +4,13 @@ from orchestrator.core import EMOrchestrator
 from scheduler.core import EMScheduler
 from glas.logger import LoggingManager
 from glas.parser import parse_args
+import pathlib
 
 def main():
     args = parse_args()
 
-    load_dotenv()
+    src_folder = pathlib.Path(__file__).parent.resolve()
+    load_dotenv(src_folder / "glas/.env")
 
     LoggingManager(args.logs, args.verbose, args.debug)
 
