@@ -6,7 +6,7 @@ import os
 import yaml
 
 ###########################################
-params_path = 'config/rpi_cam_on_robot.yaml'
+params_path = 'config/loca.yaml'
 package_name = 'mob_rob_loca'
 ###########################################
 
@@ -28,7 +28,7 @@ class MarkerPublisher(Node):
         self.marker_id = 0
 
     def timer_callback(self):
-        for _, params in self.config['aruco_params'].items():
+        for _, params in self.config['rpi_cam']['ros__parameters']['aruco_params'].items():
             marker = Marker()
             marker.header.frame_id = 'map'
             marker.header.stamp = self.get_clock().now().to_msg()

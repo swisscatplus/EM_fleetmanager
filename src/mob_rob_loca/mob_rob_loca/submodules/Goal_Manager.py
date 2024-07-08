@@ -7,6 +7,11 @@ import rtde_io
 import rclpy
 import logging
 import time
+####################################
+# This file was only used when the calibration via socket was needed with the static cameras at stations, now it's not used
+# anymore since the ArUco process is reliable enough. I let it here however in case future applications require a socket
+# connection with the cameras, as a template.
+####################################
 
 #specify your config file path and log level here:
 config_path = 'config/robot_params.ini'
@@ -21,7 +26,6 @@ Class charged of sequencing robot actions
 
 class Goal_Manager:
     def __init__(self, goal_station):
-        # logging.getLogger().name = 'Calibration'
 
         self.goal_station = goal_station
         self.port_in_server = config.get(self.goal_station, 'cam_port')

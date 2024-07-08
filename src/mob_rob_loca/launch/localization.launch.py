@@ -14,12 +14,6 @@ def generate_launch_description():
    map_path = os.path.join(rob_loca_dir, 'maps', 'circuit.yaml')
    nav2_params_path = os.path.join(rob_loca_dir, 'params/nav_params.yaml')
 
-   
-   sensor_conv_launch = IncludeLaunchDescription(
-      PythonLaunchDescriptionSource([os.path.join(
-         get_package_share_directory(pkg_name), 'launch'),
-         '/sensor.launch.py'])
-      )
    rviz_launch = IncludeLaunchDescription(
       PythonLaunchDescriptionSource([os.path.join(
          get_package_share_directory(pkg_name), 'launch'),
@@ -53,7 +47,6 @@ def generate_launch_description():
       )
    
    return LaunchDescription([
-      sensor_conv_launch,
       ekf_launch,
       rviz_launch,
       maps_launch,

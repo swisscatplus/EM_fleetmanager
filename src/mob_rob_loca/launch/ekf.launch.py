@@ -28,6 +28,11 @@ def generate_launch_description():
 
     return LaunchDescription([
         launch_ros.actions.Node(
+            package='mob_rob_loca',
+            executable='convert_sens_type',
+            output='screen',
+        ),
+        launch_ros.actions.Node(
             package='robot_localization',
             executable='ekf_node',
             name='ekf_filter_node_odom',

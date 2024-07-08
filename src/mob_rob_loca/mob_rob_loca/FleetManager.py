@@ -4,8 +4,6 @@ from nav_msgs.msg import Odometry
 from mob_rob_loca.submodules.Robot import Robot, RobotType, EM
 from mob_rob_loca_msgs.srv import GoToStation, GetAvail, GetAt
 
-import time
-
 class FleetManager(Node):
   def __init__(self):
     """
