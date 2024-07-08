@@ -20,8 +20,27 @@ This repository provides the code to fuse sensors using an Extended Kalman filte
 3. [How to use](#how-to-use)<br>
 4. [ROS2 Interfaces](#ros2-interfaces)<br>
 
-# Description
-When running the main launch file, the program will subscribe to the four output topics of the mobile robot, described [here](https://github.com/swisscatplus/EM_onrobot), convert the left and right ticks into an odometry topic, wheel/odom. The IMU, odometry and camera position data will then be fused inside an EKF filter, using the [robot_localization package](https://index.ros.org/p/robot_localization/). This results in outputting the topic odometry/global, a much more reliable and stable position, which will then be used for the navigation tasks. At the moment, these are performed using [Nav2](https://github.com/ros-navigation/navigation2), but the goal is to detach from this package to have more control over the algorithms, as Nav2 provides little adaptability and its behaviour is sometimes unpredictable. In the framework of the SwissCat+ laboratory, navigation is needed to move the robot around stations where it'd be transporting chemical vials. The implemented GLAS architecture links this structure to the Robot Scheduler and provides workflows which can be called and executed in an autonomous manner. The task requests can be sent from Postman, an API platform, to mimic the Robot Scheduler behaviour.
+## Description
+When running the main launch file, the program will subscribe to the four output topics of the mobile robot, described [here](https://github.com/swisscatplus/EM_onrobot), convert the left and right ticks into an odometry topic, wheel/odom. The IMU, odometry and camera position data will then be fused inside an EKF filter, using the [robot_localization package](https://index.ros.org/p/robot_localization/). This results in outputting the topic odometry/global, a much more reliable and stable position, which will then be used for the navigation tasks. At the moment, these are performed using [Nav2](https://github.com/ros-navigation/navigation2), but the goal is to detach from this package to have more control over the algorithms, as Nav2 provides little adaptability and its behaviour is sometimes unpredictable. In the framework of the SwissCat+ laboratory, navigation is needed to move the robot around stations where it'd be transporting chemical vials. The implemented GLAS architecture links this structure to the Robot Scheduler and provides workflows which can be called and executed autonomously. The task requests can be sent from Postman, an API platform, to mimic the Robot Scheduler behaviour.
+
+### Sensor fusion
+To achieve sensor fusion, the topics must have compatible types and a configuration file has to be properly set, which includes defining the covariance matrices. The configuration file implemented is [here](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca/config/ekf_em.yaml), and all the information about its configuration is described in the comments of the former [file](https://github.com/cra-ros-pkg/robot_localization/blob/ros2/params/ekf.yaml). In our case, we apply the EKF filter twice, once for the relative localisation data and once for the absolute one. This also allows us to have the transforms automatically defined  as the `publish_tf` boolean is enabled. The relative pose includes the IMU and the odometry data, which are thus fused into an odometry/filtered topic, and then fused again with the camera position data as part of the absolute data pose. 
+
+### Navigation 2
+
+### GLAS architecture
+
+### Visualisation
+
+## How to build
+
+### Install ROS2
+
+### Install project and dependencies
+
+### Set-up workspace
+
+
 
 This file gives information on how to install and use the package. Some examples are also given to illustrate the package in action.
 
