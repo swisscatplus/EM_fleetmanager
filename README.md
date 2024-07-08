@@ -4,11 +4,11 @@
     <img src="https://images.squarespace-cdn.com/content/v1/6012a0a1f4c67c587a8eff67/d7731755-2fa3-4548-bf1e-5a25182d67ae/Combined+Logo+CAT-ETH-EPFL+%282%29.png?format=1500w" alt="Logo" height="80">
   </a>
 
-  <h1 align="center"> EM_navigation - Autonomous navigation and control of a mobile robot using Nav2 and GLAS </h1>
+  <h1 align="center"> EM_fleetmanager - Autonomous navigation and control of a mobile robot using Nav2 and GLAS architecture </h1>
 
 </div>
 
-This repository provides the code to fuse sensors using an Extended Kalman filter and uses the outputted position to control a mobile robot using [Nav2](https://github.com/ros-navigation/navigation2). Moreover, it fits into the framework of the schedulers from the SwissCat+ laboratory as it uses the [GLAS](https://github.com/swisscatplus/glas) scheduler to communicate with the higher-level scheduler: the Robot Scheduler. It is designed to work jointly with a mobile robot having [this code](https://github.com/swisscatplus/EM_onrobot) embedded and running.
+This repository provides the code to fuse sensors using an Extended Kalman filter and uses the outputted position to control a mobile robot using [Nav2](https://github.com/ros-navigation/navigation2). The latter is responsible for transporting chemical vials between stations inside the laboratory. Moreover, the project fits into the framework of the schedulers from the SwissCat+ laboratory as it uses the [GLAS](https://github.com/swisscatplus/glas) scheduler to communicate with the higher-level scheduler: the Robot Scheduler. It is designed to work jointly with a mobile robot having [this code](https://github.com/swisscatplus/EM_onrobot) embedded and running.
 
 ## Versions and software used
   - Ubuntu 22.04
@@ -21,7 +21,7 @@ This repository provides the code to fuse sensors using an Extended Kalman filte
 4. [ROS2 Interfaces](#ros2-interfaces)<br>
 
 # Description
- The localization uses an extended Kalman filter to fuse sensor data, specifically odometry of the wheels, ultrasonic GPS and IMU data. The navigation system was taken from the [Nav2 repository](https://github.com/ros-planning/navigation2/tree/galactic) and adapted to the needs of the SwissCat+ West Hub laboratory, where the Edison Mobile is operating and responsible for transporting vials between stations.
+When running the main launch file, the program will subscribe to the four output topics of the mobile robot, described [here](https://github.com/swisscatplus/EM_onrobot), convert the left and right ticks into an odometry topic, wheel/odom. The IMU, odometry and camera position data will then be fused inside an EKF filter, using the [robot_localization package](https://index.ros.org/p/robot_localization/). This results in outputting the topic odometry/global, a much more reliable and stable position, which will then be used for the navigation tasks. At the moment, these are performed using [Nav2](https://github.com/ros-navigation/navigation2), but the goal is to detach from this package to have more control over the algorithms, as Nav2 provides little adaptability and its behaviour is sometimes unpredictable. In the framework of the SwissCat+ laboratory, navigation is needed to move the robot around stations where it'd be transporting chemical vials. The implemented GLAS architecture links this structure to the Robot Scheduler and provides workflows which can be called and executed in an autonomous manner. The task requests can be sent from Postman, an API platform, to mimic the Robot Scheduler behaviour.
 
 This file gives information on how to install and use the package. Some examples are also given to illustrate the package in action.
 
