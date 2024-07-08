@@ -40,7 +40,7 @@ def generate_launch_description():
 
     declare_params_file_cmd = DeclareLaunchArgument(
         'params_file',
-        default_value=os.path.join(pkg_dir, 'params', 'keepout_params.yaml'),
+        default_value=os.path.join(pkg_dir, 'nav_params', 'keepout_params.yaml'),
         description='Full path to the ROS 2 parameters file to use')
 
     declare_mask_yaml_file_cmd = DeclareLaunchArgument(

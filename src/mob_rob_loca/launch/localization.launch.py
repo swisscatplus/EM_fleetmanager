@@ -12,9 +12,8 @@ pkg_name = 'mob_rob_loca'
 def generate_launch_description():
    rob_loca_dir = get_package_share_directory(pkg_name)
    map_path = os.path.join(rob_loca_dir, 'maps', 'circuit.yaml')
-   nav2_params_path = os.path.join(rob_loca_dir, 'params/nav_params.yaml')
+   nav2_params_path = os.path.join(rob_loca_dir, 'nav_params/nav_params.yaml')
 
-   
    sensor_conv_launch = IncludeLaunchDescription(
       PythonLaunchDescriptionSource([os.path.join(
          get_package_share_directory(pkg_name), 'launch'),

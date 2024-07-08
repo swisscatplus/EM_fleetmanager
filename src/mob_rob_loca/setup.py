@@ -16,7 +16,7 @@ setup(
         (os.path.join('share', package_name, 'urdf'), glob('urdf/*')),
         (os.path.join('share', package_name, 'rviz'), glob('rviz/*')),
         (os.path.join('share', package_name, 'maps'), glob('maps/*')),
-        (os.path.join('share', package_name, 'params'), glob('params/*')),
+        (os.path.join('share', package_name, 'nav_params'), glob('nav_params/*')),
         (os.path.join('share', package_name, 'config'), glob('config/*')),
         (os.path.join('share', package_name, 'action'), glob('srv/*')),
         (os.path.join('share', package_name, 'srv'), glob('srv/*')),

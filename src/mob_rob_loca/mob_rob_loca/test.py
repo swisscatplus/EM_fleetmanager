@@ -36,8 +36,9 @@ class RobotCamPublisher(Node):
     self.size = (640, 480) # size of the frame
     self.cap = cv.VideoCapture(0)
     self.cap.set(cv.CAP_PROP_AUTOFOCUS, 0) #remove autofocus
+
     # Declare and get parameters
-    self.declare_parameter('config_file', '/home/coderey/EM_navigation/install/mob_rob_loca/share/mob_rob_loca/config/loca.yaml')
+    self.declare_parameter('config_file', '/home/coderey/EM_navigation/install/mob_rob_loca/share/mob_rob_loca/config/cam.yaml')
     config_file = self.get_parameter('config_file').get_parameter_value().string_value
 
     # Load parameters from YAML file
@@ -47,6 +48,7 @@ class RobotCamPublisher(Node):
             self.get_logger().info(f"Loaded parameters: {params}")
 
         node_params = params.get(self.get_name(), {}).get('ros__parameters', {})
+
         # Example: Accessing specific parameters
         cam_params = node_params.get('cam_params', {})
         lens_position = cam_params.get('lens_position', 2.32)
