@@ -1,5 +1,27 @@
-# SwissCat_ROS2_mobile
-This package implements an accurate localization and navigation system of a wheeled-robot, the Edison mobile, in *ROS2 Galactic*. The localization uses an extended Kalman filter to fuse sensor data, specifically odometry of the wheels, ultrasonic GPS and IMU data. The navigation system was taken from the [Nav2 repository](https://github.com/ros-planning/navigation2/tree/galactic) and adapted to the needs of the SwissCat+ West Hub laboratory, where the Edison Mobile is operating and responsible of transporting vials between stations.
+<br />
+<div align="center">
+  <a href="https://github.com/swisscatplus/task-scheduler">
+    <img src="https://images.squarespace-cdn.com/content/v1/6012a0a1f4c67c587a8eff67/d7731755-2fa3-4548-bf1e-5a25182d67ae/Combined+Logo+CAT-ETH-EPFL+%282%29.png?format=1500w" alt="Logo" height="80">
+  </a>
+
+  <h1 align="center"> EM_navigation - Autonomous navigation and control of a mobile robot using Nav2 and GLAS </h1>
+
+</div>
+
+This repository provides the code to fuse sensors using an Extended Kalman filter and uses the outputted position to control a mobile robot using [Nav2](https://github.com/ros-navigation/navigation2). Moreover, it fits into the framework of the schedulers from the SwissCat+ laboratory as it uses the [GLAS](https://github.com/swisscatplus/glas) scheduler to communicate with the higher-level scheduler: the Robot Scheduler. It is designed to work jointly with a mobile robot having [this code](https://github.com/swisscatplus/EM_onrobot) embedded and running.
+
+## Versions and software used
+  - Ubuntu 22.04
+  - ROS2 Humble
+  
+## Table of Contents
+1. [Description](#description)<br>
+2. [How to build](#how-to-build)<br>
+3. [How to use](#how-to-use)<br>
+4. [ROS2 Interfaces](#ros2-interfaces)<br>
+
+# Description
+ The localization uses an extended Kalman filter to fuse sensor data, specifically odometry of the wheels, ultrasonic GPS and IMU data. The navigation system was taken from the [Nav2 repository](https://github.com/ros-planning/navigation2/tree/galactic) and adapted to the needs of the SwissCat+ West Hub laboratory, where the Edison Mobile is operating and responsible for transporting vials between stations.
 
 This file gives information on how to install and use the package. Some examples are also given to illustrate the package in action.
 
