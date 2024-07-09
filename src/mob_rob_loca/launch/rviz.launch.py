@@ -15,7 +15,7 @@ def generate_launch_description():
     package_name = 'mob_rob_loca'
 
     rviz_node = Node(
-           executable='rviz2',
+        executable='rviz2',
         arguments=['-d', rvizconfig],
         output='screen',
         remappings=[('/odom', '/odometry/global')],
