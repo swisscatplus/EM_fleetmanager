@@ -41,16 +41,29 @@ To make the robot move, a service which uses the nav2 API was created, from bt_n
 To join this project to the whole laboratory structure, we're using [GLAS](https://github.com/swisscatplus/glas), which is a task scheduler enabling a reliable connection with the upper-level schedulers. We will detail the choices made for the workflows and nodes, for more information their [README](https://github.com/swisscatplus/glas) is well explained.
 The workflows and nodes needed for our application are located in [this folder](https://github.com/swisscatplus/EM_fleetmanager/tree/main/config). A workflow defines a series of nodes, a node being a basic unitary action the Fleet Manager would need to perform. We defined two workflows, one for filling a station and another for going from one station to another, as they correspond to slightly different procedures. The first workflow needs any available robot which satisfies an objective function (yet to be implemented, its parameters would be battery percentage, distance to the required station, ...) whereas the second workflow needs the robot ID at the station. As for the nodes, they are where the ROS2 communication occurs. They obtain arguments from the upper post request and may launch ROS2 services or get topic information, according to their needs. If we take the example of the [MoveToStation Node](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/nodes/MoveToStation.py), it retrieves the ["station_end"] argument from the post request to move the robot accordingly, using a `subprocess.run` command. The resulting message obtained is then parsed to retrieve its ID, which is then returned to the Robot Scheduler. 
 
-Upon defining a new workflow or node, one first has to define it inside the [config folder](https://github.com/swisscatplus/EM_fleetmanager/tree/main/config), then code the main body inside the `_execute` function, located inside the [nodes folder](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/nodes). Finally, to initialise it correctly, we also need to specify to the orchestrator that we created a new node, this is done by modifying [this line](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa8952160f8aaa0cf5e752be1f0849c2e18/src/orchestrator/core.py#L77C13-L86C1).
+Upon defining a new workflow or node, one first has to define it inside the [config folder](https://github.com/swisscatplus/EM_fleetmanager/tree/main/config), then code the main body inside the `_execute` function, located inside the [nodes folder](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/nodes). Finally, to initialise it correctly, we also need to specify to the orchestrator that we created a new node, this is done by modifying [this code snippet](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa8952160f8aaa0cf5e752be1f0849c2e18/src/orchestrator/core.py#L77C13-L86C1).
+
+A [scheduler](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa8952160f8aaa0cf5e752be1f0849c2e18/src/scheduler/core.py) is also available in case there is a need to implement a new API route inherent to the Fleet Manager.
+
 ### Visualisation
 
 ## How to build
-
-### Install ROS2
+### Requirements
+- Ubuntu 22.04
+- ROS2 Humble (other ROS2 versions may work, this was only tested with Humble)
 
 ### Install project and dependencies
+Git clone this project into your working space, then go to the main directory and run the following line to install the dependencies.
+```
+# install dependencies
+rosdep install --from-paths src -y --ignore-src
+# build project
+colcon build # don't try the symlink build, ament_cmake is smh not complying
+```
 
 ### Set-up workspace
+
+## How to use
 
 
 

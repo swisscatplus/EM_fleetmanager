@@ -14,11 +14,13 @@
   <exec_depend>rclpy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
-   <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
   <exec_depend>time</exec_depend>
   <exec_depend>tf2_ros</exec_depend>
-  <exec_depend>tf2_transformations</exec_depend>
   <exec_depend>rviz2</exec_depend>
+  <exec_depend>robot_localization</exec_depend>
+  <exec_depend>navigation2</exec_depend>
+  <exec_depend>nav2_bringup</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>joint_state_publisher</exec_depend> /<!-- <if apt install doesn't work, try re-adding apt key https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html</build_depend> -->
   <exec_depend>nav2_map_server</exec_depend>

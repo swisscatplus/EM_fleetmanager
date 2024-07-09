@@ -13,7 +13,7 @@ def generate_launch_description():
     # Get the launch directory
     pkg_dir = get_package_share_directory('mob_rob_loca')
     map_path = os.path.join(pkg_dir, 'maps', 'circuit.yaml')
-    # Create our own temporary YAML files that include substitutions
+    
     lifecycle_nodes = ['map_server','filter_mask_server', 'costmap_filter_info_server']
 
     # Parameters
