@@ -62,10 +62,33 @@ colcon build # don't try the symlink build, ament_cmake is smh not complying
 ```
 
 ### Set-up workspace
+As for any ROS2 project, don't forget to source it. 
+```
+nano ~/.bashrc #(or zshrc, depending on your set-up)
+
+#write the following lines to source this project
+source /opt/ros/humble/setup.bash
+source ~/EM_navigation/install/setup.bash
+
+# some exports are also needed:
+export PYTHONPATH=/opt/ros/humble/lib/python3/dist-packages
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp # needed for rpi and nav2 communication, for which fastdds doesnt work
+export ROS_DOMAIN_ID=10  # same than the one on the mobile robot
+```
 
 ## How to use
+To run the main launch file:
+```
+ros2 launch mob_rob_loca localizaiton.launch.py
 
-
+# it basically launches in series several other launch files
+# ekf.launch.py, which creates the subscription to the mobile robot and outputs a filtered odometry
+# rviz.launch.py, which sets the visualisation tools
+# maps.launch.py, which creates the circuit and costmap layers needed for the navigation
+# it then launches nav2 with a configuration file set up in params/
+# fleet.launch.py, which creates the server responsible for moving the robot, this part should further be implemented to act as a Fleet Manager
+```
+For the fleet.launch.py, an example on how one could implement it can be found [here](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa8952160f8aaa0cf5e752be1f0849c2e18/src/mob_rob_loca/mob_rob_loca/FleetManager.py) (wasn't tested and therefore may not be working, it was just an implementation idea).
 
 This file gives information on how to install and use the package. Some examples are also given to illustrate the package in action.
 
