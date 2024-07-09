@@ -68,7 +68,7 @@ nano ~/.bashrc #(or zshrc, depending on your set-up)
 
 #write the following lines to source this project
 source /opt/ros/humble/setup.bash
-source ~/EM_navigation/install/setup.bash
+source ~/EM_fleetmanager/install/setup.bash
 
 # some exports are also needed:
 export PYTHONPATH=/opt/ros/humble/lib/python3/dist-packages
@@ -77,6 +77,7 @@ export ROS_DOMAIN_ID=10  # same than the one on the mobile robot
 ```
 
 ## How to use
+### Run from the terminal
 To run the main launch file:
 ```
 ros2 launch mob_rob_loca localizaiton.launch.py
@@ -92,30 +93,31 @@ For the fleet.launch.py, an example on how one could implement it can be found [
 
 This file gives information on how to install and use the package. Some examples are also given to illustrate the package in action.
 
-## Installation
-In the terminal, write the following commands:
+### Run using Postman
+Using Postman, we can mimic a request from the Robot Scheduler to test if the implementation with the whole laboratory works. To achieve this we're using Postman, which can be downloaded [here](https://www.postman.com/downloads/). To make it work, we first need to have 0) our database built & running and a virtual environment, then 1) our scheduler running locally and 2) a Postman post request.
+
+0) To create the database, we're using docker. Simply go to the main folder and built it:
 ```
-mkdir ~/edi_ws/src && cd ~/edi_ws/src
-git clone git@github.com:Yanniscod/SwissCat_ROS2.git
-rosdep install --from-paths src -y --ignore-src
-cd ~/edi_ws
-colcon build --symlink-install
+cd ~/EM_fleetmanager
+docker compose up -d # runs the containers in the background
+```
+Then we have to create the virtual environment and install its dependencies:
+```
+python3 -m venv .venv
+# source environment
+source ~/EM_fleetmanager/.venv/bin/activate
+# install dependencies
+pip install -r requirements.txt
+# enable exec of shell script
+chmod u+x exec.sh
 ```
 
-As written, the package uses the full repository of [Nav2 repository](https://github.com/ros-planning/navigation2/tree/galactic) to navigate, but also the [robot_localization](https://github.com/automaticaddison/robot_localization) to compute the localization using the EKF. The first was fully cloned into the folder, as problems were experienced when trying to run the code using the operating system’s package manager, as suggested in the [Nav2 tutorial](https://navigation.ros.org/getting_started/index.html). Therefore, if you experience similar problems, please copy-paste the following commands in your terminal:
+1) Once the environment is created and the docker containers running, this is what should be executed to launch our scheduler:, source our environment and then run the script with a defined port, here 3000. Here's how to do it:
 ```
-cd ~/edi_ws/src
-git clone https://github.com/ros-planning/navigation2.git --branch galactic
-cd ~/edi_ws
-rosdep install -y -r -q --from-paths src --ignore-src --rosdistro galactic
-colcon build --symlink-install
+cd ~/EM_fleetmanager
+# if the environment is not yet sourced
+source ~/EM_fleetmanager/.venv/bin/activate
+# run run.py with the port 3000
+./exec.sh 3000
+
 ```
-
-## Localization
-The localization of the Edison robot is determined by fusing three sets of data: the ultrasonic GPS provided by [Marvelmind](https://marvelmind.com/product/starter-set-super-mp-3d/), the [bno055 IMU from Bosch](https://www.bosch-sensortec.com/products/smart-sensor-systems/bno055/) and the odometry of the wheels. One could have only used the GPS information to have the position of the robot, however when testing inside the laboratory, a large variance was observed as the signal was jumping back and forth. The following picture illustrates the trajectory seen by the raw GPS sensor, the odometry of the wheels and the odometry fused. 
-
-INCLUDE GRAPH 
-
-## On-robot communication
-The Edison robot is composed of an arduino UNO controlling the DC motors. The latter is serial linked to a Raspberry 3B+, powering the IMU and GPS devices and communicating with the ROS2 server by subscribing to the velocity topic, /cmd_vel, and publishing the ticks of the motors, as well as IMU data. The GPS device has its own ROS2 node. 
-The code uploaded on the Raspberry was put inside the /src and /launch folders of the mob_rob_loca package, and is recognised by starting with rpi_. The installation of the RPI will be documented in another README.
