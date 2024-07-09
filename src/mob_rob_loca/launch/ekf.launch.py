@@ -14,9 +14,11 @@
 # limitations under the License.
 
 from launch import LaunchDescription
-from ament_index_python.packages import get_package_share_directory
 import launch_ros.actions
+from launch.substitutions import LaunchConfiguration
 from launch_ros.substitutions import FindPackageShare
+from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable
+from nav2_common.launch import RewrittenYaml
 import os
 
 def generate_launch_description():
@@ -26,7 +28,14 @@ def generate_launch_description():
     pkg_share = FindPackageShare(package=package_name).find(package_name)
     robot_localization_file_path = os.path.join(pkg_share, params_path)
 
+    namespace = LaunchConfiguration('namespace')
+    
+    namespace_arg = DeclareLaunchArgument(
+            'namespace', default_value='',
+            description='Whether to set the map subscriber QoS to transient local')
+    
     return LaunchDescription([
+        namespace_arg,
         launch_ros.actions.Node(
             package='mob_rob_loca',
             executable='convert_sens_type',
@@ -37,6 +46,7 @@ def generate_launch_description():
             executable='ekf_node',
             name='ekf_filter_node_odom',
             output='screen',
+            namespace=namespace,
             parameters=[robot_localization_file_path],
             remappings=[('/odometry/filtered', 'odometry/filt')],
         ),
@@ -45,6 +55,7 @@ def generate_launch_description():
             executable='ekf_node',
             name='ekf_filter_node_map',
             output='screen',
+            namespace=namespace,
             parameters=[robot_localization_file_path],
             remappings=[('/odometry/filtered', 'odometry/global')],
         ),

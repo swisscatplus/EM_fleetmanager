@@ -8,8 +8,8 @@ bt_navigator:
     enable_groot_monitoring: False
     groot_zmq_publisher_port: 1666
     groot_zmq_server_port: 1667
-    default_nav_to_pose_bt_xml: "/home/coderey/EM_navigation/src/mob_rob_loca/nav_params/nav2pose.xml"
-    default_nav_through_poses_bt_xml: "/home/coderey/EM_navigation/src/mob_rob_loca/nav_params/navthroughposes.xml"
+    default_nav_to_pose_bt_xml: "/home/coderey/EM_navigation/src/mob_rob_loca/params/nav2pose.xml"
+    default_nav_through_poses_bt_xml: "/home/coderey/EM_navigation/src/mob_rob_loca/params/navthroughposes.xml"
     plugin_lib_names:
         - nav2_compute_path_to_pose_action_bt_node
         - nav2_compute_path_through_poses_action_bt_node
@@ -296,3 +296,18 @@ velocity_smoother:
     odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]
     velocity_timeout: 1.0
+
+costmap_filter_info_server:
+  ros__parameters:
+    use_sim_time: true
+    type: 0
+    filter_info_topic: "/costmap_filter_info"
+    mask_topic: "/keepout_filter_mask"
+    base: 0.0
+    multiplier: 1.0
+filter_mask_server:
+  ros__parameters:
+    use_sim_time: true
+    frame_id: "map"
+    topic_name: "/keepout_filter_mask"
+    yaml_filename: "keepout_mask.yaml"
