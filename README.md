@@ -29,23 +29,41 @@ To achieve sensor fusion, the topics must have compatible types and a configurat
 ### Navigation 2
 Similar to the Kalman module, a [configuration file](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca/params/nav_params.yaml) defines the navigation tools employed: the main components on which a focus will be made are the planner, controller as well as costmap filter. The structure of Nav2 can be observed in the following figure.
 
-<center>
+<p align="center">
   <img width="493" alt="nav2_global" src="https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/04572848-4494-440f-b763-253a09dfc50f">
-</center>
+</p>
 
 For the planner, an A* is used as no specific planner is needed to plan the path for one robot. It will need to be changed in the future to account for the other mobile robots and avoid them. As the robot can rotate on itself, the primary controller employed, named rotary shim controller, privileges this behaviour. If the angle to the path is lower than a certain tolerance, the control to follow the path then switches to the default Nav2 controller, which is a [Dynamic-Window Approach controller](https://github.com/ros-navigation/navigation2/blob/main/nav2_dwb_controller/README.md). To include the static obstacles, meaning the walls of the track, a costmap filter was defined. It's simply a PNG map with black pixels where the walls are. This was the only option to provide the obstacle positions, as the robot lacks embedded sensors to detect near obstacles, such as a lidar. The map was then inflated to account for the robot radius with a safety margin. To make it work with the other maps, a configuration file](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca/params/keepout_params.yaml) also had to be implemented with the basic information required for the image. One of the main challenges of this implementation was to match the required circuit resolution, as the stations need to be met within a precise tolerance (<2cm, <15°) to be in the camera range so that the robotic arm can grab the samples. The resolution of every feature had then to be reduced as much as possible to meet this criterion while avoiding unwanted navigation behaviour. Indeed, if the goal tolerance is too low, the robot may take too long to match it and some recovery patterns inherent to Nav2 may be activated. 
 
+To make the robot move, a service which uses the nav2 API was created, from bt_navigator, and moves the robot to a destination. Its definition is located [here](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca_msgs/srv/GoToStation.srv), inside the other package dedicated to messages and service types. It receives a station ID and a robot ID, moves the specific robot to the station and returns a result ID, 0 being a success. At the moment, the robot ID is hard defined, for the station, its position inside the circuit is retrieved from a [configuration file](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca/config/stations.yaml). 
+
 ### GLAS architecture
+To join this project to the whole laboratory structure, we're using [GLAS](https://github.com/swisscatplus/glas), which is a task scheduler enabling a reliable connection with the upper-level schedulers. We will detail the choices made for the workflows and nodes, for more information their [README](https://github.com/swisscatplus/glas) is well explained.
+The workflows and nodes needed for our application are located in [this folder](https://github.com/swisscatplus/EM_fleetmanager/tree/main/config). A workflow defines a series of nodes, a node being a basic unitary action the Fleet Manager would need to perform. We defined two workflows, one for filling a station and another for going from one station to another, as they correspond to slightly different procedures. The first workflow needs any available robot which satisfies an objective function (yet to be implemented, its parameters would be battery percentage, distance to the required station, ...) whereas the second workflow needs the robot ID at the station. As for the nodes, they are where the ROS2 communication occurs. They obtain arguments from the upper post request and may launch ROS2 services or get topic information, according to their needs. If we take the example of the [MoveToStation Node](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/nodes/MoveToStation.py), it retrieves the ["station_end"] argument from the post request to move the robot accordingly, using a `subprocess.run` command. The resulting message obtained is then parsed to retrieve its ID, which is then returned to the Robot Scheduler. 
+
+Upon defining a new workflow or node, one first has to define it inside the [config folder](https://github.com/swisscatplus/EM_fleetmanager/tree/main/config), then code the main body inside the `_execute` function, located inside the [nodes folder](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/nodes). Finally, to initialise it correctly, we also need to specify to the orchestrator that we created a new node, this is done by modifying [this code snippet](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa8952160f8aaa0cf5e752be1f0849c2e18/src/orchestrator/core.py#L77C13-L86C1).
+
+A [scheduler](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa8952160f8aaa0cf5e752be1f0849c2e18/src/scheduler/core.py) is also available in case there is a need to implement a new API route inherent to the Fleet Manager.
 
 ### Visualisation
 
 ## How to build
-
-### Install ROS2
+### Requirements
+- Ubuntu 22.04
+- ROS2 Humble (other ROS2 versions may work, this was only tested with Humble)
 
 ### Install project and dependencies
+Git clone this project into your working space, then go to the main directory and run the following line to install the dependencies.
+```
+# install dependencies
+rosdep install --from-paths src -y --ignore-src
+# build project
+colcon build # don't try the symlink build, ament_cmake is smh not complying
+```
 
 ### Set-up workspace
+
+## How to use
 
 
 
