@@ -33,7 +33,7 @@ Similar to the Kalman module, a [configuration file](https://github.com/swisscat
   <img width="493" alt="nav2_global" src="https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/04572848-4494-440f-b763-253a09dfc50f">
 </p>
 
-For the planner, an A* is used as no specific planner is needed to plan the path for one robot. It will need to be changed in the future to account for the other mobile robots and avoid them. As the robot can rotate on itself, the primary controller employed, named rotary shim controller, privileges this behaviour. If the angle to the path is lower than a certain tolerance, the control to follow the path then switches to the default Nav2 controller, which is a [Dynamic-Window Approach controller](https://github.com/ros-navigation/navigation2/blob/main/nav2_dwb_controller/README.md). To include the static obstacles, meaning the walls of the track, a costmap filter was defined. It's simply a PNG map with black pixels where the walls are. This was the only option to provide the obstacle positions, as the robot lacks embedded sensors to detect near obstacles, such as a lidar. The map was then inflated to account for the robot radius with a safety margin. To make it work with the other maps, a configuration file](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca/params/keepout_params.yaml) also had to be implemented with the basic information required for the image. One of the main challenges of this implementation was to match the required circuit resolution, as the stations need to be met within a precise tolerance (<2cm, <15°) to be in the camera range so that the robotic arm can grab the samples. The resolution of every feature had then to be reduced as much as possible to meet this criterion while avoiding unwanted navigation behaviour. Indeed, if the goal tolerance is too low, the robot may take too long to match it and some recovery patterns inherent to Nav2 may be activated. 
+For the planner, an A* is used as no specific planner is needed to plan the path for one robot. It will need to be changed in the future to account for the other mobile robots and avoid them. As the robot can rotate on itself, the primary controller employed, named rotary shim controller, privileges this behaviour. If the angle to the path is lower than a certain tolerance, the control to follow the path then switches to the default Nav2 controller, which is a [Dynamic-Window Approach controller](https://github.com/ros-navigation/navigation2/blob/main/nav2_dwb_controller/README.md). To include the static obstacles, meaning the walls of the track, a costmap filter was defined. It's simply a PNG map with black pixels where the walls are. This was the only option to provide the obstacle positions, as the robot lacks embedded sensors to detect near obstacles, such as a lidar. The map was then inflated to account for the robot radius with a safety margin. To make it work with the other maps, a [configuration file](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca/params/keepout_params.yaml) also had to be implemented with the basic information required for the image. One of the main challenges of this implementation was to match the required circuit resolution, as the stations need to be met within a precise tolerance (<2cm, <15°) to be in the camera range so that the robotic arm can grab the samples. The resolution of every feature had then to be reduced as much as possible to meet this criterion while avoiding unwanted navigation behaviour. Indeed, if the goal tolerance is too low, the robot may take too long to match it and some recovery patterns inherent to Nav2 may be activated. 
 
 To make the robot move, a service which uses the nav2 API was created, from bt_navigator, and moves the robot to a destination. Its definition is located [here](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca_msgs/srv/GoToStation.srv), inside the other package dedicated to messages and service types. It receives a station ID and a robot ID, moves the specific robot to the station and returns a result ID, 0 being a success. At the moment, the robot ID is hard defined, for the station, its position inside the circuit is retrieved from a [configuration file](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca/config/stations.yaml). 
 
@@ -110,14 +110,34 @@ source ~/EM_fleetmanager/.venv/bin/activate
 pip install -r requirements.txt
 # enable exec of shell script
 chmod u+x exec.sh
+
+# On Postman, you need to import a collection
+TO DO
+
 ```
 
-1) Once the environment is created and the docker containers running, this is what should be executed to launch our scheduler:, source our environment and then run the script with a defined port, here 3000. Here's how to do it:
+1) Once the environment is created and the docker containers running, this is what should be executed to launch our scheduler:
 ```
 cd ~/EM_fleetmanager
 # if the environment is not yet sourced
 source ~/EM_fleetmanager/.venv/bin/activate
 # run run.py with the port 3000
 ./exec.sh 3000
-
+# your scheduler should have initialised the nodes and be running
 ```
+
+2) Go on Postman and post a task request. Depending on the workflow you want to run, its arguments may vary. At this moment, here are the two json bodies which work with the scheduler:
+```
+{
+  "workflow_name": "Station-To-Station",
+  "args": {"station_start": "ur5-sfc", "station_end": "ur5-omni"}
+}
+
+{
+  "workflow_name": "Fill-Station",
+  "args": {"station_end": "NMR"}
+}
+```
+The workflow name has to match the one inside the config folder, and the stations also have to match the names defined in the stations.yalm. Here's a screenshot of what it should look like on Postman:
+
+![image](https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/b869450d-161e-4eed-a602-3a0a7ce11877)
