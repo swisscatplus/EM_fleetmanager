@@ -33,7 +33,7 @@ Similar to the Kalman module, a [configuration file](https://github.com/swisscat
   <img width="493" alt="nav2_global" src="https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/04572848-4494-440f-b763-253a09dfc50f">
 </p>
 
-For the planner, an A* is used as no specific planner is needed to plan the path for one robot. It will need to be changed in the future to account for the other mobile robots and avoid them. As the robot can rotate on itself, the primary controller employed, named rotary shim controller, privileges this behaviour. If the angle to the path is lower than a certain tolerance, the control to follow the path then switches to the default Nav2 controller, which is a [Dynamic-Window Approach controller](https://github.com/ros-navigation/navigation2/blob/main/nav2_dwb_controller/README.md). To include the static obstacles, meaning the walls of the track, a costmap filter was defined. It's simply a PNG map with black pixels where the walls are. This was the only option to provide the obstacle positions, as the robot lacks embedded sensors to detect near obstacles, such as a lidar. The map was then inflated to account for the robot radius with a safety margin. To make it work with the other maps, a configuration file](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca/params/keepout_params.yaml) also had to be implemented with the basic information required for the image. One of the main challenges of this implementation was to match the required circuit resolution, as the stations need to be met within a precise tolerance (<2cm, <15°) to be in the camera range so that the robotic arm can grab the samples. The resolution of every feature had then to be reduced as much as possible to meet this criterion while avoiding unwanted navigation behaviour. Indeed, if the goal tolerance is too low, the robot may take too long to match it and some recovery patterns inherent to Nav2 may be activated. 
+For the planner, an A* is used as no specific planner is needed to plan the path for one robot. It will need to be changed in the future to account for the other mobile robots and avoid them. As the robot can rotate on itself, the primary controller employed, named rotary shim controller, privileges this behaviour. If the angle to the path is lower than a certain tolerance, the control to follow the path then switches to the default Nav2 controller, which is a [Dynamic-Window Approach controller](https://github.com/ros-navigation/navigation2/blob/main/nav2_dwb_controller/README.md). To include the static obstacles, meaning the walls of the track, a costmap filter was defined. It's simply a PNG map with black pixels where the walls are. This was the only option to provide the obstacle positions, as the robot lacks embedded sensors to detect near obstacles, such as a lidar. The map was then inflated to account for the robot radius with a safety margin. To make it work with the other maps, a [configuration file](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca/params/keepout_params.yaml) also had to be implemented with the basic information required for the image. One of the main challenges of this implementation was to match the required circuit resolution, as the stations need to be met within a precise tolerance (<2cm, <15°) to be in the camera range so that the robotic arm can grab the samples. The resolution of every feature had then to be reduced as much as possible to meet this criterion while avoiding unwanted navigation behaviour. Indeed, if the goal tolerance is too low, the robot may take too long to match it and some recovery patterns inherent to Nav2 may be activated. 
 
 To make the robot move, a service which uses the nav2 API was created, from bt_navigator, and moves the robot to a destination. Its definition is located [here](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca_msgs/srv/GoToStation.srv), inside the other package dedicated to messages and service types. It receives a station ID and a robot ID, moves the specific robot to the station and returns a result ID, 0 being a success. At the moment, the robot ID is hard defined, for the station, its position inside the circuit is retrieved from a [configuration file](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca/config/stations.yaml). 
 
@@ -53,7 +53,11 @@ A [scheduler](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa895216
 - ROS2 Humble (other ROS2 versions may work, this was only tested with Humble)
 
 ### Install project and dependencies
-Git clone this project into your working space, then go to the main directory and run the following line to install the dependencies.
+Git clone this project into your working space, use the recurse flag or add the GLAS submodule afterwards
+```
+git clone --recurse-submodules <git-url> 
+```
+Then go to the main directory and run the following line to install the dependencies.
 ```
 # install dependencies
 rosdep install --from-paths src -y --ignore-src
@@ -62,37 +66,90 @@ colcon build # don't try the symlink build, ament_cmake is smh not complying
 ```
 
 ### Set-up workspace
+As for any ROS2 project, don't forget to source it. 
+```
+nano ~/.bashrc #(or zshrc, depending on your set-up)
+
+#write the following lines to source this project
+source /opt/ros/humble/setup.bash
+source ~/EM_fleetmanager/install/setup.bash
+
+# some exports are also needed:
+export PYTHONPATH=/opt/ros/humble/lib/python3/dist-packages
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp # needed for rpi and nav2 communication, for which fastdds doesnt work
+export ROS_DOMAIN_ID=10  # same than the one on the mobile robot
+```
 
 ## How to use
+### Run from the terminal
+To run the main launch file:
+```
+ros2 launch mob_rob_loca localizaiton.launch.py
 
-
+# it basically launches in series several other launch files
+# ekf.launch.py, which creates the subscription to the mobile robot and outputs a filtered odometry
+# rviz.launch.py, which sets the visualisation tools
+# maps.launch.py, which creates the circuit and costmap layers needed for the navigation
+# it then launches nav2 with a configuration file set up in params/
+# fleet.launch.py, which creates the server responsible for moving the robot, this part should further be implemented to act as a Fleet Manager
+```
+For the fleet.launch.py, an example on how one could implement it can be found [here](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa8952160f8aaa0cf5e752be1f0849c2e18/src/mob_rob_loca/mob_rob_loca/FleetManager.py) (wasn't tested and therefore may not be working, it was just an implementation idea).
 
 This file gives information on how to install and use the package. Some examples are also given to illustrate the package in action.
 
-## Installation
-In the terminal, write the following commands:
+### Run using Postman
+Using Postman, we can mimic a request from the Robot Scheduler to test if the implementation with the whole laboratory works. To achieve this we're using Postman, which can be downloaded [here](https://www.postman.com/downloads/). To make it work, we first need to have 0) our database built & running and a virtual environment, then 1) our scheduler running locally and 2) a Postman post request.
+
+0) To create the database, we're using docker. Go to the main folder and build it:
 ```
-mkdir ~/edi_ws/src && cd ~/edi_ws/src
-git clone git@github.com:Yanniscod/SwissCat_ROS2.git
-rosdep install --from-paths src -y --ignore-src
-cd ~/edi_ws
-colcon build --symlink-install
+cd ~/EM_fleetmanager
+docker compose up -d # runs the containers in the background
+```
+Then we have to create the virtual environment and install its dependencies:
+```
+python3 -m venv .venv
+# source environment
+source ~/EM_fleetmanager/.venv/bin/activate
+# install dependencies
+pip install -r requirements.txt
+# enable exec of shell script
+chmod u+x exec.sh
 ```
 
-As written, the package uses the full repository of [Nav2 repository](https://github.com/ros-planning/navigation2/tree/galactic) to navigate, but also the [robot_localization](https://github.com/automaticaddison/robot_localization) to compute the localization using the EKF. The first was fully cloned into the folder, as problems were experienced when trying to run the code using the operating system’s package manager, as suggested in the [Nav2 tutorial](https://navigation.ros.org/getting_started/index.html). Therefore, if you experience similar problems, please copy-paste the following commands in your terminal:
-```
-cd ~/edi_ws/src
-git clone https://github.com/ros-planning/navigation2.git --branch galactic
-cd ~/edi_ws
-rosdep install -y -r -q --from-paths src --ignore-src --rosdistro galactic
-colcon build --symlink-install
-```
+On Postman, you need to import the collection: select the import button, and choose this [json file](https://github.com/swisscatplus/glas/blob/ccc1a3a07851eb8bf134fc779a95af1a39eb54c3/GLAS.postman_collection.json). A collection named SwissCat+ should appear. You'll be using the "add task" tab to run tasks.
 
-## Localization
-The localization of the Edison robot is determined by fusing three sets of data: the ultrasonic GPS provided by [Marvelmind](https://marvelmind.com/product/starter-set-super-mp-3d/), the [bno055 IMU from Bosch](https://www.bosch-sensortec.com/products/smart-sensor-systems/bno055/) and the odometry of the wheels. One could have only used the GPS information to have the position of the robot, however when testing inside the laboratory, a large variance was observed as the signal was jumping back and forth. The following picture illustrates the trajectory seen by the raw GPS sensor, the odometry of the wheels and the odometry fused. 
+1) Once the environment is created and the docker containers running, this is what should be executed to launch our scheduler:
+    ```
+    cd ~/EM_fleetmanager
+    # if the environment is not yet sourced
+    source ~/EM_fleetmanager/.venv/bin/activate
+    # run run.py with the port 3000
+    ./exec.sh 3000
+    # your scheduler should have initialised the nodes and be running
+    ```
 
-INCLUDE GRAPH 
+- If you encounter this error:
 
-## On-robot communication
-The Edison robot is composed of an arduino UNO controlling the DC motors. The latter is serial linked to a Raspberry 3B+, powering the IMU and GPS devices and communicating with the ROS2 server by subscribing to the velocity topic, /cmd_vel, and publishing the ticks of the motors, as well as IMU data. The GPS device has its own ROS2 node. 
-The code uploaded on the Raspberry was put inside the /src and /launch folders of the mob_rob_loca package, and is recognised by starting with rpi_. The installation of the RPI will be documented in another README.
+  ![image](https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/8e561043-b9d6-4eae-8f77-ce3ed2136e69)
+
+  It means the docker database isn't running.
+
+2) Go on Postman, SwissCat+/Tasks/Add and fill the json body. Depending on the workflow you want to run, its arguments may vary. At this moment, here are the two json bodies which work with the scheduler:
+    ```
+    {
+      "workflow_name": "Station-To-Station",
+      "args": {"station_start": "ur5-sfc", "station_end": "ur5-omni"}
+    }
+    
+    {
+      "workflow_name": "Fill-Station",
+      "args": {"station_end": "NMR"}
+    }
+    ```
+    The workflow name has to match the one inside the config folder, and the stations also have to match the names defined in the stations.yalm. Here's a screenshot of what it should look like on Postman:
+    
+    ![image](https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/b869450d-161e-4eed-a602-3a0a7ce11877)
+  
+  When running the code, your screen should typically look like this:
+  
+  ![image](https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/1b0966ab-e9d6-42b5-bb35-e65af5f60d80)
