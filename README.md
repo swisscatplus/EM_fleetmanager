@@ -53,7 +53,11 @@ A [scheduler](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa895216
 - ROS2 Humble (other ROS2 versions may work, this was only tested with Humble)
 
 ### Install project and dependencies
-Git clone this project into your working space, then go to the main directory and run the following line to install the dependencies.
+Git clone this project into your working space, use the recurse flag or add the GLAS submodule afterwards
+```
+git clone --recurse-submodules <git-url> 
+```
+Then go to the main directory and run the following line to install the dependencies.
 ```
 # install dependencies
 rosdep install --from-paths src -y --ignore-src
@@ -96,7 +100,7 @@ This file gives information on how to install and use the package. Some examples
 ### Run using Postman
 Using Postman, we can mimic a request from the Robot Scheduler to test if the implementation with the whole laboratory works. To achieve this we're using Postman, which can be downloaded [here](https://www.postman.com/downloads/). To make it work, we first need to have 0) our database built & running and a virtual environment, then 1) our scheduler running locally and 2) a Postman post request.
 
-0) To create the database, we're using docker. Simply go to the main folder and built it:
+0) To create the database, we're using docker. Go to the main folder and build it:
 ```
 cd ~/EM_fleetmanager
 docker compose up -d # runs the containers in the background
@@ -110,11 +114,9 @@ source ~/EM_fleetmanager/.venv/bin/activate
 pip install -r requirements.txt
 # enable exec of shell script
 chmod u+x exec.sh
-
-# On Postman, you need to import a collection
-TO DO
-
 ```
+
+On Postman, you need to import the collection: select the import button, and choose this [json file](https://github.com/swisscatplus/glas/blob/ccc1a3a07851eb8bf134fc779a95af1a39eb54c3/GLAS.postman_collection.json). A collection named SwissCat+ should appear. You'll be using the "add task" tab to run tasks.
 
 1) Once the environment is created and the docker containers running, this is what should be executed to launch our scheduler:
 ```
@@ -126,7 +128,7 @@ source ~/EM_fleetmanager/.venv/bin/activate
 # your scheduler should have initialised the nodes and be running
 ```
 
-2) Go on Postman and post a task request. Depending on the workflow you want to run, its arguments may vary. At this moment, here are the two json bodies which work with the scheduler:
+2) Go on Postman, SwissCat+/Tasks/Add and fill the json body. Depending on the workflow you want to run, its arguments may vary. At this moment, here are the two json bodies which work with the scheduler:
 ```
 {
   "workflow_name": "Station-To-Station",
