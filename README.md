@@ -119,27 +119,37 @@ chmod u+x exec.sh
 On Postman, you need to import the collection: select the import button, and choose this [json file](https://github.com/swisscatplus/glas/blob/ccc1a3a07851eb8bf134fc779a95af1a39eb54c3/GLAS.postman_collection.json). A collection named SwissCat+ should appear. You'll be using the "add task" tab to run tasks.
 
 1) Once the environment is created and the docker containers running, this is what should be executed to launch our scheduler:
-```
-cd ~/EM_fleetmanager
-# if the environment is not yet sourced
-source ~/EM_fleetmanager/.venv/bin/activate
-# run run.py with the port 3000
-./exec.sh 3000
-# your scheduler should have initialised the nodes and be running
-```
+    ```
+    cd ~/EM_fleetmanager
+    # if the environment is not yet sourced
+    source ~/EM_fleetmanager/.venv/bin/activate
+    # run run.py with the port 3000
+    ./exec.sh 3000
+    # your scheduler should have initialised the nodes and be running
+    ```
+
+- If you encounter this error:
+
+  ![image](https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/8e561043-b9d6-4eae-8f77-ce3ed2136e69)
+
+  It means the docker database isn't running.
 
 2) Go on Postman, SwissCat+/Tasks/Add and fill the json body. Depending on the workflow you want to run, its arguments may vary. At this moment, here are the two json bodies which work with the scheduler:
-```
-{
-  "workflow_name": "Station-To-Station",
-  "args": {"station_start": "ur5-sfc", "station_end": "ur5-omni"}
-}
-
-{
-  "workflow_name": "Fill-Station",
-  "args": {"station_end": "NMR"}
-}
-```
-The workflow name has to match the one inside the config folder, and the stations also have to match the names defined in the stations.yalm. Here's a screenshot of what it should look like on Postman:
-
-![image](https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/b869450d-161e-4eed-a602-3a0a7ce11877)
+    ```
+    {
+      "workflow_name": "Station-To-Station",
+      "args": {"station_start": "ur5-sfc", "station_end": "ur5-omni"}
+    }
+    
+    {
+      "workflow_name": "Fill-Station",
+      "args": {"station_end": "NMR"}
+    }
+    ```
+    The workflow name has to match the one inside the config folder, and the stations also have to match the names defined in the stations.yalm. Here's a screenshot of what it should look like on Postman:
+    
+    ![image](https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/b869450d-161e-4eed-a602-3a0a7ce11877)
+  
+  When running the code, your screen should typically look like this:
+  
+  ![image](https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/1b0966ab-e9d6-42b5-bb35-e65af5f60d80)
