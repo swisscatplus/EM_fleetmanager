@@ -84,7 +84,7 @@ export ROS_DOMAIN_ID=10  # same than the one on the mobile robot
 ### Run from the terminal
 To run the main launch file:
 ```
-ros2 launch mob_rob_loca localizaiton.launch.py
+ros2 launch mob_rob_loca localization.launch.py
 
 # it basically launches in series several other launch files
 # ekf.launch.py, which creates the subscription to the mobile robot and outputs a filtered odometry
