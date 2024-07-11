@@ -53,14 +53,17 @@ A [scheduler](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa895216
 - ROS2 Humble (other ROS2 versions may work, this was only tested with Humble)
 
 ### Install project and dependencies
-Git clone this project into your working space, use the recurse flag or add the GLAS submodule afterwards
+Git clone this project into your working space, use the recurse flag or add the GLAS submodule afterwards, --depth 1 specifies that we don't want to load all the commits history (there are TOO MANY)
 ```
-git clone --recurse-submodules <git-url> 
+git clone --recurse-submodules --depth 1 <git-url> 
 ```
 Then go to the main directory and run the following line to install the dependencies.
 ```
 # install dependencies
 rosdep install --from-paths src -y --ignore-src
+
+# pip related requirements:
+pip install -r requirements.txt
 # build project
 colcon build # don't try the symlink build, ament_cmake is smh not complying
 ```
@@ -110,7 +113,7 @@ Then we have to create the virtual environment and install its dependencies:
 python3 -m venv .venv
 # source environment
 source ~/EM_fleetmanager/.venv/bin/activate
-# install dependencies
+# install dependencies if not done previously
 pip install -r requirements.txt
 # enable exec of shell script
 chmod u+x exec.sh
