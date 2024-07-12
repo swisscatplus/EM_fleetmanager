@@ -120,14 +120,14 @@ Visualization Manager:
     - Alpha: 1
       Class: rviz_default_plugins/RobotModel
       Collision Enabled: false
-      Description File: /home/coderey/ros2_ws/install/mob_rob_loca/share/mob_rob_loca/urdf/edison.urdf
-      Description Source: File
-      Description Topic:
+      Description File: 
+      Description Source: Topic
+      Description Topic: 
         Depth: 5
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: ""
+        Value: "/robot_description"
       Enabled: true
       Links:
         All Links Enabled: true
