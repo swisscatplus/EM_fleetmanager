@@ -10,7 +10,7 @@
 
 This repository provides the code to fuse sensors using an Extended Kalman filter and uses the outputted position to control a mobile robot using [Nav2](https://github.com/ros-navigation/navigation2). The latter is responsible for transporting chemical vials between stations inside the laboratory. Moreover, the project fits into the framework of the schedulers from the SwissCat+ laboratory as it uses the [GLAS](https://github.com/swisscatplus/glas) scheduler to communicate with the higher-level scheduler: the Robot Scheduler. It is designed to work jointly with a mobile robot having [this code](https://github.com/swisscatplus/EM_onrobot) embedded and running.
 
-## Versions and software used
+## Requirements
   - Ubuntu 22.04
   - ROS2 Humble
   
@@ -19,6 +19,7 @@ This repository provides the code to fuse sensors using an Extended Kalman filte
 2. [How to build](#how-to-build)<br>
 3. [How to use](#how-to-use)<br>
 4. [ROS2 interfaces](#ros2-interfaces)<br>
+5. [To improve](#to-improve)
 
 ## Description
 When running the main launch file, the program will subscribe to the four output topics of the mobile robot, described [here](https://github.com/swisscatplus/EM_onrobot), convert the left and right ticks into an odometry topic, wheel/odom. The IMU, odometry and camera position data will then be fused inside an EKF filter, using the [robot_localization package](https://index.ros.org/p/robot_localization/). This results in outputting the topic odometry/global, a much more reliable and stable position, which will then be used for the navigation tasks. At the moment, these are performed using [Nav2](https://github.com/ros-navigation/navigation2), but the goal is to detach from this package to have more control over the algorithms, as Nav2 provides little adaptability and its behaviour is sometimes unpredictable. In the framework of the SwissCat+ laboratory, navigation is needed to move the robot around stations where it'd be transporting chemical vials. The implemented GLAS architecture links this structure to the Robot Scheduler and provides workflows which can be called and executed autonomously. The task requests can be sent from Postman, an API platform, to mimic the Robot Scheduler behaviour.
@@ -51,9 +52,6 @@ A [scheduler](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa895216
 </details>
 
 ## How to build
-### Requirements
-- Ubuntu 22.04
-- ROS2 Humble (other ROS2 versions may work, this was only tested with Humble)
 
 ### Install project and dependencies
 Git clone this project into your working space, use the recurse flag or add the GLAS submodule afterwards, --depth 1 specifies that we don't want to load all the commits history (there are TOO MANY)
@@ -99,32 +97,33 @@ ros2 launch mob_rob_loca localization.launch.py
 # it then launches nav2 with a configuration file set up in params/
 # fleet.launch.py, which creates the server responsible for moving the robot, this part should further be implemented to act as a Fleet Manager
 ```
-For the fleet.launch.py, an example on how one could implement it can be found [here](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa8952160f8aaa0cf5e752be1f0849c2e18/src/mob_rob_loca/mob_rob_loca/FleetManager.py) (wasn't tested and therefore may not be working, it was just an implementation idea).
+For the fleet.launch.py, an example on how one could implement the future Fleet Manager node, which would supervise the whole operation, can be found [here](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa8952160f8aaa0cf5e752be1f0849c2e18/src/mob_rob_loca/mob_rob_loca/FleetManager.py) (it wasn't tested, rather is just an implementation idea that one could use as a skeleton).
 
 This file gives information on how to install and use the package. Some examples are also given to illustrate the package in action.
 
-### Run using Postman
+### Create requests using Postman API
 Using Postman, we can mimic a request from the Robot Scheduler to test if the implementation with the whole laboratory works. To achieve this we're using Postman, which can be downloaded [here](https://www.postman.com/downloads/). To make it work, we first need to have 0) our database built & running and a virtual environment, then 1) our scheduler running locally and 2) a Postman post request.
 
 0) To create the database, we're using docker. Go to the main folder and build it:
-```
-cd ~/EM_fleetmanager
-docker compose up -d # runs the containers in the background
-```
-Then we have to create the virtual environment and install its dependencies:
-```
-python3 -m venv .venv
-# source environment
-source ~/EM_fleetmanager/.venv/bin/activate
-# install dependencies if not done previously
-pip install -r requirements.txt
-# enable exec of shell script
-chmod u+x exec.sh
-```
+    ```
+    cd ~/EM_fleetmanager
+    docker compose up -d # runs the containers in the background
+    ```
+    Then we have to create the virtual environment and install its dependencies:
+    ```
+    python3 -m venv .venv
+    # source environment
+    source ~/EM_fleetmanager/.venv/bin/activate
+    # install dependencies if not done previously
+    pip install -r requirements.txt
+    # enable exec of shell script
+    chmod u+x exec.sh
+    ```
+    You will also have to set the configuration for the two `.env` located respectively at [src/glas](https://github.com/swisscatplus/glas/blob/ccc1a3a07851eb8bf134fc779a95af1a39eb54c3/.env.example) and [src/glas/database/setup](https://github.com/swisscatplus/glas/blob/ccc1a3a07851eb8bf134fc779a95af1a39eb54c3/database/setup/.env.example). Rename the file without the `.example` and fill the variables according to your organisation.
 
-On Postman, you need to import the collection: select the import button, and choose this [json file](https://github.com/swisscatplus/glas/blob/ccc1a3a07851eb8bf134fc779a95af1a39eb54c3/GLAS.postman_collection.json). A collection named SwissCat+ should appear. You'll be using the "add task" tab to run tasks.
+   On Postman, you need to import the collection: select the import button, and choose this [json file](https://github.com/swisscatplus/glas/blob/ccc1a3a07851eb8bf134fc779a95af1a39eb54c3/GLAS.postman_collection.json). A collection named SwissCat+ should appear. You'll be using the "add task" tab to run tasks.
 
-1) Once the environment is created and the docker containers running, this is what should be executed to launch our scheduler:
+2) Once the environment is created and the docker containers running, this is what should be executed to launch our scheduler:
     ```
     cd ~/EM_fleetmanager
     # if the environment is not yet sourced
@@ -138,7 +137,7 @@ On Postman, you need to import the collection: select the import button, and cho
 
   ![image](https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/8e561043-b9d6-4eae-8f77-ce3ed2136e69)
 
-  It means the docker database isn't running.
+  It means the docker database isn't running, start the containers and try again.
 
 2) Go on Postman, SwissCat+/Tasks/Add and fill the json body. Depending on the workflow you want to run, its arguments may vary. At this moment, here are the two json bodies which work with the scheduler:
     ```
@@ -160,21 +159,16 @@ On Postman, you need to import the collection: select the import button, and cho
   
   ![image](https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/1b0966ab-e9d6-42b5-bb35-e65af5f60d80)
 
-## ROS2 interface
+## ROS2 interfaces
 
 <div align="center">
 
 | Topic                | Type                                    | Description                                                      |
 |----------------------|-----------------------------------------|------------------------------------------------------------------|
-| `/left_ticks_counts`  | std_msgs/Int16                          | Number of encoder ticks done by the left motor                   |
-| `/right_ticks_counts` | std_msgs/Int16                          | Number of encoder ticks done by the right motor                  |
-| `/edi/cam`            | geometry_msgs/PoseWithCovarianceStamped | Position of the robot from PiCamera2 according to ArUco codes    |
-| `/bno055/imu`         | sensor_msgs/Imu                         | Fused IMU data from bno055 sensor                                |
-
-| Parameter                | Type    | Description                                                                                                   |
-|--------------------------|---------|---------------------------------------------------------------------------------------------------------------|
-| `namespace`              | String  | Namespace of the robot, it'll be appended to the topics and nodes                                             |
-| `config_file`            | String  | Path of the configuration file used by the camera node that describes ArUco positions and intrinsic parameters |
+| `odometry_filt`      | nav_msgs/msg/Odometry                  | EKF output of fused relative sensors                             |
+| `odometry_global`    | nav_msgs/msg/Odometry                  | EKF output of fused relative and absolute sensors, final one     |
+| `markers`            | visualization_msgs/msg/MarkerArray     | Visualisation of ArUco code on the circuit for debugging purposes|
+| `keepout_filter_mask`| nav_msgs/msg/OccupancyGrid             | Occupancy grid representing the static obstacles, hence the circuit walls, used by Nav2|
 </div>
 
 Many services are present in the project due to using large packages like Nav2 or robot_localization, therefore only newly implemented services and other useful ones are described here.
@@ -183,7 +177,7 @@ Many services are present in the project due to using large packages like Nav2 o
   
 | Services implemented   | Input Args            | Output    | Description                                                                         |
 |------------------------|-----------------------|-----------|-------------------------------------------------------------------------------------|
-| `/go_to_station`        |  station_id, robot_id | result_id | Moves selected robot to desired station, returns 0 if success. otherwise returns the error ID       |
+| `/go_to_station`        |  station_id, robot_id | result_id | Moves selected robot to desired station, returns 0 if success. otherwise returns the error ID |
 
 | Other services         | Package |  Input Args            | Output    | Description                                                                         |
 |------------------------|---------|------------------------|-----------|-------------------------------------------------------------------------------------|
@@ -192,16 +186,19 @@ Many services are present in the project due to using large packages like Nav2 o
 
 Some service examples are shown in the [mob_rob_loca_msgs/srv](https://github.com/swisscatplus/EM_fleetmanager/tree/main/src/mob_rob_loca_msgs/srv) folder to represent what would need to be further implemented, such as a service to get an available robot ID.
 
-
 ### Dependencies
-The package dependencies are seen in the [package.xml](https://github.com/swisscatplus/SwissCat-on_robot/blob/config/src/rpi_pkg/package.xml). For a complete list, they're shown inside the following bracket. If some are missing, update the package.xml accordingly. 
+The package dependencies are seen in the [package.xml](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca/package.xml). The main ones are shown inside the following bracket.
 
 <details open>
   <summary><strong>Show dependencies</strong></summary>
-    - python3-serial <br>
-    - python3-smbus <br>
-    - geometry_msgs <br>
-    - rclpy <br>
-    - std_msgs <br>
-    - time <br>
+    - tf2_ros <br>
+    - robot_localization <br>
+    - navigation2 <br>
+    - robot_localization <br>
+    - nav2_map_server <br>
+    - robot_state_publisher <br>
+    - joint_state_publisher <br>
 </details>
+
+## To improve
+- Regarding the localisation, only one portion of the circuit is equipped with ArUco codes which impacts the navigation, as the only part which can be reliably used for chemical transports is NMR <-> OMNI. The arrival of Dynamixel motors, with their embedded ROS2 driver, will improve the odometry's reliability, hopefully allowing for setting fewer ArUco codes on the circuit. A better calibration of the 
