@@ -18,10 +18,13 @@ This repository provides the code to fuse sensors using an Extended Kalman filte
 1. [Description](#description)<br>
 2. [How to build](#how-to-build)<br>
 3. [How to use](#how-to-use)<br>
-4. [ROS2 Interfaces](#ros2-interfaces)<br>
+4. [ROS2 interfaces](#ros2-interfaces)<br>
 
 ## Description
 When running the main launch file, the program will subscribe to the four output topics of the mobile robot, described [here](https://github.com/swisscatplus/EM_onrobot), convert the left and right ticks into an odometry topic, wheel/odom. The IMU, odometry and camera position data will then be fused inside an EKF filter, using the [robot_localization package](https://index.ros.org/p/robot_localization/). This results in outputting the topic odometry/global, a much more reliable and stable position, which will then be used for the navigation tasks. At the moment, these are performed using [Nav2](https://github.com/ros-navigation/navigation2), but the goal is to detach from this package to have more control over the algorithms, as Nav2 provides little adaptability and its behaviour is sometimes unpredictable. In the framework of the SwissCat+ laboratory, navigation is needed to move the robot around stations where it'd be transporting chemical vials. The implemented GLAS architecture links this structure to the Robot Scheduler and provides workflows which can be called and executed autonomously. The task requests can be sent from Postman, an API platform, to mimic the Robot Scheduler behaviour.
+
+<details>
+<summary> Show detailed description</summary>
 
 ### Sensor fusion
 To achieve sensor fusion, the topics must have compatible types and a configuration file has to be properly set, which includes defining the covariance matrices. The configuration file implemented is [here](https://github.com/swisscatplus/EM_fleetmanager/blob/main/src/mob_rob_loca/config/ekf_em.yaml), and all the information about its configuration is described in the comments of the former [file](https://github.com/cra-ros-pkg/robot_localization/blob/ros2/params/ekf.yaml). In our case, we apply the EKF filter twice, once for the relative localisation data and once for the absolute one. This also allows us to have the transforms automatically defined  as the `publish_tf` boolean is enabled. The relative pose includes the IMU and the odometry data, which are thus fused into the `odometry/filtered` topic, and then fused again with the camera position data as part of the absolute data pose. 
@@ -45,7 +48,7 @@ Upon defining a new workflow or node, one first has to define it inside the [con
 
 A [scheduler](https://github.com/swisscatplus/EM_fleetmanager/blob/5451efa8952160f8aaa0cf5e752be1f0849c2e18/src/scheduler/core.py) is also available in case there is a need to implement a new API route inherent to the Fleet Manager.
 
-### Visualisation
+</details>
 
 ## How to build
 ### Requirements
@@ -156,3 +159,49 @@ On Postman, you need to import the collection: select the import button, and cho
   When running the code, your screen should typically look like this:
   
   ![image](https://github.com/swisscatplus/EM_fleetmanager/assets/102654647/1b0966ab-e9d6-42b5-bb35-e65af5f60d80)
+
+## ROS2 interface
+
+<div align="center">
+
+| Topic                | Type                                    | Description                                                      |
+|----------------------|-----------------------------------------|------------------------------------------------------------------|
+| `/left_ticks_counts`  | std_msgs/Int16                          | Number of encoder ticks done by the left motor                   |
+| `/right_ticks_counts` | std_msgs/Int16                          | Number of encoder ticks done by the right motor                  |
+| `/edi/cam`            | geometry_msgs/PoseWithCovarianceStamped | Position of the robot from PiCamera2 according to ArUco codes    |
+| `/bno055/imu`         | sensor_msgs/Imu                         | Fused IMU data from bno055 sensor                                |
+
+| Parameter                | Type    | Description                                                                                                   |
+|--------------------------|---------|---------------------------------------------------------------------------------------------------------------|
+| `namespace`              | String  | Namespace of the robot, it'll be appended to the topics and nodes                                             |
+| `config_file`            | String  | Path of the configuration file used by the camera node that describes ArUco positions and intrinsic parameters |
+</div>
+
+Many services are present in the project due to using large packages like Nav2 or robot_localization, therefore only newly implemented services and other useful ones are described here.
+
+<div align="center">
+  
+| Services implemented   | Input Args            | Output    | Description                                                                         |
+|------------------------|-----------------------|-----------|-------------------------------------------------------------------------------------|
+| `/go_to_station`        |  station_id, robot_id | result_id | Moves selected robot to desired station, returns 0 if success. otherwise returns the error ID       |
+
+| Other services         | Package |  Input Args            | Output    | Description                                                                         |
+|------------------------|---------|------------------------|-----------|-------------------------------------------------------------------------------------|
+| `/set_pose` | robot_localization |geometry_msgs/PoseWithCovarianceStamped pose|  -  |Sets the robot to a defined pose|
+</div>
+
+Some service examples are shown in the [mob_rob_loca_msgs/srv](https://github.com/swisscatplus/EM_fleetmanager/tree/main/src/mob_rob_loca_msgs/srv) folder to represent what would need to be further implemented, such as a service to get an available robot ID.
+
+
+### Dependencies
+The package dependencies are seen in the [package.xml](https://github.com/swisscatplus/SwissCat-on_robot/blob/config/src/rpi_pkg/package.xml). For a complete list, they're shown inside the following bracket. If some are missing, update the package.xml accordingly. 
+
+<details open>
+  <summary><strong>Show dependencies</strong></summary>
+    - python3-serial <br>
+    - python3-smbus <br>
+    - geometry_msgs <br>
+    - rclpy <br>
+    - std_msgs <br>
+    - time <br>
+</details>
