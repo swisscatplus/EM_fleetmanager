@@ -8,8 +8,8 @@ bt_navigator:
     enable_groot_monitoring: False
     groot_zmq_publisher_port: 1666
     groot_zmq_server_port: 1667
-    default_nav_to_pose_bt_xml: "/home/coderey/EM_navigation/src/mob_rob_loca/params/nav2pose.xml"
-    default_nav_through_poses_bt_xml: "/home/coderey/EM_navigation/src/mob_rob_loca/params/navthroughposes.xml"
+    default_nav_to_pose_bt_xml: "/ros2_ws/src/EM_fleetmanager/src/mob_rob_loca/params/nav2pose.xml"
+    default_nav_through_poses_bt_xml: "/ros2_ws/src/EM_fleetmanager/src/mob_rob_loca/params/navthroughposes.xml"
     plugin_lib_names:
         - nav2_compute_path_to_pose_action_bt_node
         - nav2_compute_path_through_poses_action_bt_node

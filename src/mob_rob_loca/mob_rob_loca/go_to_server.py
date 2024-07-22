@@ -7,7 +7,7 @@ from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 from tf_transformations import quaternion_from_euler, euler_from_quaternion
 
-config_path = '/home/coderey/EM_navigation/src/mob_rob_loca/config/stations.yaml' #'config/stations.yaml'
+config_path = '/ros2_ws/src/EM_fleetmanager/src/mob_rob_loca/config/stations.yaml' #'config/stations.yaml'
 stations = get_config_yaml(config_path)
 
 class NavService(Node):

@@ -8,7 +8,7 @@ def config_logger(log_level):
                 "WARNING": logging.WARNING,
                 "ERROR": logging.ERROR,
                 "CRITICAL": logging.CRITICAL}
-    logging.basicConfig(filename='/home/coderey/EM_navigation/src/mob_rob_loca/logs/log.log', #Change this
+    logging.basicConfig(filename='/ros2_ws/src/EM_fleetmanager/src/mob_rob_loca/logs/log.log', #Change this
                         format="%(asctime)s | %(name)s [Line %(lineno)d] | %(levelname)s: %(message)s",
                         datefmt="%m/%d/%Y %H:%M:%S",
                         level=switcher[level])
