@@ -1,11 +1,19 @@
+<a name="readme-top"></a>
 <br />
 <div align="center">
-  <a href="https://github.com/swisscatplus/task-scheduler">
-    <img src="https://images.squarespace-cdn.com/content/v1/6012a0a1f4c67c587a8eff67/d7731755-2fa3-4548-bf1e-5a25182d67ae/Combined+Logo+CAT-ETH-EPFL+%282%29.png?format=1500w" alt="Logo" height="80">
+  <a href="https://github.com/swisscatplus/">
+    <img src="./images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h1 align="center"> EM_fleetmanager - Autonomous navigation and control of a mobile robot using Nav2 and GLAS architecture </h1>
+  <h1 align="center">EM_fleetmanager - Autonomous navigation and control of a mobile robot using Nav2 and GLAS architecture</h1>
 
+  <p align="center">
+    EM_fleetmanager - Autonomous navigation and control of a mobile robot using Nav2 and GLAS architecture
+    <br />
+    <a href="https://github.com/swisscatplus/EM_fleetmanager"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+  </p>
 </div>
 
 This repository provides the code to fuse sensors using an Extended Kalman filter and uses the outputted position to control a mobile robot using [Nav2](https://github.com/ros-navigation/navigation2). The latter is responsible for transporting chemical vials between stations inside the laboratory. Moreover, the project fits into the framework of the schedulers from the SwissCat+ laboratory as it uses the [GLAS](https://github.com/swisscatplus/glas) scheduler to communicate with the higher-level scheduler: the Robot Scheduler. It is designed to work jointly with a mobile robot having [this code](https://github.com/swisscatplus/EM_onrobot) embedded and running.
