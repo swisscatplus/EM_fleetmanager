@@ -41,6 +41,7 @@ setup(
         'transforms = mob_rob_loca.transforms:main',
         'go_to_server = mob_rob_loca.go_to_server:main',
         'test_node = mob_rob_loca.test:main',
+        'map = mob_rob_loca.map:main',
         ],
     },
 )
