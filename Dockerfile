@@ -6,10 +6,10 @@ RUN apt-get update && apt-get install -y \
     python3 python3-pip python3-colcon-common-extensions \
     ros-${ROS_DISTRO}-example-interfaces ros-${ROS_DISTRO}-rclpy \
     python3-yaml python3-ply ros-${ROS_DISTRO}-nav2-map-server \
-    libgl1-mesa-glx
+    ros-${ROS_DISTRO}-tf-transformations libgl1-mesa-glx
 
 # Install necessary Python packages via pip
-RUN pip3 install opencv-python numpy
+RUN pip3 install opencv-python numpy pygame
 
 # Build your ROS application
 WORKDIR /ros2_ws
@@ -22,4 +22,7 @@ RUN chmod +x /entrypoint.sh
 
 # Set the entrypoint and default command
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["ros2", "launch", "mob_rob_loca", "maps.launch.py"]
+#CMD ["ros2", "launch", "mob_rob_loca", "maps.launch.py"]
+#CMD ["ros2", "launch", "mob_rob_loca", "markers.launch.py"]
+CMD ["/bin/bash", "-c", "ros2 launch mob_rob_loca maps.launch.py & ros2 launch mob_rob_loca markers.launch.py & ros2 launch mob_rob_loca ps4.launch.py"]
+

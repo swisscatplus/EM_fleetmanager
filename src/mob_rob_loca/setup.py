@@ -34,7 +34,7 @@ setup(
         'marv2ekf = mob_rob_loca.marv_to_ekf:main',
         'nav_manager = mob_rob_loca.nav_manager2:main',
         'vision_loca_pc = mob_rob_loca.vision_loca_pc:main',
-        'markers = mob_rob_loca.markers:main',
+        'markers_old = mob_rob_loca.markers_old:main',
         'fleet_manager = mob_rob_loca.FleetManager:main',
         'client = mob_rob_loca.client:main',
         'imu_pub = mob_rob_loca.imu:main',
@@ -42,6 +42,8 @@ setup(
         'go_to_server = mob_rob_loca.go_to_server:main',
         'test_node = mob_rob_loca.test:main',
         'map = mob_rob_loca.map:main',
+        'markers = mob_rob_loca.markers:main',
+        'ps4_teleop = mob_rob_loca.ps4_controller_teleop:main',
         ],
     },
 )

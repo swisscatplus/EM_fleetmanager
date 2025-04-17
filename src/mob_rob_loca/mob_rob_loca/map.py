@@ -23,8 +23,8 @@ class CustomMapPublisher(Node):
         )
         # Parameters: adjust these to match your map file and settings
         self.map_file = map_params  # full path to your map image
-        self.resolution = 0.05  # meters per pixel
-        self.origin = [-10.0, -10.0, 0.0]  # x, y, yaw (set yaw=0 for now)
+        self.resolution = 0.005  # meters per pixel
+        self.origin = [-2.87, -11.045, 0.0]  # x, y, yaw (set yaw=0 for now)
 
         # Load the map image and convert it to occupancy data
         self.load_map()
@@ -51,7 +51,7 @@ class CustomMapPublisher(Node):
         #   - Unknown: -1
         # Here, we map white to free and black to occupied.
         occupancy = []
-        for row in binary:
+        for row in reversed(binary):
             for pixel in row:
                 if pixel == 255:
                     occupancy.append(0)
