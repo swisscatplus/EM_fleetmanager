@@ -11,6 +11,11 @@ RUN apt-get update && apt-get install -y \
 # Install necessary Python packages via pip
 RUN pip3 install opencv-python numpy pygame
 
+# === ADD FASTDDS CONFIG FILE ===
+RUN mkdir -p /root/.ros
+COPY fastdds.xml /root/.ros/fastdds.xml
+ENV FASTRTPS_DEFAULT_PROFILES_FILE=/root/.ros/fastdds.xml
+
 # Build your ROS application
 WORKDIR /ros2_ws
 COPY src/mob_rob_loca src/mob_rob_loca
@@ -24,5 +29,5 @@ RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 #CMD ["ros2", "launch", "mob_rob_loca", "maps.launch.py"]
 #CMD ["ros2", "launch", "mob_rob_loca", "markers.launch.py"]
-CMD ["/bin/bash", "-c", "ros2 launch mob_rob_loca maps.launch.py & ros2 launch mob_rob_loca markers.launch.py & ros2 launch mob_rob_loca ps4.launch.py"]
+CMD ["/bin/bash", "-c", "ros2 launch mob_rob_loca maps.launch.py & ros2 launch mob_rob_loca markers.launch.py"]
 

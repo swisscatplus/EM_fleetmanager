@@ -63,6 +63,7 @@ class MarkersNode(Node):
             for marker_id, marker_data in markers.items():
                 m_tx = marker_data.get("t_x", 0.0)
                 m_ty = marker_data.get("t_y", 0.0)
+                m_tz = marker_data.get("t_z", 0.375)
                 m_yaw = marker_data.get("yaw", 0.0)
 
                 qx_m, qy_m, qz_m, qw_m = tf_transformations.quaternion_from_euler(0.0, 0.0, m_yaw)
@@ -73,7 +74,7 @@ class MarkersNode(Node):
                 ts_marker.child_frame_id = f"aruco_{marker_id}"
                 ts_marker.transform.translation.x = m_tx
                 ts_marker.transform.translation.y = m_ty
-                ts_marker.transform.translation.z = 0.0
+                ts_marker.transform.translation.z = m_tz
                 ts_marker.transform.rotation.x = qx_m
                 ts_marker.transform.rotation.y = qy_m
                 ts_marker.transform.rotation.z = qz_m
