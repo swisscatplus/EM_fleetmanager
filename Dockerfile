@@ -1,15 +1,19 @@
-FROM ros:humble-ros-base-jammy
+FROM ros:jazzy-ros-base-noble
 SHELL ["/bin/bash", "-c"]
-ENV ROS_DISTRO=humble
+ENV ROS_DISTRO=jazzy
 
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     python3 python3-pip python3-colcon-common-extensions \
     ros-${ROS_DISTRO}-example-interfaces ros-${ROS_DISTRO}-rclpy \
     python3-yaml python3-ply ros-${ROS_DISTRO}-nav2-map-server \
-    ros-${ROS_DISTRO}-tf-transformations libgl1-mesa-glx
+    ros-${ROS_DISTRO}-tf-transformations libgl1 \
+ && rm -rf /var/lib/apt/lists/*
 
 # Install necessary Python packages via pip
-RUN pip3 install opencv-python numpy pygame
+# Pin numpy to <2.0 to avoid transforms3d / tf_transformations crash
+RUN pip3 install --no-cache-dir --break-system-packages \
+    opencv-python "numpy<2.0" pygame
 
 # === ADD FASTDDS CONFIG FILE ===
 RUN mkdir -p /root/.ros
@@ -27,7 +31,6 @@ RUN chmod +x /entrypoint.sh
 
 # Set the entrypoint and default command
 ENTRYPOINT ["/entrypoint.sh"]
-#CMD ["ros2", "launch", "mob_rob_loca", "maps.launch.py"]
-#CMD ["ros2", "launch", "mob_rob_loca", "markers.launch.py"]
-CMD ["/bin/bash", "-c", "ros2 launch mob_rob_loca maps.launch.py & ros2 launch mob_rob_loca markers.launch.py"]
 
+# Example launch (both maps + markers)
+CMD ["/bin/bash", "-c", "ros2 launch mob_rob_loca maps.launch.py & ros2 launch mob_rob_loca markers.launch.py"]
