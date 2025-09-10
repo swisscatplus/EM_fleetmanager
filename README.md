@@ -32,8 +32,6 @@ Integrates with the <a href="https://github.com/swisscatplus/EM_fleetmanager">EM
 
 ## Overview
 
-## Overview
-
 The `EM_onrobot` repository contains the software and hardware resources for the SwissCat+ in-house mobile robot.
 
 ### Software
@@ -177,27 +175,70 @@ colcon build --packages-select em_robot em_robot_srv bno055
 
 ## How to Run
 
-1. Connect to the RPi:
+### Connect to the RPi:
    ```bash
-   ssh <rpi-name>>@<robot-ip>
+   ssh <rpi-name>@<robot-ip>
    ```
 
-2. Start the container:
+### Start the container:
    ```bash
    ./run.sh robot1
    ```
 
-3. From your PC, send velocity commands:
-   ```bash
-   ros2 topic pub /cmd_vel geometry_msgs/Twist "linear:
-     x: 0.3
-     y: 0.0
-     z: 0.0
-   angular:
-     x: 0.0
-     y: 0.0
-     z: 0.5"
-   ```
+### Test movement:
+**Important:** This is a **two-wheeled differential drive
+robot**. That means it can only move using:
+
+-   **Linear X** → forward/backward motion (both wheels turning in
+    the same direction).
+-   **Angular Z (yaw)** → rotation on the spot or turning (wheels
+    turning at different speeds).
+
+All other fields (`linear.y`, `linear.z`, `angular.x`, `angular.y`)
+are ignored.
+
+You have two options for testing:
+
+-   **Direct velocity commands (use with caution):**
+
+    You can publish a velocity command directly, but be aware that
+    the robot will **keep moving until you explicitly send another
+    command with zero velocity**. For example:
+
+    ``` bash
+    ros2 topic pub /cmd_vel geometry_msgs/Twist "linear:
+      x: 0.3
+      y: 0.0
+      z: 0.0
+    angular:
+      x: 0.0
+      y: 0.0
+      z: 0.5"
+    ```
+
+    To stop the robot, send the same command again but with all
+    values set to `0.0`.
+
+-   **Safer option: use teleop:**
+
+    The recommended way to test is to use the
+    [teleop_twist_keyboard](https://index.ros.org/p/teleop_twist_keyboard/)
+    package :
+    
+    ``` bash
+    sudo apt install ros-humble-teleop-twist-keyboard
+    ```
+
+    This allows you to control the robot interactively from
+    your PC with the keyboard:
+
+    ``` bash
+    ros2 run teleop_twist_keyboard teleop_twist_keyboard
+    ```
+
+    You can also connect a **gaming controller** and map the
+    joystick to publish commands on `/cmd_vel` for smoother and
+    safer manual control.
 
 ---
 
@@ -233,7 +274,7 @@ EM_onrobot/
 │   ├── em_robot_srv/     # ROS 2 service definitions
 │   ├── bno055/           # External Bosch BNO055 driver
 │   └── test.py           # Example script
-├── images/logo.png
+├── pictures/logo.png
 └── README.md
 ```
 
