@@ -16,7 +16,7 @@ RUN pip3 install --no-cache-dir \
 
 RUN mkdir -p /root/.ros
 COPY fastdds.xml /root/.ros/fastdds.xml
-ENV FASTRTPS_DEFAULT_PROFILES_FILE=/root/.ros/fastdds.xml
+#ENV FASTRTPS_DEFAULT_PROFILES_FILE=/root/.ros/fastdds.xml
 
 # Build your ROS application
 WORKDIR /ros2_ws
@@ -25,7 +25,7 @@ RUN . /opt/ros/${ROS_DISTRO}/setup.sh && colcon build --packages-select mob_rob_
 
 # Copy the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
 
 # Set the entrypoint and default command
 ENTRYPOINT ["/entrypoint.sh"]
