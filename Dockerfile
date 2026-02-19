@@ -16,7 +16,7 @@ RUN pip3 install --no-cache-dir \
 
 RUN mkdir -p /root/.ros
 COPY fastdds.xml /root/.ros/fastdds.xml
-#ENV FASTRTPS_DEFAULT_PROFILES_FILE=/root/.ros/fastdds.xml
+ENV FASTRTPS_DEFAULT_PROFILES_FILE=/root/.ros/fastdds.xml
 
 # Build your ROS application
 WORKDIR /ros2_ws
