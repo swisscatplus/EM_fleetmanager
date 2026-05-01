@@ -1,0 +1,38 @@
+name: em_fleetmanager
+
+services:
+  em_fleetmanager:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: ${EM_FLEETMANAGER_IMAGE:-em_fleetmanager:dev}
+    network_mode: host
+    working_dir: /ros2_ws
+    stdin_open: true
+    tty: true
+    environment:
+      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-10}
+      RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}
+      FASTRTPS_DEFAULT_PROFILES_FILE: /root/.ros/fastdds.xml
+    volumes:
+      - ..:/ros2_ws
+      - ../config/fastdds.xml:/root/.ros/fastdds.xml:ro
+      - em_fleetmanager_colcon_build:/ros2_ws/build
+      - em_fleetmanager_colcon_install:/ros2_ws/install
+      - em_fleetmanager_colcon_log:/ros2_ws/log
+    command: >
+      bash -lc "set -e;
+      source /opt/ros/$$ROS_DISTRO/setup.bash;
+      cd /ros2_ws;
+      rm -rf build/mob_rob_loca build/mob_rob_loca_msgs;
+      rm -rf install/mob_rob_loca install/mob_rob_loca_msgs;
+      colcon build --symlink-install --packages-select mob_rob_loca_msgs mob_rob_loca;
+      source install/setup.bash;
+      ros2 launch mob_rob_loca maps.launch.py &
+      ros2 launch mob_rob_loca markers.launch.py &
+      wait"
+
+volumes:
+  em_fleetmanager_colcon_build:
+  em_fleetmanager_colcon_install:
+  em_fleetmanager_colcon_log:

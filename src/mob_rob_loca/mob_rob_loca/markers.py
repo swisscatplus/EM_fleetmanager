@@ -7,6 +7,7 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import TransformStamped
 import tf2_ros
+import math
 
 from ament_index_python.packages import get_package_share_directory
 import tf_transformations
@@ -66,7 +67,12 @@ class MarkersNode(Node):
                 m_tz = marker_data.get("t_z", 0.375)
                 m_yaw = marker_data.get("yaw", 0.0)
 
-                qx_m, qy_m, qz_m, qw_m = tf_transformations.quaternion_from_euler(0.0, 0.0, m_yaw)
+                #qx_m, qy_m, qz_m, qw_m = tf_transformations.quaternion_from_euler(0.0, 0.0, m_yaw)
+                qx_m, qy_m, qz_m, qw_m = tf_transformations.quaternion_from_euler(
+                    math.pi,  # fixed flip for downward-facing ceiling markers
+                    0.0,
+                    m_yaw + math.pi,
+                )
 
                 ts_marker = TransformStamped()
                 ts_marker.header.stamp = self.get_clock().now().to_msg()
