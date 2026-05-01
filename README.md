@@ -6,26 +6,37 @@
   <h1 align="center">EM_fleetmanager</h1>
 </div>
 
-ROS 2 laptop-side fleet management stack for EM Robot.
+ROS 2 laptop-side workspace for publishing the laboratory map and ArUco marker transforms.
 
 This repository is responsible for:
 
-- publishing the laboratory map
-- publishing ArUco marker transforms used by mobile robots
-- hosting fleet management services for multi-robot logic
+- publishing the laboratory map through `nav2_map_server`
+- publishing static `map -> track_* -> aruco_*` transforms
 - Dockerized laptop deployment on ROS 2 Humble
 
-This repository is not the place for robot-side hardware control or path tracking. Robot-local behavior lives in `EM_onrobot`; path planning and control lives in `EM_pathplanning`.
+The current ROS package is `fleet_manager`.
 
 ## Supported Target
 
 The supported runtime target is an Ubuntu laptop/workstation running ROS 2 Humble in Docker.
 
-The default container command launches the map and marker publishers:
+The default entrypoint launches both publishers:
 
 ```bash
-ros2 launch mob_rob_loca maps.launch.py
-ros2 launch mob_rob_loca markers.launch.py
+ros2 launch fleet_manager bringup.launch.py
+```
+
+That launch also starts RViz with a preconfigured map display. To skip RViz:
+
+```bash
+ros2 launch fleet_manager bringup.launch.py use_rviz:=false
+```
+
+Optional convenience launches:
+
+```bash
+ros2 launch fleet_manager maps.launch.py
+ros2 launch fleet_manager markers.launch.py
 ```
 
 ## Docker Development
@@ -50,7 +61,7 @@ Useful follow-up commands:
 ./scripts/start_dev.sh down
 ```
 
-The compose workflow bind-mounts this repository into `/ros2_ws`, builds `mob_rob_loca_msgs` and `mob_rob_loca` with `--symlink-install`, sources the workspace, then starts the default launch commands.
+The compose workflow bind-mounts this repository into `/ros2_ws`, builds `fleet_manager` with `--symlink-install`, sources the workspace, then starts the combined launch.
 
 ## Image Build
 
@@ -72,13 +83,13 @@ PUSH_IMAGE=1 IMAGE_NAME=ghcr.io/swisscatplus/em_fleetmanager:latest ./scripts/de
 Build the ROS workspace locally:
 
 ```bash
-colcon build --symlink-install --packages-select mob_rob_loca_msgs mob_rob_loca
+colcon build --symlink-install --packages-select fleet_manager
 ```
 
 Run tests:
 
 ```bash
-colcon test --packages-select mob_rob_loca_msgs mob_rob_loca
+colcon test --packages-select fleet_manager
 colcon test-result --verbose
 ```
 
@@ -99,8 +110,7 @@ EM_fleetmanager/
 │   ├── deployImage.sh
 │   └── start_dev.sh
 ├── src/
-│   ├── mob_rob_loca/
-│   └── mob_rob_loca_msgs/
+│   └── fleet_manager/
 └── pictures/
 ```
 

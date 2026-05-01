@@ -24,13 +24,11 @@ services:
       bash -lc "set -e;
       source /opt/ros/$$ROS_DISTRO/setup.bash;
       cd /ros2_ws;
-      rm -rf build/mob_rob_loca build/mob_rob_loca_msgs;
-      rm -rf install/mob_rob_loca install/mob_rob_loca_msgs;
-      colcon build --symlink-install --packages-select mob_rob_loca_msgs mob_rob_loca;
+      rm -rf build/fleet_manager;
+      rm -rf install/fleet_manager;
+      colcon build --symlink-install --packages-select fleet_manager;
       source install/setup.bash;
-      ros2 launch mob_rob_loca maps.launch.py &
-      ros2 launch mob_rob_loca markers.launch.py &
-      wait"
+      ros2 launch fleet_manager bringup.launch.py"
 
 volumes:
   em_fleetmanager_colcon_build:
