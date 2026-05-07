@@ -22,3 +22,5 @@ metadata.yaml
 .#*
 *.user
 CMakeLists.txt.user
+
+.vscode
