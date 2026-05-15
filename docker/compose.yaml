@@ -1,7 +1,7 @@
 name: fleet_stack
 
 x-ros-env: &ros_env
-  ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-10}
+  ROS_DOMAIN_ID: 10
   RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}
   FASTRTPS_DEFAULT_PROFILES_FILE: /root/.ros/fastdds.xml
 

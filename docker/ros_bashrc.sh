@@ -2,7 +2,7 @@
 
 export RMW_IMPLEMENTATION="${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}"
 export FASTRTPS_DEFAULT_PROFILES_FILE="${FASTRTPS_DEFAULT_PROFILES_FILE:-/root/.ros/fastdds.xml}"
-export ROS_DOMAIN_ID="${ROS_DOMAIN_ID:-10}"
+export ROS_DOMAIN_ID=10
 
 if [ -n "$ROS_DISTRO" ] && [ -f "/opt/ros/$ROS_DISTRO/setup.bash" ]; then
   source "/opt/ros/$ROS_DISTRO/setup.bash"
