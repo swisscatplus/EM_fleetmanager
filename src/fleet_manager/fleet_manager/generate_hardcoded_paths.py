@@ -313,15 +313,21 @@ def main() -> None:
 
     generated = generate_paths(markers_config, stations_config, routes_config)
     paths = paths_config.setdefault("paths", {})
+    written_count = 0
     for path_id, path in generated.items():
+        existing_path = paths.get(path_id) or paths.get(str(path_id))
+        if isinstance(existing_path, dict) and existing_path.get("locked", False):
+            continue
         paths[int(path_id)] = path
+        written_count += 1
 
     if args.dry_run:
         print(yaml.safe_dump({"paths": generated}, sort_keys=False))
         return
 
     write_yaml(args.paths_config, paths_config)
-    print(f"Generated {len(generated)} path(s) into {args.paths_config}")
+    skipped_count = len(generated) - written_count
+    print(f"Generated {written_count} path(s) into {args.paths_config}; skipped {skipped_count} locked path(s)")
 
 
 if __name__ == "__main__":

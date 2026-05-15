@@ -44,7 +44,7 @@ services:
       <<: *ros_env
       ROBOT_NAME: ${ROBOT_NAME:-robot1}
       ROBOT_NAMESPACE: ${ROBOT_NAMESPACE:-robot1}
-      BASE_LINK_FRAME: ${BASE_LINK_FRAME:-base_link}
+      BASE_LINK_FRAME: ${BASE_LINK_FRAME:-robot1/base_link}
       MAP_FRAME: ${MAP_FRAME:-map}
       PATHS_CONFIG: ${PATHS_CONFIG:-paths.yaml}
     volumes:

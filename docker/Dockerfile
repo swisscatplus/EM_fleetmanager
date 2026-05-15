@@ -54,7 +54,10 @@ RUN rosdep update && \
     colcon build --symlink-install --packages-select fleet_interfaces fleet_manager tracker
 
 COPY docker/entrypoint.sh /entrypoint.sh
-RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
+COPY docker/ros_bashrc.sh /etc/profile.d/fleet_stack_ros.sh
+RUN sed -i 's/\r$//' /entrypoint.sh /etc/profile.d/fleet_stack_ros.sh && \
+    chmod +x /entrypoint.sh && \
+    cat /etc/profile.d/fleet_stack_ros.sh >> /root/.bashrc
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["bash"]

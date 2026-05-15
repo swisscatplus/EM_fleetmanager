@@ -18,7 +18,7 @@ stations:
 
   Synthesis:
     measured: false
-    docking_pose: {x: 4.35, y: 0.885, yaw: -1.5708}
+    docking_pose: {x: 4.35, y: 0.885, yaw: 0.0}
     clearance_m: 0.10
     notes: ""
 
@@ -30,6 +30,6 @@ stations:
 
   LC:
     measured: yes
-    docking_pose: {x: 0.325, y: 2.985, yaw: 1.5708}
+    docking_pose: {x: 0.325, y: 2.985, yaw: 0.0}
     clearance_m: 0.10
     notes: ""
