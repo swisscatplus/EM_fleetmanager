@@ -27,6 +27,9 @@ def generate_launch_description():
     markers_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(launch_dir, 'markers.launch.py'))
     )
+    movement_api_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(os.path.join(launch_dir, 'movement_api.launch.py'))
+    )
     use_rviz = LaunchConfiguration('use_rviz')
 
     rviz_node = Node(
@@ -46,5 +49,6 @@ def generate_launch_description():
         ),
         maps_launch,
         markers_launch,
+        movement_api_launch,
         rviz_node,
     ])

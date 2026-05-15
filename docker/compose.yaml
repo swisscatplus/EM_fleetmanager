@@ -1,36 +1,75 @@
-name: em_fleetmanager
+name: fleet_stack
+
+x-ros-env: &ros_env
+  ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-10}
+  RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}
+  FASTRTPS_DEFAULT_PROFILES_FILE: /root/.ros/fastdds.xml
 
 services:
-  em_fleetmanager:
+  fleet_manager:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    image: ${EM_FLEETMANAGER_IMAGE:-em_fleetmanager:dev}
+    image: ${FLEET_MANAGER_IMAGE:-fleet_manager:dev}
     network_mode: host
     working_dir: /ros2_ws
     stdin_open: true
     tty: true
     environment:
-      ROS_DOMAIN_ID: 10
-      RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}
-      FASTRTPS_DEFAULT_PROFILES_FILE: /root/.ros/fastdds.xml
+      <<: *ros_env
     volumes:
       - ..:/ros2_ws
       - ../config/fastdds.xml:/root/.ros/fastdds.xml:ro
-      - em_fleetmanager_colcon_build:/ros2_ws/build
-      - em_fleetmanager_colcon_install:/ros2_ws/install
-      - em_fleetmanager_colcon_log:/ros2_ws/log
+      - fleet_manager_colcon_build:/ros2_ws/build
+      - fleet_manager_colcon_install:/ros2_ws/install
+      - fleet_manager_colcon_log:/ros2_ws/log
     command: >
       bash -lc "set -e;
       source /opt/ros/$$ROS_DISTRO/setup.bash;
       cd /ros2_ws;
-      rm -rf build/fleet_manager;
-      rm -rf install/fleet_manager;
-      colcon build --symlink-install --packages-select fleet_manager;
+      colcon build --symlink-install --packages-select fleet_interfaces fleet_manager;
       source install/setup.bash;
-      ros2 launch fleet_manager bringup.launch.py"
+      ros2 launch fleet_manager bringup.launch.py use_rviz:=false"
+
+  tracker_robot_1:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: ${TRACKER_IMAGE:-tracker:dev}
+    network_mode: host
+    working_dir: /ros2_ws
+    stdin_open: true
+    tty: true
+    environment:
+      <<: *ros_env
+      ROBOT_NAME: ${ROBOT_NAME:-robot1}
+      ROBOT_NAMESPACE: ${ROBOT_NAMESPACE:-robot1}
+      BASE_LINK_FRAME: ${BASE_LINK_FRAME:-base_link}
+      MAP_FRAME: ${MAP_FRAME:-map}
+      PATHS_CONFIG: ${PATHS_CONFIG:-paths.yaml}
+    volumes:
+      - ..:/ros2_ws
+      - ../config/fastdds.xml:/root/.ros/fastdds.xml:ro
+      - tracker_colcon_build:/ros2_ws/build
+      - tracker_colcon_install:/ros2_ws/install
+      - tracker_colcon_log:/ros2_ws/log
+    command: >
+      bash -lc "set -e;
+      source /opt/ros/$$ROS_DISTRO/setup.bash;
+      cd /ros2_ws;
+      colcon build --symlink-install --packages-select fleet_interfaces tracker;
+      source install/setup.bash;
+      ros2 launch tracker tracker_action.launch.py
+      robot_name:=$$ROBOT_NAME
+      robot_namespace:=$$ROBOT_NAMESPACE
+      map_frame:=$$MAP_FRAME
+      base_link_frame:=$$BASE_LINK_FRAME
+      paths_config:=$$PATHS_CONFIG"
 
 volumes:
-  em_fleetmanager_colcon_build:
-  em_fleetmanager_colcon_install:
-  em_fleetmanager_colcon_log:
+  fleet_manager_colcon_build:
+  fleet_manager_colcon_install:
+  fleet_manager_colcon_log:
+  tracker_colcon_build:
+  tracker_colcon_install:
+  tracker_colcon_log:

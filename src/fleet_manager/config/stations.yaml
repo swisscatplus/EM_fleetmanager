@@ -1,0 +1,35 @@
+frame_id: map
+default_clearance_m: 0.10
+
+# Fill these poses after measuring the exact station docking locations.
+# Routes remain disabled until the corresponding station poses and MPC paths are validated.
+stations:
+  SFC_QTOF:
+    measured: false
+    docking_pose: {x: null, y: null, yaw: null}
+    clearance_m: 0.10
+    notes: "Formerly referred to as SFC in early drafts."
+
+  OmniFire:
+    measured: yes
+    docking_pose: {x: null, y: null, yaw: null}
+    clearance_m: 0.10
+    notes: ""
+
+  Synthesis:
+    measured: false
+    docking_pose: {x: 4.35, y: 0.885, yaw: -1.5708}
+    clearance_m: 0.10
+    notes: ""
+
+  PrepFire:
+    measured: false
+    docking_pose: {x: null, y: null, yaw: null}
+    clearance_m: 0.10
+    notes: ""
+
+  LC:
+    measured: yes
+    docking_pose: {x: 0.325, y: 2.985, yaw: 1.5708}
+    clearance_m: 0.10
+    notes: ""

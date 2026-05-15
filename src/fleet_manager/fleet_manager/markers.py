@@ -5,9 +5,15 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 from geometry_msgs.msg import TransformStamped
+import numpy as np
 import rclpy
 from rclpy.node import Node
 import tf2_ros
+
+# tf_transformations on ROS Humble still references the removed NumPy aliases.
+if not hasattr(np, 'float'):
+    np.float = float
+
 import tf_transformations
 import yaml
 

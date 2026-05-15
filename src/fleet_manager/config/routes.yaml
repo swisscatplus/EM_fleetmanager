@@ -1,0 +1,95 @@
+action_name: /robot1/execute_path
+default_timeout_s: 900
+
+# Scaffolded station routes. They are intentionally disabled until station poses
+# are measured and matching executable paths are added to the MPC controller.
+routes:
+  SFC_QTOF:
+    OmniFire:
+      path_id: 101
+      enabled: false
+      reason: station measurements required
+    Synthesis:
+      path_id: 102
+      enabled: false
+      reason: station measurements required
+    PrepFire:
+      path_id: 103
+      enabled: false
+      reason: station measurements required
+    LC:
+      path_id: 104
+      enabled: false
+      reason: station measurements required
+
+  OmniFire:
+    SFC_QTOF:
+      path_id: 105
+      enabled: false
+      reason: station measurements required
+    Synthesis:
+      path_id: 106
+      enabled: false
+      reason: station measurements required
+    PrepFire:
+      path_id: 107
+      enabled: false
+      reason: station measurements required
+    LC:
+      path_id: 108
+      enabled: false
+      reason: station measurements required
+
+  Synthesis:
+    SFC_QTOF:
+      path_id: 109
+      enabled: false
+      reason: station measurements required
+    OmniFire:
+      path_id: 110
+      enabled: false
+      reason: station measurements required
+    PrepFire:
+      path_id: 111
+      enabled: false
+      reason: station measurements required
+    LC:
+      path_id: 112
+      enabled: false
+      reason: station measurements required
+
+  PrepFire:
+    SFC_QTOF:
+      path_id: 113
+      enabled: false
+      reason: station measurements required
+    OmniFire:
+      path_id: 114
+      enabled: false
+      reason: station measurements required
+    Synthesis:
+      path_id: 115
+      enabled: false
+      reason: station measurements required
+    LC:
+      path_id: 116
+      enabled: false
+      reason: station measurements required
+
+  LC:
+    SFC_QTOF:
+      path_id: 117
+      enabled: false
+      reason: station measurements required
+    OmniFire:
+      path_id: 118
+      enabled: false
+      reason: station measurements required
+    Synthesis:
+      path_id: 119
+      enabled: false
+      reason: station measurements required
+    PrepFire:
+      path_id: 120
+      enabled: false
+      reason: station measurements required

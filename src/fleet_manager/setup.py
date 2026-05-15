@@ -43,7 +43,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'generate_hardcoded_paths = fleet_manager.generate_hardcoded_paths:main',
             'markers = fleet_manager.markers:main',
+            'rest_api = fleet_manager.rest_api:main',
         ],
     },
 )

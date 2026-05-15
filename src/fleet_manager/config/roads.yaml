@@ -1,0 +1,30 @@
+frame_id: map
+default_width_m: 0.65
+segment_length_m: 2.0
+source: markers.yaml
+
+# Production road centerlines owned by Fleet Manager.
+# These segments are derived from the marker track map. The mobile robot should
+# follow these road centers, then leave the center only for the final station
+# docking motion.
+segments:
+  track_1: {start: [0.325, -5.675], end: [0.325, -3.675], width_m: 0.65}
+  track_2: {start: [0.325, -3.675], end: [0.325, -1.675], width_m: 0.65}
+  track_3: {start: [0.325, -1.675], end: [0.325, 0.325], width_m: 0.65}
+  track_4: {start: [0.325, 0.325], end: [0.325, 2.325], width_m: 0.65}
+  track_5: {start: [0.325, 2.325], end: [0.325, 4.325], width_m: 0.65}
+  track_6: {start: [0.325, 4.325], end: [0.325, 6.325], width_m: 0.65}
+  track_7: {start: [4.355, -7.675], end: [4.355, -5.675], width_m: 0.65}
+  track_8: {start: [4.355, -5.675], end: [4.355, -3.675], width_m: 0.65}
+  track_9: {start: [4.355, -3.675], end: [4.355, -1.675], width_m: 0.65}
+  track_10: {start: [4.355, -1.675], end: [4.355, 0.325], width_m: 0.65}
+  track_11: {start: [4.355, 0.325], end: [4.355, 2.325], width_m: 0.65}
+  track_12: {start: [4.355, 2.325], end: [4.355, 4.325], width_m: 0.65}
+  track_13: {start: [4.355, 4.325], end: [4.355, 6.325], width_m: 0.65}
+  track_14: {start: [4.355, 6.325], end: [4.355, 8.325], width_m: 0.65}
+  track_15: {start: [4.03, 6.0], end: [2.03, 6.0], width_m: 0.65}
+  track_16: {start: [2.85, 6.0], end: [0.85, 6.0], width_m: 0.65}
+  track_17: {start: [1.85, 6.0], end: [-0.15, 6.0], width_m: 0.65}
+  track_18: {start: [0.65, -0.325], end: [2.65, -0.325], width_m: 0.65}
+  track_19: {start: [2.345, -0.325], end: [4.345, -0.325], width_m: 0.65}
+  track_20: {start: [2.85, -0.325], end: [4.85, -0.325], width_m: 0.65}
