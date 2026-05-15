@@ -55,8 +55,8 @@ routes:
       reason: station measurements required
     LC:
       path_id: 112
-      enabled: false
-      reason: station measurements required
+      enabled: true
+      reason: done
 
   PrepFire:
     SFC_QTOF:
@@ -87,8 +87,8 @@ routes:
       reason: station measurements required
     Synthesis:
       path_id: 119
-      enabled: false
-      reason: station measurements required
+      enabled: true
+      reason: done
     PrepFire:
       path_id: 120
       enabled: false
