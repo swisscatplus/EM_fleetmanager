@@ -8,7 +8,13 @@ stations:
     measured: false
     docking_pose: {x: null, y: null, yaw: null}
     clearance_m: 0.10
-    notes: "Formerly referred to as SFC in early drafts."
+    notes: ""
+
+  Battery:
+    measured: false
+    docking_pose: {x: 4.38, y: 7.63, yaw: 0.0}
+    clearance_m: 0.10
+    notes: ""
 
   OmniFire:
     measured: yes

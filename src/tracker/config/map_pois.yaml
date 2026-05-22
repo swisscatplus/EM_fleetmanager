@@ -22,3 +22,18 @@ points_of_interest:
     right_top_end: [4.3525, 7.3725]
     left_bottom_end: [0.3225, -5.3525]
     right_bottom_end: [4.3525, -7.3525]
+
+road_graph:
+  # The graph follows the road centerline and is used to generate station-to-station
+  # routes. Keep edges aligned with the road center to preserve wall clearance.
+  edges:
+    - [left_bottom_end, lower_left_t]
+    - [lower_left_t, top_left_corner]
+    - [top_left_corner, top_middle]
+    - [top_middle, top_right_t]
+    - [top_right_t, right_top_end]
+    - [top_middle, lower_middle_t]
+    - [lower_left_t, lower_middle_t]
+    - [lower_middle_t, lower_right_t]
+    - [top_right_t, lower_right_t]
+    - [lower_right_t, right_bottom_end]

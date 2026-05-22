@@ -22,6 +22,16 @@ routes:
       enabled: false
       reason: station measurements required
 
+  Battery:
+    Synthesis:
+      path_id: 121
+      enabled: true
+      reason: poi graph generated
+    LC:
+      path_id: 122
+      enabled: true
+      reason: poi graph generated
+
   OmniFire:
     SFC_QTOF:
       path_id: 105
@@ -41,6 +51,10 @@ routes:
       reason: station measurements required
 
   Synthesis:
+    Battery:
+      path_id: 123
+      enabled: true
+      reason: poi graph generated
     SFC_QTOF:
       path_id: 109
       enabled: false
@@ -77,6 +91,10 @@ routes:
       reason: station measurements required
 
   LC:
+    Battery:
+      path_id: 124
+      enabled: true
+      reason: poi graph generated
     SFC_QTOF:
       path_id: 117
       enabled: false
