@@ -1,0 +1,24 @@
+frame_id: map
+source_map:
+  image: circuit_mr.png
+  yaml: circuit.yaml
+  resolution: 0.005
+  origin: [-2.87, -11.045, 0.0]
+
+# Coordinates extracted from the white road centerlines in circuit_mr.png.
+# Naming is directional/topological so the points stay useful even if paths change.
+points_of_interest:
+  intersections:
+    top_middle: [2.3375, 5.9975]
+    top_right_t: [4.3525, 5.9975]
+    lower_left_t: [0.3225, -0.3250]
+    lower_middle_t: [2.3375, -0.3250]
+    lower_right_t: [4.3525, -0.3250]
+
+  corners:
+    top_left_corner: [0.3225, 5.9975]
+
+  path_ends:
+    right_top_end: [4.3525, 7.3725]
+    left_bottom_end: [0.3225, -5.3525]
+    right_bottom_end: [4.3525, -7.3525]
