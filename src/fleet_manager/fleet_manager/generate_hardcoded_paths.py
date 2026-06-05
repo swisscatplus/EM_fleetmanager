@@ -20,6 +20,7 @@ except Exception:  # pylint: disable=broad-exception-caught
 PATH_SAMPLE_SPACING_M = 1.0
 CORNER_INSET_M = 0.4
 MIN_CORNER_ANGLE_DEG = 20.0
+TERMINAL_SEGMENT_EPSILON_M = 0.05
 KEY_PRECISION = 4
 
 Point = tuple[float, float]
@@ -211,6 +212,30 @@ def densify_points(points: list[Point], spacing_m: float = PATH_SAMPLE_SPACING_M
     return dedupe_points(dense)
 
 
+def collapse_terminal_micro_segments(
+    points: list[Point],
+    epsilon_m: float = TERMINAL_SEGMENT_EPSILON_M,
+) -> list[Point]:
+    points = dedupe_points(points)
+    if len(points) < 3:
+        return points
+
+    changed = True
+    while changed and len(points) >= 3:
+        changed = False
+
+        if distance(points[0], points[1]) < epsilon_m:
+            points = [points[0], *points[2:]]
+            changed = True
+            continue
+
+        if distance(points[-2], points[-1]) < epsilon_m:
+            points = [*points[:-2], points[-1]]
+            changed = True
+
+    return points
+
+
 def valid_station_pose(station: dict[str, Any]) -> Optional[tuple[float, float, float]]:
     pose = station.get("docking_pose", {})
     x = pose.get("x")
@@ -397,15 +422,16 @@ def generate_station_path(
     raw_points = [start_attachment["station_point"], *centerline, end_attachment["station_point"]]
     smoothed = smooth_polyline(raw_points)
     dense = densify_points(smoothed)
+    cleaned = collapse_terminal_micro_segments(dense)
 
     return {
-        "direction": direction_for_path(dense, start_pose[2]),
+        "direction": direction_for_path(cleaned, start_pose[2]),
         "generated_from": {
             "station_start": start_name,
             "station_end": end_name,
             "generator": "poi_graph_v2",
         },
-        "points": [round_point(point) for point in dense],
+        "points": [round_point(point) for point in cleaned],
     }
 
 

@@ -206,8 +206,6 @@ paths:
     - - 4.35
       - 0.885
     - - 4.353
-      - 0.885
-    - - 4.353
       - 0.075
     - - 4.309
       - -0.145
@@ -233,8 +231,6 @@ paths:
       - 1.075
     - - 0.323
       - 2.075
-    - - 0.323
-      - 2.985
     - - 0.325
       - 2.985
   119:
@@ -245,8 +241,6 @@ paths:
       generator: poi_graph_v2
     points:
     - - 0.325
-      - 2.985
-    - - 0.323
       - 2.985
     - - 0.323
       - 1.985
@@ -274,12 +268,10 @@ paths:
       - -0.151
     - - 4.353
       - 0.075
-    - - 4.353
-      - 0.885
     - - 4.35
       - 0.885
   121:
-    direction: backward
+    direction: forward
     generated_from:
       station_start: Battery
       station_end: Synthesis
@@ -309,12 +301,10 @@ paths:
       - 1.997
     - - 4.353
       - 0.997
-    - - 4.353
-      - 0.885
     - - 4.35
       - 0.885
   122:
-    direction: backward
+    direction: forward
     generated_from:
       station_start: Battery
       station_end: LC
@@ -356,20 +346,16 @@ paths:
       - 4.597
     - - 0.323
       - 3.597
-    - - 0.323
-      - 2.985
     - - 0.325
       - 2.985
   123:
-    direction: forward
+    direction: backward
     generated_from:
       station_start: Synthesis
       station_end: Battery
       generator: poi_graph_v2
     points:
     - - 4.35
-      - 0.885
-    - - 4.353
       - 0.885
     - - 4.353
       - 1.885
@@ -403,8 +389,6 @@ paths:
       generator: poi_graph_v2
     points:
     - - 0.325
-      - 2.985
-    - - 0.323
       - 2.985
     - - 0.323
       - 3.985
