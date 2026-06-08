@@ -4,12 +4,12 @@ default_timeout_s: 900
 # Scaffolded station routes. They are intentionally disabled until station poses
 # are measured and matching executable paths are added to the MPC controller.
 routes:
-  SFC_QTOF:
+  SFC QTOF:
     OmniFire:
       path_id: 101
       enabled: false
       reason: station measurements required
-    Synthesis:
+    Chemspeed SwingSP:
       path_id: 102
       enabled: false
       reason: station measurements required
@@ -17,27 +17,27 @@ routes:
       path_id: 103
       enabled: false
       reason: station measurements required
-    LC:
+    LC MS:
       path_id: 104
       enabled: false
       reason: station measurements required
 
   Battery:
-    Synthesis:
+    Chemspeed SwingSP:
       path_id: 121
       enabled: true
       reason: poi graph generated
-    LC:
+    LC MS:
       path_id: 122
       enabled: true
       reason: poi graph generated
 
   OmniFire:
-    SFC_QTOF:
+    SFC QTOF:
       path_id: 105
       enabled: false
       reason: station measurements required
-    Synthesis:
+    Chemspeed SwingSP:
       path_id: 106
       enabled: false
       reason: station measurements required
@@ -45,17 +45,17 @@ routes:
       path_id: 107
       enabled: false
       reason: station measurements required
-    LC:
+    LC MS:
       path_id: 108
       enabled: false
       reason: station measurements required
 
-  Synthesis:
+  Chemspeed SwingSP:
     Battery:
       path_id: 123
       enabled: true
       reason: poi graph generated
-    SFC_QTOF:
+    SFC QTOF:
       path_id: 109
       enabled: false
       reason: station measurements required
@@ -67,13 +67,13 @@ routes:
       path_id: 111
       enabled: false
       reason: station measurements required
-    LC:
+    LC MS:
       path_id: 112
       enabled: true
       reason: done
 
   PrepFire:
-    SFC_QTOF:
+    SFC QTOF:
       path_id: 113
       enabled: false
       reason: station measurements required
@@ -81,21 +81,21 @@ routes:
       path_id: 114
       enabled: false
       reason: station measurements required
-    Synthesis:
+    Chemspeed SwingSP:
       path_id: 115
       enabled: false
       reason: station measurements required
-    LC:
+    LC MS:
       path_id: 116
       enabled: false
       reason: station measurements required
 
-  LC:
+  LC MS:
     Battery:
       path_id: 124
       enabled: true
       reason: poi graph generated
-    SFC_QTOF:
+    SFC QTOF:
       path_id: 117
       enabled: false
       reason: station measurements required
@@ -103,7 +103,7 @@ routes:
       path_id: 118
       enabled: false
       reason: station measurements required
-    Synthesis:
+    Chemspeed SwingSP:
       path_id: 119
       enabled: true
       reason: done

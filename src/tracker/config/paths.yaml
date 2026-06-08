@@ -140,7 +140,7 @@ paths:
     direction: forward
     generated_from:
       station_start: OmniFire
-      station_end: LC
+      station_end: LC MS
     points:
     - - 4.35
       - 0.885
@@ -169,7 +169,7 @@ paths:
   118:
     direction: backward
     generated_from:
-      station_start: LC
+      station_start: LC MS
       station_end: OmniFire
     points:
     - - 0.325
@@ -199,8 +199,8 @@ paths:
   112:
     direction: forward
     generated_from:
-      station_start: Synthesis
-      station_end: LC
+      station_start: Chemspeed SwingSP
+      station_end: LC MS
       generator: poi_graph_v2
     points:
     - - 4.35
@@ -236,8 +236,8 @@ paths:
   119:
     direction: backward
     generated_from:
-      station_start: LC
-      station_end: Synthesis
+      station_start: LC MS
+      station_end: Chemspeed SwingSP
       generator: poi_graph_v2
     points:
     - - 0.325
@@ -274,7 +274,7 @@ paths:
     direction: forward
     generated_from:
       station_start: Battery
-      station_end: Synthesis
+      station_end: Chemspeed SwingSP
       generator: poi_graph_v2
     points:
     - - 4.38
@@ -307,7 +307,7 @@ paths:
     direction: forward
     generated_from:
       station_start: Battery
-      station_end: LC
+      station_end: LC MS
       generator: poi_graph_v2
     points:
     - - 4.38
@@ -351,7 +351,7 @@ paths:
   123:
     direction: backward
     generated_from:
-      station_start: Synthesis
+      station_start: Chemspeed SwingSP
       station_end: Battery
       generator: poi_graph_v2
     points:
@@ -384,7 +384,7 @@ paths:
   124:
     direction: backward
     generated_from:
-      station_start: LC
+      station_start: LC MS
       station_end: Battery
       generator: poi_graph_v2
     points:
