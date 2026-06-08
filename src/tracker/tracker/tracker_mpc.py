@@ -51,6 +51,12 @@ class Tracker(Node):
             self.get_parameter("tf_timeout_sec").get_parameter_value().double_value
         )
         self.declare_parameter("paths_config", "paths.yaml")
+        self.declare_parameter("require_final_heading", False)
+        self.require_final_heading = (
+            self.get_parameter("require_final_heading")
+            .get_parameter_value()
+            .bool_value
+        )
 
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
@@ -110,6 +116,9 @@ class Tracker(Node):
         )
 
         self.get_logger().info("✅ Tracker node initialized.")
+        self.get_logger().info(
+            f"Goal completion mode: {'position+heading' if self.require_final_heading else 'position only'}."
+        )
         self.get_logger().info(
             "Action server ready on /execute_path with path IDs: "
             + ", ".join(str(path_id) for path_id in self.path_provider.available_path_ids())
@@ -357,6 +366,26 @@ class Tracker(Node):
             "tracking",
         )
 
+        at_goal_position = self.tracker.is_at_goal_position(robot_pose, segments)
+
+        # Finish as soon as we are within the goal position tolerance unless final
+        # heading enforcement is explicitly enabled.
+        if at_goal_position and not self.require_final_heading:
+            self.get_logger().info("✅ Goal position reached! Stopping and clearing path.")
+            self.pub_twist(0.0, 0.0)
+            self.path = None
+            self._set_action_feedback_locked(
+                0.0,
+                ExecutePath.Feedback.STATE_REACHED,
+                "reached",
+            )
+            if self._active_goal_handle is not None:
+                self._complete_active_action_locked(
+                    "succeeded",
+                    f"Path {self._active_path_id} reached goal position.",
+                )
+            return
+
         # Check if robot has reached goal (both pos & angle) or is just at final pos
         goal_reached, angle_diff = self.tracker.check_goal(robot_pose, segments, return_angle=True)
 
@@ -377,7 +406,11 @@ class Tracker(Node):
             return
 
         # Only rotate if robot is at the goal position (but not aligned)
-        if self.tracker.is_at_goal_position(robot_pose, segments) and angle_diff > self.tracker.goal_angle_tol:
+        if (
+            self.require_final_heading
+            and at_goal_position
+            and angle_diff > self.tracker.goal_angle_tol
+        ):
             self._set_action_feedback_locked(
                 distance_to_goal,
                 ExecutePath.Feedback.STATE_FINAL_ALIGN,
