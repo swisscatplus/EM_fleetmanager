@@ -16,7 +16,12 @@ class MPCTracker:
     Path tracker using MPC
     """
 
-    def __init__(self, plot_rviz: bool = False) -> None:
+    def __init__(
+        self,
+        plot_rviz: bool = False,
+        goal_radius: float = 0.08,
+        goal_progress_threshold: float = 0.5,
+    ) -> None:
         # time parameters:
         self.N = 5
         self.dt = 0.125  # follows tracker node rate
@@ -43,7 +48,8 @@ class MPCTracker:
         # other parameters
         self.nominal_speed = self.v_max
         self.nominal_dl = self.dt * self.nominal_speed
-        self.goal_radius = 0.03  # 30mm
+        self.goal_radius = float(goal_radius)
+        self.goal_progress_threshold = float(goal_progress_threshold)
         self.goal_angle_tol = 0.15 #0.0873 # rad or 5 deg
 
         # Progress variable
@@ -85,7 +91,11 @@ class MPCTracker:
     def is_at_goal_position(self, current_pose: Pose2D, path: List[Segment]) -> bool:
         goal = path[-1].end
         goal_distance_sq = (current_pose[0] - goal.x) ** 2 + (current_pose[1] - goal.y) ** 2
-        return goal_distance_sq < self.goal_radius ** 2 and self.s is not None and self.s > 0.5
+        return (
+            goal_distance_sq < self.goal_radius ** 2
+            and self.s is not None
+            and self.s > self.goal_progress_threshold
+        )
 
     def compute_final_theta(self, path: List[Segment]) -> None:
         """
@@ -456,24 +466,15 @@ class MPCTracker:
     def check_goal(self, current_pose: Pose2D, path: List[Segment], return_angle: bool = False) -> Union[
         bool, Tuple[bool, float]]:
         goal = path[-1].end
-        tmp_pt = path[-1].start
-        if tmp_pt == goal and len(path) > 1:
-            tmp_pt = path[-2].start
         goal_distance_sq = (current_pose[0] - goal.x) ** 2 + (current_pose[1] - goal.y) ** 2
-
-        if self.final_theta is None:
-            self.compute_final_theta(path)
-        goal_angle = self.final_theta
-
-        angle_diff = np.abs((goal_angle - current_pose[2] + np.pi) % (2 * np.pi) - np.pi)
+        angle_diff = 0.0
         if self.debug_goal:
             s_str = f"{self.s:.2f}" if self.s is not None else "None"
             print(f"[MPC] dist²={goal_distance_sq:.4f}  angle_diff={angle_diff:.4f}  s={s_str}", flush=True)
 
         goal_reached = (
                 (goal_distance_sq < self.goal_radius ** 2) and
-                (angle_diff < self.goal_angle_tol) and
-                self.s is not None and self.s > 0.5
+                self.s is not None and self.s > self.goal_progress_threshold
         )
 
         if return_angle:

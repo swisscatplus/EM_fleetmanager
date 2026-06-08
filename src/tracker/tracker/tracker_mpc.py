@@ -51,6 +51,16 @@ class Tracker(Node):
             self.get_parameter("tf_timeout_sec").get_parameter_value().double_value
         )
         self.declare_parameter("paths_config", "paths.yaml")
+        self.declare_parameter("goal_radius_m", 0.03)
+        self.goal_radius_m = (
+            self.get_parameter("goal_radius_m").get_parameter_value().double_value
+        )
+        self.declare_parameter("goal_progress_threshold", 0.5)
+        self.goal_progress_threshold = (
+            self.get_parameter("goal_progress_threshold")
+            .get_parameter_value()
+            .double_value
+        )
         self.declare_parameter("require_final_heading", False)
         self.require_final_heading = (
             self.get_parameter("require_final_heading")
@@ -79,6 +89,7 @@ class Tracker(Node):
         self._last_distance_to_goal = math.inf
         self._last_action_state = ExecutePath.Feedback.STATE_ACCEPTED
         self._last_action_state_label = "accepted"
+        self._last_pose_warning_ns = 0
 
         self.path_subscription = self.create_subscription(
             Path2D, f"path", self.path_subscription, 1
@@ -100,7 +111,11 @@ class Tracker(Node):
         # Plot MPC plan in RVIZ #
         #########################
         self.plot_rviz = True
-        self.tracker = MPCTracker(plot_rviz = self.plot_rviz)
+        self.tracker = MPCTracker(
+            plot_rviz=self.plot_rviz,
+            goal_radius=self.goal_radius_m,
+            goal_progress_threshold=self.goal_progress_threshold,
+        )
         if self.plot_rviz:
             self.marker_publisher = self.create_publisher(MarkerArray, 'visualization_marker_array', 10)
 
@@ -116,6 +131,9 @@ class Tracker(Node):
         )
 
         self.get_logger().info("✅ Tracker node initialized.")
+        self.get_logger().info(
+            f"Goal tolerance: radius={self.goal_radius_m:.3f} m, progress>{self.goal_progress_threshold:.2f}."
+        )
         self.get_logger().info(
             f"Goal completion mode: {'position+heading' if self.require_final_heading else 'position only'}."
         )
@@ -353,6 +371,13 @@ class Tracker(Node):
 
         robot_pose = self.get_robot_pose()
         if robot_pose is None:
+            if self._active_goal_handle is not None:
+                now_ns = self.get_clock().now().nanoseconds
+                if now_ns - self._last_pose_warning_ns > 2_000_000_000:
+                    self.get_logger().warn(
+                        f"No robot pose/TF while executing path {self._active_path_id}; goal detection is paused."
+                    )
+                    self._last_pose_warning_ns = now_ns
             return
 
         segments = create_segments(self.path)
@@ -386,8 +411,10 @@ class Tracker(Node):
                 )
             return
 
-        # Check if robot has reached goal (both pos & angle) or is just at final pos
-        goal_reached, angle_diff = self.tracker.check_goal(robot_pose, segments, return_angle=True)
+        # Redundant safety check: the MPC helper now uses position-only goal
+        # detection as well, so this path can also terminate cleanly if reached
+        # between timer cycles.
+        goal_reached, _ = self.tracker.check_goal(robot_pose, segments, return_angle=True)
 
         if goal_reached:
             self.get_logger().info("✅ Goal reached! Stopping and clearing path.")
@@ -403,26 +430,6 @@ class Tracker(Node):
                     "succeeded",
                     f"Path {self._active_path_id} reached goal.",
                 )
-            return
-
-        # Only rotate if robot is at the goal position (but not aligned)
-        if (
-            self.require_final_heading
-            and at_goal_position
-            and angle_diff > self.tracker.goal_angle_tol
-        ):
-            self._set_action_feedback_locked(
-                distance_to_goal,
-                ExecutePath.Feedback.STATE_FINAL_ALIGN,
-                "final_align",
-            )
-            if self.tracker.final_theta is None:
-                self.tracker.compute_final_theta(segments)
-            final_theta = self.tracker.final_theta
-            angle_error = (final_theta - robot_pose[2] + np.pi) % (2 * np.pi) - np.pi
-            gain = 2.0  # Tune this gain as needed
-            omega = np.clip(gain * angle_error, -self.tracker.omega_max, self.tracker.omega_max)
-            self.pub_twist(0.0, omega)
             return
 
         # Otherwise, use MPC to track path
