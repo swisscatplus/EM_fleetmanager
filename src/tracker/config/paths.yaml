@@ -197,7 +197,7 @@ paths:
     - - 4.35
       - 0.885
   112:
-    direction: forward
+    direction: backward
     generated_from:
       station_start: Chemspeed SwingSP
       station_end: LC MS
@@ -234,7 +234,7 @@ paths:
     - - 0.325
       - 2.985
   119:
-    direction: backward
+    direction: forward
     generated_from:
       station_start: LC MS
       station_end: Chemspeed SwingSP
