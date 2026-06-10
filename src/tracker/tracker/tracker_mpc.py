@@ -51,7 +51,7 @@ class Tracker(Node):
             self.get_parameter("tf_timeout_sec").get_parameter_value().double_value
         )
         self.declare_parameter("paths_config", "paths.yaml")
-        self.declare_parameter("goal_radius_m", 0.03)
+        self.declare_parameter("goal_radius_m", 0.05)
         self.goal_radius_m = (
             self.get_parameter("goal_radius_m").get_parameter_value().double_value
         )
