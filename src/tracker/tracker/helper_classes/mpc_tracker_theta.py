@@ -669,11 +669,6 @@ class MPCTracker:
 
         # print("Velocity: ",v.value, flush=True)
 
-        if np.abs(v_command) < 0.001 * self.v_max:
-            # add a kick
-            v_command = direction_ref[0] * 0.9 * self.v_max
-            omega_command = (np.random.random() - 0.5) * 2
-
         if self.write:
             with open("src/mpc_data.txt", "a") as file:
                 file.write(

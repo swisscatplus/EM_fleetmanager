@@ -61,12 +61,20 @@ class Tracker(Node):
             .get_parameter_value()
             .double_value
         )
-        self.declare_parameter("require_final_heading", False)
+        self.declare_parameter("require_final_heading", True)
         self.require_final_heading = (
             self.get_parameter("require_final_heading")
             .get_parameter_value()
             .bool_value
         )
+        self.declare_parameter("final_heading_tolerance_deg", 10.0)
+        self.final_heading_tolerance_rad = math.radians(
+            self.get_parameter("final_heading_tolerance_deg")
+            .get_parameter_value()
+            .double_value
+        )
+        self.final_spin_gain = 1.2
+        self.final_spin_omega_max = 0.6
 
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
@@ -136,6 +144,9 @@ class Tracker(Node):
         )
         self.get_logger().info(
             f"Goal completion mode: {'position+heading' if self.require_final_heading else 'position only'}."
+        )
+        self.get_logger().info(
+            f"Final heading tolerance: +/-{math.degrees(self.final_heading_tolerance_rad):.1f} deg."
         )
         self.get_logger().info(
             "Action server ready on /execute_path with path IDs: "
@@ -353,6 +364,28 @@ class Tracker(Node):
         )
         return robot_pose
 
+    @staticmethod
+    def _wrap_angle(angle: float) -> float:
+        return (angle + math.pi) % (2.0 * math.pi) - math.pi
+
+    def _compute_final_heading_error(
+        self, robot_pose: PosePt2D, segments
+    ) -> float:
+        if self.tracker.final_theta is None:
+            self.tracker.compute_final_theta(segments)
+        return self._wrap_angle(self.tracker.final_theta - robot_pose[2])
+
+    def _finish_current_path_locked(self, message: str) -> None:
+        self.pub_twist(0.0, 0.0)
+        self.path = None
+        self._set_action_feedback_locked(
+            0.0,
+            ExecutePath.Feedback.STATE_REACHED,
+            "reached",
+        )
+        if self._active_goal_handle is not None:
+            self._complete_active_action_locked("succeeded", message)
+
     def control_loop(self):
         """
         Control loop that manages and runs the MPC tracker,
@@ -392,44 +425,30 @@ class Tracker(Node):
         )
 
         at_goal_position = self.tracker.is_at_goal_position(robot_pose, segments)
+        heading_error = self._compute_final_heading_error(robot_pose, segments)
+        heading_ok = abs(heading_error) <= self.final_heading_tolerance_rad
 
-        # Finish as soon as we are within the goal position tolerance unless final
-        # heading enforcement is explicitly enabled.
-        if at_goal_position and not self.require_final_heading:
-            self.get_logger().info("✅ Goal position reached! Stopping and clearing path.")
-            self.pub_twist(0.0, 0.0)
-            self.path = None
-            self._set_action_feedback_locked(
-                0.0,
-                ExecutePath.Feedback.STATE_REACHED,
-                "reached",
-            )
-            if self._active_goal_handle is not None:
-                self._complete_active_action_locked(
-                    "succeeded",
-                    f"Path {self._active_path_id} reached goal position.",
-                )
+        if at_goal_position and (not self.require_final_heading or heading_ok):
+            self.get_logger().info("✅ Goal reached! Stopping and clearing path.")
+            if self.require_final_heading:
+                message = f"Path {self._active_path_id} reached goal and final heading."
+            else:
+                message = f"Path {self._active_path_id} reached goal position."
+            self._finish_current_path_locked(message)
             return
 
-        # Redundant safety check: the MPC helper now uses position-only goal
-        # detection as well, so this path can also terminate cleanly if reached
-        # between timer cycles.
-        goal_reached, _ = self.tracker.check_goal(robot_pose, segments, return_angle=True)
-
-        if goal_reached:
-            self.get_logger().info("✅ Goal reached! Stopping and clearing path.")
-            self.pub_twist(0.0, 0.0)
-            self.path = None
-            self._set_action_feedback_locked(
-                0.0,
-                ExecutePath.Feedback.STATE_REACHED,
-                "reached",
+        if at_goal_position and self.require_final_heading:
+            omega = np.clip(
+                self.final_spin_gain * heading_error,
+                -self.final_spin_omega_max,
+                self.final_spin_omega_max,
             )
-            if self._active_goal_handle is not None:
-                self._complete_active_action_locked(
-                    "succeeded",
-                    f"Path {self._active_path_id} reached goal.",
-                )
+            self._set_action_feedback_locked(
+                distance_to_goal,
+                ExecutePath.Feedback.STATE_TRACKING,
+                "aligning_heading",
+            )
+            self.pub_twist(0.0, float(omega))
             return
 
         # Otherwise, use MPC to track path
