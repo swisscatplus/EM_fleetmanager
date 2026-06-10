@@ -98,6 +98,7 @@ class Tracker(Node):
         self._last_action_state = ExecutePath.Feedback.STATE_ACCEPTED
         self._last_action_state_label = "accepted"
         self._last_pose_warning_ns = 0
+        self._last_goal_diag_ns = 0
 
         self.path_subscription = self.create_subscription(
             Path2D, f"path", self.path_subscription, 1
@@ -386,6 +387,52 @@ class Tracker(Node):
         if self._active_goal_handle is not None:
             self._complete_active_action_locked("succeeded", message)
 
+    def _log_goal_diagnostics(
+        self,
+        robot_pose: PosePt2D,
+        segments,
+        distance_to_goal: float,
+        heading_error: float,
+        at_goal_position: bool,
+        heading_ok: bool,
+        phase: str,
+    ) -> None:
+        if self._active_goal_handle is None:
+            return
+
+        now_ns = self.get_clock().now().nanoseconds
+        if now_ns - self._last_goal_diag_ns < 1_000_000_000:
+            return
+        self._last_goal_diag_ns = now_ns
+
+        goal = segments[-1].end
+        final_theta_deg = math.degrees(self.tracker.final_theta)
+        robot_yaw_deg = math.degrees(robot_pose[2])
+        heading_error_deg = math.degrees(heading_error)
+        path_progress = self.tracker.s
+        path_progress_str = "None" if path_progress is None else f"{path_progress:.3f}"
+
+        pos_in_radius = distance_to_goal <= self.goal_radius_m
+        progress_ok = path_progress is not None and path_progress > self.goal_progress_threshold
+        final_direction = segments[-1].direction
+
+        self.get_logger().info(
+            "Goal diagnostics "
+            f"[phase={phase}] "
+            f"path_id={self._active_path_id} "
+            f"goal=({goal.x:.3f}, {goal.y:.3f}) "
+            f"pose=({robot_pose[0]:.3f}, {robot_pose[1]:.3f}, {robot_yaw_deg:.1f}deg) "
+            f"dist={distance_to_goal:.3f}m "
+            f"radius_ok={pos_in_radius} "
+            f"s={path_progress_str} "
+            f"progress_ok={progress_ok} "
+            f"at_goal_position={at_goal_position} "
+            f"final_dir={final_direction} "
+            f"final_theta={final_theta_deg:.1f}deg "
+            f"heading_err={heading_error_deg:.1f}deg "
+            f"heading_ok={heading_ok}"
+        )
+
     def control_loop(self):
         """
         Control loop that manages and runs the MPC tracker,
@@ -428,7 +475,27 @@ class Tracker(Node):
         heading_error = self._compute_final_heading_error(robot_pose, segments)
         heading_ok = abs(heading_error) <= self.final_heading_tolerance_rad
 
+        if distance_to_goal <= max(self.goal_radius_m * 2.0, 0.10):
+            self._log_goal_diagnostics(
+                robot_pose,
+                segments,
+                distance_to_goal,
+                heading_error,
+                at_goal_position,
+                heading_ok,
+                phase="near_goal",
+            )
+
         if at_goal_position and (not self.require_final_heading or heading_ok):
+            self._log_goal_diagnostics(
+                robot_pose,
+                segments,
+                distance_to_goal,
+                heading_error,
+                at_goal_position,
+                heading_ok,
+                phase="goal_complete",
+            )
             self.get_logger().info("✅ Goal reached! Stopping and clearing path.")
             if self.require_final_heading:
                 message = f"Path {self._active_path_id} reached goal and final heading."
@@ -442,6 +509,15 @@ class Tracker(Node):
                 self.final_spin_gain * heading_error,
                 -self.final_spin_omega_max,
                 self.final_spin_omega_max,
+            )
+            self._log_goal_diagnostics(
+                robot_pose,
+                segments,
+                distance_to_goal,
+                heading_error,
+                at_goal_position,
+                heading_ok,
+                phase="aligning_heading",
             )
             self._set_action_feedback_locked(
                 distance_to_goal,
