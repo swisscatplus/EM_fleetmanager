@@ -6,31 +6,31 @@ default_clearance_m: 0.10
 stations:
   SFC QTOF:
     measured: false
-    docking_pose: {x: null, y: null, yaw: null}
+    docking_pose: {x: 4.727, y: 6.840, yaw: -3.018}
     clearance_m: 0.10
     notes: ""
 
   Battery:
     measured: false
-    docking_pose: {x: 4.38, y: 7.63, yaw: 1.5708}
+    docking_pose: {x: 4.627, y: 7.201, yaw: -1.429}
     clearance_m: 0.10
     notes: ""
 
-  OmniFire:
+  OmniFire: #FEL WEST FARD LIGNE QUE SYNTHESE
     measured: yes
-    docking_pose: {x: null, y: null, yaw: null}
+    docking_pose: {x: 4.231, y: 4.148, yaw: 1.767}
     clearance_m: 0.10
     notes: ""
 
-  Chemspeed SwingSP:
+  Chemspeed SwingSP: #SYNTHESE
     measured: false
     docking_pose: {x: 4.18, y: 0.885, yaw: 1.5708}
     clearance_m: 0.10
     notes: ""
 
-  PrepFire:
+  PrepFire: #MKABLA LCMS
     measured: false
-    docking_pose: {x: null, y: null, yaw: null}
+    docking_pose: {x: 1.872, y: 2.326, yaw: 1.698}
     clearance_m: 0.10
     notes: ""
 
