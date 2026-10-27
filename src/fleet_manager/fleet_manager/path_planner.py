@@ -1,5 +1,5 @@
 """
-path.py  -  station path planner for the lab robots (plain Python, no ROS).
+path_planner.py  -  station path planner for the lab robots (plain Python, no ROS).
 
 Inputs (YAML files from the EM_fleetmanager repo):
     src/tracker/config/map_pois.yaml        : road centre lines (nodes + edges)
@@ -12,12 +12,17 @@ Use:
 
 What it does for one trip:
     1. attach every station (and the robot) to the closest road: node on the centre line
-    2. A* on the road graph                -> which roads to take
-    3. replace node names by coordinates
-    4. near each end: 0.5 m straight + slow sideways shift (<= 1.5 m) between
-       the road centre and the station lane, never past a corner
-    5. forward / backward from the start yaw + check the arrival heading
-    6. round the corners (arcs, R <= 0.4 m) so the MPC turns smoothly
+    2. A* on (road node, which way the robot faces, how it is moving)
+         -> which roads to take, forward or backward on each part,
+            and WHERE to turn in place (only at junctions, or at the start if the
+            robot is already on the centre line)
+    3. the result is a list of STEPS, e.g.
+         drive forward  (robot -> top_right_t)
+         turn to -90 deg (at top_right_t)
+         drive backward (top_right_t -> Battery)
+    4. near the start and the goal: 0.5 m straight + slow sideways shift (<= 1.5 m)
+       between the road centre and the station lane
+    5. round the corners (arcs, R <= 0.4 m) so the MPC turns smoothly
 
 Adding a station = adding it in stations.yaml. Tests and plots: test_path.py.
 """
@@ -31,11 +36,23 @@ import yaml
 D_STRAIGHT = 0.5    # straight part right before/after the station (m)
 D_SHIFT_MAX = 1.5   # max length of the slow sideways shift (m)
 HEADING_TOL = 0.15  # same tolerance as the MPC (rad)
+START_TOL = 0.35    # start yaw error (rad, ~20 deg) the MPC can fix while driving (no turn needed)
+FACING_TOL = 0.6    # rad (~34 deg): a robot in a lane must be at least this straight to drive out
+TURN_MAX_OFFSET = 0.08  # turning in place sweeps r = 0.245 m; road half-width 0.325 -> must be within 8 cm of the centre
 SAME_POINT = 0.02   # two points closer than this are considered the same (m)
+SNAP_TO_NODE = 0.10  # robot closer than this to a map node: start from that node (m)
 TURN_RADIUS = 0.4   # radius of the rounded corners (m); MPC turns at v/R = 0.15/0.4 = 0.38 rad/s
 MIN_CORNER = 20.0   # corners sharper than this (deg) are rounded; smaller ones (lane shifts) are kept
 ARC_STEP = 0.05     # distance between two points on a rounded corner (m)
 
+# A* costs, in SECONDS (so driving and turning can be compared)
+V_NOMINAL = 0.15    # m/s, driving speed
+W_TURN = 0.4        # rad/s, average turning speed
+T_STOP = 2.0        # s, stopping + starting again (before/after a turn, or forward <-> backward)
+T_BACK = 1.0        # s, small extra cost for each backward part (forward is preferred when equal)
+TURN_ONLY_AT_JUNCTIONS = True   # True: turns only at map junctions/corners (more room than mid-road)
+
+FORWARD, BACKWARD, STOP, LANE = "forward", "backward", "stop", "lane"
 
 # ---------------------------------------------------------------- small geometry helpers
 def heading(p, q):
@@ -46,6 +63,11 @@ def heading(p, q):
 def angle_diff(a, b):
     """smallest absolute difference between two angles (rad)"""
     return abs((a - b + math.pi) % (2 * math.pi) - math.pi)
+
+
+def wrap(a):
+    """angle brought back between -pi and pi"""
+    return math.atan2(math.sin(a), math.cos(a))
 
 
 def unit(p, q):
@@ -199,6 +221,20 @@ def station_end(dock, road_pts, available):
     return [dock[:2], shift_end, shift_start], used, warning
 
 
+def straight_road(graph, nodes, a, b):
+    """length of straight road starting at node a and going through b (continues straight through junctions)"""
+    u = unit(nodes[a], nodes[b])
+    total = math.dist(nodes[a], nodes[b])
+    prev, cur = a, b
+    while True:
+        nxt = [n for n in graph[cur] if n != prev
+               and angle_diff(heading(nodes[cur], nodes[n]), math.atan2(u[1], u[0])) < 0.01]
+        if not nxt:
+            return total
+        prev, cur = cur, nxt[0]
+        total += math.dist(nodes[prev], nodes[cur])
+
+
 def drop_points_before(points, origin, dist):
     """remove the route points that lie less than `dist` from `origin` (they are inside the shift zone)"""
     return [p for p in points if math.dist(p, origin) > dist + 1e-6]
@@ -217,6 +253,10 @@ def round_corners(points, radius=TURN_RADIUS):
     """
     Replace every sharp corner by a circular arc (like a road curve), so the MPC
     turns smoothly at a constant rate instead of stopping and spinning.
+
+        before:  ----------+          after:  --------._
+                           |                           \\
+                           |                            |
 
     - corners below MIN_CORNER degrees (the slow lane shifts) are left as they are
     - the first/last D_STRAIGHT metres stay straight: they hold the start/arrival heading
@@ -257,10 +297,105 @@ def round_corners(points, radius=TURN_RADIUS):
     return dedupe(out)
 
 
+
+# ---------------------------------------------------------------- facings: 4 directions along the roads
+#   0 = right (+x)   1 = up (+y)   2 = left (-x)   3 = down (-y)
+def facing_of(angle):
+    """angle (rad) -> closest of the 4 road directions, and how far it is from it (rad)"""
+    k = round(angle / (math.pi / 2)) % 4
+    return k, angle_diff(angle, k * math.pi / 2)
+
+
+def facing_angle(k):
+    return wrap(k * math.pi / 2)
+
+
+def turn_angle(k1, k2):
+    """angle (rad) of the turn in place from facing k1 to facing k2"""
+    d = (k2 - k1) % 4
+    return math.pi / 2 * min(d, 4 - d)
+
+
+# ---------------------------------------------------------------- step 2: A* with the heading
+def astar_heading(graph, nodes, starts, goal, goal_f, can_turn):
+    """
+    A* where a STATE is (node, facing, mode):
+        node   : road node name
+        facing : which way the robot's FRONT points (0..3, see facing_of)
+        mode   : how the robot arrived there
+                   'forward' / 'backward' : it is driving (it can go on through a corner)
+                   'stop'                 : it is standing still (after a turn, or at the start)
+                   'lane'                 : start, robot in a station lane (cannot turn here)
+
+    Moves (cost in seconds):
+        turn in place (only where can_turn(node))        T_STOP + angle / W_TURN
+        drive forward  along a road  (front first)         length / V_NOMINAL
+        drive backward along a road  (back first)          length / V_NOMINAL + T_BACK
+        changing forward <-> backward costs T_STOP (the robot must stop)
+
+    Corners: while driving, the robot can go on into a road at 90 deg (rounded arc),
+    but it cannot do a U-turn while driving, and it cannot start into a corner
+    from standing still.
+
+    starts : list of (state, cost, first_action) -- first_action is None or ("turn", facing)
+    goal   : goal node; goal_f : facing required at the goal; the robot must ARRIVE driving.
+    Returns the list of (action, state) from the start, or None.
+    """
+    def moves(state):
+        n, f, m = state
+        out = []
+        if m != LANE and can_turn(n):
+            for df in (1, 2, 3):
+                f2 = (f + df) % 4
+                out.append(("turn", (n, f2, STOP), T_STOP + turn_angle(f, f2) / W_TURN))
+        for nb, length in graph[n].items():
+            e, _ = facing_of(heading(nodes[n], nodes[nb]))     # direction of this road
+            t = length / V_NOMINAL
+            # forward: the front leads -> after this road the robot faces e
+            if (m == FORWARD and e != (f + 2) % 4) or e == f:
+                extra = T_STOP if m == BACKWARD else 0.0
+                out.append((FORWARD, (nb, e, FORWARD), t + extra))
+            # backward: the back leads -> after this road the robot faces e + 180 deg
+            if (m == BACKWARD and e != f) or e == (f + 2) % 4:
+                extra = 0.0 if m == BACKWARD else T_BACK + (T_STOP if m == FORWARD else 0.0)
+                out.append((BACKWARD, (nb, (e + 2) % 4, BACKWARD), t + extra))
+        return out
+
+    h = lambda n: math.dist(nodes[n], nodes[goal]) / V_NOMINAL
+    open_list, cost, came_from = [], {}, {}
+    for state, c, first in starts:
+        if c < cost.get(state, math.inf):
+            cost[state] = c
+            came_from[state] = (None, first)
+            heapq.heappush(open_list, (c + h(state[0]), c, state))
+
+    while open_list:
+        _, c, cur = heapq.heappop(open_list)
+        if c > cost[cur]:
+            continue                                     # old entry, a cheaper way was found since
+        n, f, m = cur
+        if n == goal and f == goal_f and m in (FORWARD, BACKWARD):
+            plan = []
+            while cur is not None:
+                prev, action = came_from[cur]
+                plan.append((action, cur))
+                cur = prev
+            return plan[::-1]
+        for action, nxt, dc in moves(cur):
+            new = c + dc
+            if new < cost.get(nxt, math.inf):
+                cost[nxt] = new
+                came_from[nxt] = (cur, action)
+                heapq.heappush(open_list, (new + h(nxt[0]), new, nxt))
+    return None
+
+
 # ---------------------------------------------------------------- the planner
 class Planner:
     def __init__(self, graph_file, stations_file):
         base_nodes, base_edges = load_graph(graph_file)
+        self.junctions = {n for n in base_nodes                       # map points where 2+ roads meet
+                          if sum(n in e for e in base_edges) >= 2}
         self.stations, self.skipped = load_stations(stations_file)
         self.nodes, self.edges, self.station_node = attach_stations(
             base_nodes, base_edges, self.stations)
@@ -268,78 +403,182 @@ class Planner:
 
     def plan(self, start, goal):
         """Path from station `start` to station `goal` (see _plan for the result)."""
-        return self._plan(start, self.stations[start], self.station_node[start],
-                          goal, self.nodes, self.graph)
+        s, ns = self.stations[start], self.station_node[start]
+        return self._plan(start, s, ns, goal, self.nodes, self.graph,
+                          offset=math.dist(s[:2], self.nodes[ns]))
 
     def plan_from_pose(self, x, y, yaw, goal, max_dist_to_road=0.30):
         """
         Path from ANY robot pose (x, y, yaw) to station `goal`.
         The robot is attached to the closest road exactly like a station,
         but only for this request (the map itself is not changed).
+        If the robot seems to be far from the road centre, the path is still made,
+        but a warning says the localization may be wrong.
         """
         nodes, edges, attached = attach_stations(self.nodes, self.edges, {"robot": (x, y, yaw)})
-        road_xy = nodes[attached["robot"]]
-        if math.dist((x, y), road_xy) > max_dist_to_road:
-            return {"warnings": [f"robot is {math.dist((x, y), road_xy):.2f} m from the closest road: "
-                                 "drive it back on a road first"]}
-        return self._plan("robot", (x, y, yaw), attached["robot"], goal, nodes, build_graph(nodes, edges))
+        ns = attached["robot"]
+        graph = build_graph(nodes, edges)
+        dist = math.dist((x, y), nodes[ns])
+        # robot almost on a node (e.g. stopped a few cm from a junction): start from that node
+        for nb, length in graph[ns].items():
+            if length < SNAP_TO_NODE:
+                ns = nb
+                break
+        result = self._plan("robot", (x, y, yaw), ns, goal, nodes, graph, offset=dist)
+        if dist > max_dist_to_road:
+            result["warnings"].insert(0, f"robot at ({x:.2f}, {y:.2f}) is {dist:.2f} m from the road centre: "
+                                         "localization may be wrong")
+        return result
 
-    def _plan(self, start, s, ns, goal, nodes, graph):
+    # ------------------------------------------------------------------ internals
+    def _can_turn(self, n):
+        if TURN_ONLY_AT_JUNCTIONS:
+            return n in self.junctions
+        return len(self.graph.get(n, ())) >= 2          # anywhere on the centre line, but not at a dead end
+
+    def _plan(self, start, s, ns, goal, nodes, graph, offset):
         """
         start/s/ns : name, pose (x, y, yaw) and road node of the starting point
+        offset     : sideways distance between the start and the road centre line (m)
         Returns a dict:
-            route     : A* node names
-            points    : path corners (x, y) to send to the tracker
-            direction : 'forward' or 'backward' (whole path)
-            ok        : True if the robot arrives with the station's yaw
+            steps     : list of steps, in order:
+                          {"type": "turn",  "yaw": rad, "at": node}
+                          {"type": "drive", "direction": "forward"/"backward",
+                           "points": [(x, y), ...], "nodes": [...], "last": bool}
+            points    : all drive points one after the other (for plots)
+            route     : node names visited
+            direction : short summary, e.g. "forward > turn > backward"
+            ok        : True if a plan was found
             warnings  : list of strings
-        or a dict with only 'warnings' if no path is possible.
         """
         g, ng = self.stations[goal], self.station_node[goal]
-        if ns == ng:
-            if math.dist(s[:2], g[:2]) < SAME_POINT and angle_diff(s[2], g[2]) < HEADING_TOL:
-                return {"warnings": ["already at the station"]}
-            if angle_diff(s[2], g[2]) > HEADING_TOL and math.dist(s[:2], g[:2]) < SAME_POINT:
-                return {"warnings": ["same spot: no path, only a turn in place"]}
+        warnings = []
+        if math.dist(s[:2], g[:2]) < 0.05 and angle_diff(s[2], g[2]) < HEADING_TOL:
+            return {"steps": [], "points": [], "route": [], "direction": "-", "ok": True,
+                    "warnings": ["already at the station"]}
 
-        # step 2-3: A* then names -> coordinates
-        route = astar(graph, nodes, ns, ng)
-        pts = [nodes[n] for n in route]
-        if len(pts) == 1:                            # start and goal on the same road point
-            pts = [pts[0], pts[0]]
-        if math.dist(pts[0], pts[-1]) < 1e-6:
-            return {"warnings": ["start is level with the station on the same road: "
-                                 "move along the road first"]}
+        goal_f, goal_err = facing_of(g[2])
+        if goal_err > HEADING_TOL:
+            warnings.append(f"{goal}: docking yaw {math.degrees(g[2]):.0f} deg is not along a road "
+                            "-> check stations.yaml")
 
-        # how much straight road each end may use (shared if the whole trip is one straight line)
-        avail_s = straight_length(pts)
-        avail_g = straight_length(pts[::-1])
-        total = sum(math.dist(p, q) for p, q in zip(pts[:-1], pts[1:]))
-        if avail_s >= total - 1e-6:                 # no corner at all between start and goal
-            avail_s = avail_g = total / 2
+        # ---- start states: which way may the robot face when it leaves?
+        starts = []
+        if offset <= TURN_MAX_OFFSET:
+            # on the centre line: it may turn in place right here to any of the 4 directions
+            for k in range(4):
+                err = angle_diff(s[2], k * math.pi / 2)
+                if err < START_TOL:
+                    starts.append(((ns, k, STOP), 0.0, None))                     # already facing k
+                else:
+                    starts.append(((ns, k, STOP), T_STOP + err / W_TURN, ("turn", k)))
+        else:
+            # in a station lane: no room to turn, it must drive out the way it faces
+            k, err = facing_of(s[2])
+            if err > FACING_TOL:
+                return {"steps": [], "points": [], "route": [], "direction": "-", "ok": False,
+                        "warnings": warnings + [
+                            f"{start} at ({s[0]:.2f}, {s[1]:.2f}, {math.degrees(s[2]):.0f} deg) is "
+                            f"{offset:.2f} m from the road centre AND {math.degrees(err):.0f} deg crooked: "
+                            "cannot turn there nor drive out straight -> straighten it by hand (teleop)"]}
+            along = any(facing_of(heading(nodes[ns], nodes[nb]))[0] in (k, (k + 2) % 4) for nb in graph[ns])
+            if not along:
+                return {"steps": [], "points": [], "route": [], "direction": "-", "ok": False,
+                        "warnings": warnings + [
+                            f"{start} at ({s[0]:.2f}, {s[1]:.2f}, {math.degrees(s[2]):.0f} deg) is "
+                            f"{offset:.2f} m from the road centre and faces ACROSS the road: "
+                            "cannot turn there nor drive out -> check the localization, or straighten it by hand"]}
+            starts.append(((ns, k, LANE), 0.0, None))
 
-        # step 4: both ends
-        leave, used_s, w1 = station_end(s, pts, avail_s)
-        arrive, used_g, w2 = station_end(g, pts[::-1], avail_g)
-        middle = drop_points_before(pts, pts[0], used_s)
-        middle = drop_points_before(middle, pts[-1], used_g)
-        points = dedupe(leave + middle + arrive[::-1])
-        warnings = [f"{start}: {w1}"] * bool(w1) + [f"{goal}: {w2}"] * bool(w2)
+        # ---- A*
+        plan = astar_heading(graph, nodes, starts, ng, goal_f, self._can_turn)
+        if plan is None:
+            return {"steps": [], "points": [], "route": [], "direction": "-", "ok": False,
+                    "warnings": warnings + [f"no way to reach {goal} facing "
+                                            f"{math.degrees(facing_angle(goal_f)):.0f} deg"]}
 
-        # step 5: forward/backward from the start yaw, then check the arrival heading
-        first = heading(points[0], points[1])
-        forward = angle_diff(first, s[2]) < math.pi / 2
-        final = heading(points[-2], points[-1]) + (0.0 if forward else math.pi)
-        ok = angle_diff(final, g[2]) < HEADING_TOL
-        if min(angle_diff(first, s[2]), math.pi - angle_diff(first, s[2])) > 0.35:
-            warnings.append(f"{start}: yaw is not along the road -> turn in place first "
-                            f"(on the road centre, not in a station lane)")
-        if not ok:
-            warnings.append("arrives facing the wrong way -> needs a 180 deg turn or a split path")
+        # ---- group the A* moves into steps: a turn, or a drive leg (same direction, no stop)
+        steps = []
+        first_action = plan[0][0]
+        if first_action is not None:                     # turn at the start
+            steps.append({"type": "turn", "facing": first_action[1], "at": ns})
+        for action, (n, f, m) in plan[1:]:
+            if action == "turn":
+                steps.append({"type": "turn", "facing": f, "at": n})
+                continue
+            prev = steps[-1] if steps else None
+            if prev and prev["type"] == "drive" and prev["direction"] == action:
+                prev["nodes"].append(n)
+            else:
+                start_node = prev["nodes"][-1] if prev and prev["type"] == "drive" else (
+                    prev["at"] if prev else plan[0][1][0])
+                steps.append({"type": "drive", "direction": action, "nodes": [start_node, n]})
 
-        # step 6: round the sharp corners for the MPC
-        points = round_corners(points)
+        # ---- coordinates of each drive leg (+ station lane shifts at both ends)
+        drives = [st for st in steps if st["type"] == "drive"]
+        for i, st in enumerate(drives):
+            pts = [nodes[n] for n in st["nodes"]]
+            first, last = i == 0, i == len(drives) - 1
+            st["last"] = last
+            in_lane = first and offset >= 0.05          # the start needs a lane exit (shift to the centre)
+            avail_s = straight_length(pts) if in_lane else 0.0
+            avail_g = straight_length(pts[::-1]) if last else 0.0
+            total = sum(math.dist(p, q) for p, q in zip(pts[:-1], pts[1:]))
+            if in_lane and last and avail_s >= total - 1e-6:   # one straight line: share it
+                avail_s = avail_g = total / 2
+            if in_lane:
+                # leave the lane from where the robot REALLY is
+                leave, used_s, w1 = station_end(s, pts, avail_s)
+                middle = drop_points_before(pts, pts[0], used_s)
+            elif first:
+                # on the centre line, maybe a few cm from the start node (e.g. it stopped just
+                # before a junction, turned, and now leaves on the other road):
+                # start from the robot and join the road gently, 30 cm further along it
+                leave, w1 = [s[:2]], None
+                a, b = pts[0], pts[1]
+                u = unit(a, b)
+                along = (s[0] - a[0]) * u[0] + (s[1] - a[1]) * u[1]
+                join = max(along, 0.0) + 0.3
+                middle = ([move(a, u, join)] if join < math.dist(a, b) - 0.05 else []) + pts[1:]
+            else:
+                leave, w1, middle = [], None, pts
+            arrive, used_g, w2 = station_end(g, pts[::-1], avail_g) if last else ([pts[-1]], 0.0, None)
+            middle = drop_points_before(middle, pts[-1], used_g) if last else middle
+            st["points"] = round_corners(dedupe(leave + middle + arrive[::-1]))
+            for w, who in ((w1, start), (w2, goal)):
+                if w and f"{who}: {w}" not in warnings:
+                    warnings.append(f"{who}: {w}")
 
-        return {"route": route, "points": points,
-                "direction": "forward" if forward else "backward",
-                "ok": ok, "warnings": warnings}
+        # ---- exact yaw of each turn = direction of the ROAD the next leg starts on
+        #      (+180 deg if that leg is driven backward)
+        for i, st in enumerate(steps):
+            if st["type"] != "turn":
+                continue
+            nxt = next((d for d in steps[i + 1:] if d["type"] == "drive"), None)
+            if nxt is None:
+                st["yaw"] = facing_angle(st["facing"])
+            else:
+                road = heading(nodes[nxt["nodes"][0]], nodes[nxt["nodes"][1]])
+                st["yaw"] = wrap(road + (math.pi if nxt["direction"] == BACKWARD else 0.0))
+
+        route = [steps[0]["at"] if steps[0]["type"] == "turn" else drives[0]["nodes"][0]]
+        for d in drives:
+            route += d["nodes"][1:]
+        return {"steps": steps,
+                "points": [p for d in drives for p in d["points"]],
+                "route": route,
+                "direction": " > ".join("turn" if st["type"] == "turn" else st["direction"] for st in steps),
+                "ok": True,
+                "warnings": warnings}
+
+
+def describe(result):
+    """one line per step, for printing"""
+    lines = []
+    for st in result["steps"]:
+        if st["type"] == "turn":
+            lines.append(f"turn in place to {math.degrees(st['yaw']):.0f} deg at {st['at']}")
+        else:
+            length = sum(math.dist(p, q) for p, q in zip(st["points"][:-1], st["points"][1:]))
+            lines.append(f"drive {st['direction']:<8} {length:5.2f} m  {' -> '.join(st['nodes'])}")
+    return lines

@@ -79,6 +79,7 @@ class Tracker(Node):
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
         self.pub_cmd_vel = self.create_publisher(Twist, f"cmd_vel", 10)
+        self._stopped = False      # True when the last command sent was a stop added
 
         ##############
         # Parameters #
@@ -338,6 +339,7 @@ class Tracker(Node):
         twist_msg.angular.x = 0.0
         twist_msg.angular.y = 0.0
         self.pub_cmd_vel.publish(twist_msg)
+        self._stopped = (v == 0.0 and omega == 0.0) #added
 
     def get_robot_pose(self) -> PosePt2D:
         try:
@@ -440,7 +442,8 @@ class Tracker(Node):
         but is not aligned with the final heading, it rotates in place.
         """
         if self.path is None or self.path == []:
-            self.pub_twist(0.0, 0.0)
+            if not self._stopped:          # added send ONE stop, then stay quiet so path_sender can turn the robot
+                self.pub_twist(0.0, 0.0)
             return
         if len(self.path) < 2:
             self.get_logger().warn("Received a path with fewer than two poses; clearing it.")

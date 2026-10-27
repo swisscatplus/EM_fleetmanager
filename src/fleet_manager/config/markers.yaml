@@ -141,6 +141,11 @@ fleet_manager:
         t_x: 4.03
         t_y: 6.325
         yaw: 0.0
+        markers:
+          "618":
+            t_x: 0.334 #<0.14 or 0.49, measured>
+            t_y: 1.102 
+            yaw: 0
 
       # Pont Haut (t_y = 5.675)
       "15":
