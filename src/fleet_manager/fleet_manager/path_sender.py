@@ -14,13 +14,17 @@ How it works (a loop):
             drive backward  top_right_t -> Battery
     3. do ONLY THE FIRST STEP:
          turn  -> this node publishes rotation commands on /robot1/cmd_vel
+         creep -> this node drives a few cm straight, slowly, on /robot1/cmd_vel
          drive -> the leg is sent to the tracker (MPC) on /robot1/path
     4. when the step is finished, go back to 1 (plan again from where the robot really is).
        Planning again after each step corrects small errors (robot stopped a few cm off).
-    The LAST leg (into the station) is followed until the robot has arrived.
+    The LAST leg is followed until the robot has arrived at its end.
+    Station docked ACROSS the road (SFC QTOF): the last leg ends on the road centre, level
+    with the station; then the robot turns in place there and creeps straight into the
+    station. Leaving it: creep back to the centre, then plan as usual.
 
 RViz:  /robot1/planned_path (whole plan)   /robot1/driven_path (where the robot really went)
-Ctrl+C: stops the robot (stops a turn, clears the tracker path) and prints a summary.
+Ctrl+C: stops the robot (stops a turn/creep, clears the tracker path) and prints a summary.
 
 Needs the tracker change (tracker_mpc.py sends ONE stop when idle, not 8 per second),
 otherwise the tracker's zeros on cmd_vel fight the turns.
@@ -47,14 +51,22 @@ MAX_W = 0.5         # ... limited to this (rad/s) ...
 MIN_W = 0.15        # ... and never slower than this, otherwise the robot stops before the end
 TURN_TIMEOUT = 30.0  # s
 
+# creep (short straight move into / out of a station docked across the road)
+CREEP_TOL = 0.01    # m: finished when less than this is left to drive
+CREEP_GAIN = 1.0    # speed = CREEP_GAIN * distance left ...
+CREEP_MAX_V = 0.05  # ... limited to this (m/s): slow, the station is right there ...
+CREEP_MIN_V = 0.02  # ... and never slower than this, otherwise the robot stops before the end
+CREEP_HOLD = 1.5    # angular speed = CREEP_HOLD * heading error (keeps it straight)
+CREEP_TIMEOUT = 20.0  # s
+
 # end of a leg (not the last one)
 LEG_DONE = 0.06     # m: close enough to the end of the leg
 LEG_NEAR = 0.15     # m: ... or this close AND stopped (the tracker sometimes stops a few cm off)
 STILL_TIME = 1.5    # s without moving = stopped
 SETTLE_TIME = 0.5   # s to wait after a step, before planning again (TF catches up)
 
-# arrival at the station (last leg)
-ARRIVED = 0.10      # m from the docking point, and stopped
+# arrival at the end of the last leg
+ARRIVED = 0.10      # m from the end of the last leg, and stopped
 MAX_PLANS = 10      # safety: never plan more than this for one trip
 
 
@@ -100,18 +112,21 @@ class PathSender(Node):
 
         # publishers
         self.path_pub = self.create_publisher(Path2D, f"/{self.robot}/path", 1)              # tracker
-        self.cmd_pub = self.create_publisher(Twist, f"/{self.robot}/cmd_vel", 10)            # turns
+        self.cmd_pub = self.create_publisher(Twist, f"/{self.robot}/cmd_vel", 10)            # turns + creeps
         latched = QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL)            # RViz gets it even if opened later
         self.planned_pub = self.create_publisher(Path, f"/{self.robot}/planned_path", latched)
         self.driven_pub = self.create_publisher(Path, f"/{self.robot}/driven_path", latched)
 
-        # state machine:  plan -> turn / leg / final -> settle -> plan ...
+        # state machine:  plan -> turn / creep / leg / final -> settle -> plan ...
         self.state = "plan"
         self.done = False
         self.n_plans = 0
+        self.steps = []              # all steps of the current plan
         self.step = None             # the step being done
         self.step_start = 0.0        # time the step started
         self.settle_until = 0.0
+        self.final_turn = False      # True while doing the steps AFTER the last leg (across-road station)
+        self.tail = []               # those steps (turn, creep) still to do
 
         # stillness (to know when the robot has stopped)
         self.still_pose = None
@@ -210,6 +225,8 @@ class PathSender(Node):
             self.plan_and_start(pose)
         elif self.state == "turn":
             self.do_turn(pose)
+        elif self.state == "creep": #short straight move, for sfc QTOF
+            self.do_creep(pose)
         elif self.state == "leg":
             self.do_leg(pose, still)
         elif self.state == "final":
@@ -245,12 +262,16 @@ class PathSender(Node):
                                f"to {self.goal}:")
         for line in describe(result):
             self.get_logger().info("    " + line)
-        self.planned_pub.publish(self.to_nav_path(result["points"]))
+        if result["points"]:
+            self.planned_pub.publish(self.to_nav_path(result["points"]))
 
-        self.step = result["steps"][0]
+        self.steps = result["steps"]
+        self.step = self.steps[0]
         self.step_start = self.now()
         if self.step["type"] == "turn":
             self.state = "turn"
+        elif self.step["type"] == "creep":
+            self.state = "creep"
         elif self.step["last"]:
             self.final_points = self.step["points"]
             self.send_leg(self.step["points"], self.step["direction"])
@@ -266,7 +287,7 @@ class PathSender(Node):
         if abs(err) < TURN_TOL:
             self.stop_robot()
             self.get_logger().info(f"turn done ({math.degrees(pose[2]):.0f} deg)")
-            self.next_step()
+            self.step_finished()
             return
         if self.now() - self.step_start > TURN_TIMEOUT:
             self.stop_robot()
@@ -278,6 +299,54 @@ class PathSender(Node):
         cmd.angular.z = math.copysign(w, err)          # shortest way round
         self.cmd_pub.publish(cmd)
         self.get_logger().info(f"turning: {math.degrees(err):5.1f} deg to go", throttle_duration_sec=1.0)
+
+    # ------------------------------------------------------------------ creep: a few cm straight, slowly
+    def do_creep(self, pose):
+        x, y, yaw = pose
+        tx, ty = self.step["to"]
+        hx, hy = math.cos(self.step["yaw"]), math.sin(self.step["yaw"])
+        sign = 1.0 if self.step["direction"] == "forward" else -1.0
+        # distance still to drive, measured along the robot's axis (> 0 = not there yet)
+        left = sign * ((tx - x) * hx + (ty - y) * hy)
+        if left < CREEP_TOL:
+            self.stop_robot()
+            self.get_logger().info(f"creep done ({math.dist((x, y), (tx, ty)) * 100:.1f} cm from its target)")
+            self.step_finished()
+            return
+        if self.now() - self.step_start > CREEP_TIMEOUT:
+            self.stop_robot()
+            self.get_logger().error("creep takes too long: stopped (robot blocked?)")
+            self.done = True
+            return
+        cmd = Twist()
+        cmd.linear.x = sign * max(CREEP_MIN_V, min(CREEP_MAX_V, CREEP_GAIN * left))
+        cmd.angular.z = max(-0.3, min(0.3, CREEP_HOLD * wrap(self.step["yaw"] - yaw)))   # stay straight
+        self.cmd_pub.publish(cmd)
+        self.get_logger().info(f"creep {self.step['direction']}: {left * 100:4.1f} cm to go",
+                               throttle_duration_sec=1.0)
+
+    def step_finished(self):
+        """a turn or a creep is done: next step of the station tail, or plan again"""
+        if self.final_turn:
+            if self.tail:
+                self.start_tail_step()
+            else:
+                self.get_logger().info(f"arrived at {self.goal}")
+                self.done = True
+        else:
+            self.next_step()
+
+    def start_tail_step(self):
+        """steps after the last leg (across-road station): done one after the other, no re-planning"""
+        self.step = self.tail.pop(0)
+        self.step_start = self.now()
+        self.state = self.step["type"]                  # "turn" or "creep"
+        if self.step["type"] == "turn":
+            self.get_logger().info(f"at the road centre next to {self.goal}: "
+                                   f"turn to {math.degrees(self.step['yaw']):.0f} deg")
+        else:
+            self.get_logger().info(f"creep {self.step['direction']} "
+                                   f"{math.dist(self.step['from'], self.step['to']) * 100:.0f} cm into {self.goal}")
 
     # ------------------------------------------------------------------ a leg that is not the last one
     def do_leg(self, pose, still):
@@ -305,20 +374,28 @@ class PathSender(Node):
         x, y, _ = pose
         err = distance_to_path((x, y), self.final_points)
         self.errors.append(err)
-        gx, gy, _ = self.planner.stations[self.goal]
-        to_goal = math.dist((x, y), (gx, gy))
+        # end of the last leg = the station, or (across-road station) the road centre next to it
+        ex, ey = self.final_points[-1]
+        to_end = math.dist((x, y), (ex, ey))
         now = self.now()
         if now - self.last_log > 1.0:                                                         # print once per second
-            self.get_logger().info(f"off path: {err * 100:5.1f} cm   |   to goal: {to_goal:.2f} m")
+            self.get_logger().info(f"off path: {err * 100:5.1f} cm   |   to end of leg: {to_end:.2f} m")
             self.last_log = now
-        if to_goal < ARRIVED and still:
+        if to_end < ARRIVED and still:
+            rest = self.steps[self.steps.index(self.step) + 1:]
+            if rest:                                    # across-road station: turn + creep left to do
+                self.clear_tracker()
+                self.tail = list(rest)
+                self.final_turn = True
+                self.start_tail_step()
+                return
             self.get_logger().info(f"arrived at {self.goal}")
             self.done = True
 
     # ------------------------------------------------------------------ end
     def stop_everything(self):
         """Ctrl+C or error: the robot must not keep moving"""
-        if self.state == "turn":
+        if self.state in ("turn", "creep"):
             self.stop_robot()
         elif self.state in ("leg", "final"):
             self.clear_tracker()

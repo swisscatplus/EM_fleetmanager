@@ -12,6 +12,7 @@ On the plots:
     red line   = drive FORWARD     blue line = drive BACKWARD
     small arrows on the line = which way the robot's FRONT points
     orange circle = turn in place (with the target angle)
+    purple thick line = creep (short straight move into / out of a station docked sideways)
 """
 
 import math
@@ -92,20 +93,31 @@ def plot_trajectory(planner, result, start_pose, goal, repo, title=None, save_as
         ax.set_title(f"-> {goal}: nothing to drive\n" + "; ".join(result["warnings"]), fontsize=9, color="red")
     else:
         n_turn = 0
+        last_xy = (sx, sy)                                      # where the robot is after the previous step
         for st in result["steps"]:
             if st["type"] == "turn":
                 # 5a. turn in place: orange circle + target angle
                 n_turn += 1
-                tx, ty = planner.nodes[st["at"]] if st["at"] in planner.nodes else (sx, sy)
+                tx, ty = last_xy
                 ax.plot(tx, ty, "o", mfc="none", mec="orange", ms=22, mew=3)
                 ax.annotate(f"turn {n_turn}: to {math.degrees(st['yaw']):.0f} deg", (tx, ty), fontsize=8,
                             color="darkorange", weight="bold", xytext=(14, -4), textcoords="offset points")
                 continue
-            # 5b. drive leg: line + points + arrows showing where the FRONT points
+            if st["type"] == "creep":
+                # 5b. creep: short straight move, thick purple line
+                (x1, y1), (x2, y2) = st["from"], st["to"]
+                ax.plot([x1, x2], [y1, y2], "-", color="purple", lw=5, solid_capstyle="round",
+                        label=f"creep (sideways station)")
+                xs_all += [x1, x2]
+                ys_all += [y1, y2]
+                last_xy = (x2, y2)
+                continue
+            # 5c. drive leg: line + points + arrows showing where the FRONT points
             pts = st["points"]
             xs, ys = [p[0] for p in pts], [p[1] for p in pts]
             xs_all += xs
             ys_all += ys
+            last_xy = pts[-1]
             colour = COLOURS[st["direction"]]
             ax.plot(xs, ys, "-", color=colour, lw=2.5, label=f"drive {st['direction']}")
             ax.plot(xs, ys, ".", color="black", ms=4)
@@ -147,10 +159,17 @@ if __name__ == "__main__":
     print_summary(planner)
 
     # station -> station
-    start, goal = "Chemspeed SwingSP", "Battery"
+    start, goal = "SFC QTOF", "Battery",
     r = planner.plan(start, goal)
     plot_trajectory(planner, r, planner.stations[start], goal, REPO,
                     title=f"{start} -> {goal}", save_as="test_station_to_station.png")
+'''
+    # the sideways station, both ways
+    if "SFC QTOF" in planner.stations:
+        for start, goal in (("LC MS", "SFC QTOF"), ("SFC QTOF", "Chemspeed SwingSP")):
+            if start in planner.stations and goal in planner.stations:
+                r = planner.plan(start, goal)
+                plot_trajectory(planner, r, planner.stations[start], goal, REPO, title=f"{start} -> {goal}")
 
     # robot anywhere -> station   (yaw: 0 = right, pi/2 = up, -pi/2 = down)
     pi = math.pi
@@ -169,4 +188,4 @@ if __name__ == "__main__":
             print("    " + line)
         for w in r["warnings"]:
             print("    ! " + w)
-        plot_trajectory(planner, r, robot, goal, REPO, title=f"{name} -> {goal}")
+        plot_trajectory(planner, r, robot, goal, REPO, title=f"{name} -> {goal}")'''

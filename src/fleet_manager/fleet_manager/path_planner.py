@@ -23,6 +23,16 @@ What it does for one trip:
     4. near the start and the goal: 0.5 m straight + slow sideways shift (<= 1.5 m)
        between the road centre and the station lane
     5. round the corners (arcs, R <= 0.4 m) so the MPC turns smoothly
+    6. special case: a station whose yaw points ACROSS its road (SFC QTOF, robot docked sideways).
+       The robot cannot turn at the docking point itself (too close to the border), so:
+         arriving: drive along the road to the point of the CENTRE LINE level with the station,
+                   turn in place there to the docking yaw, then a short straight "creep"
+                   (forward or backward, slow) sideways into the station
+         leaving : the same backwards: creep straight back to the centre line, then plan as usual
+       If that station is at the END of a dead-end road (SFC QTOF, past right_top_end), the robot must
+       arrive REVERSING (back toward the end wall: the back sticks out 0.071 m, the front 0.229 m),
+       and it never turns in place to face the end wall there.
+       All other stations are planned exactly as before.
 
 Adding a station = adding it in stations.yaml. Tests and plots: test_path.py.
 """
@@ -51,6 +61,8 @@ W_TURN = 0.4        # rad/s, average turning speed
 T_STOP = 2.0        # s, stopping + starting again (before/after a turn, or forward <-> backward)
 T_BACK = 1.0        # s, small extra cost for each backward part (forward is preferred when equal)
 TURN_ONLY_AT_JUNCTIONS = True   # True: turns only at map junctions/corners (more room than mid-road)
+AT_STATION = 0.10   # m: robot this close to an across-road station = arrived there (only the final turn is left)
+MAX_CREEP = 0.30    # m: longest straight sideways move between the centre line and an across-road station
 
 FORWARD, BACKWARD, STOP, LANE = "forward", "backward", "stop", "lane"
 
@@ -316,6 +328,47 @@ def turn_angle(k1, k2):
     return math.pi / 2 * min(d, 4 - d)
 
 
+# ---------------------------------------------------------------- across-road station: centre point + creep
+def centre_point(p, graph, nodes, n):
+    """
+    Point of the road CENTRE LINE level with p, on the road through node n.
+    (p projected on the road's line; it may be a bit past the end of the road in the map.)
+    Returns (that point, how far along the road from n it is (m), sideways distance p <-> point (m))
+    """
+    nb = next(iter(graph[n]))                       # any road leaving n gives the road's direction
+    u = unit(nodes[n], nodes[nb])
+    along = (p[0] - nodes[n][0]) * u[0] + (p[1] - nodes[n][1]) * u[1]
+    c = move(nodes[n], u, along)
+    return c, along, math.dist(p[:2], c)
+
+
+def road_offset(p, graph, nodes, n):
+    """
+    sideways distance between point p and the road centre line, p being attached to node n.
+    Normally = distance to n (n is the closest point of the centre line).
+    At the END of a dead-end road (e.g. SFC QTOF, 14 cm past right_top_end), the point can be
+    ON the centre line but further along: then only the sideways part counts.
+    """
+    if len(graph[n]) == 1:
+        return centre_point(p, graph, nodes, n)[2]
+    return math.dist(p[:2], nodes[n])
+
+
+def away_from_end(graph, nodes, n):
+    """at a dead-end node n (only one road): the facing pointing back along the road, away from the end"""
+    return facing_of(heading(nodes[n], nodes[next(iter(graph[n]))]))[0]
+
+
+def creep_step(frm, to, yaw, at):
+    """
+    a short STRAIGHT move from `frm` to `to` (no tracker: path_sender drives it slowly itself),
+    keeping the robot's heading `yaw`. Forward if `to` is in front of the robot, else backward.
+    """
+    ahead = (to[0] - frm[0]) * math.cos(yaw) + (to[1] - frm[1]) * math.sin(yaw)
+    return {"type": "creep", "from": tuple(frm[:2]), "to": tuple(to[:2]), "yaw": yaw, "at": at,
+            "direction": FORWARD if ahead > 0 else BACKWARD}
+
+
 # ---------------------------------------------------------------- step 2: A* with the heading
 def astar_heading(graph, nodes, starts, goal, goal_f, can_turn):
     """
@@ -338,7 +391,8 @@ def astar_heading(graph, nodes, starts, goal, goal_f, can_turn):
     from standing still.
 
     starts : list of (state, cost, first_action) -- first_action is None or ("turn", facing)
-    goal   : goal node; goal_f : facing required at the goal; the robot must ARRIVE driving.
+    goal   : goal node; goal_f : facing required at the goal (one facing, or a set of allowed facings);
+             the robot must ARRIVE driving.
     Returns the list of (action, state) from the start, or None.
     """
     def moves(state):
@@ -361,6 +415,7 @@ def astar_heading(graph, nodes, starts, goal, goal_f, can_turn):
                 out.append((BACKWARD, (nb, (e + 2) % 4, BACKWARD), t + extra))
         return out
 
+    goal_fs = set(goal_f) if isinstance(goal_f, (set, frozenset, tuple, list)) else {goal_f}
     h = lambda n: math.dist(nodes[n], nodes[goal]) / V_NOMINAL
     open_list, cost, came_from = [], {}, {}
     for state, c, first in starts:
@@ -374,7 +429,7 @@ def astar_heading(graph, nodes, starts, goal, goal_f, can_turn):
         if c > cost[cur]:
             continue                                     # old entry, a cheaper way was found since
         n, f, m = cur
-        if n == goal and f == goal_f and m in (FORWARD, BACKWARD):
+        if n == goal and f in goal_fs and m in (FORWARD, BACKWARD):
             plan = []
             while cur is not None:
                 prev, action = came_from[cur]
@@ -405,7 +460,7 @@ class Planner:
         """Path from station `start` to station `goal` (see _plan for the result)."""
         s, ns = self.stations[start], self.station_node[start]
         return self._plan(start, s, ns, goal, self.nodes, self.graph,
-                          offset=math.dist(s[:2], self.nodes[ns]))
+                          offset=road_offset(s, self.graph, self.nodes, ns))
 
     def plan_from_pose(self, x, y, yaw, goal, max_dist_to_road=0.30):
         """
@@ -418,15 +473,16 @@ class Planner:
         nodes, edges, attached = attach_stations(self.nodes, self.edges, {"robot": (x, y, yaw)})
         ns = attached["robot"]
         graph = build_graph(nodes, edges)
-        dist = math.dist((x, y), nodes[ns])
+        dist = road_offset((x, y), graph, nodes, ns)
+        far = math.dist((x, y), nodes[ns])              # to the map's road (also counts "past the end")
         # robot almost on a node (e.g. stopped a few cm from a junction): start from that node
         for nb, length in graph[ns].items():
             if length < SNAP_TO_NODE:
                 ns = nb
                 break
         result = self._plan("robot", (x, y, yaw), ns, goal, nodes, graph, offset=dist)
-        if dist > max_dist_to_road:
-            result["warnings"].insert(0, f"robot at ({x:.2f}, {y:.2f}) is {dist:.2f} m from the road centre: "
+        if far > max_dist_to_road:
+            result["warnings"].insert(0, f"robot at ({x:.2f}, {y:.2f}) is {far:.2f} m from the road centre: "
                                          "localization may be wrong")
         return result
 
@@ -462,15 +518,61 @@ class Planner:
             warnings.append(f"{goal}: docking yaw {math.degrees(g[2]):.0f} deg is not along a road "
                             "-> check stations.yaml")
 
+        # ---- station docked ACROSS its road (robot sideways, e.g. SFC QTOF)?
+        #      Then the last drive leg ends on the CENTRE LINE, level with the station (g_end),
+        #      arriving along the road (either way); then: turn in place to the docking yaw,
+        #      then creep straight into the station.
+        #      For every other station `across` is False, g_end = g and nothing below changes.
+        road_dirs = {facing_of(heading(nodes[ng], nodes[nb]))[0] for nb in graph[ng]}
+        across = goal_f not in road_dirs and (goal_f + 2) % 4 not in road_dirs
+        arrive_f = goal_f
+        g_end = g                                    # where the last drive leg ends
+        tail = []                                    # steps after the last drive leg
+        if across:
+            centre, along, side = centre_point(g, graph, nodes, ng)
+            if side > MAX_CREEP:
+                return {"steps": [], "points": [], "route": [], "direction": "-", "ok": False,
+                        "warnings": warnings + [
+                            f"{goal}: docking yaw is across the road and the station is {side * 100:.0f} cm "
+                            f"from the road centre (max {MAX_CREEP * 100:.0f} cm) -> check stations.yaml"]}
+            if math.dist(centre, nodes[ng]) > SAME_POINT and not any(
+                    project_on_segment(centre, nodes[ng], nodes[nb])[1] < SAME_POINT for nb in graph[ng]):
+                warnings.append(f"{goal}: station is {abs(along) * 100:.0f} cm past the end of the road "
+                                "in map_pois.yaml (the robot drives there anyway, on the same line)")
+            g_end = (centre[0], centre[1], g[2])
+            tail = [{"type": "turn", "facing": goal_f, "at": ng, "yaw": g[2]}]
+            if side >= SAME_POINT:
+                tail.append(creep_step(centre, g, g[2], ng))
+
+            if math.dist(s[:2], g[:2]) < AT_STATION and angle_diff(s[2], g[2]) < HEADING_TOL:
+                return {"steps": [], "points": [], "route": [], "direction": "-", "ok": True,
+                        "warnings": ["already at the station"]}
+            if math.dist(s[:2], centre) <= TURN_MAX_OFFSET:
+                # the robot is already at the turning point: only the turn (if needed) + creep are left
+                steps = [st for st in tail if st["type"] == "creep" or angle_diff(s[2], g[2]) >= HEADING_TOL]
+                if steps and steps[-1]["type"] == "creep":
+                    steps[-1] = creep_step(s[:2], g, g[2], ng)
+                return {"steps": steps, "points": [], "route": [ng],
+                        "direction": " > ".join(step_name(st) for st in steps) or "-",
+                        "ok": True, "warnings": warnings}
+            if len(graph[ng]) == 1:
+                # station at the END of a dead-end road (SFC QTOF): arrive REVERSING, back toward the
+                # end wall. The back sticks out only 0.071 m behind base_link, the front 0.229 m.
+                arrive_f = {away_from_end(graph, nodes, ng)}
+            else:
+                arrive_f = road_dirs | {(k + 2) % 4 for k in road_dirs}   # along the road, either way
+
         # ---- start states: which way may the robot face when it leaves?
         starts = []
         if offset <= TURN_MAX_OFFSET:
-            # on the centre line: it may turn in place right here to any of the 4 directions
+            # on the centre line: it may turn in place right here to any of the 4 directions,
+            # except, at the end of a dead end, turn to face the end wall (the front would hit it)
+            wall_f = (away_from_end(graph, nodes, ns) + 2) % 4 if len(graph[ns]) == 1 else None
             for k in range(4):
                 err = angle_diff(s[2], k * math.pi / 2)
                 if err < START_TOL:
                     starts.append(((ns, k, STOP), 0.0, None))                     # already facing k
-                else:
+                elif k != wall_f:
                     starts.append(((ns, k, STOP), T_STOP + err / W_TURN, ("turn", k)))
         else:
             # in a station lane: no room to turn, it must drive out the way it faces
@@ -483,15 +585,27 @@ class Planner:
                             "cannot turn there nor drive out straight -> straighten it by hand (teleop)"]}
             along = any(facing_of(heading(nodes[ns], nodes[nb]))[0] in (k, (k + 2) % 4) for nb in graph[ns])
             if not along:
-                return {"steps": [], "points": [], "route": [], "direction": "-", "ok": False,
-                        "warnings": warnings + [
-                            f"{start} at ({s[0]:.2f}, {s[1]:.2f}, {math.degrees(s[2]):.0f} deg) is "
-                            f"{offset:.2f} m from the road centre and faces ACROSS the road: "
-                            "cannot turn there nor drive out -> check the localization, or straighten it by hand"]}
+                # facing ACROSS the road (e.g. docked sideways at SFC QTOF):
+                # creep straight back to the centre line first, then plan from there as usual
+                centre, _, side = centre_point(s, graph, nodes, ns)
+                if side > MAX_CREEP:
+                    return {"steps": [], "points": [], "route": [], "direction": "-", "ok": False,
+                            "warnings": warnings + [
+                                f"{start} at ({s[0]:.2f}, {s[1]:.2f}, {math.degrees(s[2]):.0f} deg) is "
+                                f"{offset:.2f} m from the road centre and faces ACROSS the road: "
+                                "too far to creep back -> check the localization, or drive it by hand"]}
+                rest = self._plan(start, (centre[0], centre[1], s[2]), ns, goal, nodes, graph, offset=0.0)
+                rest["warnings"] = warnings + [w for w in rest["warnings"] if w not in warnings]
+                if not rest["ok"] or not rest["steps"]:
+                    return rest
+                if side >= SAME_POINT:                  # already on the centre line (past a road end): no creep
+                    rest["steps"].insert(0, creep_step(s, centre, s[2], ns))
+                rest["direction"] = " > ".join(step_name(st) for st in rest["steps"])
+                return rest
             starts.append(((ns, k, LANE), 0.0, None))
 
         # ---- A*
-        plan = astar_heading(graph, nodes, starts, ng, goal_f, self._can_turn)
+        plan = astar_heading(graph, nodes, starts, ng, arrive_f, self._can_turn)
         if plan is None:
             return {"steps": [], "points": [], "route": [], "direction": "-", "ok": False,
                     "warnings": warnings + [f"no way to reach {goal} facing "
@@ -542,7 +656,7 @@ class Planner:
                 middle = ([move(a, u, join)] if join < math.dist(a, b) - 0.05 else []) + pts[1:]
             else:
                 leave, w1, middle = [], None, pts
-            arrive, used_g, w2 = station_end(g, pts[::-1], avail_g) if last else ([pts[-1]], 0.0, None)
+            arrive, used_g, w2 = station_end(g_end, pts[::-1], avail_g) if last else ([pts[-1]], 0.0, None)
             middle = drop_points_before(middle, pts[-1], used_g) if last else middle
             st["points"] = round_corners(dedupe(leave + middle + arrive[::-1]))
             for w, who in ((w1, start), (w2, goal)):
@@ -561,15 +675,23 @@ class Planner:
                 road = heading(nodes[nxt["nodes"][0]], nodes[nxt["nodes"][1]])
                 st["yaw"] = wrap(road + (math.pi if nxt["direction"] == BACKWARD else 0.0))
 
+        # ---- across-road station: turn in place on the centre line, then creep into the station
+        steps += tail
+
         route = [steps[0]["at"] if steps[0]["type"] == "turn" else drives[0]["nodes"][0]]
         for d in drives:
             route += d["nodes"][1:]
         return {"steps": steps,
                 "points": [p for d in drives for p in d["points"]],
                 "route": route,
-                "direction": " > ".join("turn" if st["type"] == "turn" else st["direction"] for st in steps),
+                "direction": " > ".join(step_name(st) for st in steps),
                 "ok": True,
                 "warnings": warnings}
+
+
+def step_name(st):
+    """short name of a step, for the summary line"""
+    return {"turn": "turn", "creep": "creep"}.get(st["type"], st.get("direction", st["type"]))
 
 
 def describe(result):
@@ -578,6 +700,9 @@ def describe(result):
     for st in result["steps"]:
         if st["type"] == "turn":
             lines.append(f"turn in place to {math.degrees(st['yaw']):.0f} deg at {st['at']}")
+        elif st["type"] == "creep":
+            lines.append(f"creep {st['direction']:<8} {math.dist(st['from'], st['to']) * 100:4.0f} cm straight "
+                         f"(sideways station), to ({st['to'][0]:.3f}, {st['to'][1]:.3f})")
         else:
             length = sum(math.dist(p, q) for p, q in zip(st["points"][:-1], st["points"][1:]))
             lines.append(f"drive {st['direction']:<8} {length:5.2f} m  {' -> '.join(st['nodes'])}")

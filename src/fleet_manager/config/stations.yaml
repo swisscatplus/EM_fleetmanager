@@ -5,14 +5,14 @@ default_clearance_m: 0.10
 # Routes remain disabled until the corresponding station poses and MPC paths are validated.
 stations:
   SFC QTOF:
-    measured: false
-    docking_pose: {x: 4.55, y: 7.58, yaw: 1.5708}
+    measured: yes
+    docking_pose: {x: 4.4, y: 7.484, yaw: 3.1416}
     clearance_m: 0.10
     notes: ""
 
   Battery:
-    measured: false
-    docking_pose: {x: 4.52, y: 7.61, yaw: -1.5708}
+    measured: yes
+    docking_pose: {x: 4.52, y: 7.57, yaw: -1.5708}
     clearance_m: 0.10
     notes: ""
 
