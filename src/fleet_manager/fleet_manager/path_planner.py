@@ -412,7 +412,7 @@ def astar_heading(graph, nodes, starts, goal, goal_f, can_turn):
             # backward: the back leads -> after this road the robot faces e + 180 deg
             if (m == BACKWARD and e != f) or e == (f + 2) % 4:
                 extra = 0.0 if m == BACKWARD else T_BACK + (T_STOP if m == FORWARD else 0.0)
-                out.append((BACKWARD, (nb, (e + 2) % 4, BACKWARD), t + extra))
+                out.append((BACKWARD, (nb, (e + 2) % 4, BACKWARD), t * 3.0 + extra))
         return out
 
     goal_fs = set(goal_f) if isinstance(goal_f, (set, frozenset, tuple, list)) else {goal_f}

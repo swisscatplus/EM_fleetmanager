@@ -29,8 +29,8 @@ road_graph:
   edges:
     - [left_bottom_end, lower_left_t]
     - [lower_left_t, top_left_corner]
-    - [top_left_corner, top_middle]
-    - [top_middle, top_right_t]
+    #- [top_left_corner, top_middle]
+    #- [top_middle, top_right_t]
     - [top_right_t, right_top_end]
     - [top_middle, lower_middle_t]
     - [lower_left_t, lower_middle_t]
