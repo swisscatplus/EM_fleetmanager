@@ -78,5 +78,5 @@ def generate_launch_description():
             default_value='8000',
             description='REST API bind port.',
         ),
-        api_node,
+        #api_node,
     ])
